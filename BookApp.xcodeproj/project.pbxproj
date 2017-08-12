@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		58AF8D6B1F3D92490080A017 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF8D6A1F3D92490080A017 /* Constants.swift */; };
+		58AF8D6D1F3EA9F40080A017 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF8D6C1F3EA9F40080A017 /* BookViewController.swift */; };
+		58AF8D6F1F3EAF910080A017 /* TeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF8D6E1F3EAF910080A017 /* TeacherViewController.swift */; };
 		58C39DBB1F3C0489001741EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C39DBA1F3C0489001741EB /* AppDelegate.swift */; };
 		58C39DC01F3C0489001741EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58C39DBE1F3C0489001741EB /* Main.storyboard */; };
 		58C39DC21F3C0489001741EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C39DC11F3C0489001741EB /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		58AF8D6A1F3D92490080A017 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		58AF8D6C1F3EA9F40080A017 /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		58AF8D6E1F3EAF910080A017 /* TeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
 		58C39DB71F3C0489001741EB /* BookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C39DBA1F3C0489001741EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58C39DBF1F3C0489001741EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		58C39DD71F3C364C001741EB /* Books */ = {
 			isa = PBXGroup;
 			children = (
+				58AF8D6C1F3EA9F40080A017 /* BookViewController.swift */,
 			);
 			name = Books;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 		58C39DD81F3C365D001741EB /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				58AF8D6E1F3EAF910080A017 /* TeacherViewController.swift */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -226,9 +232,11 @@
 				58C39DDB1F3C47AB001741EB /* MainViewCell.swift in Sources */,
 				58C39DD01F3C10C0001741EB /* NavigationCustom.swift in Sources */,
 				58C39DE61F3C5B0B001741EB /* BottomView.swift in Sources */,
+				58AF8D6F1F3EAF910080A017 /* TeacherViewController.swift in Sources */,
 				58C39DD21F3C1F41001741EB /* BaseViewController.swift in Sources */,
 				58C39DBB1F3C0489001741EB /* AppDelegate.swift in Sources */,
 				58C39DDD1F3C49C5001741EB /* MainViewController.swift in Sources */,
+				58AF8D6D1F3EA9F40080A017 /* BookViewController.swift in Sources */,
 				58C39DE41F3C576C001741EB /* DetailViewController.swift in Sources */,
 				58AF8D6B1F3D92490080A017 /* Constants.swift in Sources */,
 			);
