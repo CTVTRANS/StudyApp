@@ -93,8 +93,8 @@
 		58C39DCC1F3C072E001741EB /* CustomNavigation */ = {
 			isa = PBXGroup;
 			children = (
-				58C39DCD1F3C077A001741EB /* NavigationCustom.xib */,
 				58C39DCF1F3C10C0001741EB /* NavigationCustom.swift */,
+				58C39DCD1F3C077A001741EB /* NavigationCustom.xib */,
 				58C39DE51F3C5B0B001741EB /* BottomView.swift */,
 				58C39DE11F3C5662001741EB /* BottomView.xib */,
 			);
