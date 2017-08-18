@@ -11,11 +11,14 @@ import UIKit
 class BookViewController: BaseViewController {
 
     @IBOutlet weak var navigationCustom: NavigationCustom!
+    @IBOutlet weak var suggestBookView: CustomBookCollection!
+    @IBOutlet weak var freeBookView: CustomBookCollection!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        suggestBookView.setupView(image: #imageLiteral(resourceName: "ic_reload"))
+        freeBookView.setupView(image: #imageLiteral(resourceName: "ic_next"))
     }
     
     func setupCallBackButton() {

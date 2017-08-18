@@ -21,11 +21,33 @@
 		58C39DDD1F3C49C5001741EB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C39DDC1F3C49C5001741EB /* MainViewController.swift */; };
 		58C39DE01F3C4F5D001741EB /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C39DDF1F3C4F5D001741EB /* NewsModel.swift */; };
 		58C39DE21F3C5662001741EB /* BottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58C39DE11F3C5662001741EB /* BottomView.xib */; };
-		58C39DE41F3C576C001741EB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C39DE31F3C576C001741EB /* DetailViewController.swift */; };
+		58C39DE41F3C576C001741EB /* DetailNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C39DE31F3C576C001741EB /* DetailNewsController.swift */; };
 		58C39DE61F3C5B0B001741EB /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C39DE51F3C5B0B001741EB /* BottomView.swift */; };
+		6DE04FD41F414F33002C5E25 /* BaseViewcontrollerExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE04FD31F414F33002C5E25 /* BaseViewcontrollerExtend.swift */; };
+		6DEDBD531F4593BE00526AD0 /* CustomBookCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DEDBD521F4593BE00526AD0 /* CustomBookCollection.xib */; };
+		6DEDBD551F4593DD00526AD0 /* CustomBookCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEDBD541F4593DD00526AD0 /* CustomBookCollection.swift */; };
+		6DEDBD5C1F459B8500526AD0 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEDBD5A1F459B8500526AD0 /* BookCollectionViewCell.swift */; };
+		6DEDBD5D1F459B8500526AD0 /* BookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DEDBD5B1F459B8500526AD0 /* BookCollectionViewCell.xib */; };
+		6DF310FD1F4288AC008B2878 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF310FC1F4288AC008B2878 /* Book.swift */; };
+		6DF311031F42B653008B2878 /* TeacherUpLoaeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF311021F42B653008B2878 /* TeacherUpLoaeCell.swift */; };
+		6DF417511F469FED00F5032E /* TeacherSubcribeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF417501F469FED00F5032E /* TeacherSubcribeCell.swift */; };
+		6DF417531F46A29000F5032E /* CustomTeacherCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF417521F46A29000F5032E /* CustomTeacherCollection.xib */; };
+		6DF417551F46A2AF00F5032E /* CustomTeacherCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF417541F46A2AF00F5032E /* CustomTeacherCollection.swift */; };
+		6DF417581F46A56F00F5032E /* TeacherCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF417561F46A56F00F5032E /* TeacherCollectionCell.swift */; };
+		6DF417591F46A56F00F5032E /* TeacherCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF417571F46A56F00F5032E /* TeacherCollectionCell.xib */; };
+		6DF4175B1F46ABF700F5032E /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4175A1F46ABF700F5032E /* Teacher.swift */; };
+		6DF889241F41847E005F72D7 /* Book.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF889231F41847E005F72D7 /* Book.storyboard */; };
+		6DF889261F418496005F72D7 /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF889251F418496005F72D7 /* Teacher.storyboard */; };
+		6DF889281F4184AC005F72D7 /* Clubs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF889271F4184AB005F72D7 /* Clubs.storyboard */; };
+		6DF8892A1F41869B005F72D7 /* TopViewShare.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF889291F41869B005F72D7 /* TopViewShare.xib */; };
+		6DF8892C1F4186B4005F72D7 /* TopViewShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF8892B1F4186B4005F72D7 /* TopViewShare.swift */; };
+		6DF8892E1F418F40005F72D7 /* DetailTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF8892D1F418F40005F72D7 /* DetailTeacherViewController.swift */; };
+		6DF889301F418F68005F72D7 /* TeacherSubscribeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF8892F1F418F68005F72D7 /* TeacherSubscribeController.swift */; };
+		76E08F9DCE0410B70DD2B4D3 /* Pods_BookApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB3D8157F50B7433C570DE8 /* Pods_BookApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		380C356BBC4575357C69F281 /* Pods-BookApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BookApp/Pods-BookApp.debug.xcconfig"; sourceTree = "<group>"; };
 		58AF8D6A1F3D92490080A017 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		58AF8D6C1F3EA9F40080A017 /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		58AF8D6E1F3EAF910080A017 /* TeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherViewController.swift; sourceTree = "<group>"; };
@@ -42,8 +64,30 @@
 		58C39DDC1F3C49C5001741EB /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		58C39DDF1F3C4F5D001741EB /* NewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		58C39DE11F3C5662001741EB /* BottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomView.xib; sourceTree = "<group>"; };
-		58C39DE31F3C576C001741EB /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		58C39DE31F3C576C001741EB /* DetailNewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailNewsController.swift; sourceTree = "<group>"; };
 		58C39DE51F3C5B0B001741EB /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		6DE04FD31F414F33002C5E25 /* BaseViewcontrollerExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewcontrollerExtend.swift; sourceTree = "<group>"; };
+		6DEDBD521F4593BE00526AD0 /* CustomBookCollection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomBookCollection.xib; sourceTree = "<group>"; };
+		6DEDBD541F4593DD00526AD0 /* CustomBookCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCollection.swift; sourceTree = "<group>"; };
+		6DEDBD5A1F459B8500526AD0 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
+		6DEDBD5B1F459B8500526AD0 /* BookCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookCollectionViewCell.xib; sourceTree = "<group>"; };
+		6DF310FC1F4288AC008B2878 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		6DF311021F42B653008B2878 /* TeacherUpLoaeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherUpLoaeCell.swift; sourceTree = "<group>"; };
+		6DF417501F469FED00F5032E /* TeacherSubcribeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherSubcribeCell.swift; sourceTree = "<group>"; };
+		6DF417521F46A29000F5032E /* CustomTeacherCollection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTeacherCollection.xib; sourceTree = "<group>"; };
+		6DF417541F46A2AF00F5032E /* CustomTeacherCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTeacherCollection.swift; sourceTree = "<group>"; };
+		6DF417561F46A56F00F5032E /* TeacherCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCollectionCell.swift; sourceTree = "<group>"; };
+		6DF417571F46A56F00F5032E /* TeacherCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeacherCollectionCell.xib; sourceTree = "<group>"; };
+		6DF4175A1F46ABF700F5032E /* Teacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		6DF889231F41847E005F72D7 /* Book.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Book.storyboard; sourceTree = "<group>"; };
+		6DF889251F418496005F72D7 /* Teacher.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Teacher.storyboard; sourceTree = "<group>"; };
+		6DF889271F4184AB005F72D7 /* Clubs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clubs.storyboard; sourceTree = "<group>"; };
+		6DF889291F41869B005F72D7 /* TopViewShare.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopViewShare.xib; sourceTree = "<group>"; };
+		6DF8892B1F4186B4005F72D7 /* TopViewShare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewShare.swift; sourceTree = "<group>"; };
+		6DF8892D1F418F40005F72D7 /* DetailTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTeacherViewController.swift; sourceTree = "<group>"; };
+		6DF8892F1F418F68005F72D7 /* TeacherSubscribeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherSubscribeController.swift; sourceTree = "<group>"; };
+		8CB3D8157F50B7433C570DE8 /* Pods_BookApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97D3CDF92D2128A3885089EA /* Pods-BookApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-BookApp/Pods-BookApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,17 +95,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76E08F9DCE0410B70DD2B4D3 /* Pods_BookApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		482460553D20F5C79AAB9EFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8CB3D8157F50B7433C570DE8 /* Pods_BookApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		58C39DAE1F3C0489001741EB = {
 			isa = PBXGroup;
 			children = (
 				58C39DB91F3C0489001741EB /* BookApp */,
 				58C39DB81F3C0489001741EB /* Products */,
+				8AE8F240C640D784744DE3AB /* Pods */,
+				482460553D20F5C79AAB9EFA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,9 +132,12 @@
 			isa = PBXGroup;
 			children = (
 				58C39DBA1F3C0489001741EB /* AppDelegate.swift */,
-				58C39DD11F3C1F41001741EB /* BaseViewController.swift */,
+				6DE04FD31F414F33002C5E25 /* BaseViewcontrollerExtend.swift */,
 				58AF8D6A1F3D92490080A017 /* Constants.swift */,
 				58C39DBE1F3C0489001741EB /* Main.storyboard */,
+				6DF889231F41847E005F72D7 /* Book.storyboard */,
+				6DF889251F418496005F72D7 /* Teacher.storyboard */,
+				6DF889271F4184AB005F72D7 /* Clubs.storyboard */,
 				58C39DC11F3C0489001741EB /* Assets.xcassets */,
 				58C39DD51F3C360F001741EB /* Controller */,
 				58C39DDE1F3C4EFA001741EB /* Model */,
@@ -97,6 +155,8 @@
 				58C39DCD1F3C077A001741EB /* NavigationCustom.xib */,
 				58C39DE51F3C5B0B001741EB /* BottomView.swift */,
 				58C39DE11F3C5662001741EB /* BottomView.xib */,
+				6DF889291F41869B005F72D7 /* TopViewShare.xib */,
+				6DF8892B1F4186B4005F72D7 /* TopViewShare.swift */,
 			);
 			name = CustomNavigation;
 			sourceTree = "<group>";
@@ -104,6 +164,7 @@
 		58C39DD51F3C360F001741EB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				58C39DD11F3C1F41001741EB /* BaseViewController.swift */,
 				58C39DD61F3C363F001741EB /* News */,
 				58C39DD71F3C364C001741EB /* Books */,
 				58C39DD81F3C365D001741EB /* Teacher */,
@@ -117,7 +178,7 @@
 			children = (
 				58C39DDA1F3C47AB001741EB /* MainViewCell.swift */,
 				58C39DDC1F3C49C5001741EB /* MainViewController.swift */,
-				58C39DE31F3C576C001741EB /* DetailViewController.swift */,
+				58C39DE31F3C576C001741EB /* DetailNewsController.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -126,6 +187,10 @@
 			isa = PBXGroup;
 			children = (
 				58AF8D6C1F3EA9F40080A017 /* BookViewController.swift */,
+				6DEDBD541F4593DD00526AD0 /* CustomBookCollection.swift */,
+				6DEDBD521F4593BE00526AD0 /* CustomBookCollection.xib */,
+				6DEDBD5A1F459B8500526AD0 /* BookCollectionViewCell.swift */,
+				6DEDBD5B1F459B8500526AD0 /* BookCollectionViewCell.xib */,
 			);
 			name = Books;
 			sourceTree = "<group>";
@@ -134,6 +199,14 @@
 			isa = PBXGroup;
 			children = (
 				58AF8D6E1F3EAF910080A017 /* TeacherViewController.swift */,
+				6DF417541F46A2AF00F5032E /* CustomTeacherCollection.swift */,
+				6DF417521F46A29000F5032E /* CustomTeacherCollection.xib */,
+				6DF417561F46A56F00F5032E /* TeacherCollectionCell.swift */,
+				6DF417571F46A56F00F5032E /* TeacherCollectionCell.xib */,
+				6DF8892D1F418F40005F72D7 /* DetailTeacherViewController.swift */,
+				6DF311021F42B653008B2878 /* TeacherUpLoaeCell.swift */,
+				6DF8892F1F418F68005F72D7 /* TeacherSubscribeController.swift */,
+				6DF417501F469FED00F5032E /* TeacherSubcribeCell.swift */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -149,8 +222,19 @@
 			isa = PBXGroup;
 			children = (
 				58C39DDF1F3C4F5D001741EB /* NewsModel.swift */,
+				6DF310FC1F4288AC008B2878 /* Book.swift */,
+				6DF4175A1F46ABF700F5032E /* Teacher.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		8AE8F240C640D784744DE3AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				380C356BBC4575357C69F281 /* Pods-BookApp.debug.xcconfig */,
+				97D3CDF92D2128A3885089EA /* Pods-BookApp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,9 +244,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58C39DC91F3C0489001741EB /* Build configuration list for PBXNativeTarget "BookApp" */;
 			buildPhases = (
+				A28C0E1DEA963CC17A3F1E51 /* [CP] Check Pods Manifest.lock */,
 				58C39DB31F3C0489001741EB /* Sources */,
 				58C39DB41F3C0489001741EB /* Frameworks */,
 				58C39DB51F3C0489001741EB /* Resources */,
+				326C8F797EA5FA3B038F467D /* [CP] Embed Pods Frameworks */,
+				6DE5238C0DBD2FE91EF8F325 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -213,31 +300,99 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DF417591F46A56F00F5032E /* TeacherCollectionCell.xib in Resources */,
+				6DEDBD531F4593BE00526AD0 /* CustomBookCollection.xib in Resources */,
+				6DF8892A1F41869B005F72D7 /* TopViewShare.xib in Resources */,
+				6DF889281F4184AC005F72D7 /* Clubs.storyboard in Resources */,
+				6DEDBD5D1F459B8500526AD0 /* BookCollectionViewCell.xib in Resources */,
 				58C39DCE1F3C077A001741EB /* NavigationCustom.xib in Resources */,
+				6DF889241F41847E005F72D7 /* Book.storyboard in Resources */,
 				58C39DC51F3C0489001741EB /* LaunchScreen.storyboard in Resources */,
 				58C39DE21F3C5662001741EB /* BottomView.xib in Resources */,
+				6DF889261F418496005F72D7 /* Teacher.storyboard in Resources */,
 				58C39DC21F3C0489001741EB /* Assets.xcassets in Resources */,
 				58C39DC01F3C0489001741EB /* Main.storyboard in Resources */,
+				6DF417531F46A29000F5032E /* CustomTeacherCollection.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		326C8F797EA5FA3B038F467D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookApp/Pods-BookApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DE5238C0DBD2FE91EF8F325 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookApp/Pods-BookApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A28C0E1DEA963CC17A3F1E51 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58C39DB31F3C0489001741EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DF8892E1F418F40005F72D7 /* DetailTeacherViewController.swift in Sources */,
+				6DF311031F42B653008B2878 /* TeacherUpLoaeCell.swift in Sources */,
+				6DF417581F46A56F00F5032E /* TeacherCollectionCell.swift in Sources */,
+				6DF417551F46A2AF00F5032E /* CustomTeacherCollection.swift in Sources */,
 				58C39DE01F3C4F5D001741EB /* NewsModel.swift in Sources */,
+				6DEDBD5C1F459B8500526AD0 /* BookCollectionViewCell.swift in Sources */,
 				58C39DDB1F3C47AB001741EB /* MainViewCell.swift in Sources */,
+				6DF889301F418F68005F72D7 /* TeacherSubscribeController.swift in Sources */,
 				58C39DD01F3C10C0001741EB /* NavigationCustom.swift in Sources */,
 				58C39DE61F3C5B0B001741EB /* BottomView.swift in Sources */,
 				58AF8D6F1F3EAF910080A017 /* TeacherViewController.swift in Sources */,
+				6DF8892C1F4186B4005F72D7 /* TopViewShare.swift in Sources */,
+				6DEDBD551F4593DD00526AD0 /* CustomBookCollection.swift in Sources */,
 				58C39DD21F3C1F41001741EB /* BaseViewController.swift in Sources */,
 				58C39DBB1F3C0489001741EB /* AppDelegate.swift in Sources */,
+				6DE04FD41F414F33002C5E25 /* BaseViewcontrollerExtend.swift in Sources */,
 				58C39DDD1F3C49C5001741EB /* MainViewController.swift in Sources */,
+				6DF4175B1F46ABF700F5032E /* Teacher.swift in Sources */,
+				6DF417511F469FED00F5032E /* TeacherSubcribeCell.swift in Sources */,
+				6DF310FD1F4288AC008B2878 /* Book.swift in Sources */,
 				58AF8D6D1F3EA9F40080A017 /* BookViewController.swift in Sources */,
-				58C39DE41F3C576C001741EB /* DetailViewController.swift in Sources */,
+				58C39DE41F3C576C001741EB /* DetailNewsController.swift in Sources */,
 				58AF8D6B1F3D92490080A017 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +514,7 @@
 		};
 		58C39DCA1F3C0489001741EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 380C356BBC4575357C69F281 /* Pods-BookApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = HDNMHL7M4Y;
@@ -373,6 +529,7 @@
 		};
 		58C39DCB1F3C0489001741EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97D3CDF92D2128A3885089EA /* Pods-BookApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = HDNMHL7M4Y;

@@ -49,7 +49,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
-        let vc: DetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
+        let vc: DetailNewsController = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailNewsController
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

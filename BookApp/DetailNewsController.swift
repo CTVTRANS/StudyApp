@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: BaseViewController {
+class DetailNewsController: BaseViewController {
 
     @IBOutlet weak var bottomView: BottomView!
     @IBOutlet weak var bodyNews: UILabel!

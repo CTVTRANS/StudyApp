@@ -10,16 +10,33 @@ import UIKit
 
 class TeacherViewController: BaseViewController {
 
+    @IBOutlet weak var suggestTeacher: CustomTeacherCollection!
+    @IBOutlet weak var freeTeacher: CustomTeacherCollection!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+      
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
-
+    @IBAction func showDetailTeacher(_ sender: Any) {
+        let teacherStoryboard = UIStoryboard(name: "Teacher", bundle: nil)
+        let controller: DetailTeacherViewController = teacherStoryboard.instantiateViewController(withIdentifier: "DetailTeacherViewController") as! DetailTeacherViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    @IBAction func showSubcribeed(_ sender: Any) {
+        let teacherStoryboard = UIStoryboard(name: "Teacher", bundle: nil)
+        let controller: TeacherSubscribeController = teacherStoryboard.instantiateViewController(withIdentifier: "TeacherSubscribeController") as! TeacherSubscribeController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
