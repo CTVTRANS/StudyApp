@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Ze-ws-inY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="97"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yzn-1Z-Bfq" id="heS-Sg-C49">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="97"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="96.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="YIR-yG-HLx">
@@ -117,7 +117,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-Vc-QvJ">
-                                <rect key="frame" x="0.0" y="44" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="cc6-Rk-Sfp">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="188"/>
@@ -201,7 +201,7 @@
                                         <rect key="frame" x="0.0" y="216" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XEa-D1-zhI" id="c6E-bH-zT1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="cFH-EA-jz3">
@@ -241,16 +241,18 @@
                                                 <constraint firstItem="IXA-Cf-x09" firstAttribute="top" secondItem="cFH-EA-jz3" secondAttribute="top" id="2rU-re-LBb"/>
                                                 <constraint firstItem="fED-1m-ggA" firstAttribute="top" secondItem="IXA-Cf-x09" secondAttribute="bottom" id="6Pd-42-CUM"/>
                                                 <constraint firstItem="fED-1m-ggA" firstAttribute="leading" secondItem="cFH-EA-jz3" secondAttribute="trailing" constant="8" id="8dd-Vm-zu7"/>
-                                                <constraint firstAttribute="bottom" secondItem="cFH-EA-jz3" secondAttribute="bottom" constant="8" id="LXe-FH-od6"/>
-                                                <constraint firstItem="cFH-EA-jz3" firstAttribute="top" secondItem="c6E-bH-zT1" secondAttribute="top" constant="8" id="T61-mM-JtJ"/>
                                                 <constraint firstItem="cFH-EA-jz3" firstAttribute="leading" secondItem="c6E-bH-zT1" secondAttribute="leading" constant="16" id="bEn-XY-FUa"/>
                                                 <constraint firstItem="IXA-Cf-x09" firstAttribute="leading" secondItem="cFH-EA-jz3" secondAttribute="trailing" constant="8" id="cwb-SS-dXD"/>
                                                 <constraint firstItem="3eO-W7-tfY" firstAttribute="top" secondItem="fED-1m-ggA" secondAttribute="bottom" id="dA8-vc-GVD"/>
+                                                <constraint firstItem="cFH-EA-jz3" firstAttribute="centerY" secondItem="c6E-bH-zT1" secondAttribute="centerY" id="e6I-B5-Edg"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="D3P-H0-u5m" secondAttribute="trailing" constant="16" id="fSf-Al-fho"/>
                                                 <constraint firstItem="3eO-W7-tfY" firstAttribute="leading" secondItem="cFH-EA-jz3" secondAttribute="trailing" constant="8" id="jlh-Qj-eeY"/>
                                                 <constraint firstItem="D3P-H0-u5m" firstAttribute="centerY" secondItem="c6E-bH-zT1" secondAttribute="centerY" id="zTM-dF-bbh"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -258,22 +260,12 @@
                                     <outlet property="delegate" destination="CzM-0D-yIB" id="h0Z-US-aNB"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6E-cs-DPs" customClass="BottomView" customModule="BookApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="mkE-8k-r4U"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="g6E-cs-DPs" firstAttribute="leading" secondItem="g5g-Kf-RNJ" secondAttribute="leading" id="0pX-to-nCc"/>
                             <constraint firstItem="ULb-fs-2jl" firstAttribute="leading" secondItem="g5g-Kf-RNJ" secondAttribute="leading" id="9c5-38-R2D"/>
-                            <constraint firstItem="g6E-cs-DPs" firstAttribute="top" secondItem="8wl-Vc-QvJ" secondAttribute="bottom" id="FGc-T8-r0C"/>
-                            <constraint firstAttribute="trailing" secondItem="g6E-cs-DPs" secondAttribute="trailing" id="J1s-bP-yxU"/>
                             <constraint firstAttribute="trailing" secondItem="8wl-Vc-QvJ" secondAttribute="trailing" id="QdF-qG-ytE"/>
-                            <constraint firstItem="yN1-PU-5Wm" firstAttribute="top" secondItem="g6E-cs-DPs" secondAttribute="bottom" id="dH7-yG-9oh"/>
+                            <constraint firstItem="yN1-PU-5Wm" firstAttribute="top" secondItem="8wl-Vc-QvJ" secondAttribute="bottom" id="WJR-la-hVK"/>
                             <constraint firstItem="8wl-Vc-QvJ" firstAttribute="top" secondItem="ULb-fs-2jl" secondAttribute="bottom" id="fDy-MT-PtQ"/>
                             <constraint firstItem="ULb-fs-2jl" firstAttribute="top" secondItem="g5g-Kf-RNJ" secondAttribute="top" id="i8U-bl-gAe"/>
                             <constraint firstAttribute="trailing" secondItem="ULb-fs-2jl" secondAttribute="trailing" id="jl9-qv-VZH"/>
@@ -281,6 +273,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="nameTeacher" destination="YUe-FL-8IB" id="gdP-bP-cCH"/>
                         <outlet property="table" destination="8wl-Vc-QvJ" id="VuQ-hg-cpp"/>
                     </connections>
                 </viewController>

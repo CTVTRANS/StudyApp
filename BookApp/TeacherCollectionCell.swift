@@ -10,9 +10,14 @@ import UIKit
 
 class TeacherCollectionCell: UICollectionViewCell {
 
+    @IBOutlet weak var nameTeacher: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func binData(teacher: Teacher) {
+        nameTeacher.text = teacher.name
     }
 
 }

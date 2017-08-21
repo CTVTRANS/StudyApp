@@ -40,6 +40,9 @@
                 <constraint firstItem="Vjz-bq-JnI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HxX-e5-xuO"/>
                 <constraint firstAttribute="trailing" secondItem="Vjz-bq-JnI" secondAttribute="trailing" id="Kxt-74-ouJ"/>
             </constraints>
+            <connections>
+                <outlet property="nameTeacher" destination="VkI-ye-ns6" id="3hP-O1-nyn"/>
+            </connections>
         </collectionViewCell>
     </objects>
     <resources>

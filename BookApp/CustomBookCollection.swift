@@ -15,6 +15,9 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
     @IBOutlet weak var detailTitle: UILabel!
     @IBOutlet weak var detailImage: UIImageView!
     
+    var bookArray = [Book]()
+    var callBackClickCell:((_ book: Book) -> Void)?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
@@ -45,12 +48,13 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return bookArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: BookCollectionViewCell = bookCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BookCollectionViewCell
+        cell.binData(book: bookArray[indexPath.row])
         return cell
     }
     
@@ -83,6 +87,6 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
         return space
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("ok")
+        callBackClickCell?(bookArray[indexPath.row])
     }
 }

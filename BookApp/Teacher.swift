@@ -17,5 +17,13 @@ class Teacher: NSObject {
         _name = name
         _imageURL = imageURL
     }
+    var name: String {
+        get {
+            return _name
+        }
+        set {
+            _name = newValue
+        }
+    }
 
 }

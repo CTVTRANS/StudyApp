@@ -396,7 +396,7 @@
         <!--Book View Controller-->
         <scene sceneID="eiG-v1-PR0">
             <objects>
-                <viewController id="eVr-ui-5dh" customClass="BookViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookMain" id="eVr-ui-5dh" customClass="BookViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hh2-H1-E16"/>
                         <viewControllerLayoutGuide type="bottom" id="mls-ms-tCN"/>

@@ -45,6 +45,9 @@
                 <constraint firstAttribute="trailing" secondItem="Vha-hC-17U" secondAttribute="trailing" id="rEl-tJ-57K"/>
             </constraints>
             <size key="customSize" width="90" height="97"/>
+            <connections>
+                <outlet property="nameBook" destination="WGr-15-hug" id="Rhb-F0-r5K"/>
+            </connections>
             <point key="canvasLocation" x="54" y="137.5"/>
         </collectionViewCell>
     </objects>

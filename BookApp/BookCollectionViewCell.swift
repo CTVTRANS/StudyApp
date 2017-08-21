@@ -10,9 +10,13 @@ import UIKit
 
 class BookCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var nameBook: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
+    func binData(book: Book) {
+        nameBook.text = book.nameBook
+    }
 }

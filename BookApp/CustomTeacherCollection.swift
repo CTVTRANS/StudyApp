@@ -10,7 +10,8 @@ import UIKit
 
 class CustomTeacherCollection: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var callBackClickCell:((Teacher) -> Void) = {_ in }
+    var callBackClickCell:((_ model: Teacher) -> Void)?
+    
     var arrTeacher = [Teacher]()
 
     @IBOutlet weak var teacherCollection: UICollectionView!
@@ -20,12 +21,6 @@ class CustomTeacherCollection: UIView, UICollectionViewDelegate, UICollectionVie
         super.init(coder: aDecoder)
         setupUI()
         self.teacherCollection.register(UINib(nibName: "TeacherCollectionCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        let teacher1: Teacher = Teacher(name: "kien", imageURL: "abc")
-        let teacher2: Teacher = Teacher(name: "le", imageURL: "123")
-        let teacher3: Teacher = Teacher(name: "van", imageURL: "123")
-        arrTeacher.append(teacher1)
-        arrTeacher.append(teacher2)
-        arrTeacher.append(teacher3)
     }
     
     private func setupUI() {
@@ -47,12 +42,13 @@ class CustomTeacherCollection: UIView, UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return arrTeacher.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TeacherCollectionCell = teacherCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TeacherCollectionCell
+        cell.binData(teacher: arrTeacher[indexPath.row])
         return cell
     }
     
@@ -85,7 +81,7 @@ class CustomTeacherCollection: UIView, UICollectionViewDelegate, UICollectionVie
         return space
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.callBackClickCell(arrTeacher[indexPath.row])
+        callBackClickCell?(arrTeacher[indexPath.row])
     }
 
 }
