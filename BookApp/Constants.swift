@@ -8,6 +8,9 @@
 
 import UIKit
 
+let widthScreen: CGFloat = UIScreen.main.bounds.width
+let hightScreen: CGFloat = UIScreen.main.bounds.height
+
 class Constants: NSObject {
     
 

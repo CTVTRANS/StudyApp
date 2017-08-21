@@ -8,17 +8,18 @@
 
 import UIKit
 
-class BookDetailViewController: BaseViewController {
+class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var topShare: TopViewShare!
     @IBOutlet weak var topTabbar: CustomTopTabbar!
-    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var bottomView: BottomView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScroll()
-        
+        setupCallBackBottom()
+        setupCallBackTopTabbar()
         
     }
     
@@ -48,5 +49,28 @@ class BookDetailViewController: BaseViewController {
         scroll.addSubview(textVC.view)
     }
 
-
+    func setupCallBackBottom() {
+        bottomView.pressBackButton = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func setupCallBackTopTabbar() {
+        topTabbar.showAudioPressed = { [weak self] in
+            self?.scroll.contentOffset = CGPoint(x: 0, y: 0)
+        }
+        
+        topTabbar.showVideoPressed = { [weak self] in
+            self?.scroll.contentOffset = CGPoint(x: widthScreen, y: 0)
+        }
+        
+        topTabbar.showTextPressed = { [weak self] in
+            self?.scroll.contentOffset = CGPoint(x: 2 * widthScreen, y: 0)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 }

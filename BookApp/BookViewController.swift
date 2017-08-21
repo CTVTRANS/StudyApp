@@ -41,12 +41,13 @@ class BookViewController: BaseViewController {
     
     func setupCallBackClickCell() {
         let bookStoryboard = UIStoryboard(name: "Book", bundle: nil)
-        let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
         suggestBookView.callBackClickCell = {[weak self] (bookSelected: Book) in
+            let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
             self?.navigationController?.pushViewController(vc, animated: true)
         }
         
         freeBookView.callBackClickCell = {[weak self] (bookSelected: Book) in
+            let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
             self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
