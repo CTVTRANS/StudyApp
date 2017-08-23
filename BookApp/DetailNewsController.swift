@@ -8,24 +8,38 @@
 
 import UIKit
 
-class DetailNewsController: BaseViewController {
+class DetailNewsController: BaseViewController, UIWebViewDelegate {
 
+    @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var bottomView: BottomView!
-    @IBOutlet weak var bodyNews: UILabel!
+    @IBOutlet weak var bodyNews: UIWebView!
     @IBOutlet weak var detailNews: UILabel!
+    @IBOutlet weak var hightOfWebView: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCallBackButton()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "ok", style: .done, target: self, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"), style: .plain, target: self, action: #selector(share))
-        bodyNews.text = "down voteThe easiest way, IMO, is just to click on the title bar of the first ViewController and in the Attribute Inspector (⌥+⌘+4) change the Navigation Item info the way you want: Title -> what will show up in the back button* or if you want it to say something other than the Title of the first ViewController or the word Back you can just put it in the Back Button field.down voteThe easiest way, IMO, is just to click on the title bar of the first ViewController and in the Attribute Inspector (⌥+⌘+4) change the Navigation Item info the way you want: Title -> what will show up in the back button* or if you want it to say something other than the Title of the first ViewController or the word Back you can just put it in the Back Button field."
+        
+        bodyNews.delegate = self
+//        bodyNews.loadRequest(URLRequest(url: URL(string: "https://stackoverflow.com/questions/3341842/how-to-add-subview-to-a-webview-so-that-the-subview-would-scroll-along-with-webv")!))
+        bodyNews.loadHTMLString("<p>ahihi&nbsp;ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi</p>", baseURL: nil)
+        bodyNews.scrollView.isScrollEnabled = false
+        
         detailNews.text = "down voteThe easiest way, IMO, is just to click on the title bar of the first ViewController and in the Attribute Inspector (⌥+⌘+4) change the Navigation Item info the way you want: Title -> what will show up in the back button* or if you want it to say something other than the Title of the first ViewController or the word Back you can just put it in the Back Button field."
     }
     
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        let hightContentWeb: CGFloat = bodyNews.scrollView.contentSize.height
+        print(hightContentWeb)
+        hightOfWebView.constant = hightContentWeb
+        scroll.contentSize.height = hightContentWeb + 197
+    }
+    
     private func setupCallBackButton() {
-        bottomView.pressBackButton = {
-            self.navigationController?.popViewController(animated: true)
+        bottomView.pressBackButton = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
         }
         
         bottomView.pressedComment = {
@@ -47,6 +61,10 @@ class DetailNewsController: BaseViewController {
     
     @objc private func share() {
         print("share")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }

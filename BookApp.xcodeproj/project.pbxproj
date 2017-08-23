@@ -24,6 +24,7 @@
 		58C39DE41F3C576C001741EB /* DetailNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C39DE31F3C576C001741EB /* DetailNewsController.swift */; };
 		58C39DE61F3C5B0B001741EB /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C39DE51F3C5B0B001741EB /* BottomView.swift */; };
 		6DE04FD41F414F33002C5E25 /* BaseViewcontrollerExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE04FD31F414F33002C5E25 /* BaseViewcontrollerExtend.swift */; };
+		6DED74B91F4C1D6800E4E42F /* BookTypeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DED74B81F4C1D6800E4E42F /* BookTypeViewCell.swift */; };
 		6DEDBD531F4593BE00526AD0 /* CustomBookCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DEDBD521F4593BE00526AD0 /* CustomBookCollection.xib */; };
 		6DEDBD551F4593DD00526AD0 /* CustomBookCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEDBD541F4593DD00526AD0 /* CustomBookCollection.swift */; };
 		6DEDBD5C1F459B8500526AD0 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEDBD5A1F459B8500526AD0 /* BookCollectionViewCell.swift */; };
@@ -42,6 +43,7 @@
 		6DF417581F46A56F00F5032E /* TeacherCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF417561F46A56F00F5032E /* TeacherCollectionCell.swift */; };
 		6DF417591F46A56F00F5032E /* TeacherCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF417571F46A56F00F5032E /* TeacherCollectionCell.xib */; };
 		6DF4175B1F46ABF700F5032E /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4175A1F46ABF700F5032E /* Teacher.swift */; };
+		6DF57FB91F4C808400FDC47B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF57FB81F4C808400FDC47B /* AVFoundation.framework */; };
 		6DF889241F41847E005F72D7 /* Book.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF889231F41847E005F72D7 /* Book.storyboard */; };
 		6DF889261F418496005F72D7 /* Teacher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF889251F418496005F72D7 /* Teacher.storyboard */; };
 		6DF889281F4184AC005F72D7 /* Clubs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF889271F4184AB005F72D7 /* Clubs.storyboard */; };
@@ -73,6 +75,7 @@
 		58C39DE31F3C576C001741EB /* DetailNewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailNewsController.swift; sourceTree = "<group>"; };
 		58C39DE51F3C5B0B001741EB /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		6DE04FD31F414F33002C5E25 /* BaseViewcontrollerExtend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewcontrollerExtend.swift; sourceTree = "<group>"; };
+		6DED74B81F4C1D6800E4E42F /* BookTypeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTypeViewCell.swift; sourceTree = "<group>"; };
 		6DEDBD521F4593BE00526AD0 /* CustomBookCollection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomBookCollection.xib; sourceTree = "<group>"; };
 		6DEDBD541F4593DD00526AD0 /* CustomBookCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCollection.swift; sourceTree = "<group>"; };
 		6DEDBD5A1F459B8500526AD0 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		6DF417561F46A56F00F5032E /* TeacherCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCollectionCell.swift; sourceTree = "<group>"; };
 		6DF417571F46A56F00F5032E /* TeacherCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeacherCollectionCell.xib; sourceTree = "<group>"; };
 		6DF4175A1F46ABF700F5032E /* Teacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		6DF57FB81F4C808400FDC47B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6DF889231F41847E005F72D7 /* Book.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Book.storyboard; sourceTree = "<group>"; };
 		6DF889251F418496005F72D7 /* Teacher.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Teacher.storyboard; sourceTree = "<group>"; };
 		6DF889271F4184AB005F72D7 /* Clubs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clubs.storyboard; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DF57FB91F4C808400FDC47B /* AVFoundation.framework in Frameworks */,
 				76E08F9DCE0410B70DD2B4D3 /* Pods_BookApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,6 +122,7 @@
 		482460553D20F5C79AAB9EFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6DF57FB81F4C808400FDC47B /* AVFoundation.framework */,
 				8CB3D8157F50B7433C570DE8 /* Pods_BookApp.framework */,
 			);
 			name = Frameworks;
@@ -243,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				58AF8D6C1F3EA9F40080A017 /* BookViewController.swift */,
+				6DED74B81F4C1D6800E4E42F /* BookTypeViewCell.swift */,
 				6DEDBD541F4593DD00526AD0 /* CustomBookCollection.swift */,
 				6DEDBD521F4593BE00526AD0 /* CustomBookCollection.xib */,
 				6DEDBD5A1F459B8500526AD0 /* BookCollectionViewCell.swift */,
@@ -308,6 +315,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = HDNMHL7M4Y;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -430,6 +442,7 @@
 				6DF4175B1F46ABF700F5032E /* Teacher.swift in Sources */,
 				6DEFD74A1F4A748500FB0CA5 /* CustomTopTabbar.swift in Sources */,
 				6DF417511F469FED00F5032E /* TeacherSubcribeCell.swift in Sources */,
+				6DED74B91F4C1D6800E4E42F /* BookTypeViewCell.swift in Sources */,
 				6DF310FD1F4288AC008B2878 /* Book.swift in Sources */,
 				58AF8D6D1F3EA9F40080A017 /* BookViewController.swift in Sources */,
 				58C39DE41F3C576C001741EB /* DetailNewsController.swift in Sources */,
