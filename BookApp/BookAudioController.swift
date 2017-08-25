@@ -11,6 +11,7 @@ import AVFoundation
 
 class BookAudioController: BaseViewController, UIWebViewDelegate {
     
+    @IBOutlet weak var imageBook: UIImageView!
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var web: UIWebView!
@@ -18,22 +19,29 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var hightOfWebView: NSLayoutConstraint!
     
     @IBOutlet weak var sliderBar: UISlider!
-    @IBOutlet weak var currentTimeAudio: UILabel!
+    @IBOutlet weak var currentMinAudio: UILabel!
     @IBOutlet weak var totalTimeAudio: UILabel!
     @IBOutlet weak var buttonImge: UIImageView!
+    @IBOutlet weak var currentSecondTime: UILabel!
     
-    
-    var player: AVPlayer?
-    var playerLayer: AVPlayerLayer?
+    var totalTime: Float64?
+    lazy var player: AVQueuePlayer = self.makePlayer()
     var playerItem: AVPlayerItem?
+    
+    private lazy var song: AVPlayerItem = {
+        let url = URL(string: "http://data16.chiasenhac.com/downloads/1006/3/1005369-6e32c7ba/320/Mien%20Cat%20Trang%20-%20Quang%20Vinh%20[320kbps_MP3].mp3")
+        self.playerItem = AVPlayerItem(url: url!)
+        let duration = self.playerItem?.asset.duration
+        self.totalTime = CMTimeGetSeconds(duration!)
+        return self.playerItem!
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        customSliderBar()
         web.delegate = self
-        web.loadRequest(URLRequest(url: URL(string: "https://stackoverflow.com/questions/3341842/how-to-add-subview-to-a-webview-so-that-the-subview-would-scroll-along-with-webv")!))
+        web.loadRequest(URLRequest(url: URL(string: "https://tinhte.vn/")!))
         web.scrollView.isScrollEnabled = false
-        
+        sliderBar.minimumValue = 0
         
         do {
             try AVAudioSession.sharedInstance().setCategory(
@@ -43,60 +51,92 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
             print("Failed to set audio session category.  Error: \(error)")
         }
         
-        player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 100), queue: DispatchQueue.main) {
+        player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) {
             [weak self] time in
-            guard let strongSelf = self else { return }
-            let timeString = String(format: "%02.2f", CMTimeGetSeconds(time))
+            guard let strongSelf = self else {
+                return
+            }
+            let timeString = String(format: "%02.0f", CMTimeGetSeconds(time))
+            self?.sliderBar.value += 1
             
             if UIApplication.shared.applicationState == .active {
-                strongSelf.currentTimeAudio.text = timeString
+                let second: Int = Int(timeString)!
+                if ( second % 60 ) < 10 {
+                    strongSelf.currentSecondTime.text = "0" + String( second % 60)
+                } else {
+                    strongSelf.currentSecondTime.text = String( second % 60)
+                }
+                
+                if ( second / 60) > 0 {
+                    strongSelf.currentMinAudio.text = "0" + String (second / 60) + ":"
+                } else if (second / 60 > 9) {
+                     strongSelf.currentMinAudio.text = String (second / 60) + ":"
+                }
             } else {
                 print("Background: \(timeString)")
             }
         }
-        setPlayer()
+        customSliderBar()
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        imageBook.layer.cornerRadius = imageBook.frame.size.width / 2
         let hightOfContenWebView: CGFloat = web.scrollView.contentSize.height
         hightOfWebView.constant = hightOfContenWebView
         scroll.contentSize.height = hightOfContenWebView + headerView.frame.size.height + footerView.frame.size.height
     }
-    
    
-    
-    func customSliderBar() {
-        sliderBar.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)
-        sliderBar.minimumTrackTintColor = UIColor.rgb(r: 255, g: 106, b: 6)
+    private func makePlayer() -> AVQueuePlayer {
+        let player = AVQueuePlayer(playerItem: song)
+        player.actionAtItemEnd = .advance
+        player.addObserver(self, forKeyPath: "currentItem", options: [.new, .initial] , context: nil)
+        return player
     }
     
-    func setPlayer(){
-        let url = URL(string: "http://data16.chiasenhac.com/downloads/1006/3/1005369-6e32c7ba/320/Mien%20Cat%20Trang%20-%20Quang%20Vinh%20[320kbps_MP3].mp3")
-        let playerItem = AVPlayerItem(url: url!)
-        let duration = playerItem.asset.duration
-        let seconds : Float64 = CMTimeGetSeconds(duration)
-        let mySecs = Int(seconds) % 60
-        let myMins = Int(seconds / 60)
-        totalTimeAudio.text = String(myMins) + ":" + String(mySecs)
-
-        player?.actionAtItemEnd = .advance
-        player?.addObserver(self, forKeyPath: "currentItem", options: [.new, .initial] , context: nil)
-        player = AVPlayer(playerItem: playerItem)
-        playerLayer = AVPlayerLayer(player: player!)
-        playerLayer?.frame=CGRect(x: 0, y: 0, width: 10, height: 50)
-        self.view.layer.addSublayer(playerLayer!)
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "currentItem", let player = object as? AVPlayer,
+            let _ = player.currentItem?.asset as? AVURLAsset {
+        }
+    }
+    
+    func customSliderBar() {
+        sliderBar.maximumValue = Float(totalTime!)
+        let mySecs = Int(totalTime!) % 60
+        let myMins = Int(totalTime! / 60)
+        self.totalTimeAudio.text = String(myMins) + ":" + String(mySecs)
+        sliderBar.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)
+        sliderBar.minimumTrackTintColor = UIColor.rgb(r: 255, g: 106, b: 6)
+        sliderBar.addTarget(self, action: #selector(playbackSliderValueChanged(_:)), for: .valueChanged)
+    }
+    
+    func playbackSliderValueChanged(_ playbackSlider:UISlider) {
+        let seconds : Int64 = Int64(playbackSlider.value)
+        let targetTime:CMTime = CMTimeMake(seconds, 1)
+        player.seek(to: targetTime)
     }
     
     @IBAction func pressPlay(_ sender: Any) {
-        if player?.rate == 0 {
-            player?.play()
+        if player.rate == 0 {
+            player.play()
             buttonImge.image = #imageLiteral(resourceName: "audio_pause")
         } else {
-            player?.pause()
+            player.pause()
             buttonImge.image = #imageLiteral(resourceName: "audio_play")
         }
     }
     
+    @IBAction func pressedPrevious(_ sender: Any) {
+        sliderBar.value = sliderBar.value - 15
+        let seconds : Int64 = Int64(sliderBar.value)
+        let targetTime:CMTime = CMTimeMake(seconds, 1)
+        player.seek(to: targetTime)
+    }
+    @IBAction func pressedNext(_ sender: Any) {
+        sliderBar.value = sliderBar.value + 15
+        let seconds : Int64 = Int64(sliderBar.value)
+        let targetTime:CMTime = CMTimeMake(seconds, 1)
+        player.seek(to: targetTime)
+    }
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

@@ -16,6 +16,9 @@ class BottomView: UIView {
     var pressedBookMark = {}
     var pressedDownload = {}
     
+    @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var downloadImage: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()

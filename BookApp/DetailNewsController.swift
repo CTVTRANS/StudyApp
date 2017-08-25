@@ -38,6 +38,8 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
     }
     
     private func setupCallBackButton() {
+        bottomView.downloadImage.isHidden = true
+        bottomView.downloadButton.isHidden = true
         bottomView.pressBackButton = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }

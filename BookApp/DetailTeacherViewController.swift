@@ -14,9 +14,13 @@ class DetailTeacherViewController: BaseViewController, UITableViewDelegate, UITa
     @IBOutlet weak var nameTeacher: UILabel!
     var teacher: Teacher?
     
+    @IBOutlet weak var downloadAllButton: UIButton!
+    @IBOutlet weak var subcribedTeacher: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        downloadAllButton.layer.borderColor = UIColor.rgb(r: 245, g: 166, b: 35).cgColor
+        subcribedTeacher.layer.borderColor = UIColor.rgb(r: 245, g: 166, b: 35).cgColor
         table.tableFooterView = UIView()
         nameTeacher.text = teacher?.name
     }
@@ -32,6 +36,13 @@ class DetailTeacherViewController: BaseViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
+    }
+    @IBAction func pressedSubcribeButton(_ sender: Any) {
+        
+    }
+    
+    @IBAction func pressedDownloadAll(_ sender: Any) {
+        
     }
     
     deinit {

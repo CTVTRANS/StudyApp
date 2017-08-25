@@ -9,16 +9,18 @@
 import UIKit
 
 class TeacherSubcribeCell: UITableViewCell {
+    
+    var callBack = {}
+    
+    @IBOutlet weak var downloadButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        downloadButton.layer.borderColor = UIColor.rgb(r: 245, g: 166, b: 35).cgColor
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBAction func pressedDownloadButton(_ sender: Any) {
+        self.callBack()
     }
-
+    
 }

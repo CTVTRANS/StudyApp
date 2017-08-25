@@ -35,6 +35,7 @@
 		6DEFD7501F4A7D2F00FB0CA5 /* BookVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFD74F1F4A7D2F00FB0CA5 /* BookVideoController.swift */; };
 		6DEFD7521F4A7D3E00FB0CA5 /* BookTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFD7511F4A7D3E00FB0CA5 /* BookTextController.swift */; };
 		6DEFD7541F4A974800FB0CA5 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFD7531F4A974800FB0CA5 /* BookDetailViewController.swift */; };
+		6DF243A91F4D6F9400366E2F /* Type2DetailNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF243A81F4D6F9400366E2F /* Type2DetailNewsViewController.swift */; };
 		6DF310FD1F4288AC008B2878 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF310FC1F4288AC008B2878 /* Book.swift */; };
 		6DF311031F42B653008B2878 /* TeacherUpLoaeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF311021F42B653008B2878 /* TeacherUpLoaeCell.swift */; };
 		6DF417511F469FED00F5032E /* TeacherSubcribeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF417501F469FED00F5032E /* TeacherSubcribeCell.swift */; };
@@ -86,6 +87,7 @@
 		6DEFD74F1F4A7D2F00FB0CA5 /* BookVideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookVideoController.swift; sourceTree = "<group>"; };
 		6DEFD7511F4A7D3E00FB0CA5 /* BookTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTextController.swift; sourceTree = "<group>"; };
 		6DEFD7531F4A974800FB0CA5 /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
+		6DF243A81F4D6F9400366E2F /* Type2DetailNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type2DetailNewsViewController.swift; sourceTree = "<group>"; };
 		6DF310FC1F4288AC008B2878 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		6DF311021F42B653008B2878 /* TeacherUpLoaeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherUpLoaeCell.swift; sourceTree = "<group>"; };
 		6DF417501F469FED00F5032E /* TeacherSubcribeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherSubcribeCell.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				58C39DDA1F3C47AB001741EB /* MainViewCell.swift */,
 				58C39DDC1F3C49C5001741EB /* MainViewController.swift */,
 				58C39DE31F3C576C001741EB /* DetailNewsController.swift */,
+				6DF243A81F4D6F9400366E2F /* Type2DetailNewsViewController.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -313,7 +316,7 @@
 				TargetAttributes = {
 					58C39DB61F3C0489001741EB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = HDNMHL7M4Y;
+						DevelopmentTeam = LR8467ZGMQ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -429,6 +432,7 @@
 				6DF889301F418F68005F72D7 /* TeacherSubscribeController.swift in Sources */,
 				58C39DD01F3C10C0001741EB /* NavigationCustom.swift in Sources */,
 				58C39DE61F3C5B0B001741EB /* BottomView.swift in Sources */,
+				6DF243A91F4D6F9400366E2F /* Type2DetailNewsViewController.swift in Sources */,
 				6DEFD74E1F4A7D1B00FB0CA5 /* BookAudioController.swift in Sources */,
 				58AF8D6F1F3EAF910080A017 /* TeacherViewController.swift in Sources */,
 				6DF8892C1F4186B4005F72D7 /* TopViewShare.swift in Sources */,
@@ -570,7 +574,7 @@
 			baseConfigurationReference = 380C356BBC4575357C69F281 /* Pods-BookApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HDNMHL7M4Y;
+				DEVELOPMENT_TEAM = LR8467ZGMQ;
 				INFOPLIST_FILE = BookApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -585,7 +589,7 @@
 			baseConfigurationReference = 97D3CDF92D2128A3885089EA /* Pods-BookApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HDNMHL7M4Y;
+				DEVELOPMENT_TEAM = LR8467ZGMQ;
 				INFOPLIST_FILE = BookApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

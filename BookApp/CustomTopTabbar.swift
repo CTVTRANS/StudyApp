@@ -10,7 +10,7 @@ import UIKit
 
 class CustomTopTabbar: UIView {
     
-    var showAudioPressed = {}
+    var changeViewPressed:(( _ originX: CGFloat, _ originY: CGFloat, _ widdth: CGFloat, _ hight: CGFloat, _ forIndex: Int) -> Void)?
     var showVideoPressed = {}
     var showTextPressed = {}
     
@@ -50,30 +50,15 @@ class CustomTopTabbar: UIView {
     }
 
     @IBAction func showAudio(_ sender: Any) {
-        showAudioPressed()
-        let newFrame = CGRect(x: audioButton.frame.origin.x, y: y!, width: width!, height: hight!)
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: [], animations: {
-            self.animationView.frame = newFrame
-            }, completion: nil
-        )
+        self.changeViewPressed!(audioButton.frame.origin.x, y!, width!, hight!, 0)
     }
     
     @IBAction func showVideo(_ sender: Any) {
-         showVideoPressed()
-        let newFrame = CGRect(x: videoButton.frame.origin.x, y: y!, width: width!, height: hight!)
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: [], animations: {
-            self.animationView.frame = newFrame
-            }, completion: nil
-        )
+         self.changeViewPressed!(videoButton.frame.origin.x, y!, width!, hight!, 1)
     }
     
     @IBAction func showText(_ sender: Any) {
-        showTextPressed()
-        let newFrame = CGRect(x: textButton.frame.origin.x, y: y!, width: width!, height: hight!)
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: [], animations: {
-            self.animationView.frame = newFrame
-            }, completion: nil
-        )
+        self.changeViewPressed!(textButton.frame.origin.x, y!, width!, hight!, 2)
     }
     
     

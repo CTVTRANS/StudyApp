@@ -10,9 +10,11 @@ import UIKit
 
 class BookTextController: BaseViewController {
     
+    @IBOutlet weak var webview: UIWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
     }
     
     deinit {

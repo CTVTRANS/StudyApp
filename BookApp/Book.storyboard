@@ -35,7 +35,7 @@
                                     <constraint firstAttribute="height" constant="44" id="Qfr-Ig-5RB"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJZ-XE-eEP">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJZ-XE-eEP">
                                 <rect key="frame" x="0.0" y="108" width="320" height="416"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKe-H6-8ai" customClass="BottomView" customModule="BookApp" customModuleProvider="target">
@@ -97,11 +97,6 @@
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="sTb-OJ-cqW">
                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="45"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audio_play" translatesAutoresizingMaskIntoConstraints="NO" id="g8W-rh-a9P">
                                                         <rect key="frame" x="30" y="30" width="30" height="30"/>
@@ -120,7 +115,11 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="idW-K6-fUq" firstAttribute="leading" secondItem="RX0-eo-49i" secondAttribute="leading" id="AOD-ad-o6z"/>
-                                                    <constraint firstAttribute="height" constant="90" id="H9L-6f-Fe8"/>
+                                                    <constraint firstAttribute="height" constant="90" id="H9L-6f-Fe8">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
                                                     <constraint firstAttribute="trailing" secondItem="idW-K6-fUq" secondAttribute="trailing" id="KCl-xK-Cqn"/>
                                                     <constraint firstItem="idW-K6-fUq" firstAttribute="top" secondItem="RX0-eo-49i" secondAttribute="top" id="Stk-xd-JLX"/>
                                                     <constraint firstAttribute="trailing" secondItem="sTb-OJ-cqW" secondAttribute="trailing" id="VnD-Z3-ZfK"/>
@@ -129,93 +128,178 @@
                                                     <constraint firstItem="sTb-OJ-cqW" firstAttribute="top" secondItem="RX0-eo-49i" secondAttribute="top" id="byC-s0-dlj"/>
                                                     <constraint firstItem="sTb-OJ-cqW" firstAttribute="leading" secondItem="RX0-eo-49i" secondAttribute="leading" id="flj-Ao-h4E"/>
                                                     <constraint firstItem="g8W-rh-a9P" firstAttribute="centerY" secondItem="RX0-eo-49i" secondAttribute="centerY" id="lDa-SE-2j7"/>
-                                                    <constraint firstAttribute="width" constant="90" id="obp-To-gv8"/>
+                                                    <constraint firstAttribute="width" constant="90" id="obp-To-gv8">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
                                                     <constraint firstAttribute="bottom" secondItem="sTb-OJ-cqW" secondAttribute="bottom" id="tXh-Vr-bUH"/>
                                                 </constraints>
                                             </view>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lbG-QW-Gnm">
-                                                <rect key="frame" x="61" y="148" width="229" height="21"/>
+                                                <rect key="frame" x="61" y="144" width="229" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="5cj-ja-rKL"/>
                                                 </constraints>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RK-ZO-azt">
-                                                <rect key="frame" x="63" y="131" width="13" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RK-ZO-azt">
+                                                <rect key="frame" x="63" y="128" width="21" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTq-AC-by0">
+                                                <rect key="frame" x="84" y="128" width="17" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7B-gD-V43">
-                                                <rect key="frame" x="81" y="129.5" width="6" height="21"/>
+                                                <rect key="frame" x="104" y="126" width="6" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPT-oS-GAL">
-                                                <rect key="frame" x="92" y="131.5" width="13" height="16"/>
+                                                <rect key="frame" x="113" y="128" width="13" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Krr-7E-DFZ">
-                                                <rect key="frame" x="36" y="35.5" width="63" height="51"/>
+                                                <rect key="frame" x="36" y="36" width="63" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4x-Xg-iYI">
                                                         <rect key="frame" x="42" y="18" width="21" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audio_previous" translatesAutoresizingMaskIntoConstraints="NO" id="3OC-k9-Bkh">
-                                                        <rect key="frame" x="21" y="17.5" width="16" height="16"/>
+                                                        <rect key="frame" x="21" y="17" width="16" height="16"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="POd-mp-jCF"/>
-                                                            <constraint firstAttribute="width" constant="16" id="c62-Hu-7qP"/>
+                                                            <constraint firstAttribute="height" constant="16" id="POd-mp-jCF">
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </constraint>
+                                                            <constraint firstAttribute="width" constant="16" id="c62-Hu-7qP">
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </constraint>
                                                         </constraints>
                                                     </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWn-1Q-AOH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="51"/>
+                                                        <connections>
+                                                            <action selector="pressedPrevious:" destination="exC-w5-VcB" eventType="touchUpInside" id="mea-oj-bW3"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="63" id="0mw-S2-rUE"/>
+                                                    <constraint firstAttribute="width" constant="63" id="0mw-S2-rUE">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
                                                     <constraint firstItem="a4x-Xg-iYI" firstAttribute="centerY" secondItem="Krr-7E-DFZ" secondAttribute="centerY" id="7Mp-Wv-mKd"/>
-                                                    <constraint firstAttribute="height" constant="51" id="KWa-dE-00w"/>
+                                                    <constraint firstAttribute="bottom" secondItem="wWn-1Q-AOH" secondAttribute="bottom" id="HP8-fl-pyy"/>
+                                                    <constraint firstAttribute="height" constant="51" id="KWa-dE-00w">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
+                                                    <constraint firstItem="wWn-1Q-AOH" firstAttribute="top" secondItem="Krr-7E-DFZ" secondAttribute="top" id="V01-UR-qto"/>
+                                                    <constraint firstAttribute="trailing" secondItem="wWn-1Q-AOH" secondAttribute="trailing" id="V4R-in-GSO"/>
+                                                    <constraint firstItem="wWn-1Q-AOH" firstAttribute="leading" secondItem="Krr-7E-DFZ" secondAttribute="leading" id="cKG-Hm-SUJ"/>
                                                     <constraint firstItem="3OC-k9-Bkh" firstAttribute="centerY" secondItem="Krr-7E-DFZ" secondAttribute="centerY" id="fGr-dE-0Am"/>
                                                     <constraint firstAttribute="trailing" secondItem="a4x-Xg-iYI" secondAttribute="trailing" id="iux-Qc-QFX"/>
                                                     <constraint firstItem="a4x-Xg-iYI" firstAttribute="leading" secondItem="3OC-k9-Bkh" secondAttribute="trailing" constant="5" id="yPe-p5-PuU"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1d-y9-jjO">
-                                                <rect key="frame" x="221" y="35.5" width="63" height="51"/>
+                                                <rect key="frame" x="221" y="36" width="63" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ug1-OY-I9f">
                                                         <rect key="frame" x="0.0" y="18" width="21" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audio_next" translatesAutoresizingMaskIntoConstraints="NO" id="QEg-gO-jBX">
-                                                        <rect key="frame" x="26" y="17.5" width="16" height="16"/>
+                                                        <rect key="frame" x="26" y="17" width="16" height="16"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="16" id="kiC-08-wA6"/>
-                                                            <constraint firstAttribute="height" constant="16" id="qt9-sM-QjY"/>
+                                                            <constraint firstAttribute="width" constant="16" id="kiC-08-wA6">
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </constraint>
+                                                            <constraint firstAttribute="height" constant="16" id="qt9-sM-QjY">
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </constraint>
                                                         </constraints>
                                                     </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUu-F1-EcL">
+                                                        <rect key="frame" x="0.0" y="0.0" width="63" height="51"/>
+                                                        <connections>
+                                                            <action selector="pressedNext:" destination="exC-w5-VcB" eventType="touchUpInside" id="VHj-ag-hEL"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="51" id="J9M-P3-e2s"/>
+                                                    <constraint firstAttribute="height" constant="51" id="J9M-P3-e2s">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
                                                     <constraint firstItem="Ug1-OY-I9f" firstAttribute="leading" secondItem="n1d-y9-jjO" secondAttribute="leading" id="MmL-IT-v0E"/>
+                                                    <constraint firstItem="lUu-F1-EcL" firstAttribute="leading" secondItem="n1d-y9-jjO" secondAttribute="leading" id="PSe-PW-ROL"/>
+                                                    <constraint firstAttribute="bottom" secondItem="lUu-F1-EcL" secondAttribute="bottom" id="R4Y-Lk-IiL"/>
                                                     <constraint firstItem="QEg-gO-jBX" firstAttribute="centerY" secondItem="n1d-y9-jjO" secondAttribute="centerY" id="R9M-nn-n9C"/>
+                                                    <constraint firstItem="lUu-F1-EcL" firstAttribute="top" secondItem="n1d-y9-jjO" secondAttribute="top" id="hMA-fO-DEY"/>
                                                     <constraint firstItem="QEg-gO-jBX" firstAttribute="leading" secondItem="Ug1-OY-I9f" secondAttribute="trailing" constant="5" id="mSX-Oq-J5q"/>
-                                                    <constraint firstAttribute="width" constant="63" id="rPW-gL-nA0"/>
+                                                    <constraint firstAttribute="width" constant="63" id="rPW-gL-nA0">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
+                                                    <constraint firstAttribute="trailing" secondItem="lUu-F1-EcL" secondAttribute="trailing" id="s2j-Jx-dO2"/>
                                                     <constraint firstItem="Ug1-OY-I9f" firstAttribute="centerY" secondItem="n1d-y9-jjO" secondAttribute="centerY" id="whl-NT-aB7"/>
                                                 </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audio_detail" translatesAutoresizingMaskIntoConstraints="NO" id="31T-w6-8QS">
-                                                <rect key="frame" x="16" y="128" width="35" height="40"/>
+                                                <rect key="frame" x="16" y="124" width="35" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="E7m-Lx-7qx"/>
-                                                    <constraint firstAttribute="width" constant="35" id="PDB-1B-Mgz"/>
+                                                    <constraint firstAttribute="height" constant="40" id="E7m-Lx-7qx">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
+                                                    <constraint firstAttribute="width" constant="35" id="PDB-1B-Mgz">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </constraint>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -223,21 +307,39 @@
                                         <constraints>
                                             <constraint firstItem="lbG-QW-Gnm" firstAttribute="top" secondItem="2RK-ZO-azt" secondAttribute="bottom" id="0zB-eq-2mf"/>
                                             <constraint firstItem="Krr-7E-DFZ" firstAttribute="centerY" secondItem="sTb-OJ-cqW" secondAttribute="centerY" id="1qK-gA-XG8"/>
-                                            <constraint firstItem="bPT-oS-GAL" firstAttribute="leading" secondItem="C7B-gD-V43" secondAttribute="trailing" constant="5" id="4S5-hk-3My"/>
+                                            <constraint firstItem="bPT-oS-GAL" firstAttribute="leading" secondItem="C7B-gD-V43" secondAttribute="trailing" constant="3" id="4S5-hk-3My"/>
                                             <constraint firstItem="lbG-QW-Gnm" firstAttribute="leading" secondItem="31T-w6-8QS" secondAttribute="trailing" constant="12" id="4TE-c2-dur"/>
                                             <constraint firstItem="C7B-gD-V43" firstAttribute="centerY" secondItem="2RK-ZO-azt" secondAttribute="centerY" id="4q4-4C-o5M"/>
                                             <constraint firstAttribute="trailing" secondItem="lbG-QW-Gnm" secondAttribute="trailing" constant="32" id="B3S-eG-Rqb"/>
-                                            <constraint firstAttribute="bottom" secondItem="lbG-QW-Gnm" secondAttribute="bottom" constant="12" id="E9P-kq-dBf"/>
+                                            <constraint firstAttribute="bottom" secondItem="lbG-QW-Gnm" secondAttribute="bottom" constant="16" id="E9P-kq-dBf">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
                                             <constraint firstItem="2RK-ZO-azt" firstAttribute="leading" secondItem="31T-w6-8QS" secondAttribute="trailing" constant="12" id="XlM-1e-fFy"/>
-                                            <constraint firstAttribute="bottom" secondItem="31T-w6-8QS" secondAttribute="bottom" constant="12" id="abH-RJ-V7A"/>
+                                            <constraint firstItem="DTq-AC-by0" firstAttribute="leading" secondItem="2RK-ZO-azt" secondAttribute="trailing" id="ZAi-oZ-Cpl"/>
+                                            <constraint firstAttribute="bottom" secondItem="31T-w6-8QS" secondAttribute="bottom" constant="16" id="abH-RJ-V7A">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
                                             <constraint firstItem="RX0-eo-49i" firstAttribute="centerX" secondItem="ksG-tJ-74F" secondAttribute="centerX" id="dUT-Fd-q1c"/>
-                                            <constraint firstAttribute="height" constant="180" id="duB-iq-kKW"/>
+                                            <constraint firstAttribute="height" constant="180" id="duB-iq-kKW">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
                                             <constraint firstItem="bPT-oS-GAL" firstAttribute="centerY" secondItem="2RK-ZO-azt" secondAttribute="centerY" id="g0s-20-rmO"/>
-                                            <constraint firstItem="RX0-eo-49i" firstAttribute="top" secondItem="ksG-tJ-74F" secondAttribute="top" constant="16" id="hc6-99-iBs"/>
+                                            <constraint firstItem="RX0-eo-49i" firstAttribute="top" secondItem="ksG-tJ-74F" secondAttribute="top" constant="16" id="hc6-99-iBs">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
                                             <constraint firstItem="n1d-y9-jjO" firstAttribute="leading" secondItem="RX0-eo-49i" secondAttribute="trailing" constant="16" id="htY-JY-ET8"/>
                                             <constraint firstItem="31T-w6-8QS" firstAttribute="leading" secondItem="ksG-tJ-74F" secondAttribute="leading" constant="16" id="iY3-qF-15d"/>
-                                            <constraint firstItem="C7B-gD-V43" firstAttribute="leading" secondItem="2RK-ZO-azt" secondAttribute="trailing" constant="5" id="jUK-oZ-91p"/>
+                                            <constraint firstItem="DTq-AC-by0" firstAttribute="centerY" secondItem="2RK-ZO-azt" secondAttribute="centerY" id="jJO-0Z-KxS"/>
                                             <constraint firstItem="RX0-eo-49i" firstAttribute="leading" secondItem="Krr-7E-DFZ" secondAttribute="trailing" constant="16" id="jkD-33-nRK"/>
+                                            <constraint firstItem="C7B-gD-V43" firstAttribute="leading" secondItem="DTq-AC-by0" secondAttribute="trailing" constant="3" id="rec-DH-r74"/>
                                             <constraint firstItem="n1d-y9-jjO" firstAttribute="centerY" secondItem="sTb-OJ-cqW" secondAttribute="centerY" id="wDL-8t-kP9"/>
                                         </constraints>
                                     </view>
@@ -245,7 +347,11 @@
                                         <rect key="frame" x="0.0" y="180" width="320" height="275"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="275" id="Asl-lS-iE5"/>
+                                            <constraint firstAttribute="height" constant="275" id="Asl-lS-iE5">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
                                         </constraints>
                                     </webView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wog-Oh-yno">
@@ -259,7 +365,11 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.91372549020000005" green="0.50980392159999999" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="96" id="vHy-ue-yVW"/>
+                                            <constraint firstAttribute="height" constant="96" id="vHy-ue-yVW">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -288,10 +398,12 @@
                     </view>
                     <connections>
                         <outlet property="buttonImge" destination="g8W-rh-a9P" id="iis-Qc-Gzi"/>
-                        <outlet property="currentTimeAudio" destination="2RK-ZO-azt" id="JN3-U6-Y46"/>
+                        <outlet property="currentMinAudio" destination="2RK-ZO-azt" id="CSW-CP-pJ5"/>
+                        <outlet property="currentSecondTime" destination="DTq-AC-by0" id="WWr-fv-tYU"/>
                         <outlet property="footerView" destination="wog-Oh-yno" id="RqU-pP-q2f"/>
                         <outlet property="headerView" destination="ksG-tJ-74F" id="tdC-UO-ONe"/>
                         <outlet property="hightOfWebView" destination="Asl-lS-iE5" id="PcZ-Zk-1le"/>
+                        <outlet property="imageBook" destination="sTb-OJ-cqW" id="SGw-x5-yu2"/>
                         <outlet property="scroll" destination="1hM-g5-KNG" id="lly-2t-Dm5"/>
                         <outlet property="sliderBar" destination="lbG-QW-Gnm" id="ky1-ns-HAH"/>
                         <outlet property="totalTimeAudio" destination="bPT-oS-GAL" id="n4d-uC-9NW"/>
@@ -321,7 +433,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="166"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lM-Wv-9Rf">
-                                                <rect key="frame" x="115" y="73" width="56" height="21"/>
+                                                <rect key="frame" x="256" y="103" width="56" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -402,15 +514,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfc-Dl-Qn7">
-                                <rect key="frame" x="118" y="262" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5K-ES-dRe">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keU-rS-60E">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="OJ4-Cr-Vd3">
+                                                <rect key="frame" x="135" y="50" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="CcS-bd-EQ8"/>
+                                                    <constraint firstAttribute="width" constant="50" id="RC7-eC-OWO"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="OJ4-Cr-Vd3" firstAttribute="centerX" secondItem="keU-rS-60E" secondAttribute="centerX" id="MZb-Wz-AK0"/>
+                                            <constraint firstAttribute="height" constant="172" id="lh3-8b-77w"/>
+                                            <constraint firstItem="OJ4-Cr-Vd3" firstAttribute="top" secondItem="keU-rS-60E" secondAttribute="top" constant="50" id="oBn-mY-YPt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="keU-rS-60E" firstAttribute="top" secondItem="Q5K-ES-dRe" secondAttribute="top" id="4rR-Kt-LfZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="keU-rS-60E" secondAttribute="bottom" constant="396" id="HH9-Tb-S3g"/>
+                                    <constraint firstItem="keU-rS-60E" firstAttribute="leading" secondItem="Q5K-ES-dRe" secondAttribute="leading" id="Wiz-ob-RiV"/>
+                                    <constraint firstAttribute="trailing" secondItem="keU-rS-60E" secondAttribute="trailing" id="rwU-YL-wqA"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GGa-E0-DFq" firstAttribute="top" secondItem="Q5K-ES-dRe" secondAttribute="bottom" id="7Nb-qh-7TT"/>
+                            <constraint firstItem="Q5K-ES-dRe" firstAttribute="leading" secondItem="BZK-Kf-vsy" secondAttribute="leading" id="Fbt-oM-CjM"/>
+                            <constraint firstItem="Q5K-ES-dRe" firstAttribute="top" secondItem="BZK-Kf-vsy" secondAttribute="top" id="Onw-Zg-zgG"/>
+                            <constraint firstItem="keU-rS-60E" firstAttribute="width" secondItem="BZK-Kf-vsy" secondAttribute="width" id="b7M-dg-hhM"/>
+                            <constraint firstAttribute="trailing" secondItem="Q5K-ES-dRe" secondAttribute="trailing" id="odT-p2-uq7"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BP2-Cy-1dW" userLabel="First Responder" sceneMemberID="firstResponder"/>

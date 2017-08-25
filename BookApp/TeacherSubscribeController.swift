@@ -14,7 +14,6 @@ class TeacherSubscribeController: BaseViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
     }
     
@@ -24,6 +23,9 @@ class TeacherSubscribeController: BaseViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TeacherSubcribeCell = table.dequeueReusableCell(withIdentifier: "TeacherSubcribeCell", for: indexPath) as! TeacherSubcribeCell
+        cell.callBack = {
+            print("ok")
+        }
         return cell
     }
     

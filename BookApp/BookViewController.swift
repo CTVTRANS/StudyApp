@@ -59,7 +59,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     @IBAction func pressedShowDetailBook(_ sender: Any) {
         let bookStoryboard = UIStoryboard(name: "Book", bundle: nil)
-        let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
+        let vc: BookAudioController = bookStoryboard.instantiateViewController(withIdentifier: "BookAudio") as! BookAudioController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
