@@ -19,9 +19,16 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCallBackButton()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "ok", style: .done, target: self, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"), style: .plain, target: self, action: #selector(share))
-        
+        navigationItem.leftBarButtonItem =
+            UIBarButtonItem(title: "ok",
+                            style: .done,
+                            target: self,
+                            action: nil)
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"),
+                            style: .plain,
+                            target: self,
+                            action: #selector(share))
         bodyNews.delegate = self
 //        bodyNews.loadRequest(URLRequest(url: URL(string: "https://stackoverflow.com/questions/3341842/how-to-add-subview-to-a-webview-so-that-the-subview-would-scroll-along-with-webv")!))
         bodyNews.loadHTMLString("<p>ahihi&nbsp;ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi</p>", baseURL: nil)
@@ -43,19 +50,15 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
         bottomView.pressBackButton = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-        
         bottomView.pressedComment = {
             print("comment")
         }
-        
         bottomView.pressedLike = {
             print("like")
         }
-        
         bottomView.pressedBookMark = {
             print("bookmark")
         }
-        
         bottomView.pressedDownload = {
             print("download")
         }
@@ -68,5 +71,4 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
 }

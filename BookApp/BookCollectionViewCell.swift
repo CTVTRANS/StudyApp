@@ -11,12 +11,19 @@ import UIKit
 class BookCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var nameBook: UILabel!
+    @IBOutlet weak var imageBook: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     func binData(book: Book) {
-        nameBook.text = book.nameBook
+        nameBook.text = book.name
+        let urlString = book.imageURL
+        if (urlString != "abc") {
+            let url = URL(string: urlString)
+            let data = try? Data(contentsOf: url!)
+            imageBook.image = UIImage(data: data!)
+        }
     }
 }

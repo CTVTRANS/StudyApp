@@ -16,6 +16,8 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var hightOfWebView: NSLayoutConstraint!
     
+    var book: Book?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         web.delegate = self

@@ -18,11 +18,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         navigationCustoms.callBackMessageNotification = {
             print("message")
         }
-        
         navigationCustoms.callBackVideoNotification = {
              print("video")
         }
-        
         navigationCustoms.callBackSearchNotification = {
              print("search")
         }
@@ -54,9 +52,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             vc = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailNewsController
         } else {
             vc = self.storyboard?.instantiateViewController(withIdentifier: "Type2Detail") as! Type2DetailNewsViewController
-
         }
-        
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 }

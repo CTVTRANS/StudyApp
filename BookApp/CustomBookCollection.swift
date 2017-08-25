@@ -86,7 +86,13 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
         space.adjustsSizeToRealIPhoneSize = 12
         return space
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         callBackClickCell?(bookArray[indexPath.row])
+    }
+    
+    func reloadData(arrayOfBook: [Book]) {
+        bookArray = arrayOfBook
+        bookCollection.reloadData()
     }
 }

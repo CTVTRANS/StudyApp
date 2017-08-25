@@ -24,12 +24,13 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var buttonImge: UIImageView!
     @IBOutlet weak var currentSecondTime: UILabel!
     
+    var book: Book?
     var totalTime: Float64?
     lazy var player: AVQueuePlayer = self.makePlayer()
     var playerItem: AVPlayerItem?
     
     private lazy var song: AVPlayerItem = {
-        let url = URL(string: "http://data16.chiasenhac.com/downloads/1006/3/1005369-6e32c7ba/320/Mien%20Cat%20Trang%20-%20Quang%20Vinh%20[320kbps_MP3].mp3")
+        let url = URL(string: (self.book?.audio)!)
         self.playerItem = AVPlayerItem(url: url!)
         let duration = self.playerItem?.asset.duration
         self.totalTime = CMTimeGetSeconds(duration!)
@@ -39,7 +40,8 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         web.delegate = self
-        web.loadRequest(URLRequest(url: URL(string: "https://tinhte.vn/")!))
+        let content = book?.content
+        web.loadHTMLString(content!, baseURL: nil)
         web.scrollView.isScrollEnabled = false
         sliderBar.minimumValue = 0
         

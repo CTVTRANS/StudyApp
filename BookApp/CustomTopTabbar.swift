@@ -29,7 +29,6 @@ class CustomTopTabbar: UIView {
         y = animationView.frame.origin.y
         width = widthScreen/3
         hight = animationView.frame.size.height
-    
     }
     
     private func setupUI() {
@@ -54,7 +53,7 @@ class CustomTopTabbar: UIView {
     }
     
     @IBAction func showVideo(_ sender: Any) {
-         self.changeViewPressed!(videoButton.frame.origin.x, y!, width!, hight!, 1)
+        self.changeViewPressed!(videoButton.frame.origin.x, y!, width!, hight!, 1)
     }
     
     @IBAction func showText(_ sender: Any) {

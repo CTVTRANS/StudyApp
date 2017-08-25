@@ -11,8 +11,12 @@ import UIKit
 class BookTypeViewCell: UICollectionViewCell {
     
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var image: UIImageView!
     
-    func binData(typeBook: String) {
-        title.text = typeBook
+    func binData(typeBook: BookType) {
+        title.text = typeBook.name
+        let url = URL(string: typeBook.imageURL)
+        let data = try? Data(contentsOf: url!)
+        image.image = UIImage(data: data!)
     }
 }

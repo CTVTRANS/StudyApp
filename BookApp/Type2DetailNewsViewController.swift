@@ -15,11 +15,18 @@ class Type2DetailNewsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "ok", style: .done, target: self, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"), style: .plain, target: self, action: #selector(share))
+        navigationItem.leftBarButtonItem =
+            UIBarButtonItem(title: "ok",
+                            style: .done,
+                            target: self,
+                            action: nil)
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"),
+                            style: .plain,
+                            target: self,
+                            action: #selector(share))
         viewBounds.layer.borderColor = UIColor.rgb(r: 52, g: 52, b: 52).cgColor
         setupCallBackButton()
-        
     }
     
     private func setupCallBackButton() {
@@ -28,19 +35,15 @@ class Type2DetailNewsViewController: BaseViewController {
         bottomView.pressBackButton = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-        
         bottomView.pressedComment = {
             print("comment")
         }
-        
         bottomView.pressedLike = {
             print("like")
         }
-        
         bottomView.pressedBookMark = {
             print("bookmark")
         }
-        
         bottomView.pressedDownload = {
             print("download")
         }

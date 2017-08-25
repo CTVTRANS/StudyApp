@@ -332,7 +332,7 @@
                                 <rect key="frame" x="160" y="72" width="1" height="20.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="BjY-6T-EIq"/>
+                                    <constraint firstAttribute="width" constant="0.5" id="BjY-6T-EIq"/>
                                     <constraint firstAttribute="height" constant="20" id="xXM-TC-p8a"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -551,28 +551,13 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9j-wf-R0d" customClass="CustomBookCollection" customModule="BookApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="181" width="320" height="208"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfs-3L-fhw">
-                                                <rect key="frame" x="22" y="207" width="282" height="1"/>
-                                                <color key="backgroundColor" red="0.63921568627450975" green="0.63921568627450975" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="aiJ-pY-1j8"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="cfs-3L-fhw" firstAttribute="leading" secondItem="x9j-wf-R0d" secondAttribute="leading" constant="22" id="3ly-EF-7CI"/>
-                                            <constraint firstAttribute="bottom" secondItem="cfs-3L-fhw" secondAttribute="bottom" id="WQx-Md-bDf"/>
                                             <constraint firstAttribute="height" constant="208" id="ssB-Jw-34h">
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </constraint>
-                                            <constraint firstAttribute="trailing" secondItem="cfs-3L-fhw" secondAttribute="trailing" constant="16" id="ssg-72-MKP"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="462-Mu-TBe" customClass="CustomBookCollection" customModule="BookApp" customModuleProvider="target">
@@ -621,20 +606,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Kx-6g-PTy">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Kx-6g-PTy">
                                                     <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrl-a0-V3a">
-                                                            <rect key="frame" x="27" y="37" width="42" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lUc-1g-Mei">
+                                                            <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrl-a0-V3a">
+                                                            <rect key="frame" x="30.5" y="39.5" width="35.5" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.54901960780000003" green="0.75686274509999996" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="Xrl-a0-V3a" firstAttribute="centerY" secondItem="1Kx-6g-PTy" secondAttribute="centerY" id="DEd-EK-hLj"/>
+                                                        <constraint firstItem="lUc-1g-Mei" firstAttribute="leading" secondItem="1Kx-6g-PTy" secondAttribute="leading" id="MDy-2V-V7x"/>
+                                                        <constraint firstItem="Xrl-a0-V3a" firstAttribute="width" relation="lessThanOrEqual" secondItem="1Kx-6g-PTy" secondAttribute="width" constant="-16" id="OYq-9U-VhJ"/>
+                                                        <constraint firstItem="lUc-1g-Mei" firstAttribute="top" secondItem="1Kx-6g-PTy" secondAttribute="top" id="PLJ-U8-geo"/>
+                                                        <constraint firstAttribute="trailing" secondItem="lUc-1g-Mei" secondAttribute="trailing" id="bx9-qX-pz0"/>
                                                         <constraint firstItem="Xrl-a0-V3a" firstAttribute="centerX" secondItem="1Kx-6g-PTy" secondAttribute="centerX" id="nYO-Kc-VRq"/>
+                                                        <constraint firstAttribute="bottom" secondItem="lUc-1g-Mei" secondAttribute="bottom" id="nih-rm-ipy"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -652,6 +645,7 @@
                                             <constraint firstAttribute="bottom" secondItem="1Kx-6g-PTy" secondAttribute="bottom" id="z20-xx-kzD"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="image" destination="lUc-1g-Mei" id="au1-nG-NGa"/>
                                             <outlet property="title" destination="Xrl-a0-V3a" id="JdH-EP-DeT"/>
                                         </connections>
                                     </collectionViewCell>

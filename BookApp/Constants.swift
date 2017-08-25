@@ -12,12 +12,6 @@ let widthScreen: CGFloat = UIScreen.main.bounds.width
 let hightScreen: CGFloat = UIScreen.main.bounds.height
 
 class Constants: NSObject {
-    
-
-}
-
-extension UIColor {
-    class func rgb(r: Float, g: Float, b: Float) -> UIColor {
-        return UIColor(colorLiteralRed: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1.0)
-    }
+    var listBookType: [BookType]?
+    static let sharedInstance = Constants()
 }

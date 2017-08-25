@@ -12,6 +12,8 @@ class BookTextController: BaseViewController {
     
     @IBOutlet weak var webview: UIWebView!
     
+    var book: Book?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
