@@ -21,9 +21,7 @@ class BookCollectionViewCell: UICollectionViewCell {
         nameBook.text = book.name
         let urlString = book.imageURL
         if (urlString != "abc") {
-            let url = URL(string: urlString)
-            let data = try? Data(contentsOf: url!)
-            imageBook.image = UIImage(data: data!)
+            imageBook.sd_setImage(with: URL(string: urlString))
         }
     }
 }

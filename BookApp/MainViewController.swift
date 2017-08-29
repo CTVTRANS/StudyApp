@@ -12,18 +12,18 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var navigationCustoms: NavigationCustom!
     @IBOutlet weak var table: UITableView!
+    var arrayNews = [NewsModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationCustoms.callBackMessageNotification = {
-            print("message")
+        let getAllNews : GetAllNewsTask = GetAllNewsTask()
+        requestWithTask(task: getAllNews, success: { (data) in
+            self.arrayNews = data as! [NewsModel]
+            self.table.reloadData()
+        }) { (error) in
+            
         }
-        navigationCustoms.callBackVideoNotification = {
-             print("video")
-        }
-        navigationCustoms.callBackSearchNotification = {
-             print("search")
-        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,22 +37,38 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return arrayNews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MainViewCell = table.dequeueReusableCell(withIdentifier: "MainViewCell", for: indexPath) as! MainViewCell
+        cell.binData(news: arrayNews[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
-        let vc: BaseViewController?
-        if (indexPath.row == 0 || indexPath.row == 1) {
-            vc = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailNewsController
+        let type = arrayNews[indexPath.row].typeNews
+        if (type == 4) {
+            let vc: Type2DetailNewsViewController = self.storyboard?.instantiateViewController(withIdentifier: "Type2Detail") as! Type2DetailNewsViewController
+            vc.news = arrayNews[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
-            vc = self.storyboard?.instantiateViewController(withIdentifier: "Type2Detail") as! Type2DetailNewsViewController
+            let vc: DetailNewsController = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailNewsController
+            vc.news = arrayNews[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    func setupCallBack() {
+        navigationCustoms.callBackMessageNotification = {
+            print("message")
+        }
+        navigationCustoms.callBackVideoNotification = {
+            print("video")
+        }
+        navigationCustoms.callBackSearchNotification = {
+            print("search")
+        }
     }
 }

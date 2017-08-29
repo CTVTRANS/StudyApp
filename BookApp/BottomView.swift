@@ -18,6 +18,9 @@ class BottomView: UIView {
     
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var downloadImage: UIImageView!
+    @IBOutlet weak var numberBookmark: UILabel!
+    @IBOutlet weak var numberLike: UILabel!
+    @IBOutlet weak var numberComment: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -23,13 +23,13 @@ class MainViewCell: UITableViewCell {
     }
 
     func binData(news: NewsModel) {
-//        imageNews = news.getImageUrl()
-        titleNews.text = news.getTitle()
-        detailNews.text = news.getDetailTitle()
-        typeNews.text = news.getType()
-        numberView.text = news.getNumberView()
-        numberLike.text = news.getNumberLike()
-        numberComment.text = news.getNumberComment()
+        imageNews.sd_setImage(with: URL(string: news.imageURL))
+        titleNews.text = news.title
+        detailNews.text = news.detailNews
+        typeNews.text = String(news.typeNews)
+        numberView.text = String(news.numberViewNews)
+        numberLike.text = String(news.numberLike)
+        numberComment.text = String(news.numberComment)
     }
 
 }

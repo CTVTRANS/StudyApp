@@ -15,12 +15,16 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var bodyNews: UIWebView!
     @IBOutlet weak var detailNews: UILabel!
     @IBOutlet weak var hightOfWebView: NSLayoutConstraint!
+    @IBOutlet weak var imageNews: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    
+    var news: NewsModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCallBackButton()
         navigationItem.leftBarButtonItem =
-            UIBarButtonItem(title: "ok",
+            UIBarButtonItem(title: news.title,
                             style: .done,
                             target: self,
                             action: nil)
@@ -29,12 +33,16 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
                             style: .plain,
                             target: self,
                             action: #selector(share))
+        setupUI()
         bodyNews.delegate = self
-//        bodyNews.loadRequest(URLRequest(url: URL(string: "https://stackoverflow.com/questions/3341842/how-to-add-subview-to-a-webview-so-that-the-subview-would-scroll-along-with-webv")!))
-        bodyNews.loadHTMLString("<p>ahihi&nbsp;ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi ahihi</p>", baseURL: nil)
         bodyNews.scrollView.isScrollEnabled = false
         
         detailNews.text = "down voteThe easiest way, IMO, is just to click on the title bar of the first ViewController and in the Attribute Inspector (⌥+⌘+4) change the Navigation Item info the way you want: Title -> what will show up in the back button* or if you want it to say something other than the Title of the first ViewController or the word Back you can just put it in the Back Button field."
+    }
+    
+    func setupUI() {
+         bodyNews.loadHTMLString(news.content, baseURL: nil)
+        imageNews.sd_setImage(with: URL(string: news.imageURL))
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
@@ -47,14 +55,26 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
     private func setupCallBackButton() {
         bottomView.downloadImage.isHidden = true
         bottomView.downloadButton.isHidden = true
+        bottomView.numberLike.text = String(news.numberLike)
+        bottomView.numberComment.text = String(news.numberComment)
+        
         bottomView.pressBackButton = { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
-        bottomView.pressedComment = {
-            print("comment")
+        bottomView.pressedComment = { [weak self] in
+            let storyboard = UIStoryboard(name: "Global", bundle: nil)
+            let vc: CommentController = storyboard.instantiateViewController(withIdentifier: "CommentController") as! CommentController
+            vc.idObject = self?.news.id
+            vc.commentType = 0
+            self?.present(vc, animated: true, completion: nil)
         }
-        bottomView.pressedLike = {
-            print("like")
+        bottomView.pressedLike = { [weak self] in
+            let likeTask: LikeTask = LikeTask(likeType: 0, memberID: 1, objectId: self!.news.id)
+            self?.requestWithTask(task: likeTask, success: { (data) in
+                print(data!)
+            }, failure: { (error) in
+                
+            })
         }
         bottomView.pressedBookMark = {
             print("bookmark")

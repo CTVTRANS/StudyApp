@@ -9,63 +9,84 @@
 import UIKit
 
 class NewsModel: NSObject {
-    private var imageURL: String!
-    private var titleNews: String!
-    private var detailTitle: String!
-    private var typeNews: String!
-    private var numberViewNews: String!
-    private var numberLikeNews: String!
-    private var numberCommentNews: String!
-    private var numberBookMarkNews: String!
+    private var _id: Int!
+    private var _imageURL: String!
+    private var _titleNews: String!
+    private var _detailTitle: String!
+    private var _typeNews: Int!
+    private var _content: String!
+    private var _timeUp: String!
+    private var _numberViewNews: Int!
+    private var _numberLikeNews: Int!
+    private var _numberCommentNews: Int!
+    private var _numberBookMarkNews: Int!
     
-    init(imageUrl: String,
-            title: String,
-            detail: String,
-            type: String,
-            numberView: String,
-            numberLike: String,
-            numberComment: String,
-            numberBookMark: String) {
-        imageURL = imageUrl
-        titleNews = title
-        detailTitle = detail
-        typeNews = type
-        numberViewNews = numberView
-        numberLikeNews = numberLike
-        numberCommentNews = numberComment
-        numberBookMarkNews = numberBookMark
+    init(id: Int, imageUrl: String, title: String, detail: String, type: Int, content: String, timeUp: String, numberView: Int, numberLike: Int, numberComment: Int, numberBookMark: Int) {
+        _id = id
+        _imageURL = imageUrl
+        _titleNews = title
+        _detailTitle = detail
+        _typeNews = type
+        _content = content
+        _timeUp = timeUp
+        _numberViewNews = numberView
+        _numberLikeNews = numberLike
+        _numberCommentNews = numberComment
+        _numberBookMarkNews = numberBookMark
     }
-    
-    func getImageUrl() -> String {
-        return imageURL
+    var id: Int {
+        get {
+            return _id
+        }
     }
-    
-    func getTitle() -> String {
-        return titleNews
+    var imageURL: String {
+        get {
+            return _imageURL
+        }
     }
-    
-    func getDetailTitle() -> String {
-        return detailTitle
+    var title: String {
+        get {
+            return _titleNews
+        }
     }
-    
-    func getType() -> String {
-        return typeNews
+    var detailNews: String {
+        get {
+            return _detailTitle
+        }
     }
-    
-    func getNumberView() -> String {
-        return numberViewNews
+    var typeNews: Int {
+        get {
+            return _typeNews
+        }
     }
-    
-    func getNumberLike() -> String {
-        return numberLikeNews
+    var content: String {
+        get {
+            return _content
+        }
     }
-    
-    func getNumberComment() -> String {
-        return numberCommentNews
+    var timeUp: String {
+        get {
+            return _timeUp
+        }
     }
-    
-    func getNumberBookMark() -> String {
-        return numberBookMarkNews
+    var numberViewNews: Int {
+        get {
+            return _numberLikeNews
+        }
     }
-
+    var numberLike: Int {
+        get {
+            return _numberLikeNews
+        }
+    }
+    var numberComment: Int {
+        get {
+            return _numberCommentNews
+        }
+    }
+    var bookMark: Int {
+        get {
+            return _numberBookMarkNews
+        }
+    }
 }

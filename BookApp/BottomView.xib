@@ -13,6 +13,9 @@
             <connections>
                 <outlet property="downloadButton" destination="3VP-Nq-hap" id="iTo-kq-89m"/>
                 <outlet property="downloadImage" destination="jQ3-is-Rf0" id="gp5-Qt-cFB"/>
+                <outlet property="numberBookmark" destination="4L5-bP-bwf" id="iZd-Wu-QAD"/>
+                <outlet property="numberComment" destination="cD1-hC-Goj" id="cDg-dr-B9D"/>
+                <outlet property="numberLike" destination="hAm-YT-Umc" id="dEc-78-RoV"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

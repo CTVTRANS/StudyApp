@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class BookViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
@@ -15,9 +16,17 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     @IBOutlet weak var suggestBookView: CustomBookCollection!
     @IBOutlet weak var freeBookView: CustomBookCollection!
+    
+    @IBOutlet weak var newestBookImage: UIImageView!
+    @IBOutlet weak var newestBookName: UILabel!
+    @IBOutlet weak var newestBookauthorName: UILabel!
+    @IBOutlet weak var newestBookDescription: UILabel!
+    @IBOutlet weak var newestBookTimeUp: UILabel!
+    @IBOutlet weak var newestBookNumberView: UILabel!
     var bookTypeArray = [BookType]()
     var suggestArray = [Book]()
     var freeArray = [Book]()
+    var  newestBook: Book!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,21 +37,41 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         }) { (error) in
             
         }
+        
+        let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest()
+        requestWithTask(task: getBookSuggest, success: { (data) in
+            self.suggestBookView.reloadData(arrayOfBook: data as! [Book])
+        }) { (error) in
+            
+        }
+        
+        let getNewestBookTask: GetBookNewestTask = GetBookNewestTask()
+        requestWithTask(task: getNewestBookTask, success: { (data) in
+            self.newestBook = data as! Book
+            self.newestBookImage.sd_setImage(with: URL(string: self.newestBook.imageURL))
+            self.newestBookName.text = self.newestBook.name
+            self.newestBookauthorName.text = self.newestBook.author
+            self.newestBookDescription.text = self.newestBook.description
+            self.newestBookNumberView.text = self.newestBook.numberHumanReaed
+            self.newestBookTimeUp.text = self.newestBook.timeUpBook
+        }) { (error) in
+            
+        }
         setupCallBackClickCell()
         suggestBookView.setupView(image: #imageLiteral(resourceName: "ic_reload"))
         freeBookView.setupView(image: #imageLiteral(resourceName: "ic_next"))
         
-        let book1: Book = Book(name: "toic 0", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: "")
-        let book2: Book = Book(name: "toic 1", imageUrl: "abc", numberReaded: "63", timeUp: "2017/7/2", audio: "", id: "")
-        let book3: Book = Book(name: "toic 2", imageUrl: "abc", numberReaded: "39", timeUp: "2017/8/2", audio: "", id: "")
+        let book1: Book = Book(name: "toic 0", author: "123", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: 999)
+        let book2: Book = Book(name: "toic 1", author: "123", imageUrl: "abc", numberReaded: "63", timeUp: "2017/7/2", audio: "", id: 999)
+        let book3: Book = Book(name: "toic 2", author: "123", imageUrl: "abc", numberReaded: "39", timeUp: "2017/8/2", audio: "", id: 999)
         suggestArray.append(book1)
         suggestArray.append(book2)
         suggestArray.append(book3)
         suggestBookView.bookArray = suggestArray
         
-        let book4: Book = Book(name: "toic 3", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: "")
-        let book5: Book = Book(name: "toic 4", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: "")
-        let book6: Book = Book(name: "toic 5", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: "")
+        let book4: Book = Book(name: "toic 3", author: "123", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: 999)
+        let book5: Book = Book(name: "toic 4", author: "123", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: 999)
+        let book6: Book = Book(name: "toic 5", author: "123", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: 999)
         freeArray.append(book4)
         freeArray.append(book5)
         freeArray.append(book6)
@@ -60,13 +89,13 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let type: BookType = bookTypeArray[indexPath.row]
-        let getBook: GetListBookForTypeTask  = GetListBookForTypeTask(category: type.typeID, page: "1")
-        requestWithTask(task: getBook, success: { (data) in
-            self.suggestBookView.reloadData(arrayOfBook: data as! [Book])
-        }) { (error) in
-            
-        }
+//        let type: BookType = bookTypeArray[indexPath.row]
+//        let getBook: GetListBookForTypeTask  = GetListBookForTypeTask(category: type.typeID, page: "1")
+//        requestWithTask(task: getBook, success: { (data) in
+//            self.suggestBookView.reloadData(arrayOfBook: data as! [Book])
+//        }) { (error) in
+//            
+//        }
     }
     
     func setupCallBackClickCell() {
@@ -86,6 +115,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     @IBAction func pressedShowDetailBook(_ sender: Any) {
         let bookStoryboard = UIStoryboard(name: "Book", bundle: nil)
         let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
+        vc.bookSelected = newestBook
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
