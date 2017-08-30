@@ -37,6 +37,7 @@ class Type2DetailNewsViewController: BaseViewController {
     }
     
     func setupUI() {
+        userName.text = news.author
         timeUp.text = news.timeUp
         content.text = news.content
     }
@@ -60,7 +61,17 @@ class Type2DetailNewsViewController: BaseViewController {
         bottomView.pressedLike = { [weak self] in
             let likeTask: LikeTask = LikeTask(likeType: 0, memberID: 1, objectId: self!.news.id)
             self?.requestWithTask(task: likeTask, success: { (data) in
-                print(data!)
+                let status: Like = (data as? Like)!
+                var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
+                if status == Like.LIKE {
+                    currentLike += 1
+                    self?.news.numberLike = currentLike
+                    self?.bottomView.numberLike.text = String(currentLike)
+                } else {
+                    currentLike -= 1
+                    self?.news.numberLike = currentLike
+                    self?.bottomView.numberLike.text = String(currentLike)
+                }
             }, failure: { (error) in
                 
             })

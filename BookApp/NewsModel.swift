@@ -10,6 +10,7 @@ import UIKit
 
 class NewsModel: NSObject {
     private var _id: Int!
+    private var _author: String!
     private var _imageURL: String!
     private var _titleNews: String!
     private var _detailTitle: String!
@@ -21,8 +22,12 @@ class NewsModel: NSObject {
     private var _numberCommentNews: Int!
     private var _numberBookMarkNews: Int!
     
-    init(id: Int, imageUrl: String, title: String, detail: String, type: Int, content: String, timeUp: String, numberView: Int, numberLike: Int, numberComment: Int, numberBookMark: Int) {
+    init(id: Int, author: String, imageUrl: String, title: String,
+         detail: String, type: Int, content: String,
+         timeUp: String, numberView: Int, numberLike: Int,
+         numberComment: Int, numberBookMark: Int) {
         _id = id
+        _author = author
         _imageURL = imageUrl
         _titleNews = title
         _detailTitle = detail
@@ -37,6 +42,11 @@ class NewsModel: NSObject {
     var id: Int {
         get {
             return _id
+        }
+    }
+    var author: String {
+        get {
+            return _author
         }
     }
     var imageURL: String {
@@ -71,22 +81,34 @@ class NewsModel: NSObject {
     }
     var numberViewNews: Int {
         get {
-            return _numberLikeNews
+            return _numberViewNews
+        }
+        set {
+            _numberViewNews = newValue
         }
     }
     var numberLike: Int {
         get {
             return _numberLikeNews
         }
+        set {
+            _numberLikeNews = newValue
+        }
     }
     var numberComment: Int {
         get {
             return _numberCommentNews
         }
+        set {
+            _numberCommentNews = newValue
+        }
     }
     var bookMark: Int {
         get {
             return _numberBookMarkNews
+        }
+        set {
+            _numberBookMarkNews = newValue
         }
     }
 }

@@ -10,52 +10,121 @@ import UIKit
 
 class Book {
     
-    private var _nameBook: String?
-    private var _imageBookUrl: String?
-    private var _numberHumanReaded: String?
-    private var _timeUpBook: String?
-
-    var nameBook: String {
+    private var _id: Int!
+    private var _nameBook: String!
+    private var _author: String!
+    private var _imageBookUrl: String!
+    private var _numberHumanReaded: Int!
+    private var _timeUpBook: String!
+    private var _audio: String!
+    private var _video: String!
+    private var _content: String!
+    private var _desCription: String!
+    private var _numberLike: Int!
+    private var _numberComment: Int!
+    private var _numberBookMark: Int!
+    
+    init(id: Int,
+         name: String,
+         author: String,
+         imageUrl: String,
+         numberReaded: Int,
+         timeUp: String,
+         audio: String,
+         video: String,
+         content: String,
+         numberLike: Int,
+         numberComment: Int,
+         numberBookMark: Int,
+         desCription: String ) {
+        _id = id
+        _nameBook = name
+        _imageBookUrl = imageUrl
+        _numberHumanReaded = numberReaded
+        _timeUpBook = timeUp
+        _audio = audio
+        _video = video
+        _numberLike = numberLike
+        _numberComment = numberComment
+        _numberBookMark = numberBookMark
+        _author = author
+        _content = content
+        _desCription = desCription
+    }
+    
+    var name: String {
         get {
-            return self._nameBook!
+            return _nameBook!
         }
-        set {
-            self._nameBook = newValue
+    }
+    var author: String {
+        get {
+            return _author!
+        }
+    }
+    var imageURL: String {
+        get {
+            return _imageBookUrl!
         }
     }
     
-    var imageBookUrl: String {
+    var numberHumanReaed: Int {
         get {
-            return self._imageBookUrl!
+            return _numberHumanReaded!
         }
         set {
-            self._imageBookUrl  = newValue
+            _numberHumanReaded = newValue
         }
     }
-    
-    var numberHumanReaed: String {
+    var numberLike: Int {
         get {
-            return self._numberHumanReaded!
+            return _numberLike
         }
         set {
-            self._numberHumanReaded = newValue
+            _numberLike = newValue
         }
     }
-    
+    var numberComment: Int {
+        get {
+            return _numberComment
+        }
+        set {
+            _numberComment = newValue
+        }
+    }
+    var numberBookMark: Int {
+        get {
+            return _numberBookMark
+        }
+    }
     var timeUpBook: String {
         get {
-            return self._timeUpBook!
-        }
-        set {
-            self._timeUpBook = newValue
+            return _timeUpBook!
         }
     }
-    
-    init(name: String, imageUrl: String, numberReaded: String, timeUp: String) {
-        self._nameBook = name
-        self._imageBookUrl = imageUrl
-        self._numberHumanReaded = numberReaded
-        self._timeUpBook = timeUp
+    var id: Int {
+        get {
+            return _id!
+        }
     }
-    
+    var audio : String {
+        get {
+            return _audio!
+        }
+    }
+    var video: String {
+        get {
+            return _video!
+        }
+    }
+    var content: String {
+        get {
+            return _content!
+        }
+    }
+    var description: String {
+        get {
+            return _desCription!
+        }
+    }
 }

@@ -9,34 +9,35 @@
 import UIKit
 
 class Comment: NSObject {
+    private var _id: Int!
     private var _userComment: User!
     private var _timeComment: String!
-    private var _numberLikeComment: String!
+    private var _numberLikeComment: Int!
     private var _contentComment: String!
 
-    init(user: User, time: String, numberlikeComment: String, content: String) {
+    init(id: Int, user: User, time: String, numberlikeComment: Int, content: String) {
+        _id = id
         _userComment = user
         _timeComment = time
         _numberLikeComment = numberlikeComment
         _contentComment = content
     }
+    var id: Int {
+        get {
+            return _id
+        }
+    }
     var userComment: User {
         get {
             return _userComment
-        }
-        set {
-            _userComment = newValue
         }
     }
     var timeComment: String {
         get {
             return _timeComment
         }
-        set {
-            _timeComment = newValue
-        }
     }
-    var numberLikeComment: String {
+    var numberLikeComment: Int {
         get {
             return _numberLikeComment
         }
@@ -47,9 +48,6 @@ class Comment: NSObject {
     var contentComment: String {
         get {
             return _contentComment
-        }
-        set {
-            _contentComment = newValue
         }
     }
 }

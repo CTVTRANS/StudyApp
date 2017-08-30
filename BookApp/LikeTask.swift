@@ -33,6 +33,13 @@ class LikeTask: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
+        if let dictionary = response as? [String: Any] {
+            if dictionary["data"] != nil {
+                return Like.LIKE
+            } else {
+                return Like.UNLIKE
+            }
+        }
         return response
     }
 }

@@ -24,12 +24,22 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         commentView.isHidden = true
         table.estimatedRowHeight = 140
-        
+        table.tableFooterView = UIView()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification1:)),
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                object: nil)
         commentTextView.delegate = self
+        let getComment: GetAllComment = GetAllComment(commentType: commentType!,
+                                                      idObject: idObject!,
+                                                      limitComment: 20,
+                                                      pageing: 1)
+        requestWithTask(task: getComment, success: { (data) in
+            self.arrayOfComment = data as! [Comment]
+            self.table.reloadData()
+        }) { (error) in
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,13 +53,33 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return arrayOfComment.count
-        return 3
+        return arrayOfComment.count
+//        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CommentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
-//        cell.binData(commentObject: arrayOfComment[indexPath.row])
+        let commenObject = arrayOfComment[indexPath.row]
+        cell.binData(commentObject: commenObject)
+        cell.pressLikeComment = { [weak self] in
+            let likeComment: LikeTask = LikeTask(likeType: 2,
+                                                 memberID: 1,
+                                                 objectId: commenObject.id)
+            self?.requestWithTask(task: likeComment, success: { (data) in
+                let status: Like = (data as? Like)!
+                var currentLike: Int = Int(cell.numberLike.text!)!
+                if status == Like.LIKE {
+                    currentLike += 1
+                    cell.numberLike.text = String(currentLike)
+                } else {
+                    currentLike -= 1
+                    cell.numberLike.text = String(currentLike)
+                }
+                
+            }, failure: { (error) in
+                
+            })
+        }
         return cell
     }
     

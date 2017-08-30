@@ -23,6 +23,10 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         setupCallBackTopTabbar()
         setupSahreView()
         scroll.delegate = self
+        
+        bottomView.numberComment.text = String(bookSelected.numberComment)
+        bottomView.numberLike.text = String(bookSelected.numberLike)
+        bottomView.numberBookmark.text = String(bookSelected.numberBookMark)
     }
     
     func setupScroll() {
@@ -62,7 +66,6 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         self.addChildViewController(textVC)
         textVC.didMove(toParentViewController: self)
         scroll.addSubview(textVC.view)
-
     }
     
     func setupSahreView() {
@@ -85,7 +88,17 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         bottomView.pressedLike = { [weak self] in
             let likeTask: LikeTask = LikeTask(likeType: 1, memberID: 1, objectId: self!.bookSelected.id)
             self?.requestWithTask(task: likeTask, success: { (data) in
-                print(data!)
+                let status: Like = (data as? Like)!
+                var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
+                if status == Like.LIKE {
+                    currentLike += 1
+                    self?.bookSelected.numberLike = currentLike
+                    self?.bottomView.numberLike.text = String(currentLike)
+                } else {
+                    currentLike -= 1
+                    self?.bookSelected.numberLike = currentLike
+                    self?.bottomView.numberLike.text = String(currentLike)
+                }
             }, failure: { (error) in
                 
             })

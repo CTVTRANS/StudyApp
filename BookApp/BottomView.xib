@@ -23,32 +23,38 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_back" translatesAutoresizingMaskIntoConstraints="NO" id="wzz-j5-KpS">
+                    <rect key="frame" x="16" y="11" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="22" id="8tu-fU-yD2"/>
+                        <constraint firstAttribute="height" constant="22" id="mzo-0o-hiY"/>
+                    </constraints>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNo-Yf-fwG">
                     <rect key="frame" x="16" y="11" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="22" id="Rxg-gr-THe"/>
                         <constraint firstAttribute="height" constant="22" id="xbM-gU-30y"/>
                     </constraints>
-                    <state key="normal" image="ic_back_bottom"/>
                     <connections>
                         <action selector="pressedBack:" destination="-1" eventType="touchUpInside" id="cvJ-yz-3dj"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_commentBottom" translatesAutoresizingMaskIntoConstraints="NO" id="yKx-Ch-rFW">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_comment" translatesAutoresizingMaskIntoConstraints="NO" id="yKx-Ch-rFW">
                     <rect key="frame" x="323" y="14.5" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="ah1-OA-oLv"/>
                         <constraint firstAttribute="width" constant="15" id="rOZ-Zi-ARt"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_likeBottom" translatesAutoresizingMaskIntoConstraints="NO" id="x3k-sf-JK0">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_like" translatesAutoresizingMaskIntoConstraints="NO" id="x3k-sf-JK0">
                     <rect key="frame" x="271.5" y="14.5" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="BkB-vq-A9T"/>
                         <constraint firstAttribute="height" constant="15" id="KEi-Hc-eC4"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_starBottom" translatesAutoresizingMaskIntoConstraints="NO" id="mJB-FO-YhU">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_bookMark" translatesAutoresizingMaskIntoConstraints="NO" id="mJB-FO-YhU">
                     <rect key="frame" x="222" y="14.5" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="QY2-g8-0nC"/>
@@ -98,7 +104,7 @@
                         <action selector="pressedBookMarkButton:" destination="-1" eventType="touchUpInside" id="0K0-2C-Aix"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_downloadBottom" translatesAutoresizingMaskIntoConstraints="NO" id="jQ3-is-Rf0">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_download" translatesAutoresizingMaskIntoConstraints="NO" id="jQ3-is-Rf0">
                     <rect key="frame" x="190" y="14.5" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="obh-yc-SOU"/>
@@ -123,6 +129,7 @@
                 <constraint firstItem="XNo-Yf-fwG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="8Bi-YR-Prs"/>
                 <constraint firstItem="cD1-hC-Goj" firstAttribute="centerY" secondItem="XNo-Yf-fwG" secondAttribute="centerY" id="B12-qz-aHh"/>
                 <constraint firstItem="HZk-0j-pVE" firstAttribute="leading" secondItem="4L5-bP-bwf" secondAttribute="trailing" constant="12" id="DB5-HU-Iro"/>
+                <constraint firstItem="wzz-j5-KpS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="GrN-7L-I8K"/>
                 <constraint firstItem="HZk-0j-pVE" firstAttribute="leading" secondItem="ZtJ-Db-pBK" secondAttribute="trailing" constant="12" id="Hdt-Jw-PaI"/>
                 <constraint firstItem="689-WD-yPe" firstAttribute="width" secondItem="cD1-hC-Goj" secondAttribute="width" constant="23" id="Hpe-VJ-VVr"/>
                 <constraint firstItem="ZtJ-Db-pBK" firstAttribute="leading" secondItem="jQ3-is-Rf0" secondAttribute="trailing" constant="12" id="Iq1-hI-XND"/>
@@ -135,6 +142,7 @@
                 <constraint firstItem="hAm-YT-Umc" firstAttribute="leading" secondItem="x3k-sf-JK0" secondAttribute="trailing" constant="3" id="Rqc-0u-lRd"/>
                 <constraint firstItem="4L5-bP-bwf" firstAttribute="centerY" secondItem="XNo-Yf-fwG" secondAttribute="centerY" id="Tsa-Pp-sc6"/>
                 <constraint firstItem="cD1-hC-Goj" firstAttribute="leading" secondItem="yKx-Ch-rFW" secondAttribute="trailing" constant="3" id="UfC-0X-0N2"/>
+                <constraint firstItem="wzz-j5-KpS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Vaa-JY-LRg"/>
                 <constraint firstItem="HZk-0j-pVE" firstAttribute="width" secondItem="hAm-YT-Umc" secondAttribute="width" constant="23" id="ZP1-sw-JTf"/>
                 <constraint firstItem="689-WD-yPe" firstAttribute="leading" secondItem="HZk-0j-pVE" secondAttribute="trailing" constant="12" id="Zzw-YT-oRy"/>
                 <constraint firstItem="HZk-0j-pVE" firstAttribute="centerY" secondItem="XNo-Yf-fwG" secondAttribute="centerY" id="c4m-mE-8Tj"/>
@@ -154,10 +162,10 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_back_bottom" width="32" height="32"/>
-        <image name="ic_commentBottom" width="32" height="32"/>
-        <image name="ic_downloadBottom" width="32" height="32"/>
-        <image name="ic_likeBottom" width="32" height="32"/>
-        <image name="ic_starBottom" width="32" height="32"/>
+        <image name="ic_bottom_back" width="64" height="64"/>
+        <image name="ic_bottom_bookMark" width="64" height="64"/>
+        <image name="ic_bottom_comment" width="64" height="64"/>
+        <image name="ic_bottom_download" width="64" height="64"/>
+        <image name="ic_bottom_like" width="64" height="64"/>
     </resources>
 </document>

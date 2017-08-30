@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 class BookVideoController: BaseViewController, UIWebViewDelegate {
     
@@ -17,12 +19,28 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var hightOfWebView: NSLayoutConstraint!
     
     var book: Book?
-    
+    let playerViewController = AVPlayerViewController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        showActivity(withName: "loading...")
         web.delegate = self
-        web.loadRequest(URLRequest(url: URL(string: "https://stackoverflow.com/questions/3341842/how-to-add-subview-to-a-webview-so-that-the-subview-would-scroll-along-with-webv")!))
+        let content = book?.content
+        web.loadHTMLString(content!, baseURL: nil)
         web.scrollView.isScrollEnabled = false
+        let video = book?.video
+        let videoURL = URL(string: video!)
+        let player = AVPlayer(url: videoURL!)
+        let duration = player.currentItem?.asset.duration
+        let totalTime: Float64 = CMTimeGetSeconds(duration!)
+        let mySecs = Int(totalTime) % 60
+        let myMins = Int(totalTime / 60)
+        print("\(myMins): \(mySecs)")
+
+        playerViewController.player = player
+        playerViewController.view.frame = headerView.bounds
+        headerView.addSubview(playerViewController.view)
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
@@ -30,6 +48,7 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
         hightOfWebView.constant = hightOfContenWebView
         scroll.contentSize.height = hightOfContenWebView + headerView.frame.size.height + footerView.frame.size.height
         print(web.frame.size.height)
+        self.stopActivityIndicator()
     }
     
     deinit {

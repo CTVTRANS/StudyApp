@@ -27,7 +27,7 @@ class MainViewCell: UITableViewCell {
         titleNews.text = news.title
         detailNews.text = news.detailNews
         typeNews.text = String(news.typeNews)
-        numberView.text = String(news.numberViewNews)
+        numberView.text = news.author
         numberLike.text = String(news.numberLike)
         numberComment.text = String(news.numberComment)
     }

@@ -23,6 +23,9 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCallBackButton()
+        setupUI()
+        bodyNews.delegate = self
+        bodyNews.scrollView.isScrollEnabled = false
         navigationItem.leftBarButtonItem =
             UIBarButtonItem(title: news.title,
                             style: .done,
@@ -33,15 +36,12 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
                             style: .plain,
                             target: self,
                             action: #selector(share))
-        setupUI()
-        bodyNews.delegate = self
-        bodyNews.scrollView.isScrollEnabled = false
-        
         detailNews.text = "down voteThe easiest way, IMO, is just to click on the title bar of the first ViewController and in the Attribute Inspector (⌥+⌘+4) change the Navigation Item info the way you want: Title -> what will show up in the back button* or if you want it to say something other than the Title of the first ViewController or the word Back you can just put it in the Back Button field."
     }
     
     func setupUI() {
-         bodyNews.loadHTMLString(news.content, baseURL: nil)
+        userName.text = news.author
+        bodyNews.loadHTMLString(news.content, baseURL: nil)
         imageNews.sd_setImage(with: URL(string: news.imageURL))
     }
     
@@ -71,13 +71,25 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
         bottomView.pressedLike = { [weak self] in
             let likeTask: LikeTask = LikeTask(likeType: 0, memberID: 1, objectId: self!.news.id)
             self?.requestWithTask(task: likeTask, success: { (data) in
-                print(data!)
+                let status: Like = (data as? Like)!
+                var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
+                if status == Like.LIKE {
+                    currentLike += 1
+                    self?.news.numberLike = currentLike
+                    self?.bottomView.numberLike.text = String(currentLike)
+                } else {
+                    currentLike -= 1
+                    self?.news.numberLike = currentLike
+                    self?.bottomView.numberLike.text = String(currentLike)
+                }
             }, failure: { (error) in
                 
             })
         }
-        bottomView.pressedBookMark = {
-            print("bookmark")
+        bottomView.pressedBookMark = { [weak self] in
+            let storyboard = UIStoryboard(name: "Global", bundle: nil)
+            let vc: UINavigationController = storyboard.instantiateViewController(withIdentifier: "Login") as! UINavigationController
+            self?.present(vc, animated: true, completion: nil)
         }
         bottomView.pressedDownload = {
             print("download")

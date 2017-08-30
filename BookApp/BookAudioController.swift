@@ -39,6 +39,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showActivity(withName: "loading...")
         web.delegate = self
         let content = book?.content
         web.loadHTMLString(content!, baseURL: nil)
@@ -86,6 +87,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         let hightOfContenWebView: CGFloat = web.scrollView.contentSize.height
         hightOfWebView.constant = hightOfContenWebView
         scroll.contentSize.height = hightOfContenWebView + headerView.frame.size.height + footerView.frame.size.height
+        self.stopActivityIndicator()
     }
    
     private func makePlayer() -> AVQueuePlayer {

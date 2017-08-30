@@ -27,11 +27,14 @@ class GetTypeOfBookTask: BaseTaskNetwork {
         var listType = [BookType]()
         if let listObject = response as? [[String: Any]] {
             for dictionary in listObject {
-                let typeBook: BookType = BookType(name: "", image: "", typeID: 0, description: "")
-                typeBook.name = dictionary["cat_name"] as? String ?? ""
-                typeBook.imageURL = dictionary["cat_image"] as? String ?? ""
-                typeBook.typeID = dictionary["cat_id"] as? Int ?? 0
-                typeBook.descriptionType = dictionary["cat_description"] as? String ?? ""
+                let nameType = dictionary["cat_name"] as? String ?? "abc"
+                let imageURLType = dictionary["cat_image"] as? String ?? "123"
+                let idType = dictionary["cat_id"] as? Int ?? 0
+                let descriptionType = dictionary["cat_description"] as? String ?? "123"
+                let typeBook: BookType = BookType(name: nameType,
+                                                  image: imageURLType,
+                                                  typeID: idType,
+                                                  description: descriptionType)
                 listType.append(typeBook)
             }
         }

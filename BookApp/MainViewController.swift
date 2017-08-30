@@ -17,9 +17,11 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         let getAllNews : GetAllNewsTask = GetAllNewsTask()
+        showActivity(withName: "loading...")
         requestWithTask(task: getAllNews, success: { (data) in
             self.arrayNews = data as! [NewsModel]
             self.table.reloadData()
+            self.stopActivityIndicator()
         }) { (error) in
             
         }
@@ -29,6 +31,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        table.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

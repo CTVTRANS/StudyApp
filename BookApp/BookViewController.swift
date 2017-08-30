@@ -30,10 +30,30 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCallBackClickCell()
+        suggestBookView.setupView(image: #imageLiteral(resourceName: "ic_reload"))
+        freeBookView.setupView(image: #imageLiteral(resourceName: "ic_next"))
+        
         let getTypeTask: GetTypeOfBookTask = GetTypeOfBookTask()
+        showActivity(withName: "loading...")
         requestWithTask(task: getTypeTask, success: { (data) in
             self.bookTypeArray = Constants.sharedInstance.listBookType!
             self.tableBookType.reloadData()
+            self.stopActivityIndicator()
+        }) { (error) in
+            
+        }
+        
+       
+        let getNewestBookTask: GetBookNewestTask = GetBookNewestTask()
+        requestWithTask(task: getNewestBookTask, success: { (data) in
+            self.newestBook = data as! Book
+            self.newestBookImage.sd_setImage(with: URL(string: self.newestBook.imageURL))
+            self.newestBookName.text = self.newestBook.name
+            self.newestBookauthorName.text = self.newestBook.author
+            self.newestBookDescription.text = self.newestBook.description
+            self.newestBookNumberView.text = String(self.newestBook.numberHumanReaed)
+            self.newestBookTimeUp.text = self.newestBook.timeUpBook
         }) { (error) in
             
         }
@@ -45,37 +65,15 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
             
         }
         
-        let getNewestBookTask: GetBookNewestTask = GetBookNewestTask()
-        requestWithTask(task: getNewestBookTask, success: { (data) in
-            self.newestBook = data as! Book
-            self.newestBookImage.sd_setImage(with: URL(string: self.newestBook.imageURL))
-            self.newestBookName.text = self.newestBook.name
-            self.newestBookauthorName.text = self.newestBook.author
-            self.newestBookDescription.text = self.newestBook.description
-            self.newestBookNumberView.text = self.newestBook.numberHumanReaed
-            self.newestBookTimeUp.text = self.newestBook.timeUpBook
+        let getBookFree: GetBookFree = GetBookFree()
+        requestWithTask(task: getBookFree, success: { (data) in
+            self.freeBookView.reloadData(arrayOfBook: data as! [Book])
         }) { (error) in
             
         }
-        setupCallBackClickCell()
-        suggestBookView.setupView(image: #imageLiteral(resourceName: "ic_reload"))
-        freeBookView.setupView(image: #imageLiteral(resourceName: "ic_next"))
-        
-        let book1: Book = Book(name: "toic 0", author: "123", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: 999)
-        let book2: Book = Book(name: "toic 1", author: "123", imageUrl: "abc", numberReaded: "63", timeUp: "2017/7/2", audio: "", id: 999)
-        let book3: Book = Book(name: "toic 2", author: "123", imageUrl: "abc", numberReaded: "39", timeUp: "2017/8/2", audio: "", id: 999)
-        suggestArray.append(book1)
-        suggestArray.append(book2)
-        suggestArray.append(book3)
-        suggestBookView.bookArray = suggestArray
-        
-        let book4: Book = Book(name: "toic 3", author: "123", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: 999)
-        let book5: Book = Book(name: "toic 4", author: "123", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: 999)
-        let book6: Book = Book(name: "toic 5", author: "123", imageUrl: "abc", numberReaded: "13", timeUp: "2017/6/2", audio: "", id: 999)
-        freeArray.append(book4)
-        freeArray.append(book5)
-        freeArray.append(book6)
-        freeBookView.bookArray = freeArray
+
+//        suggestBookView.bookArray = suggestArray
+//        freeBookView.bookArray = suggestArray
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -89,7 +87,14 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let type: BookType = bookTypeArray[indexPath.row]
+        let type: BookType = bookTypeArray[indexPath.row]
+        let getBook: GetBookSuggestForType = GetBookSuggestForType(category: type.typeID, limit: 3)
+        requestWithTask(task: getBook, success: { (data) in
+            self.suggestBookView.reloadData(arrayOfBook: data as! [Book])
+        }) { (error) in
+
+        }
+        
 //        let getBook: GetListBookForTypeTask  = GetListBookForTypeTask(category: type.typeID, page: "1")
 //        requestWithTask(task: getBook, success: { (data) in
 //            self.suggestBookView.reloadData(arrayOfBook: data as! [Book])

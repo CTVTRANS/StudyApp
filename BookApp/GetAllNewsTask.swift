@@ -28,6 +28,7 @@ class GetAllNewsTask: BaseTaskNetwork {
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let newsID = dictionary["post_id"] as? Int ?? 123
+                let newsAuthor = dictionary["author"] as? String ?? "kien"
                 let newsName = dictionary["post_name"] as? String ?? "123"
                 let newsImage = dictionary["post_image"] as? String ?? "123"
                 let newsDescription = dictionary["post_description"] as? String ?? "123"
@@ -37,6 +38,7 @@ class GetAllNewsTask: BaseTaskNetwork {
                 let newsNumberLike = dictionary["number_of_likes"] as? Int ?? 123
                 let newsNumberComment = dictionary["number_of_comments"] as? Int ?? 123
                 let news: NewsModel = NewsModel(id: newsID,
+                                                author: newsAuthor,
                                                 imageUrl: newsImage,
                                                 title: newsName,
                                                 detail: newsDescription,

@@ -15,16 +15,24 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var avatar: UIImageView!
+    var pressLikeComment = {}
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     func binData(commentObject: Comment) {
         name.text = commentObject.userComment.name
-        avatar.sd_setImage(with: URL(string: commentObject.userComment.avata))
-        time.text = commentObject.timeComment
+        avatar.sd_setImage(with: URL(string:commentObject.userComment.avata), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
+        let timeComment: String = commentObject.timeComment
+        let dateComment = timeComment.components(separatedBy: " ")
+        let date = dateComment[0].components(separatedBy: "-")
+        time.text = date[1] + "." + date[2]
         content.text = commentObject.contentComment
-        numberLike.text = commentObject.numberLikeComment
+        numberLike.text = String(commentObject.numberLikeComment)
     }
 
+    @IBAction func pressedLike(_ sender: Any) {
+        self.pressLikeComment()
+    }
 }
