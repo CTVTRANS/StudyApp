@@ -27,7 +27,10 @@ class SendCommentTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["comment_type": _commentType, "member_id": _memberID, "object_id": _objectID, "content": _content]
+        return ["comment_type": _commentType,
+                "member_id": _memberID,
+                "object_id": _objectID,
+                "content": _content]
     }
     
     override func method() -> String! {

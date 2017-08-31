@@ -18,37 +18,47 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var hightOfWebView: NSLayoutConstraint!
     
+    var loadedVideo: Bool = false
+    var loadedWebView: Bool = false
     var book: Book?
     let playerViewController = AVPlayerViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        showActivity(withName: "loading...")
+        showActivity(inView: UIApplication.shared.keyWindow!)
         web.delegate = self
-        let content = book?.content
+        let content = book?.description
         web.loadHTMLString(content!, baseURL: nil)
         web.scrollView.isScrollEnabled = false
-        let video = book?.video
-        let videoURL = URL(string: video!)
-        let player = AVPlayer(url: videoURL!)
-        let duration = player.currentItem?.asset.duration
-        let totalTime: Float64 = CMTimeGetSeconds(duration!)
-        let mySecs = Int(totalTime) % 60
-        let myMins = Int(totalTime / 60)
-        print("\(myMins): \(mySecs)")
-
-        playerViewController.player = player
-        playerViewController.view.frame = headerView.bounds
-        headerView.addSubview(playerViewController.view)
+        loadVideo()
+    }
+    
+    func loadVideo() {
+        let asset = AVAsset(url: URL(string: (self.book?.video)!)!)
+        let keys: [String] = ["video"]
+        asset.loadValuesAsynchronously(forKeys: keys) {
+            DispatchQueue.main.async {
+                let item = AVPlayerItem(asset: asset)
+                let player = AVQueuePlayer(playerItem: item)
+                self.playerViewController.player = player
+                self.playerViewController.view.frame = self.headerView.bounds
+                self.headerView.addSubview(self.playerViewController.view)
+                self.loadedVideo = true
+                if (self.loadedVideo && self.loadedWebView) {
+                    self.stopActivityIndicator()
+                }
+            }
+        }
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let hightOfContenWebView: CGFloat = web.scrollView.contentSize.height
         hightOfWebView.constant = hightOfContenWebView
-        scroll.contentSize.height = hightOfContenWebView + headerView.frame.size.height + footerView.frame.size.height
         print(web.frame.size.height)
-        self.stopActivityIndicator()
+        self.loadedWebView = true
+        if (self.loadedVideo && self.loadedWebView) {
+            self.stopActivityIndicator()
+        }
     }
     
     deinit {

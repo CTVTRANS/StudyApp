@@ -17,6 +17,7 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
     
     var bookArray = [Book]()
     var callBackClickCell:((_ book: Book) -> Void)?
+    var callBackReloadButton = {}
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -94,5 +95,9 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
     func reloadData(arrayOfBook: [Book]) {
         bookArray = arrayOfBook
         bookCollection.reloadData()
+    }
+    
+    @IBAction func presedButton(_ sender: Any) {
+        self.callBackReloadButton()
     }
 }

@@ -16,7 +16,7 @@ class GetTypeOfBookTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["lang": "1"]
+        return ["lang": Constants.sharedInstance.language]
     }
     
     override func method() -> String! {

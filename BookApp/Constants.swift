@@ -12,15 +12,19 @@ let widthScreen: CGFloat = UIScreen.main.bounds.width
 let hightScreen: CGFloat = UIScreen.main.bounds.height
 
 enum Object: Int{
-    case NEWS = 0, BOOK, COMMENT
+    case news = 0, book, comment
 }
 
 enum Like: Int {
-    case UNLIKE = 0, LIKE
+    case unLike = 0, like
+}
+
+enum BottomButton: Int {
+    case back = 0, download, bookMark, like, comment
 }
 
 class Constants: NSObject {
     var listBookType: [BookType]?
-    var language: Int!
+    var language: Int = 1
     static let sharedInstance = Constants()
 }

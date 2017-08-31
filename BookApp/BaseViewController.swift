@@ -35,8 +35,42 @@ class BaseViewController: UIViewController {
         }
     }
     
-    func showActivity(withName: String) {
-        backGroundview = UIView(frame: UIScreen.main.bounds)
+//    func parseBook(dictionary: [String: Any]) -> Book {
+//        let idBook = dictionary["post_id"] as? Int ?? 999
+//        let idTypeBook = dictionary["cat_id"] as? Int ?? 123
+//        let nameTypeBook = dictionary["cat_name"] as? String ?? "123"
+//        let nameBook = dictionary["post_name"] as? String ?? "123"
+//        let authorBook = dictionary["author"] as? String ?? "23"
+//        let imageURLBook = dictionary["post_image"] as? String ?? "123"
+//        let descriptionBook = dictionary["post_description"] as? String ?? "123"
+//        let audioBook = dictionary["post_audio"] as? String ?? "123"
+//        let videoBook = dictionary["post_video"] as? String ?? "123"
+//        let contentBook = dictionary["post_content"] as? String ?? "abc"
+//        let timeUpBook = dictionary["updated_at"] as? String ?? "123"
+//        let numberLikeBook = dictionary["number_of_likes"] as? Int ?? 123
+//        let numberCommentBook = dictionary["number_of_comments"] as? Int ?? 123
+//        
+//        let book: Book = Book(id: idBook,
+//                              type: idTypeBook,
+//                              typeName: nameTypeBook,
+//                              name: nameBook,
+//                              author: authorBook,
+//                              imageUrl: imageURLBook,
+//                              numberReaded: 123,
+//                              timeUp: timeUpBook,
+//                              audio: audioBook,
+//                              video: videoBook,
+//                              content: contentBook,
+//                              numberLike: numberLikeBook,
+//                              numberComment: numberCommentBook,
+//                              numberBookMark: 123,
+//                              desCription: descriptionBook)
+//        return book
+//    }
+    
+    func showActivity(inView myView: UIView) {
+//        backGroundview = UIView(frame: UIScreen.main.bounds)
+        backGroundview = UIView(frame: myView.frame)
         backGroundview?.backgroundColor = UIColor.white
         let loadingView = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         loadingView.backgroundColor = UIColor.clear
@@ -44,7 +78,7 @@ class BaseViewController: UIViewController {
         loadingView.addSubview(activity!)
         let nameLoading = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
         nameLoading.font = UIFont(name: "Helvetica Neue", size: 15)
-        nameLoading.text = withName
+        nameLoading.text = "loading..."
         nameLoading.textAlignment = .center
         nameLoading.textColor = UIColor.gray
         nameLoading.backgroundColor = UIColor.clear
@@ -55,7 +89,8 @@ class BaseViewController: UIViewController {
         nameLoading.center = CGPoint(x: loadingView.center.x, y: loadingView.center.y + 23)
         activity?.center = loadingView.center
         loadingView.center = (backGroundview?.center)!
-        UIApplication.shared.keyWindow?.addSubview(backGroundview!)
+        myView.addSubview(backGroundview!)
+//        UIApplication.shared.keyWindow?.addSubview(backGroundview!)
         activity?.startAnimating()
     }
     

@@ -16,8 +16,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let getAllNews : GetAllNewsTask = GetAllNewsTask()
-        showActivity(withName: "loading...")
+        let getAllNews : GetAllNewsTask = GetAllNewsTask(limit: 20, page: 1)
+        showActivity(inView: self.view)
         requestWithTask(task: getAllNews, success: { (data) in
             self.arrayNews = data as! [NewsModel]
             self.table.reloadData()

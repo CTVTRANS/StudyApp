@@ -13,16 +13,15 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
 
     @IBOutlet weak var navigationCustom: NavigationCustom!
     @IBOutlet weak var tableBookType: UICollectionView!
-    
     @IBOutlet weak var suggestBookView: CustomBookCollection!
     @IBOutlet weak var freeBookView: CustomBookCollection!
-    
     @IBOutlet weak var newestBookImage: UIImageView!
+    @IBOutlet weak var newestBooktype: UILabel!
     @IBOutlet weak var newestBookName: UILabel!
-    @IBOutlet weak var newestBookauthorName: UILabel!
     @IBOutlet weak var newestBookDescription: UILabel!
     @IBOutlet weak var newestBookTimeUp: UILabel!
     @IBOutlet weak var newestBookNumberView: UILabel!
+    
     var bookTypeArray = [BookType]()
     var suggestArray = [Book]()
     var freeArray = [Book]()
@@ -35,7 +34,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         freeBookView.setupView(image: #imageLiteral(resourceName: "ic_next"))
         
         let getTypeTask: GetTypeOfBookTask = GetTypeOfBookTask()
-        showActivity(withName: "loading...")
+        showActivity(inView: self.view)
         requestWithTask(task: getTypeTask, success: { (data) in
             self.bookTypeArray = Constants.sharedInstance.listBookType!
             self.tableBookType.reloadData()
@@ -44,16 +43,16 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
             
         }
         
-       
         let getNewestBookTask: GetBookNewestTask = GetBookNewestTask()
         requestWithTask(task: getNewestBookTask, success: { (data) in
             self.newestBook = data as! Book
             self.newestBookImage.sd_setImage(with: URL(string: self.newestBook.imageURL))
+            self.newestBooktype.text = " " + self.newestBook.typeName + " "
             self.newestBookName.text = self.newestBook.name
-            self.newestBookauthorName.text = self.newestBook.author
-            self.newestBookDescription.text = self.newestBook.description
+            self.newestBookDescription.text = self.newestBook.author
             self.newestBookNumberView.text = String(self.newestBook.numberHumanReaed)
-            self.newestBookTimeUp.text = self.newestBook.timeUpBook
+            let dateupBook = self.newestBook.timeUpBook.components(separatedBy: " ")
+            self.newestBookTimeUp.text = dateupBook[0]
         }) { (error) in
             
         }
@@ -65,15 +64,22 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
             
         }
         
-        let getBookFree: GetBookFree = GetBookFree()
+        let getBookFree: GetBookFree = GetBookFree(limit: 3, page: 1)
         requestWithTask(task: getBookFree, success: { (data) in
             self.freeBookView.reloadData(arrayOfBook: data as! [Book])
         }) { (error) in
             
         }
-
-//        suggestBookView.bookArray = suggestArray
-//        freeBookView.bookArray = suggestArray
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -110,9 +116,24 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
             vc.bookSelected = bookSelected
             self?.navigationController?.pushViewController(vc, animated: true)
         }
+        suggestBookView.callBackReloadButton = { [weak self] in
+//            self?.showActivity(with: "loading...", inView: (self?.suggestBookView)!)
+            let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest()
+            self?.requestWithTask(task: getBookSuggest, success: { (data) in
+                self?.suggestBookView.reloadData(arrayOfBook: data as! [Book])
+//                self?.stopActivityIndicator()
+            }) { (error) in
+                
+            }
+        }
+        
         freeBookView.callBackClickCell = {[weak self] (bookSelected: Book) in
             let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
             vc.bookSelected = bookSelected
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+        freeBookView.callBackReloadButton = { [weak self] in
+            let vc: ListBookFreeController = bookStoryboard.instantiateViewController(withIdentifier: "ListBookFreeController") as! ListBookFreeController
             self?.navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -11,6 +11,7 @@ import UIKit
 class BottomView: UIView {
     
     var pressBackButton = {}
+    var pressedBottomButton:((_ index: BottomButton) -> Void)?
     var pressedComment = {}
     var pressedLike = {}
     var pressedBookMark = {}
@@ -50,22 +51,22 @@ class BottomView: UIView {
     }
 
     @IBAction func pressedBack(_ sender: Any) {
-        self.pressBackButton()
+        self.pressedBottomButton!(BottomButton.back)
     }
     
     @IBAction func pressedComment(_ sender: Any) {
-        self.pressedComment()
+        self.pressedBottomButton!(BottomButton.comment)
     }
     
     @IBAction func pressedLikeButton(_ sender: Any) {
-        self.pressedLike()
+        self.pressedBottomButton!(BottomButton.like)
     }
 
     @IBAction func pressedBookMarkButton(_ sender: Any) {
-        self.pressedBookMark()
+        self.pressedBottomButton!(BottomButton.bookMark)
     }
     
     @IBAction func pressedDownloadButton(_ sender: Any) {
-        self.pressedDownload()
+        self.pressedBottomButton!(BottomButton.download)
     }
 }

@@ -17,11 +17,14 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     
     var tap: UITapGestureRecognizer?
     var arrayOfComment = [Comment]()
+    var arrayCommentHot = [Comment]()
+    var arrayObject = [Any]()
     var idObject: Int?
     var commentType: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showActivity(inView: self.view)
         commentView.isHidden = true
         table.estimatedRowHeight = 140
         table.tableFooterView = UIView()
@@ -31,12 +34,21 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                                                object: nil)
         commentTextView.delegate = self
         let getComment: GetAllComment = GetAllComment(commentType: commentType!,
-                                                      idObject: idObject!,
+                                                      idObject: commentType!,
                                                       limitComment: 20,
                                                       pageing: 1)
         requestWithTask(task: getComment, success: { (data) in
             self.arrayOfComment = data as! [Comment]
             self.table.reloadData()
+            self.arrayObject.append(self.arrayOfComment)
+        }) { (error) in
+            
+        }
+        
+        let getCommentHot: GetCommentHot = GetCommentHot(commentType: commentType!, idObject: commentType!)
+        requestWithTask(task: getCommentHot, success: { (data) in
+            self.arrayCommentHot = data as! [Comment]
+            self.arrayObject.append(self.arrayCommentHot)
         }) { (error) in
             
         }
@@ -51,10 +63,18 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "kien"
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return arrayObject.count
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayOfComment.count
-//        return 3
+        let arr:[Any]  = [arrayObject[section]]
+        return arr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,13 +82,13 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         let commenObject = arrayOfComment[indexPath.row]
         cell.binData(commentObject: commenObject)
         cell.pressLikeComment = { [weak self] in
-            let likeComment: LikeTask = LikeTask(likeType: 2,
+            let likeComment: LikeTask = LikeTask(likeType: Object.comment.rawValue,
                                                  memberID: 1,
                                                  objectId: commenObject.id)
             self?.requestWithTask(task: likeComment, success: { (data) in
                 let status: Like = (data as? Like)!
                 var currentLike: Int = Int(cell.numberLike.text!)!
-                if status == Like.LIKE {
+                if status == Like.like {
                     currentLike += 1
                     cell.numberLike.text = String(currentLike)
                 } else {

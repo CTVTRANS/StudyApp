@@ -21,6 +21,7 @@ class Type2DetailNewsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showActivity(inView: UIApplication.shared.keyWindow!)
         setupUI()
         navigationItem.leftBarButtonItem =
             UIBarButtonItem(title: news?.title,
@@ -40,6 +41,7 @@ class Type2DetailNewsViewController: BaseViewController {
         userName.text = news.author
         timeUp.text = news.timeUp
         content.text = news.content
+        stopActivityIndicator()
     }
     
     private func setupCallBackButton() {
@@ -47,40 +49,42 @@ class Type2DetailNewsViewController: BaseViewController {
         bottomView.downloadImage.isHidden = true
         bottomView.numberLike.text = String(news.numberLike)
         bottomView.numberComment.text = String(news.numberComment)
-        
-        bottomView.pressBackButton = { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
-        }
-        bottomView.pressedComment = { [weak self] in
-            let storyboard = UIStoryboard(name: "Global", bundle: nil)
-            let vc: CommentController = storyboard.instantiateViewController(withIdentifier: "CommentController") as! CommentController
-            vc.idObject = self?.news.id
-            vc.commentType = 0
-            self?.present(vc, animated: true, completion: nil)
-        }
-        bottomView.pressedLike = { [weak self] in
-            let likeTask: LikeTask = LikeTask(likeType: 0, memberID: 1, objectId: self!.news.id)
-            self?.requestWithTask(task: likeTask, success: { (data) in
-                let status: Like = (data as? Like)!
-                var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
-                if status == Like.LIKE {
-                    currentLike += 1
-                    self?.news.numberLike = currentLike
-                    self?.bottomView.numberLike.text = String(currentLike)
-                } else {
-                    currentLike -= 1
-                    self?.news.numberLike = currentLike
-                    self?.bottomView.numberLike.text = String(currentLike)
-                }
-            }, failure: { (error) in
-                
-            })
-        }
-        bottomView.pressedBookMark = {
-            print("bookmark")
-        }
-        bottomView.pressedDownload = {
-            print("download")
+        bottomView.pressedBottomButton = { [weak self] (typeButotn: BottomButton) in
+            switch typeButotn {
+            case BottomButton.back:
+                 self?.navigationController?.popViewController(animated: true)
+            case BottomButton.bookMark:
+                let storyboard = UIStoryboard(name: "Global", bundle: nil)
+                let vc: UINavigationController = storyboard.instantiateViewController(withIdentifier: "Login") as! UINavigationController
+                self?.present(vc, animated: true, completion: nil)
+            case BottomButton.download:
+                print("download")
+            case BottomButton.like:
+                let likeTask: LikeTask = LikeTask(likeType: Object.news.rawValue,
+                                                  memberID: 1,
+                                                  objectId: self!.news.id)
+                self?.requestWithTask(task: likeTask, success: { (data) in
+                    let status: Like = (data as? Like)!
+                    var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
+                    if status == Like.like {
+                        currentLike += 1
+                        self?.news.numberLike = currentLike
+                        self?.bottomView.numberLike.text = String(currentLike)
+                    } else {
+                        currentLike -= 1
+                        self?.news.numberLike = currentLike
+                        self?.bottomView.numberLike.text = String(currentLike)
+                    }
+                }, failure: { (error) in
+                    
+                })
+            case BottomButton.comment:
+                let storyboard = UIStoryboard(name: "Global", bundle: nil)
+                let vc: CommentController = storyboard.instantiateViewController(withIdentifier: "CommentController") as! CommentController
+                vc.idObject = self?.news.id
+                vc.commentType = 0
+                self?.present(vc, animated: true, completion: nil)
+            }
         }
     }
 

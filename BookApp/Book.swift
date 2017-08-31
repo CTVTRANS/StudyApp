@@ -11,6 +11,8 @@ import UIKit
 class Book {
     
     private var _id: Int!
+    private var _type: Int!
+    private var _typeName: String!
     private var _nameBook: String!
     private var _author: String!
     private var _imageBookUrl: String!
@@ -25,6 +27,8 @@ class Book {
     private var _numberBookMark: Int!
     
     init(id: Int,
+         type: Int,
+         typeName: String,
          name: String,
          author: String,
          imageUrl: String,
@@ -38,6 +42,8 @@ class Book {
          numberBookMark: Int,
          desCription: String ) {
         _id = id
+        _type = type
+        _typeName = typeName
         _nameBook = name
         _imageBookUrl = imageUrl
         _numberHumanReaded = numberReaded
@@ -51,10 +57,19 @@ class Book {
         _content = content
         _desCription = desCription
     }
-    
+    var type: Int {
+        get {
+            return _type
+        }
+    }
     var name: String {
         get {
             return _nameBook!
+        }
+    }
+    var typeName: String {
+        get {
+            return _typeName
         }
     }
     var author: String {

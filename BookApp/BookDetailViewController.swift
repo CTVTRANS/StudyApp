@@ -29,6 +29,11 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         bottomView.numberBookmark.text = String(bookSelected.numberBookMark)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     func setupScroll() {
         scroll.contentSize = CGSize(width: 3 * widthScreen, height: scroll.frame.height)
         let audioVC: BookAudioController =
@@ -73,43 +78,42 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     }
 
     func setupCallBackBottom() {
-        bottomView.pressBackButton = { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
-        }
-        
-        bottomView.pressedComment = { [weak self] in
-            let storyboard = UIStoryboard(name: "Global", bundle: nil)
-            let vc: CommentController = storyboard.instantiateViewController(withIdentifier: "CommentController") as! CommentController
-            vc.idObject = self?.bookSelected?.id
-            vc.commentType = 1
-            self?.present(vc, animated: true, completion: nil)
-        }
-        
-        bottomView.pressedLike = { [weak self] in
-            let likeTask: LikeTask = LikeTask(likeType: 1, memberID: 1, objectId: self!.bookSelected.id)
-            self?.requestWithTask(task: likeTask, success: { (data) in
-                let status: Like = (data as? Like)!
-                var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
-                if status == Like.LIKE {
-                    currentLike += 1
-                    self?.bookSelected.numberLike = currentLike
-                    self?.bottomView.numberLike.text = String(currentLike)
-                } else {
-                    currentLike -= 1
-                    self?.bookSelected.numberLike = currentLike
-                    self?.bottomView.numberLike.text = String(currentLike)
-                }
-            }, failure: { (error) in
-                
-            })
-        }
-        
-        bottomView.pressedBookMark = {
-            print("bookmark")
-        }
-        
-        bottomView.pressedDownload = {
-            print("download")
+        bottomView.pressedBottomButton = { [weak self] (typeButton: BottomButton) in
+            switch typeButton {
+            case BottomButton.back:
+                self?.navigationController?.popViewController(animated: true)
+            case BottomButton.bookMark:
+                let storyboard = UIStoryboard(name: "Global", bundle: nil)
+                let vc: UINavigationController = storyboard.instantiateViewController(withIdentifier: "Login") as! UINavigationController
+                self?.present(vc, animated: true, completion: nil)
+            case BottomButton.comment:
+                let storyboard = UIStoryboard(name: "Global", bundle: nil)
+                let vc: CommentController = storyboard.instantiateViewController(withIdentifier: "CommentController") as! CommentController
+                vc.idObject = self?.bookSelected?.id
+                vc.commentType = Object.book.rawValue
+                self?.present(vc, animated: true, completion: nil)
+            case BottomButton.like:
+                let likeTask: LikeTask = LikeTask(likeType: Object.book.rawValue,
+                                                  memberID: 1,
+                                                  objectId: self!.bookSelected.id)
+                self?.requestWithTask(task: likeTask, success: { (data) in
+                    let status: Like = (data as? Like)!
+                    var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
+                    if status == Like.like {
+                        currentLike += 1
+                        self?.bookSelected.numberLike = currentLike
+                        self?.bottomView.numberLike.text = String(currentLike)
+                    } else {
+                        currentLike -= 1
+                        self?.bookSelected.numberLike = currentLike
+                        self?.bottomView.numberLike.text = String(currentLike)
+                    }
+                }, failure: { (error) in
+                    
+                })
+            case BottomButton.download:
+                print("Download")
+            }
         }
     }
     
@@ -158,5 +162,4 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
 }

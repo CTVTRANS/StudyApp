@@ -10,13 +10,23 @@ import UIKit
 import LCNetwork
 
 class GetAllNewsTask: BaseTaskNetwork {
+    
+    var _limit: Int!
+    var _page: Int!
+    
+    init(limit: Int, page: Int) {
+        _limit = limit
+        _page = page
+    }
 
     override func path() -> String! {
         return getAllNews
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["lang": "0", "limit": "10", "page": "1"]
+        return ["lang": Constants.sharedInstance.language,
+                "limit": _limit,
+                "page": _page]
     }
     
     override func method() -> String! {

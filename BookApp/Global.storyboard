@@ -33,6 +33,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0z-2R-IY6">
                                 <rect key="frame" x="244" y="100" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="pressedPhoneCountryCode:" destination="Siz-JO-2xH" eventType="touchUpInside" id="2Mf-0l-Ni6"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSx-YQ-rof">
                                 <rect key="frame" x="30" y="133" width="260" height="1"/>
@@ -76,6 +79,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pressLoginButton:" destination="Siz-JO-2xH" eventType="touchUpInside" id="wCZ-2a-V9T"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="deJ-rt-93j">
                                 <rect key="frame" x="30" y="159" width="260" height="30"/>
@@ -123,6 +129,13 @@
                                     <segue destination="Wpf-ky-GAI" kind="show" id="UjB-8K-204"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0J-FU-iSE">
+                                <rect key="frame" x="136" y="100" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cqN-ef-yVQ"/>
+                                    <constraint firstAttribute="width" constant="100" id="muJ-Gb-QFk"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -135,6 +148,8 @@
                             <constraint firstItem="nDx-YH-c5J" firstAttribute="top" secondItem="deJ-rt-93j" secondAttribute="bottom" constant="3" id="EF2-cJ-yCW"/>
                             <constraint firstItem="Z8W-di-xsl" firstAttribute="top" secondItem="Nkn-ke-bon" secondAttribute="bottom" constant="3" id="Fcm-Wi-yw4"/>
                             <constraint firstAttribute="trailing" secondItem="r0z-2R-IY6" secondAttribute="trailing" constant="30" id="GBf-d9-0m6"/>
+                            <constraint firstItem="r0z-2R-IY6" firstAttribute="leading" secondItem="I0J-FU-iSE" secondAttribute="trailing" constant="8" id="HiP-gv-T4b"/>
+                            <constraint firstItem="pSx-YQ-rof" firstAttribute="top" secondItem="I0J-FU-iSE" secondAttribute="bottom" constant="3" id="MfF-h2-d8l"/>
                             <constraint firstAttribute="trailing" secondItem="pSx-YQ-rof" secondAttribute="trailing" constant="30" id="Ok8-E7-hxB"/>
                             <constraint firstItem="deJ-rt-93j" firstAttribute="leading" secondItem="QdL-5U-3kZ" secondAttribute="leading" constant="30" id="Q2O-qu-qOL"/>
                             <constraint firstItem="W2J-bR-PK1" firstAttribute="top" secondItem="X0J-xm-CGv" secondAttribute="bottom" constant="100" id="Q5m-ZW-oKn"/>
@@ -158,6 +173,7 @@
                     <connections>
                         <outlet property="passWord" destination="Nkn-ke-bon" id="tXC-oP-dZ4"/>
                         <outlet property="phoneNumber" destination="deJ-rt-93j" id="tyx-yl-khg"/>
+                        <outlet property="pickerView" destination="I0J-FU-iSE" id="m1H-eH-JXR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtB-ak-oQs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -345,7 +361,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0C-6B-nkz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1361.25" y="181.69014084507043"/>
+            <point key="canvasLocation" x="1363" y="182"/>
         </scene>
         <!--Comment Controller-->
         <scene sceneID="YaX-7T-jmz">
@@ -789,7 +805,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zoy-Oh-eb2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1138" y="976"/>
+            <point key="canvasLocation" x="501" y="1012"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eaw-tN-OUy">
@@ -817,6 +833,6 @@
         <image name="ic_bottom_like" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HoI-j1-Hrm"/>
+        <segue reference="lQ0-mS-KEc"/>
     </inferredMetricsTieBreakers>
 </document>

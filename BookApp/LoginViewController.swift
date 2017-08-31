@@ -12,6 +12,7 @@ class LoginViewController: BaseViewController {
 
     @IBOutlet weak var phoneNumber: UITextField!
     @IBOutlet weak var passWord: UITextField!
+    @IBOutlet weak var pickerView: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,4 +34,11 @@ class LoginViewController: BaseViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func pressLoginButton(_ sender: Any) {
+      
+    }
+    
+    @IBAction func pressedPhoneCountryCode(_ sender: Any) {
+
+    }
 }

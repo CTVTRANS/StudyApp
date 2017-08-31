@@ -1,26 +1,22 @@
 //
-//  GetAllComment.swift
+//  GetCommentHot.swift
 //  BookApp
 //
-//  Created by kien le van on 8/30/17.
+//  Created by kien le van on 8/31/17.
 //  Copyright © 2017 Le Cong. All rights reserved.
 //
 
 import UIKit
 import LCNetwork
 
-class GetAllComment: BaseTaskNetwork {
-   
+class GetCommentHot: BaseTaskNetwork {
+
     var _commentType: Int!
     var _idObject: Int!
-    var _limitComment: Int!
-    var _paging: Int!
     
-    init(commentType: Int, idObject: Int, limitComment: Int, pageing: Int) {
+    init(commentType: Int, idObject: Int) {
         _commentType = commentType
         _idObject = idObject
-        _limitComment = limitComment
-        _paging = pageing
     }
     
     override func path() -> String! {
@@ -29,9 +25,7 @@ class GetAllComment: BaseTaskNetwork {
     
     override func parameters() -> [AnyHashable : Any]! {
         return ["comment_type": _commentType,
-                "object_id": _idObject,
-                "limit": _limitComment,
-                "page": _paging]
+                "object_id": _idObject]
     }
     
     override func method() -> String! {
