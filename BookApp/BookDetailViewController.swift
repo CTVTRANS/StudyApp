@@ -91,7 +91,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
                 let vc: CommentController = storyboard.instantiateViewController(withIdentifier: "CommentController") as! CommentController
                 vc.idObject = self?.bookSelected?.id
                 vc.commentType = Object.book.rawValue
-                self?.present(vc, animated: true, completion: nil)
+                self?.present(vc, animated: false, completion: nil)
             case BottomButton.like:
                 let likeTask: LikeTask = LikeTask(likeType: Object.book.rawValue,
                                                   memberID: 1,
@@ -100,6 +100,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
                     let status: Like = (data as? Like)!
                     var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
                     if status == Like.like {
+                        self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
                         currentLike += 1
                         self?.bookSelected.numberLike = currentLike
                         self?.bottomView.numberLike.text = String(currentLike)

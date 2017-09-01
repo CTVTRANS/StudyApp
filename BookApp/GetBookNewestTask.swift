@@ -12,7 +12,7 @@ import LCNetwork
 class GetBookNewestTask: BaseTaskNetwork {
     
     override func path() -> String! {
-        return getBookNewest
+        return getBookNewestURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {

@@ -17,8 +17,8 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     
     var tap: UITapGestureRecognizer?
     var arrayOfComment = [Comment]()
-    var arrayCommentHot = [Comment]()
-    var arrayObject = [Any]()
+//    var arrayCommentHot = [Comment]()
+//    var arrayObject = [Any]()
     var idObject: Int?
     var commentType: Int?
     
@@ -34,24 +34,25 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                                                object: nil)
         commentTextView.delegate = self
         let getComment: GetAllComment = GetAllComment(commentType: commentType!,
-                                                      idObject: commentType!,
+                                                      idObject: idObject!,
                                                       limitComment: 20,
                                                       pageing: 1)
         requestWithTask(task: getComment, success: { (data) in
             self.arrayOfComment = data as! [Comment]
             self.table.reloadData()
-            self.arrayObject.append(self.arrayOfComment)
+            self.stopActivityIndicator()
+//            self.arrayObject.append(self.arrayOfComment)
         }) { (error) in
             
         }
         
-        let getCommentHot: GetCommentHot = GetCommentHot(commentType: commentType!, idObject: commentType!)
-        requestWithTask(task: getCommentHot, success: { (data) in
-            self.arrayCommentHot = data as! [Comment]
-            self.arrayObject.append(self.arrayCommentHot)
-        }) { (error) in
-            
-        }
+//        let getCommentHot: GetCommentHot = GetCommentHot(commentType: commentType!, idObject: commentType!)
+//        requestWithTask(task: getCommentHot, success: { (data) in
+//            self.arrayCommentHot = data as! [Comment]
+//            self.arrayObject.append(self.arrayCommentHot)
+//        }) { (error) in
+//            
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,17 +65,17 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "kien"
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "kien"
+//    }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return arrayObject.count
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return arrayObject.count
+//    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let arr:[Any]  = [arrayObject[section]]
-        return arr.count
+//        let arr:[Any]  = [arrayObject[section]]
+        return arrayOfComment.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

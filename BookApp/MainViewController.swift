@@ -18,6 +18,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         let getAllNews : GetAllNewsTask = GetAllNewsTask(limit: 20, page: 1)
         showActivity(inView: self.view)
+        table.estimatedRowHeight = 140
         requestWithTask(task: getAllNews, success: { (data) in
             self.arrayNews = data as! [NewsModel]
             self.table.reloadData()
@@ -61,6 +62,10 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             vc.news = arrayNews[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     func setupCallBack() {

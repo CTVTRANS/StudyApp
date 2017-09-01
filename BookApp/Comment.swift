@@ -23,19 +23,13 @@ class Comment: NSObject {
         _contentComment = content
     }
     var id: Int {
-        get {
-            return _id
-        }
+        return _id
     }
     var userComment: User {
-        get {
-            return _userComment
-        }
+        return _userComment
     }
     var timeComment: String {
-        get {
-            return _timeComment
-        }
+        return _timeComment
     }
     var numberLikeComment: Int {
         get {
@@ -46,8 +40,6 @@ class Comment: NSObject {
         }
     }
     var contentComment: String {
-        get {
-            return _contentComment
-        }
+        return _contentComment
     }
 }

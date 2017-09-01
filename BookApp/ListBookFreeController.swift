@@ -18,12 +18,19 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
         navigationItem.title = "BookFree"
         table.estimatedRowHeight = 140
         let getBookFree: GetBookFree = GetBookFree(limit: 10, page: 1)
+        showActivity(inView: UIApplication.shared.keyWindow!)
         requestWithTask(task: getBookFree, success: { (data) in
             self.listBook = data as! [Book]
             self.table.reloadData()
+            self.stopActivityIndicator()
         }) { (error) in
             
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,5 +49,9 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
+        let bookStoryboard = UIStoryboard(name: "Book", bundle: nil)
+        let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
+        vc.bookSelected = listBook[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

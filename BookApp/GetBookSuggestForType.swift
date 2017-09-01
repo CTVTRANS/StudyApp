@@ -11,8 +11,8 @@ import LCNetwork
 
 class GetBookSuggestForType: BaseTaskNetwork {
     
-    let _category: Int!
-    let _limit: Int!
+    private let _category: Int!
+    private let _limit: Int!
     
     init(category: Int, limit: Int) {
         _category = category
@@ -20,7 +20,7 @@ class GetBookSuggestForType: BaseTaskNetwork {
     }
     
     override func path() -> String! {
-        return getBookSuggestForType
+        return getBookSuggestForTypeURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {

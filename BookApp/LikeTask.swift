@@ -21,7 +21,7 @@ class LikeTask: BaseTaskNetwork {
     }
     
     override func path() -> String! {
-        return likeUnlike
+        return likeUnlikeURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {
@@ -38,7 +38,6 @@ class LikeTask: BaseTaskNetwork {
                 return Like.like
             } else {
                 return Like.unLike
-                
             }
         }
         return response

@@ -21,23 +21,15 @@ class BookType: NSObject {
         _descriptionType = description
     }
     var name: String {
-        get {
-            return _nameType
-        }
+        return _nameType
     }
     var imageURL: String {
-        get {
-            return _imageType
-        }
+        return _imageType
     }
     var typeID: Int {
-        get {
-            return _typeID
-        }
+        return _typeID
     }
     var descriptionType: String {
-        get {
-            return _descriptionType
-        }
+        return _descriptionType
     }
 }

@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DFHeiStd-W5.otf">
+            <string>DFHeiStd-W5</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Book Detail View Controller-->
         <scene sceneID="mfH-XH-rEY">
@@ -32,7 +37,11 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Qfr-Ig-5RB"/>
+                                    <constraint firstAttribute="height" constant="44" id="Qfr-Ig-5RB">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJZ-XE-eEP">
@@ -40,9 +49,13 @@
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKe-H6-8ai" customClass="BottomView" customModule="BookApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="TpP-AV-Pr5"/>
+                                    <constraint firstAttribute="height" constant="44" id="TpP-AV-Pr5">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
                                 </constraints>
                             </view>
                         </subviews>
@@ -90,53 +103,74 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListBookFreeCell" rowHeight="160" id="EDE-h8-bBZ" customClass="ListBookFreeCell" customModule="BookApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="160"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListBookFreeCell" rowHeight="153" id="EDE-h8-bBZ" customClass="ListBookFreeCell" customModule="BookApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="153"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EDE-h8-bBZ" id="fLy-zf-FH5">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mJx-gk-Loi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="159.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLX-8C-QJB">
-                                                    <rect key="frame" x="111" y="28" width="35.5" height="17"/>
+                                                    <rect key="frame" x="111" y="28" width="29.5" height="16"/>
                                                     <color key="backgroundColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="7SX-2V-uxF">
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </constraint>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6c-6t-Pgf">
-                                                    <rect key="frame" x="111" y="64" width="193" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <rect key="frame" x="111" y="65" width="193" height="13"/>
+                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaN-ed-lo3">
-                                                    <rect key="frame" x="111" y="48" width="193" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <rect key="frame" x="111" y="49" width="193" height="13"/>
+                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flame" translatesAutoresizingMaskIntoConstraints="NO" id="Pdx-DJ-b64">
                                                     <rect key="frame" x="111" y="129" width="12" height="12"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="12" id="Kd1-27-QYd"/>
-                                                        <constraint firstAttribute="height" constant="12" id="T7e-2d-Cms"/>
+                                                        <constraint firstAttribute="width" constant="12" id="Kd1-27-QYd">
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </constraint>
+                                                        <constraint firstAttribute="height" constant="12" id="T7e-2d-Cms">
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </constraint>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faq-ke-BVs">
-                                                    <rect key="frame" x="131" y="127.5" width="31" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <rect key="frame" x="125" y="129.5" width="25" height="11"/>
+                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="E1n-iG-jz8">
                                                     <rect key="frame" x="22" y="28" width="81" height="113"/>
@@ -154,33 +188,54 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLd-4L-auN">
-                                                    <rect key="frame" x="273" y="128" width="31" height="14.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <rect key="frame" x="266.5" y="130" width="25" height="11"/>
+                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="萬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yl-p2-4ad">
+                                                    <rect key="frame" x="152" y="130.5" width="10" height="10"/>
+                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCb-Xn-1Ny">
+                                                    <rect key="frame" x="293.5" y="131" width="18.5" height="9"/>
+                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="9"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="faq-ke-BVs" firstAttribute="centerY" secondItem="Pdx-DJ-b64" secondAttribute="centerY" id="3jG-UW-NNc"/>
                                                 <constraint firstAttribute="trailing" secondItem="gaN-ed-lo3" secondAttribute="trailing" constant="16" id="9h8-CF-Pj6"/>
-                                                <constraint firstAttribute="bottom" secondItem="mJx-gk-Loi" secondAttribute="bottom" id="9xa-rw-FO3"/>
-                                                <constraint firstAttribute="trailing" secondItem="fLd-4L-auN" secondAttribute="trailing" constant="16" id="AYM-gg-utw"/>
-                                                <constraint firstItem="faq-ke-BVs" firstAttribute="leading" secondItem="Pdx-DJ-b64" secondAttribute="trailing" constant="8" id="Etx-p9-Evs"/>
+                                                <constraint firstItem="faq-ke-BVs" firstAttribute="leading" secondItem="Pdx-DJ-b64" secondAttribute="trailing" constant="2" id="Etx-p9-Evs"/>
+                                                <constraint firstItem="WCb-Xn-1Ny" firstAttribute="leading" secondItem="fLd-4L-auN" secondAttribute="trailing" constant="2" id="FX9-pl-DO5"/>
                                                 <constraint firstAttribute="trailing" secondItem="t6c-6t-Pgf" secondAttribute="trailing" constant="16" id="GaU-7c-uJN"/>
                                                 <constraint firstItem="TLX-8C-QJB" firstAttribute="leading" secondItem="E1n-iG-jz8" secondAttribute="trailing" constant="8" id="Hxh-Q1-fRA"/>
                                                 <constraint firstItem="t6c-6t-Pgf" firstAttribute="leading" secondItem="E1n-iG-jz8" secondAttribute="trailing" constant="8" id="HyW-F4-iZO"/>
                                                 <constraint firstItem="TLX-8C-QJB" firstAttribute="top" secondItem="E1n-iG-jz8" secondAttribute="top" id="Ikb-5i-cQZ"/>
-                                                <constraint firstItem="t6c-6t-Pgf" firstAttribute="top" secondItem="gaN-ed-lo3" secondAttribute="bottom" id="K8K-oJ-8F4"/>
-                                                <constraint firstItem="mJx-gk-Loi" firstAttribute="leading" secondItem="fLy-zf-FH5" secondAttribute="leading" id="LKk-la-eOE"/>
-                                                <constraint firstAttribute="trailing" secondItem="mJx-gk-Loi" secondAttribute="trailing" id="Vz9-7Y-7mi"/>
+                                                <constraint firstItem="t6c-6t-Pgf" firstAttribute="top" secondItem="gaN-ed-lo3" secondAttribute="bottom" constant="3" id="K8K-oJ-8F4"/>
+                                                <constraint firstItem="WCb-Xn-1Ny" firstAttribute="centerY" secondItem="Pdx-DJ-b64" secondAttribute="centerY" id="UNn-Ev-qdS"/>
+                                                <constraint firstItem="9yl-p2-4ad" firstAttribute="leading" secondItem="faq-ke-BVs" secondAttribute="trailing" constant="2" id="X8M-Vh-6jc"/>
+                                                <constraint firstItem="9yl-p2-4ad" firstAttribute="centerY" secondItem="Pdx-DJ-b64" secondAttribute="centerY" id="bGP-1c-VNg"/>
                                                 <constraint firstItem="Pdx-DJ-b64" firstAttribute="bottom" secondItem="E1n-iG-jz8" secondAttribute="bottom" id="boR-or-f9u"/>
-                                                <constraint firstItem="mJx-gk-Loi" firstAttribute="top" secondItem="fLy-zf-FH5" secondAttribute="top" id="cxf-be-Tjc"/>
                                                 <constraint firstItem="gaN-ed-lo3" firstAttribute="leading" secondItem="E1n-iG-jz8" secondAttribute="trailing" constant="8" id="fSa-2I-Wad"/>
-                                                <constraint firstItem="gaN-ed-lo3" firstAttribute="top" secondItem="TLX-8C-QJB" secondAttribute="bottom" constant="3" id="ib5-F1-afD"/>
-                                                <constraint firstAttribute="bottom" secondItem="E1n-iG-jz8" secondAttribute="bottom" constant="19" id="k3P-hE-5kN"/>
+                                                <constraint firstItem="gaN-ed-lo3" firstAttribute="top" secondItem="TLX-8C-QJB" secondAttribute="bottom" constant="5" id="ib5-F1-afD"/>
+                                                <constraint firstAttribute="trailing" secondItem="WCb-Xn-1Ny" secondAttribute="trailing" constant="8" id="kLF-4j-3Bi"/>
                                                 <constraint firstItem="Pdx-DJ-b64" firstAttribute="leading" secondItem="E1n-iG-jz8" secondAttribute="trailing" constant="8" id="mX3-4e-WZf"/>
                                                 <constraint firstItem="fLd-4L-auN" firstAttribute="centerY" secondItem="Pdx-DJ-b64" secondAttribute="centerY" id="mjA-cI-Jfo"/>
                                                 <constraint firstItem="E1n-iG-jz8" firstAttribute="leading" secondItem="fLy-zf-FH5" secondAttribute="leading" constant="22" id="o6d-QX-pUK"/>
+                                                <constraint firstAttribute="bottom" secondItem="E1n-iG-jz8" secondAttribute="bottom" constant="12" id="seF-bc-R6T"/>
                                                 <constraint firstItem="E1n-iG-jz8" firstAttribute="top" secondItem="fLy-zf-FH5" secondAttribute="top" constant="28" id="x8z-rr-04j"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -500,8 +555,20 @@
                                         <rect key="frame" x="0.0" y="455" width="320" height="96"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ojh-JK-gvG">
-                                                <rect key="frame" x="137" y="33" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <rect key="frame" x="114.5" y="33.5" width="91" height="29"/>
+                                                <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="17"/>
+                                                <state key="normal" title="  點數換書  ">
+                                                    <color key="titleColor" red="1" green="0.396078431372549" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -540,6 +607,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="audioDetailButton" destination="Ojh-JK-gvG" id="Bqw-az-HeB"/>
                         <outlet property="buttonImge" destination="g8W-rh-a9P" id="iis-Qc-Gzi"/>
                         <outlet property="currentMinAudio" destination="2RK-ZO-azt" id="CSW-CP-pJ5"/>
                         <outlet property="currentSecondTime" destination="DTq-AC-by0" id="WWr-fv-tYU"/>
@@ -587,8 +655,20 @@
                                         <rect key="frame" x="0.0" y="455" width="320" height="100"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yq-dU-ehq">
-                                                <rect key="frame" x="137" y="35" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <rect key="frame" x="114.5" y="35.5" width="91" height="29"/>
+                                                <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="17"/>
+                                                <state key="normal" title="  點數換書  ">
+                                                    <color key="titleColor" red="1" green="0.396078431372549" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -634,6 +714,7 @@
                         <outlet property="headerView" destination="a0D-af-edz" id="6Ef-3O-I6x"/>
                         <outlet property="hightOfWebView" destination="ivN-28-fMO" id="ZGG-cn-x2K"/>
                         <outlet property="scroll" destination="yZb-Uy-qYO" id="aPf-vk-5TX"/>
+                        <outlet property="videoDetailButton" destination="6Yq-dU-ehq" id="lyD-CR-PjM"/>
                         <outlet property="web" destination="KnR-ed-Vny" id="YKh-kw-1E2"/>
                     </connections>
                 </viewController>
@@ -667,8 +748,20 @@
                                         <rect key="frame" x="0.0" y="200" width="320" height="100"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7s-hO-4mA">
-                                                <rect key="frame" x="137" y="35" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <rect key="frame" x="114.5" y="35.5" width="91" height="29"/>
+                                                <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="17"/>
+                                                <state key="normal" title="  點數換書  ">
+                                                    <color key="titleColor" red="1" green="0.396078431372549" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -702,6 +795,7 @@
                     <connections>
                         <outlet property="hightOfWebView" destination="hLh-2E-x7h" id="BdO-Yf-Po2"/>
                         <outlet property="scroll" destination="Q5K-ES-dRe" id="scZ-tS-Jkb"/>
+                        <outlet property="textDetailButton" destination="v7s-hO-4mA" id="djf-et-I99"/>
                         <outlet property="webview" destination="0BC-tW-Dfn" id="P84-NU-NXV"/>
                     </connections>
                 </viewController>

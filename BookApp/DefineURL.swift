@@ -8,18 +8,20 @@
 
 import UIKit
 
-let getBookTypeURL: String = "api/book/list_category"
-let getBookForEachType: String = "api/book/list_post_by_category"
-let getBookSuggestForType: String = "/api/book/list_suggest_posts_by_category"
+let getBookTypeURL: String = "/api/book/list_category"
+let getBookForEachTypeURL: String = "/api/book/list_post_by_category"
+let getBookSuggestForTypeURL: String = "/api/book/list_suggest_posts_by_category"
 
-let getBookNewest: String = "api/book/list_latest_posts"
-let getAllBookSuggest: String = "api/book/list_all_suggest_posts"
-let getAllBookFree: String = "/api/book/list_free"
+let getBookNewestURL: String = "/api/book/list_latest_posts"
+let getAllBookSuggestURL: String = "/api/book/list_all_suggest_posts"
+let getAllBookFreeURL: String = "/api/book/list_free"
 
-let getAllNews: String = "api/post/list_latest_post"
-let sendComment: String = "api/comment/add"
-let likeUnlike: String = "api/like/like"
-let getAllComment: String = "/api/comment/latest"
+let getAllNewsURL: String = "/api/post/list_latest_post"
+let sendCommentURL: String = "/api/comment/add"
+let likeUnlikeURL: String = "/api/like/like"
+let getAllCommentURL: String = "/api/comment/latest"
+
+let css: String = "<style> img{max-width:100%} </style>"
 
 class DefineURL: NSObject {
 

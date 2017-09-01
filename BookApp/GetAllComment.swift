@@ -11,10 +11,10 @@ import LCNetwork
 
 class GetAllComment: BaseTaskNetwork {
    
-    var _commentType: Int!
-    var _idObject: Int!
-    var _limitComment: Int!
-    var _paging: Int!
+    private let _commentType: Int!
+    private let _idObject: Int!
+    private let _limitComment: Int!
+    private let _paging: Int!
     
     init(commentType: Int, idObject: Int, limitComment: Int, pageing: Int) {
         _commentType = commentType
@@ -24,7 +24,7 @@ class GetAllComment: BaseTaskNetwork {
     }
     
     override func path() -> String! {
-        return getAllComment
+        return getAllCommentURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {

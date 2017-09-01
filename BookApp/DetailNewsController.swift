@@ -36,7 +36,7 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
                             style: .plain,
                             target: self,
                             action: #selector(share))
-        detailNews.text = "down voteThe easiest way, IMO, is just to click on the title bar of the first ViewController and in the Attribute Inspector (⌥+⌘+4) change the Navigation Item info the way you want: Title -> what will show up in the back button* or if you want it to say something other than the Title of the first ViewController or the word Back you can just put it in the Back Button field."
+        detailNews.text = "你本人辦法積分是的呢in側in承認ID粗任汝芬ID那你發就差你的不斷得到或單位違反in方式就呵呵你吃的雞年大吉收到那個農村拆除"
     }
     
     func setupUI() {
@@ -66,7 +66,7 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
                 let vc: CommentController = storyboard.instantiateViewController(withIdentifier: "CommentController") as! CommentController
                 vc.idObject = self?.news.id
                 vc.commentType = 0
-                self?.present(vc, animated: true, completion: nil)
+                self?.present(vc, animated: false, completion: nil)
             case BottomButton.like:
                 let likeTask: LikeTask = LikeTask(likeType: Object.news.rawValue,
                                                   memberID: 1,
@@ -75,10 +75,12 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
                     let status: Like = (data as? Like)!
                     var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
                     if status == Like.like {
+                        self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
                         currentLike += 1
                         self?.news.numberLike = currentLike
                         self?.bottomView.numberLike.text = String(currentLike)
                     } else {
+                        self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
                         currentLike -= 1
                         self?.news.numberLike = currentLike
                         self?.bottomView.numberLike.text = String(currentLike)

@@ -20,7 +20,7 @@ class GetAllNewsTask: BaseTaskNetwork {
     }
 
     override func path() -> String! {
-        return getAllNews
+        return getAllNewsURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {

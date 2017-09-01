@@ -11,8 +11,8 @@ import LCNetwork
 
 class GetBookFree: BaseTaskNetwork {
     
-    var _limit: Int!
-    var _page: Int!
+    private let _limit: Int!
+    private let _page: Int!
     
     init(limit: Int, page: Int) {
         _limit = limit
@@ -20,7 +20,7 @@ class GetBookFree: BaseTaskNetwork {
     }
     
     override func path() -> String! {
-        return getAllBookFree
+        return getAllBookFreeURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {

@@ -11,12 +11,22 @@ import LCNetwork
 
 class GetAllBookSuggest: BaseTaskNetwork {
     
+    private let _limit: Int!
+    private let _page: Int!
+    
+    init(limit: Int, page: Int) {
+        _limit = limit
+        _page = page
+    }
+    
     override func path() -> String! {
-        return getAllBookSuggest
+        return getAllBookSuggestURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["lang": Constants.sharedInstance.language, "limit": "3"]
+        return ["lang": Constants.sharedInstance.language,
+                "limit": _limit,
+                "page": _page]
     }
     
     override func method() -> String! {

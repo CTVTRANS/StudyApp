@@ -12,10 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BookCollectionViewCell" customModule="BookApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="81" height="140"/>
+            <rect key="frame" x="0.0" y="0.0" width="81" height="146"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="81" height="140"/>
+                <rect key="frame" x="0.0" y="0.0" width="81" height="146"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="Vha-hC-17U">
@@ -28,17 +28,24 @@
                             </constraint>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGr-15-hug">
-                        <rect key="frame" x="0.0" y="124" width="33" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGr-15-hug">
+                        <rect key="frame" x="0.0" y="130" width="12.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="WGr-15-hug" firstAttribute="top" secondItem="Vha-hC-17U" secondAttribute="bottom" constant="17" id="Dre-SC-IaX">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
                 <constraint firstItem="WGr-15-hug" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ikg-4S-Nsy"/>
-                <constraint firstAttribute="bottom" secondItem="WGr-15-hug" secondAttribute="bottom" id="dvl-c7-38H"/>
                 <constraint firstItem="Vha-hC-17U" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="iHn-7S-RFs"/>
                 <constraint firstItem="Vha-hC-17U" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="p15-aw-bWp"/>
                 <constraint firstAttribute="trailing" secondItem="Vha-hC-17U" secondAttribute="trailing" id="rEl-tJ-57K"/>
@@ -48,7 +55,7 @@
                 <outlet property="imageBook" destination="Vha-hC-17U" id="7ro-UH-ivC"/>
                 <outlet property="nameBook" destination="WGr-15-hug" id="Rhb-F0-r5K"/>
             </connections>
-            <point key="canvasLocation" x="54" y="137.5"/>
+            <point key="canvasLocation" x="53.5" y="137"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -472,7 +472,7 @@
 				TargetAttributes = {
 					58C39DB61F3C0489001741EB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = LR8467ZGMQ;
+						DevelopmentTeam = HDNMHL7M4Y;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -758,7 +758,7 @@
 			baseConfigurationReference = 380C356BBC4575357C69F281 /* Pods-BookApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LR8467ZGMQ;
+				DEVELOPMENT_TEAM = HDNMHL7M4Y;
 				INFOPLIST_FILE = BookApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -773,7 +773,7 @@
 			baseConfigurationReference = 97D3CDF92D2128A3885089EA /* Pods-BookApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LR8467ZGMQ;
+				DEVELOPMENT_TEAM = HDNMHL7M4Y;
 				INFOPLIST_FILE = BookApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -13,10 +13,12 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var phoneNumber: UITextField!
     @IBOutlet weak var passWord: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var showAreCodeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.navigationBar.backItem?.title = ""
+        showAreCodeButton.layer.borderColor = UIColor.rgb(r: 255, g: 101, b: 0).cgColor
     }
     
     override func viewWillAppear(_ animated: Bool) {

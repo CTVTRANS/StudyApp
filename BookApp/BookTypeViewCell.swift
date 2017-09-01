@@ -16,9 +16,6 @@ class BookTypeViewCell: UICollectionViewCell {
     
     func binData(typeBook: BookType) {
         title.text = typeBook.name
-//        let url = URL(string: typeBook.imageURL)
-//        let data = try? Data(contentsOf: url!)
-//        image.image = UIImage(data: data!)
         image.sd_setImage(with: URL(string: typeBook.imageURL))
     }
 }

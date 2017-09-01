@@ -18,6 +18,7 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var hightOfWebView: NSLayoutConstraint!
     
+    @IBOutlet weak var videoDetailButton: UIButton!
     var loadedVideo: Bool = false
     var loadedWebView: Bool = false
     var book: Book?
@@ -26,9 +27,10 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: UIApplication.shared.keyWindow!)
+        videoDetailButton.layer.borderColor = UIColor.rgb(r: 255, g: 101, b: 0).cgColor
         web.delegate = self
-        let content = book?.description
-        web.loadHTMLString(content!, baseURL: nil)
+        let content = css + (book?.description)!
+        web.loadHTMLString(content, baseURL: nil)
         web.scrollView.isScrollEnabled = false
         loadVideo()
     }
@@ -39,7 +41,8 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
         asset.loadValuesAsynchronously(forKeys: keys) {
             DispatchQueue.main.async {
                 let item = AVPlayerItem(asset: asset)
-                let player = AVQueuePlayer(playerItem: item)
+//                let player = AVQueuePlayer(playerItem: item)
+                let  player = AVPlayer(playerItem: item)
                 self.playerViewController.player = player
                 self.playerViewController.view.frame = self.headerView.bounds
                 self.headerView.addSubview(self.playerViewController.view)

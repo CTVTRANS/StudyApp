@@ -10,18 +10,15 @@ import UIKit
 
 class BottomView: UIView {
     
-    var pressBackButton = {}
     var pressedBottomButton:((_ index: BottomButton) -> Void)?
-    var pressedComment = {}
-    var pressedLike = {}
-    var pressedBookMark = {}
-    var pressedDownload = {}
     
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var downloadImage: UIImageView!
     @IBOutlet weak var numberBookmark: UILabel!
     @IBOutlet weak var numberLike: UILabel!
     @IBOutlet weak var numberComment: UILabel!
+    @IBOutlet weak var likeImage: UIImageView!
+    @IBOutlet weak var bookMarkImage: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -22,23 +22,33 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var newestBookTimeUp: UILabel!
     @IBOutlet weak var newestBookNumberView: UILabel!
     
-    var bookTypeArray = [BookType]()
-    var suggestArray = [Book]()
-    var freeArray = [Book]()
-    var  newestBook: Book!
+    private var bookTypeArray = [BookType]()
+    private var suggestArray = [Book]()
+    private var freeArray = [Book]()
+    private var  newestBook: Book!
+    private var loadedTypeBook: Bool = false
+    private var loadedBookSuggest: Bool = false
+    private var loadefBookFree: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCallBackClickCell()
         suggestBookView.setupView(image: #imageLiteral(resourceName: "ic_reload"))
+        suggestBookView.detailTitle.text = "換一換"
+        suggestBookView.titleView.text = "近期新書"
         freeBookView.setupView(image: #imageLiteral(resourceName: "ic_next"))
+        freeBookView.detailTitle.text = "全部"
+        freeBookView.titleView.text = "猜你喜歡"
         
         let getTypeTask: GetTypeOfBookTask = GetTypeOfBookTask()
         showActivity(inView: self.view)
         requestWithTask(task: getTypeTask, success: { (data) in
             self.bookTypeArray = Constants.sharedInstance.listBookType!
             self.tableBookType.reloadData()
-            self.stopActivityIndicator()
+            self.loadedTypeBook = true
+            if (self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest) {
+                 self.stopActivityIndicator()
+            }
         }) { (error) in
             
         }
@@ -57,9 +67,13 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
             
         }
         
-        let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest()
+        let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest(limit: 3, page: 1)
         requestWithTask(task: getBookSuggest, success: { (data) in
             self.suggestBookView.reloadData(arrayOfBook: data as! [Book])
+            self.loadedBookSuggest = true
+            if (self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest) {
+                self.stopActivityIndicator()
+            }
         }) { (error) in
             
         }
@@ -67,6 +81,10 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         let getBookFree: GetBookFree = GetBookFree(limit: 3, page: 1)
         requestWithTask(task: getBookFree, success: { (data) in
             self.freeBookView.reloadData(arrayOfBook: data as! [Book])
+            self.loadefBookFree = true
+            if (self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest) {
+                self.stopActivityIndicator()
+            }
         }) { (error) in
             
         }
@@ -118,7 +136,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         }
         suggestBookView.callBackReloadButton = { [weak self] in
 //            self?.showActivity(with: "loading...", inView: (self?.suggestBookView)!)
-            let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest()
+            let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest(limit: 3, page: 2)
             self?.requestWithTask(task: getBookSuggest, success: { (data) in
                 self?.suggestBookView.reloadData(arrayOfBook: data as! [Book])
 //                self?.stopActivityIndicator()

@@ -11,8 +11,8 @@ import LCNetwork
 
 class GetCommentHot: BaseTaskNetwork {
 
-    var _commentType: Int!
-    var _idObject: Int!
+    private let _commentType: Int!
+    private let _idObject: Int!
     
     init(commentType: Int, idObject: Int) {
         _commentType = commentType
@@ -20,7 +20,7 @@ class GetCommentHot: BaseTaskNetwork {
     }
     
     override func path() -> String! {
-        return getAllComment
+        return getAllCommentURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {
@@ -42,7 +42,6 @@ class GetCommentHot: BaseTaskNetwork {
                 let numberLikeComment = dictionary["number_of_likes"] as? Int ?? 999
                 let userName = dictionary["author_name"] as? String ?? "kien"
                 let userAvata = dictionary["author_avatar"] as? String ?? "999"
-                
                 let user: User = User(name: userName, age: 18, sex: 1, avata: userAvata)
                 let commentObject: Comment = Comment(id: iDComment,
                                                      user: user,

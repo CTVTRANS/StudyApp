@@ -10,6 +10,7 @@ import UIKit
 
 class ForgetPassViewController: BaseViewController {
 
+    @IBOutlet weak var showAreButton: UIButton!
     @IBOutlet weak var phoneNumber: UITextField!
     @IBOutlet weak var code: UITextField!
     @IBOutlet weak var newPass: UITextField!
@@ -17,8 +18,8 @@ class ForgetPassViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationItem.title = "忘記密碼"
+        showAreButton.layer.borderColor = UIColor.rgb(r: 255, g: 101, b: 0).cgColor
     }
 
 

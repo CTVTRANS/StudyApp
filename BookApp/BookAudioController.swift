@@ -24,13 +24,14 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var totalTimeAudio: UILabel!
     @IBOutlet weak var buttonImge: UIImageView!
     @IBOutlet weak var currentSecondTime: UILabel!
+    @IBOutlet weak var audioDetailButton: UIButton!
     
     var loadedAudio: Bool = false
     var loadedWebView: Bool = false
     var book: Book?
     var totalTime: Float64?
 //    lazy var player: AVQueuePlayer = self.makePlayer()
-    var player: AVQueuePlayer!
+    var player: AVPlayer!
     var playerItem: AVPlayerItem?
     
 //    private lazy var song: AVPlayerItem = {
@@ -44,10 +45,11 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: UIApplication.shared.keyWindow!)
+        audioDetailButton.layer.borderColor = UIColor.rgb(r: 255, g: 101, b: 0).cgColor
         imageBook.sd_setImage(with: URL(string: (book?.imageURL)!))
         web.delegate = self
-        let content = book?.description
-        web.loadHTMLString(content!, baseURL: nil)
+        let content = css + (book?.description)!
+        web.loadHTMLString(content, baseURL: nil)
         web.scrollView.isScrollEnabled = false
         sliderBar.minimumValue = 0
         loadAudio()
@@ -66,7 +68,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         asset.loadValuesAsynchronously(forKeys: keys) {
             DispatchQueue.main.async {
                 let item = AVPlayerItem(asset: asset)
-                self.player = AVQueuePlayer(playerItem: item)
+                self.player = AVPlayer(playerItem: item)
                 self.player.addObserver(self, forKeyPath: "currentItem", options: [.new, .initial] , context: nil)
                 self.player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) {
                     [weak self] time in

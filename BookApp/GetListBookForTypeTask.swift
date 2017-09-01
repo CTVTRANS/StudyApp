@@ -11,8 +11,8 @@ import LCNetwork
 
 class GetListBookForTypeTask: BaseTaskNetwork {
     
-    let _category: Int!
-    let _page: String!
+    private let _category: Int!
+    private let _page: String!
     
     init(category: Int, page: String) {
         _category = category
@@ -20,7 +20,7 @@ class GetListBookForTypeTask: BaseTaskNetwork {
     }
 
     override func path() -> String! {
-        return getBookForEachType
+        return getBookForEachTypeURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {

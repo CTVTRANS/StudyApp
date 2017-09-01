@@ -10,10 +10,10 @@ import UIKit
 import LCNetwork
 
 class SendCommentTask: BaseTaskNetwork {
-    var _commentType: Int
-    var _memberID: Int
-    var _objectID: Int
-    var _content: String
+    private let _commentType: Int
+    private let _memberID: Int
+    private let _objectID: Int
+    private let _content: String
     
     init(commentType: Int, memberID: Int, objectId: Int, content: String) {
         _commentType = commentType
@@ -23,7 +23,7 @@ class SendCommentTask: BaseTaskNetwork {
     }
 
     override func path() -> String! {
-        return sendComment
+        return sendCommentURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {
