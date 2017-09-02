@@ -9,8 +9,9 @@
 import UIKit
 import AVFoundation
 import AVKit
+import MediaPlayer
 
-class BookVideoController: BaseViewController, UIWebViewDelegate {
+class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewControllerDelegate {
     
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var web: UIWebView!
@@ -22,6 +23,7 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
     var loadedVideo: Bool = false
     var loadedWebView: Bool = false
     var book: Book?
+    var player: AVPlayer?
     let playerViewController = AVPlayerViewController()
 
     override func viewDidLoad() {
@@ -33,6 +35,11 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
         web.loadHTMLString(content, baseURL: nil)
         web.scrollView.isScrollEnabled = false
         loadVideo()
+        if #available(iOS 9.0, *) {
+            playerViewController.delegate = self
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func loadVideo() {
@@ -41,9 +48,10 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
         asset.loadValuesAsynchronously(forKeys: keys) {
             DispatchQueue.main.async {
                 let item = AVPlayerItem(asset: asset)
-//                let player = AVQueuePlayer(playerItem: item)
-                let  player = AVPlayer(playerItem: item)
-                self.playerViewController.player = player
+                self.player = AVPlayer(playerItem: item)
+                self.player?.addObserver(self, forKeyPath: "currentTime", options: NSKeyValueObservingOptions.new , context: nil)
+
+                self.playerViewController.player =  self.player
                 self.playerViewController.view.frame = self.headerView.bounds
                 self.headerView.addSubview(self.playerViewController.view)
                 self.loadedVideo = true
@@ -52,6 +60,16 @@ class BookVideoController: BaseViewController, UIWebViewDelegate {
                 }
             }
         }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if  keyPath == "currentTime" {
+
+        }
+    }
+    
+    func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
+        print("start")
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {

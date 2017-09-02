@@ -31,7 +31,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     var book: Book?
     var totalTime: Float64?
 //    lazy var player: AVQueuePlayer = self.makePlayer()
-    var player: AVPlayer!
+    var player: AVPlayer?
     var playerItem: AVPlayerItem?
     
 //    private lazy var song: AVPlayerItem = {
@@ -60,6 +60,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         } catch {
             print("Failed to set audio session category.  Error: \(error)")
         }
+         NotificationCenter.default.addObserver(self, selector: #selector(stopAudio(notification:)), name: NSNotification.Name(rawValue: AVPlayerItemLegibleOutputTextStylingResolutionDefault), object: nil)
     }
     
     func loadAudio() {
@@ -69,8 +70,8 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
             DispatchQueue.main.async {
                 let item = AVPlayerItem(asset: asset)
                 self.player = AVPlayer(playerItem: item)
-                self.player.addObserver(self, forKeyPath: "currentItem", options: [.new, .initial] , context: nil)
-                self.player.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) {
+//                self.player?.addObserver(self, forKeyPath: "status", options: [.new, .initial] , context: nil)
+                self.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) {
                     [weak self] time in
                     guard let strongSelf = self else {
                         return
@@ -123,11 +124,11 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
 //        return player
 //    }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "currentItem", let player = object as? AVPlayer,
-            let _ = player.currentItem?.asset as? AVURLAsset {
-        }
-    }
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if keyPath == "rate", let player = object as? AVPlayer,
+//            let _ = player.currentItem?.asset as? AVURLAsset {
+//        }
+//    }
     
     func customSliderBar() {
         sliderBar.maximumValue = Float(totalTime!)
@@ -142,15 +143,15 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     func playbackSliderValueChanged(_ playbackSlider:UISlider) {
         let seconds : Int64 = Int64(playbackSlider.value)
         let targetTime:CMTime = CMTimeMake(seconds, 1)
-        player.seek(to: targetTime)
+        player?.seek(to: targetTime)
     }
     
     @IBAction func pressPlay(_ sender: Any) {
-        if player.rate == 0 {
-            player.play()
+        if player?.rate == 0 {
+            player?.play()
             buttonImge.image = #imageLiteral(resourceName: "audio_pause")
         } else {
-            player.pause()
+            player?.pause()
             buttonImge.image = #imageLiteral(resourceName: "audio_play")
         }
     }
@@ -159,14 +160,20 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         sliderBar.value = sliderBar.value - 15
         let seconds : Int64 = Int64(sliderBar.value)
         let targetTime:CMTime = CMTimeMake(seconds, 1)
-        player.seek(to: targetTime)
+        player?.seek(to: targetTime)
     }
+    
     @IBAction func pressedNext(_ sender: Any) {
         sliderBar.value = sliderBar.value + 15
         let seconds : Int64 = Int64(sliderBar.value)
         let targetTime:CMTime = CMTimeMake(seconds, 1)
-        player.seek(to: targetTime)
+        player?.seek(to: targetTime)
     }
+    
+    func stopAudio(notification: Notification) {
+        player?.pause()
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

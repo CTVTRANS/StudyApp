@@ -155,10 +155,9 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfm-aU-Cx7">
-                                            <rect key="frame" x="20" y="126" width="135" height="40"/>
+                                            <rect key="frame" x="20" y="126" width="132.5" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="135" id="Btp-FV-uPX"/>
                                                 <constraint firstAttribute="height" constant="40" id="Rj8-vq-liG"/>
                                             </constraints>
                                             <state key="normal" title="訂閱頻道">
@@ -178,10 +177,9 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6m-nP-R3o">
-                                            <rect key="frame" x="165" y="126" width="135" height="40"/>
+                                            <rect key="frame" x="167.5" y="126" width="132.5" height="40"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="135" id="5yx-ep-P8X"/>
                                                 <constraint firstAttribute="height" constant="40" id="hv7-dI-eip"/>
                                             </constraints>
                                             <state key="normal" title="批量下載">
@@ -237,9 +235,11 @@
                                         <constraint firstAttribute="trailing" secondItem="L6m-nP-R3o" secondAttribute="trailing" constant="20" id="D0Y-II-vIY"/>
                                         <constraint firstItem="sPc-gQ-gkS" firstAttribute="leading" secondItem="RkG-4u-wcd" secondAttribute="trailing" constant="27" id="FCp-2Z-7nM"/>
                                         <constraint firstItem="RkG-4u-wcd" firstAttribute="top" secondItem="cc6-Rk-Sfp" secondAttribute="top" constant="16" id="Gdf-qE-BXI"/>
-                                        <constraint firstItem="Rfm-aU-Cx7" firstAttribute="top" secondItem="RkG-4u-wcd" secondAttribute="bottom" constant="20" id="O8U-8Z-U1V"/>
+                                        <constraint firstItem="L6m-nP-R3o" firstAttribute="leading" secondItem="Rfm-aU-Cx7" secondAttribute="trailing" constant="15" id="Lxw-mQ-3R6"/>
+                                        <constraint firstItem="Rfm-aU-Cx7" firstAttribute="top" secondItem="RkG-4u-wcd" secondAttribute="bottom" constant="20" id="U23-EH-Pto"/>
                                         <constraint firstItem="YUe-FL-8IB" firstAttribute="leading" secondItem="RkG-4u-wcd" secondAttribute="trailing" constant="27" id="V8q-zH-60j"/>
                                         <constraint firstItem="wsN-zy-L4s" firstAttribute="top" secondItem="sPc-gQ-gkS" secondAttribute="bottom" id="gp8-uw-LhK"/>
+                                        <constraint firstItem="Rfm-aU-Cx7" firstAttribute="width" secondItem="L6m-nP-R3o" secondAttribute="width" id="hNn-Fh-4Re"/>
                                         <constraint firstAttribute="bottom" secondItem="SMD-SX-L2F" secondAttribute="bottom" id="kXu-Yc-9bY"/>
                                         <constraint firstItem="L6m-nP-R3o" firstAttribute="centerY" secondItem="Rfm-aU-Cx7" secondAttribute="centerY" id="mEa-Kq-4de"/>
                                         <constraint firstAttribute="trailing" secondItem="SMD-SX-L2F" secondAttribute="trailing" id="mLF-B3-CZi"/>

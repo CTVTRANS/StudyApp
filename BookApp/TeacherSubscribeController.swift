@@ -29,6 +29,13 @@ class TeacherSubscribeController: BaseViewController, UITableViewDelegate, UITab
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        table.deselectRow(at: indexPath, animated: true)
+//        let detailTeacherVC: DetailTeacherViewController = storyboard!.instantiateViewController(withIdentifier: "DetailTeacherViewController") as! DetailTeacherViewController
+//        detailTeacherVC.teacher =
+//        self.navigationController?.pushViewController(detailTeacherVC, animated: true)
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
