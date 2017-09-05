@@ -8,16 +8,18 @@
 
 import UIKit
 
-class TeacherCollectionCell: UICollectionViewCell {
+class ChanelCollectionCell: UICollectionViewCell {
 
+    @IBOutlet weak var imageChanel: UIImageView!
     @IBOutlet weak var nameTeacher: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
-    func binData(teacher: Teacher) {
-        nameTeacher.text = teacher.name
+    func binData(chanel: Chanel) {
+        nameTeacher.text = chanel.nameChanel
+        imageChanel.sd_setImage(with: URL(string: chanel.imageChanelURL))
     }
 
 }

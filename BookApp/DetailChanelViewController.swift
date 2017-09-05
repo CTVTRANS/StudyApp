@@ -8,11 +8,12 @@
 
 import UIKit
 
-class DetailTeacherViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var teacherImage: UIImageView!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var nameTeacher: UILabel!
-    var teacher: Teacher?
+    var teacher: Chanel?
     
     @IBOutlet weak var downloadAllButton: UIButton!
     @IBOutlet weak var subcribedTeacher: UIButton!
@@ -22,7 +23,12 @@ class DetailTeacherViewController: BaseViewController, UITableViewDelegate, UITa
         downloadAllButton.layer.borderColor = UIColor.rgb(r: 245, g: 166, b: 35).cgColor
         subcribedTeacher.layer.borderColor = UIColor.rgb(r: 245, g: 166, b: 35).cgColor
         table.tableFooterView = UIView()
-        nameTeacher.text = teacher?.name
+//        nameTeacher.text = teacher?.name
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,7 +36,7 @@ class DetailTeacherViewController: BaseViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TeacherUpLoaeCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TeacherUpLoaeCell
+        let cell: ChanelUpLoaeCell = tableView.dequeueReusableCell(withIdentifier: "ChanelUpLoaeCell", for: indexPath) as! ChanelUpLoaeCell
         return cell
     }
     

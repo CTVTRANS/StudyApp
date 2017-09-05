@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Teacher Subscribe Controller-->
+        <!--Chanel Subscribe Controller-->
         <scene sceneID="6Ww-rB-NfS">
             <objects>
-                <viewController storyboardIdentifier="TeacherSubscribeController" id="3Ze-ws-inY" customClass="TeacherSubscribeController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChanelSubscribeController" id="3Ze-ws-inY" customClass="ChanelSubscribeController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r07-JX-VTu"/>
                         <viewControllerLayoutGuide type="bottom" id="bkw-r6-Kbk"/>
@@ -27,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TeacherSubcribeCell" rowHeight="97" id="yzn-1Z-Bfq" customClass="TeacherSubcribeCell" customModule="BookApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChanelSubcribeCell" rowHeight="97" id="yzn-1Z-Bfq" customClass="ChanelSubcribeCell" customModule="BookApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="97"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yzn-1Z-Bfq" id="heS-Sg-C49">
@@ -121,10 +121,10 @@
             </objects>
             <point key="canvasLocation" x="-324.375" y="178.52112676056339"/>
         </scene>
-        <!--Detail Teacher View Controller-->
+        <!--Detail Chanel View Controller-->
         <scene sceneID="yxN-gn-MhR">
             <objects>
-                <viewController storyboardIdentifier="DetailTeacherViewController" hidesBottomBarWhenPushed="YES" id="CzM-0D-yIB" customClass="DetailTeacherViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailChanelViewController" hidesBottomBarWhenPushed="YES" id="CzM-0D-yIB" customClass="DetailChanelViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0KR-aK-VZ0"/>
                         <viewControllerLayoutGuide type="bottom" id="yN1-PU-5Wm"/>
@@ -249,7 +249,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="XEa-D1-zhI" customClass="TeacherUpLoaeCell" customModule="BookApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChanelUpLoaeCell" rowHeight="70" id="XEa-D1-zhI" customClass="ChanelUpLoaeCell" customModule="BookApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="216" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XEa-D1-zhI" id="c6E-bH-zT1">
@@ -281,11 +281,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_downloadBottom" translatesAutoresizingMaskIntoConstraints="NO" id="D3P-H0-u5m">
-                                                    <rect key="frame" x="272" y="23" width="24" height="24"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_download" translatesAutoresizingMaskIntoConstraints="NO" id="D3P-H0-u5m">
+                                                    <rect key="frame" x="276" y="25" width="20" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="QSY-rN-EoH"/>
-                                                        <constraint firstAttribute="height" constant="24" id="itu-tl-dyC"/>
+                                                        <constraint firstAttribute="width" constant="20" id="QSY-rN-EoH"/>
+                                                        <constraint firstAttribute="height" constant="20" id="itu-tl-dyC"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -329,6 +329,7 @@
                         <outlet property="nameTeacher" destination="YUe-FL-8IB" id="gdP-bP-cCH"/>
                         <outlet property="subcribedTeacher" destination="Rfm-aU-Cx7" id="cDY-Kt-ZE0"/>
                         <outlet property="table" destination="8wl-Vc-QvJ" id="VuQ-hg-cpp"/>
+                        <outlet property="teacherImage" destination="RkG-4u-wcd" id="kvo-u0-QJl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WlM-hI-yJx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -338,6 +339,6 @@
     </scenes>
     <resources>
         <image name="demo" width="313" height="195"/>
-        <image name="ic_downloadBottom" width="32" height="32"/>
+        <image name="ic_bottom_download" width="64" height="64"/>
     </resources>
 </document>

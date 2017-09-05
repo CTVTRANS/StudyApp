@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TeacherSubscribeController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class ChanelSubscribeController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var table: UITableView!
     
@@ -17,12 +17,17 @@ class TeacherSubscribeController: BaseViewController, UITableViewDelegate, UITab
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TeacherSubcribeCell = table.dequeueReusableCell(withIdentifier: "TeacherSubcribeCell", for: indexPath) as! TeacherSubcribeCell
+        let cell: ChanelSubcribeCell = table.dequeueReusableCell(withIdentifier: "ChanelSubcribeCell", for: indexPath) as! ChanelSubcribeCell
         cell.callBack = {
             print("ok")
         }
@@ -30,10 +35,9 @@ class TeacherSubscribeController: BaseViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        table.deselectRow(at: indexPath, animated: true)
-//        let detailTeacherVC: DetailTeacherViewController = storyboard!.instantiateViewController(withIdentifier: "DetailTeacherViewController") as! DetailTeacherViewController
-//        detailTeacherVC.teacher =
-//        self.navigationController?.pushViewController(detailTeacherVC, animated: true)
+        table.deselectRow(at: indexPath, animated: true)
+        let detailTeacherVC: DetailChanelViewController = storyboard!.instantiateViewController(withIdentifier: "DetailChanelViewController") as! DetailChanelViewController
+        self.navigationController?.pushViewController(detailTeacherVC, animated: true)
     }
     
     deinit {

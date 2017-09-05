@@ -17,8 +17,8 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     
     var tap: UITapGestureRecognizer?
     var arrayOfComment = [Comment]()
-//    var arrayCommentHot = [Comment]()
-//    var arrayObject = [Any]()
+    var arrayCommentHot = [Comment]()
+    var arrayObject = [SpecialComment]()
     var idObject: Int?
     var commentType: Int?
     
@@ -33,26 +33,32 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                object: nil)
         commentTextView.delegate = self
-        let getComment: GetAllComment = GetAllComment(commentType: commentType!,
-                                                      idObject: idObject!,
-                                                      limitComment: 20,
-                                                      pageing: 1)
-        requestWithTask(task: getComment, success: { (data) in
-            self.arrayOfComment = data as! [Comment]
-            self.table.reloadData()
-            self.stopActivityIndicator()
-//            self.arrayObject.append(self.arrayOfComment)
+        let getCommentHot: GetCommentHot = GetCommentHot(commentType: commentType!,
+                                                         idObject: commentType!)
+        requestWithTask(task: getCommentHot, success: { (data) in
+            self.arrayCommentHot = data as! [Comment]
+            if self.arrayCommentHot.count > 0 {
+                let hotComment: SpecialComment = SpecialComment(name: "熱評", array: self.arrayCommentHot)
+                self.arrayObject.append(hotComment)
+            }
+            
+            let getComment: GetAllComment = GetAllComment(commentType: self.commentType!,
+                                                          idObject: self.idObject!,
+                                                          limitComment: 20,
+                                                          pageing: 1)
+            self.requestWithTask(task: getComment, success: { (data) in
+                self.arrayOfComment = data as! [Comment]
+                let normalComment: SpecialComment = SpecialComment(name: "最新", array: self.arrayOfComment)
+                self.arrayObject.append(normalComment)
+                self.table.reloadData()
+                self.stopActivityIndicator()
+            }) { (error) in
+                
+            }
+
         }) { (error) in
             
         }
-        
-//        let getCommentHot: GetCommentHot = GetCommentHot(commentType: commentType!, idObject: commentType!)
-//        requestWithTask(task: getCommentHot, success: { (data) in
-//            self.arrayCommentHot = data as! [Comment]
-//            self.arrayObject.append(self.arrayCommentHot)
-//        }) { (error) in
-//            
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,23 +71,50 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "kien"
-//    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view: UIView = UIView(frame: CGRect(x: 0, y: 0, width: table.frame.size.width, height: 30))
+        view.backgroundColor = UIColor.rgb(r: 254, g: 153, b: 0)
+        let nameTypeComment: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: table.frame.size.width, height: 30))
+        nameTypeComment.font = UIFont(name: "DFHei Std W5", size: 15)
+        nameTypeComment.text = arrayObject[section].name
+        nameTypeComment.textAlignment = .left
+        nameTypeComment.textColor = UIColor.white
+        nameTypeComment.backgroundColor = UIColor.clear
+        view.addSubview(nameTypeComment)
+        return view;
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return arrayObject[section].name
+    }
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return arrayObject.count
-//    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return arrayObject.count
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let arr:[Any]  = [arrayObject[section]]
-        return arrayOfComment.count
+        return arrayObject[section].comment.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CommentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
-        let commenObject = arrayOfComment[indexPath.row]
+        let sectionObject = arrayObject[indexPath.section]
+        let commenObject = sectionObject.comment[indexPath.row]
         cell.binData(commentObject: commenObject)
+        let checkLike: CheckLikedTask = CheckLikedTask(likeType: Object.comment.rawValue,
+                                                        memberID: 1,
+                                                        objectID: commenObject.id)
+        requestWithTask(task: checkLike, success: { (data) in
+            let status: Bool = data as! Bool
+            if status {
+                cell.imageLike.image = #imageLiteral(resourceName: "ic_bottom_liked")
+            } else {
+                 cell.imageLike.image = #imageLiteral(resourceName: "ic_bottom_like")
+            }
+        }) { (error) in
+            
+        }
+        
         cell.pressLikeComment = { [weak self] in
             let likeComment: LikeTask = LikeTask(likeType: Object.comment.rawValue,
                                                  memberID: 1,
@@ -91,12 +124,13 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                 var currentLike: Int = Int(cell.numberLike.text!)!
                 if status == Like.like {
                     currentLike += 1
+                    cell.imageLike.image = #imageLiteral(resourceName: "ic_bottom_liked")
                     cell.numberLike.text = String(currentLike)
                 } else {
                     currentLike -= 1
+                    cell.imageLike.image = #imageLiteral(resourceName: "ic_bottom_like")
                     cell.numberLike.text = String(currentLike)
                 }
-                
             }, failure: { (error) in
                 
             })

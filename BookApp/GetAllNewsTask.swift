@@ -11,8 +11,8 @@ import LCNetwork
 
 class GetAllNewsTask: BaseTaskNetwork {
     
-    var _limit: Int!
-    var _page: Int!
+    private let _limit: Int!
+    private let _page: Int!
     
     init(limit: Int, page: Int) {
         _limit = limit
@@ -43,22 +43,27 @@ class GetAllNewsTask: BaseTaskNetwork {
                 let newsImage = dictionary["post_image"] as? String ?? "123"
                 let newsDescription = dictionary["post_description"] as? String ?? "123"
                 let newsContent = dictionary["post_content"] as? String ?? "123"
+                let newsNote = dictionary["post_note"] as? String ?? "123"
                 let newsTimeup = dictionary["updated_at"] as? String ?? "123"
-                let newsType = dictionary["cat_id"] as? Int ?? 123
+                let newsType = dictionary["post_display_type"] as? Int ?? 123
+                let newsNameType = dictionary["post_name"] as? String ?? "123"
                 let newsNumberLike = dictionary["number_of_likes"] as? Int ?? 123
                 let newsNumberComment = dictionary["number_of_comments"] as? Int ?? 123
+                let newsNumberBookMark = dictionary["number_of_collection"] as? Int ?? 123
                 let news: NewsModel = NewsModel(id: newsID,
                                                 author: newsAuthor,
                                                 imageUrl: newsImage,
                                                 title: newsName,
                                                 detail: newsDescription,
                                                 type: newsType,
+                                                nameType: newsNameType,
                                                 content: newsContent,
+                                                note: newsNote,
                                                 timeUp: newsTimeup,
                                                 numberView: 123,
                                                 numberLike: newsNumberLike,
                                                 numberComment: newsNumberComment,
-                                                numberBookMark: 123)
+                                                numberBookMark: newsNumberBookMark)
                 araayNews.append(news)
             }
         }

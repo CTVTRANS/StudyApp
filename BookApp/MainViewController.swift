@@ -16,6 +16,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCallBack()
+        
         let getAllNews : GetAllNewsTask = GetAllNewsTask(limit: 20, page: 1)
         showActivity(inView: self.view)
         table.estimatedRowHeight = 140
@@ -35,11 +37,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         table.reloadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayNews.count
     }
@@ -53,14 +50,18 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
         let type = arrayNews[indexPath.row].typeNews
-        if (type == 4) {
-            let vc: Type2DetailNewsViewController = self.storyboard?.instantiateViewController(withIdentifier: "Type2Detail") as! Type2DetailNewsViewController
+        if (type == 1) {
+            let vc: DetailNewsController = storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailNewsController
             vc.news = arrayNews[indexPath.row]
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
+        } else if type == 2 {
+            let vc: Type2DetailNewsViewController = storyboard?.instantiateViewController(withIdentifier: "Type2Detail") as! Type2DetailNewsViewController
+            vc.news = arrayNews[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
         } else {
-            let vc: DetailNewsController = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailNewsController
+            let vc: Type3DetailNewsController = storyboard?.instantiateViewController(withIdentifier: "Type3DetailNewsController") as! Type3DetailNewsController
             vc.news = arrayNews[indexPath.row]
-            self.navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -69,14 +70,19 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func setupCallBack() {
-        navigationCustoms.callBackMessageNotification = {
-            print("message")
-        }
-        navigationCustoms.callBackVideoNotification = {
-            print("video")
-        }
-        navigationCustoms.callBackSearchNotification = {
-            print("search")
+        navigationCustoms.callBackTopButton = { [weak self] (typeButton: TopButton) in
+            let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
+            switch typeButton {
+            case TopButton.messageNotification:
+                let vc: UINavigationController = myStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as! UINavigationController
+                self?.present(vc, animated: true, completion: nil)
+            case TopButton.videoNotification:
+                let vc: UINavigationController = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as! UINavigationController
+                self?.present(vc, animated: true, completion: nil)
+            case TopButton.search:
+                let vc: SearchViewController = myStoryboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+                 self?.present(vc, animated: true, completion: nil)
+            }
         }
     }
 }

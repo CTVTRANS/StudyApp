@@ -10,6 +10,7 @@ import UIKit
 
 class CommentCell: UITableViewCell {
 
+    @IBOutlet weak var imageLike: UIImageView!
     @IBOutlet weak var numberLike: UILabel!
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var time: UILabel!

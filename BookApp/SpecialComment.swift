@@ -12,5 +12,15 @@ class SpecialComment: NSObject {
     
     private var _name: String!
     private var _listComment: [Comment]?
-
+    
+    init(name: String, array: [Comment]) {
+        _name = name
+        _listComment = array
+    }
+    var name: String {
+        return _name
+    }
+    var comment: [Comment] {
+        return _listComment!
+    }
 }

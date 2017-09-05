@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TeacherUpLoaeCell: UITableViewCell {
+class ChanelUpLoaeCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

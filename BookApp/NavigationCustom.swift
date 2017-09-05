@@ -10,9 +10,10 @@ import UIKit
 
 class NavigationCustom: UIView {
     
-    var callBackMessageNotification = {}
-    var callBackVideoNotification = {}
-    var callBackSearchNotification = {}
+//    var callBackMessageNotification = {}
+//    var callBackVideoNotification = {}
+//    var callBackSearchNotification = {}
+    var callBackTopButton:((_ typeButton: TopButton) -> Void)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,14 +43,14 @@ class NavigationCustom: UIView {
     }
     
     @IBAction func pressedMessageNotification(_ sender: Any) {
-        self.callBackMessageNotification()
+        self.callBackTopButton!(TopButton.messageNotification)
     }
     
     @IBAction func pressedVideoNotification(_ sender: Any) {
-        self.callBackVideoNotification()
+        self.callBackTopButton!(TopButton.videoNotification)
     }
 
     @IBAction func pressedSearch(_ sender: Any) {
-        self.callBackSearchNotification()
+        self.callBackTopButton!(TopButton.search)
     }
 }

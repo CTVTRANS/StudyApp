@@ -26,7 +26,7 @@ class MainViewCell: UITableViewCell {
         imageNews.sd_setImage(with: URL(string: news.imageURL))
         titleNews.text = news.title
         detailNews.text = news.detailNews
-        typeNews.text = String(news.typeNews)
+        typeNews.text = String(news.nameType)
         numberView.text = news.author
         numberLike.text = String(news.numberLike)
         numberComment.text = String(news.numberComment)

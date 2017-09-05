@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TeacherSubcribeCell: UITableViewCell {
+class ChanelSubcribeCell: UITableViewCell {
     
     var callBack = {}
     

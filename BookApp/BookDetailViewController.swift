@@ -18,6 +18,33 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let checkLiked: CheckLikedTask = CheckLikedTask(likeType: Object.book.rawValue,
+                                                        memberID: 1,
+                                                        objectID: bookSelected.id)
+        requestWithTask(task: checkLiked, success: { [weak self] (data) in
+            let status: Bool = data as! Bool
+            if status {
+                self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
+            } else {
+                self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
+            }
+        }) { (error) in
+            
+        }
+        let checkBookMarked: CheckBookMarkedTask = CheckBookMarkedTask(bookMarkType: Object.book.rawValue,
+                                                                       memberID: 1,
+                                                                       objectID: bookSelected.id)
+        requestWithTask(task: checkBookMarked, success: { [weak self] (data) in
+            let status: Bool = data as! Bool
+            if status {
+                self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMarked")
+            } else {
+                self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMark")
+            }
+        }) { (error) in
+            
+        }
+
         setupScroll()
         setupCallBackBottom()
         setupCallBackTopTabbar()
@@ -79,16 +106,15 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
 
     func setupCallBackBottom() {
         bottomView.pressedBottomButton = { [weak self] (typeButton: BottomButton) in
+            let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
             switch typeButton {
             case BottomButton.back:
                 self?.navigationController?.popViewController(animated: true)
             case BottomButton.bookMark:
-                let storyboard = UIStoryboard(name: "Global", bundle: nil)
-                let vc: UINavigationController = storyboard.instantiateViewController(withIdentifier: "Login") as! UINavigationController
+                let vc: UINavigationController = myStoryboard.instantiateViewController(withIdentifier: "Login") as! UINavigationController
                 self?.present(vc, animated: true, completion: nil)
             case BottomButton.comment:
-                let storyboard = UIStoryboard(name: "Global", bundle: nil)
-                let vc: CommentController = storyboard.instantiateViewController(withIdentifier: "CommentController") as! CommentController
+                let vc: CommentController = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as! CommentController
                 vc.idObject = self?.bookSelected?.id
                 vc.commentType = Object.book.rawValue
                 self?.present(vc, animated: false, completion: nil)

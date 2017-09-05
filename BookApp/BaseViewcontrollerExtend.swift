@@ -29,6 +29,7 @@ extension BaseTaskNetwork {
         let timeUpBook = dictionary["updated_at"] as? String ?? "123"
         let numberLikeBook = dictionary["number_of_likes"] as? Int ?? 123
         let numberCommentBook = dictionary["number_of_comments"] as? Int ?? 123
+        let numberBookMark = dictionary["number_of_collection"] as? Int ?? 123
         let book: Book = Book(id: idBook,
                               type: idTypeBook,
                               typeName: nameTypeBook,
@@ -42,9 +43,25 @@ extension BaseTaskNetwork {
                               content: contentBook,
                               numberLike: numberLikeBook,
                               numberComment: numberCommentBook,
-                              numberBookMark: 123,
+                              numberBookMark: numberBookMark,
                               desCription: descriptionBook)
         return book
+    }
+    
+    func parseChanel(dictionary: [String: Any]) -> Chanel {
+        let chanelName = dictionary["channel_title"] as? String ?? "asd"
+        let chanelID = dictionary["post_id"] as? Int ?? 123
+        let chanelType = dictionary["cat_name"] as? String ?? "asd"
+        let chanelImage = dictionary["channel_image"] as? String ?? "asd"
+        let teacherName = dictionary["teacher_name"] as? String ?? "asd"
+        let teacherImage = dictionary["teacher_image"] as? String ?? "ad"
+        let chanel: Chanel = Chanel(idChanel: chanelID,
+                                    nameChanel: chanelName,
+                                    imageChanelURL: chanelImage,
+                                    typeChanel: chanelType,
+                                    nameTeacher: teacherName,
+                                    imageTeacherURL: teacherImage)
+        return chanel
     }
 }
 

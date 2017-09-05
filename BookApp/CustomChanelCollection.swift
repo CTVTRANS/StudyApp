@@ -8,19 +8,19 @@
 
 import UIKit
 
-class CustomTeacherCollection: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class CustomChanelCollection: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var callBackClickCell:((_ model: Teacher) -> Void)?
+    var callBackClickCell:((_ model: Chanel) -> Void)?
     
-    var arrTeacher = [Teacher]()
+    var arrChanel = [Chanel]()
 
-    @IBOutlet weak var teacherCollection: UICollectionView!
-   
+    @IBOutlet weak var chanelCollection: UICollectionView!
+    @IBOutlet weak var name: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
-        self.teacherCollection.register(UINib(nibName: "TeacherCollectionCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        chanelCollection.register(UINib(nibName: "ChanelCollectionCell", bundle: nil), forCellWithReuseIdentifier: "cell")
     }
     
     private func setupUI() {
@@ -42,13 +42,13 @@ class CustomTeacherCollection: UIView, UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return arrTeacher.count
+        return arrChanel.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: TeacherCollectionCell = teacherCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TeacherCollectionCell
-        cell.binData(teacher: arrTeacher[indexPath.row])
+        let cell: ChanelCollectionCell = chanelCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChanelCollectionCell
+        cell.binData(chanel: arrChanel[indexPath.row])
         return cell
     }
     
@@ -57,8 +57,8 @@ class CustomTeacherCollection: UIView, UICollectionViewDelegate, UICollectionVie
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var widthSpace: CGFloat = 11
         widthSpace.adjustsSizeToRealIPhoneSize = 11
-        let widthPerItem = (teacherCollection.frame.size.width - widthSpace * 2) / 3 - 1
-        let hightPerItem = teacherCollection.frame.size.height
+        let widthPerItem = (chanelCollection.frame.size.width - widthSpace * 2) / 3 - 1
+        let hightPerItem = chanelCollection.frame.size.height
         
         return CGSize(width: widthPerItem, height: hightPerItem)
     }
@@ -80,8 +80,13 @@ class CustomTeacherCollection: UIView, UICollectionViewDelegate, UICollectionVie
         space.adjustsSizeToRealIPhoneSize = 11
         return space
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        callBackClickCell?(arrTeacher[indexPath.row])
+        callBackClickCell?(arrChanel[indexPath.row])
     }
-
+    
+    func reloadChanel(arrayChanel: [Chanel]) {
+        arrChanel = arrayChanel
+        chanelCollection.reloadData()
+    }
 }

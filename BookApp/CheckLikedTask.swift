@@ -1,28 +1,28 @@
 //
-//  LikeTask.swift
+//  CheckLikedTask.swift
 //  BookApp
 //
-//  Created by kien le van on 8/29/17.
+//  Created by kien le van on 9/4/17.
 //  Copyright © 2017 Le Cong. All rights reserved.
 //
 
 import UIKit
 import LCNetwork
 
-class LikeTask: BaseTaskNetwork {
+class CheckLikedTask: BaseTaskNetwork {
     
     private let _likeType: Int
     private let _memberID: Int
     private let _objectID: Int
     
-    init(likeType: Int, memberID: Int, objectId: Int) {
+    init(likeType: Int, memberID: Int, objectID: Int) {
         _likeType = likeType
         _memberID = memberID
-        _objectID = objectId
+        _objectID = objectID
     }
     
     override func path() -> String! {
-        return likeUnlikeURL
+        return checkLikeedURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {
@@ -30,17 +30,18 @@ class LikeTask: BaseTaskNetwork {
     }
     
     override func method() -> String! {
-        return POST
+        return GET
     }
     
     override func data(withResponse response: Any!) -> Any! {
         if let dictionary = response as? [String: Any] {
-            if dictionary["data"] != nil {
-                return Like.like
+            let status: Bool = dictionary["status"] as? Bool ?? false
+            if status {
+                return true
             } else {
-                return Like.unLike
+                return false
             }
         }
-        return response
+        return false
     }
 }

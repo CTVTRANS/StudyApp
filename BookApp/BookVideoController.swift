@@ -35,11 +35,6 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
         web.loadHTMLString(content, baseURL: nil)
         web.scrollView.isScrollEnabled = false
         loadVideo()
-        if #available(iOS 9.0, *) {
-            playerViewController.delegate = self
-        } else {
-            // Fallback on earlier versions
-        }
     }
     
     func loadVideo() {
@@ -49,8 +44,8 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
             DispatchQueue.main.async {
                 let item = AVPlayerItem(asset: asset)
                 self.player = AVPlayer(playerItem: item)
-                self.player?.addObserver(self, forKeyPath: "currentTime", options: NSKeyValueObservingOptions.new , context: nil)
-
+                self.player?.addObserver(self, forKeyPath: "rate", options: .new , context: nil)
+                
                 self.playerViewController.player =  self.player
                 self.playerViewController.view.frame = self.headerView.bounds
                 self.headerView.addSubview(self.playerViewController.view)
@@ -63,13 +58,26 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if  keyPath == "currentTime" {
-
+        if  keyPath == "rate" {
+            let layer = object as? AVPlayer
+            if layer?.rate == 1.0 {
+                let notificationName = Notification.Name("videoDidStart")
+                NotificationCenter.default.post(name: notificationName, object: nil)
+            }
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
+
     }
     
-    func playerViewControllerWillStartPictureInPicture(_ playerViewController: AVPlayerViewController) {
-        print("start")
+    func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+        let currentviewController =  navigationController?.visibleViewController
+        
+        if currentviewController != playerViewController
+        {
+            currentviewController?.present(playerViewController,animated: true,completion:nil)
+        }
+
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
@@ -82,7 +90,12 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
         }
     }
     
+    @IBAction func pressedStart(_ sender: Any) {
+        
+    }
+    
     deinit {
+        player?.removeObserver(self, forKeyPath: "rate")
         NotificationCenter.default.removeObserver(self)
     }
 }

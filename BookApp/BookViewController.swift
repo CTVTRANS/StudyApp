@@ -33,12 +33,14 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCallBackClickCell()
+        setupCallBackNavigation()
+        
         suggestBookView.setupView(image: #imageLiteral(resourceName: "ic_reload"))
         suggestBookView.detailTitle.text = "換一換"
-        suggestBookView.titleView.text = "近期新書"
+        suggestBookView.titleView.text = "猜你喜歡"
         freeBookView.setupView(image: #imageLiteral(resourceName: "ic_next"))
         freeBookView.detailTitle.text = "全部"
-        freeBookView.titleView.text = "猜你喜歡"
+        freeBookView.titleView.text = "限時免費"
         
         let getTypeTask: GetTypeOfBookTask = GetTypeOfBookTask()
         showActivity(inView: self.view)
@@ -164,14 +166,19 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     }
     
     func setupCallBackNavigation() {
-        navigationCustom.callBackMessageNotification = {
-            
-        }
-        navigationCustom.callBackVideoNotification = {
-            
-        }
-        navigationCustom.callBackSearchNotification = {
-            
+        navigationCustom.callBackTopButton = { [weak self] (typeButton: TopButton) in
+            let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
+            switch typeButton {
+            case TopButton.messageNotification:
+                let vc: UINavigationController = myStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as! UINavigationController
+                self?.present(vc, animated: true, completion: nil)
+            case TopButton.videoNotification:
+                let vc: UINavigationController = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as! UINavigationController
+                self?.present(vc, animated: true, completion: nil)
+            case TopButton.search:
+                let vc: SearchViewController = myStoryboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+                self?.present(vc, animated: true, completion: nil)
+            }
         }
     }
 }
