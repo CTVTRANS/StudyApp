@@ -19,6 +19,10 @@ enum Like: Int {
     case unLike = 0, like
 }
 
+enum Subcrible: Int {
+    case subcrible = 0, unSubcrible
+}
+
 enum BookMark: Int {
     case bookMark = 0, unBookMark
 }
@@ -33,6 +37,7 @@ enum BottomButton: Int {
 
 class Constants: NSObject {
     var listBookType: [BookType]?
+    var listChanelSubcribled: [Chanel]?
     var language: Int = 1
     static let sharedInstance = Constants()
 }

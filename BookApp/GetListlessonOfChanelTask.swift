@@ -1,5 +1,5 @@
 //
-//  GetChanelTask.swift
+//  GetListlessonOfChanel.swift
 //  BookApp
 //
 //  Created by kien le van on 9/5/17.
@@ -9,20 +9,20 @@
 import UIKit
 import LCNetwork
 
-class GetChanelSuggestTask: BaseTaskNetwork {
-    
-    private let _lang: Int!
+class GetListlessonOfChanelTask: BaseTaskNetwork {
+
+    private let _chanelID: Int!
     private let _limit: Int!
     private let _page: Int!
     
-    init(lang: Int, limit: Int, page: Int) {
-        _lang = lang
+    init(chanelID: Int, limit: Int, page: Int) {
+        _chanelID = chanelID
         _limit = limit
         _page = page
     }
-
+    
     override func path() -> String! {
-        return getAllChanelSuggestURL
+        return getListLessonOfChanelURL
     }
     
     override func method() -> String! {
@@ -30,17 +30,17 @@ class GetChanelSuggestTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["lang": _lang, "limit": _limit, "page": _page]
+        return ["teacher_id": _chanelID, "limit": _limit, "page": _page]
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listChanel = [Chanel]()
+        var listLesson = [Lesson]()
         if let object = response as? [[String: Any]] {
             for dictionary in object {
-                let chanel = parseChanel(dictionary: dictionary)
-                listChanel.append(chanel)
+                let lesson = parseLesson(dictionary: dictionary)
+                listLesson.append(lesson)
             }
         }
-        return listChanel
+        return listLesson
     }
 }

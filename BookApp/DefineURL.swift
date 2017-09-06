@@ -16,8 +16,14 @@ let getBookNewestURL: String = "/api/book/list_latest_posts"
 let getAllBookSuggestURL: String = "/api/book/list_all_suggest_posts"
 let getAllBookFreeURL: String = "/api/book/list_free"
 
-let getAllChanelSuggest: String = "/api/teacher/list_all_suggest_teacher"
-let getChanelFree: String = "/api/teacher/list_free"
+let getAllChanelSuggestURL: String = "/api/teacher/list_all_suggest_teacher"
+let getChanelFreeURL: String = "/api/teacher/list_free"
+let getListLessonOfChanelURL = "/api/teacher/list_lesson"
+let getTotalViewOfChanelURL = "/api/teacher/number_of_play"
+let getAllSubcribled = "/api/teacher/list_subscribe"
+let getHotChanel = "/api/teacher/list_hot"
+let subcribleURL = "/api/teacher/subscribe"
+let increaseViewChanelURL = "/api/teacher/play_lesson"
 
 let getAllNewsURL: String = "/api/post/list_latest_post"
 

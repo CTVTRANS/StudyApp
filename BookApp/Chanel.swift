@@ -10,12 +10,10 @@ import UIKit
 
 class Chanel: NSObject {
     
-    private var _nameChanel: String!
-    private var _imageChanelURL : String!
+    private var _nameChanel, _imageChanelURL, _timeUp: String!
     private var _typeChanel: String!
-    private var _imageTeacherURL: String!
-    private var _nameTeahcer: String!
-    private var _idChanel: Int!
+    private var _imageTeacherURL, _nameTeahcer: String!
+    private var _idChanel, _numberView: Int!
     
     
     init(idChanel: Int,
@@ -23,13 +21,17 @@ class Chanel: NSObject {
          imageChanelURL: String,
          typeChanel: String,
          nameTeacher: String,
-         imageTeacherURL: String) {
+         imageTeacherURL: String,
+         numberView: Int,
+         time: String) {
             _idChanel = idChanel
             _nameChanel = nameChanel
             _imageChanelURL = imageChanelURL
             _typeChanel = typeChanel
             _nameTeahcer = nameTeacher
             _imageTeacherURL = imageTeacherURL
+            _numberView = numberView
+            _timeUp = time
     }
     var nameChanel: String {
         return _nameChanel
@@ -48,6 +50,17 @@ class Chanel: NSObject {
     }
     var imageTeacherURL: String {
         return _imageTeacherURL
+    }
+    var time: String {
+        return _timeUp
+    }
+    var numberView: Int {
+        get {
+            return _numberView
+        }
+        set {
+            _numberView = newValue
+        }
     }
 
 }

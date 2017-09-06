@@ -16,7 +16,7 @@ class Type3DetailNewsController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var content: UIWebView!
     @IBOutlet weak var note: UIWebView!
     
-    @IBOutlet weak var hightOfNoteView: NSLayoutConstraint!
+    @IBOutlet weak var highOfNoteView: NSLayoutConstraint!
     var news: NewsModel!
     
     override func viewDidLoad() {
@@ -143,7 +143,7 @@ class Type3DetailNewsController: BaseViewController, UIWebViewDelegate {
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let hightNew = note.scrollView.contentSize.height
-        hightOfNoteView.constant = hightNew
+        highOfNoteView.constant = hightNew
         stopActivityIndicator()
     }
 

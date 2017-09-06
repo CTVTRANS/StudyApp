@@ -52,6 +52,12 @@ class ChanelViewController: BaseViewController {
             
         }
         
+        let getChaelSubcrible: GetAllChanelSubcribledTask = GetAllChanelSubcribledTask(memberID: 1)
+        requestWithTask(task: getChaelSubcrible, success: { (data) in
+            
+        }) { (error) in
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,15 +67,15 @@ class ChanelViewController: BaseViewController {
     
     func callBack() {
         let teacherStoryboard = UIStoryboard(name: "Chanel", bundle: nil)
-        suggestChanel.callBackClickCell = {[weak self] (teacherSelected: Chanel) in
+        suggestChanel.callBackClickCell = {[weak self] (chanelSelected: Chanel) in
             let detailTeacherVC: DetailChanelViewController = teacherStoryboard.instantiateViewController(withIdentifier: "DetailChanelViewController") as! DetailChanelViewController
-            detailTeacherVC.teacher = teacherSelected
+            detailTeacherVC.chanel = chanelSelected
             self?.navigationController?.pushViewController(detailTeacherVC, animated: true)
         }
         
-        freeChanel.callBackClickCell = {[weak self] (teacherSelected: Chanel) in
+        freeChanel.callBackClickCell = {[weak self] (chanelSelected: Chanel) in
             let detailTeacherVC: DetailChanelViewController = teacherStoryboard.instantiateViewController(withIdentifier: "DetailChanelViewController") as! DetailChanelViewController
-            detailTeacherVC.teacher = teacherSelected
+            detailTeacherVC.chanel = chanelSelected
             self?.navigationController?.pushViewController(detailTeacherVC, animated: true)
         }
     }
@@ -91,13 +97,15 @@ class ChanelViewController: BaseViewController {
         }
     }
     
-    @IBAction func showDetailTeacher(_ sender: Any) {
-        
+    @IBAction func showHotChanel(_ sender: Any) {
+        let chanelStoryboard = UIStoryboard(name: "Chanel", bundle: nil)
+        let vc: ChanelHotController = chanelStoryboard.instantiateViewController(withIdentifier: "ChanelHotController") as! ChanelHotController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func showSubcribeed(_ sender: Any) {
-        let teacherStoryboard = UIStoryboard(name: "Chanel", bundle: nil)
-        let controller: ChanelSubscribeController = teacherStoryboard.instantiateViewController(withIdentifier: "ChanelSubscribeController") as! ChanelSubscribeController
+        let chanelStoryboard = UIStoryboard(name: "Chanel", bundle: nil)
+        let controller: ChanelSubscribeController = chanelStoryboard.instantiateViewController(withIdentifier: "ChanelSubscribeController") as! ChanelSubscribeController
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }

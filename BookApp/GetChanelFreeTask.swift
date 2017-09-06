@@ -22,7 +22,7 @@ class GetChanelFreeTask: BaseTaskNetwork {
     }
     
     override func path() -> String! {
-        return getChanelFree
+        return getChanelFreeURL
     }
     
     override func method() -> String! {
@@ -43,6 +43,4 @@ class GetChanelFreeTask: BaseTaskNetwork {
         }
         return listChanel
     }
-
-
 }

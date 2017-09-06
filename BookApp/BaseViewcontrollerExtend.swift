@@ -55,13 +55,33 @@ extension BaseTaskNetwork {
         let chanelImage = dictionary["channel_image"] as? String ?? "asd"
         let teacherName = dictionary["teacher_name"] as? String ?? "asd"
         let teacherImage = dictionary["teacher_image"] as? String ?? "ad"
+        let chanelTimeUp = dictionary[""] as? String ?? "12-8-2017 7:34:45"
         let chanel: Chanel = Chanel(idChanel: chanelID,
                                     nameChanel: chanelName,
                                     imageChanelURL: chanelImage,
                                     typeChanel: chanelType,
                                     nameTeacher: teacherName,
-                                    imageTeacherURL: teacherImage)
+                                    imageTeacherURL: teacherImage,
+                                    numberView: 123,
+                                    time: chanelTimeUp)
         return chanel
+    }
+    
+    func parseLesson(dictionary: [String: Any]) -> Lesson {
+        let lessonID = dictionary["id"] as? Int ?? 1234
+        let lessonChapter = dictionary["chapter"] as? Int ?? 23
+        let lessonName = dictionary["title"] as? String ?? "asd"
+        let lessonDescription = dictionary["description"] as? String ?? "asd"
+        let lessonContent = dictionary["audio"] as? String ?? "asdf"
+        let  lessonTimeup = dictionary["created_at"] as? String ?? "sas"
+        let lesson: Lesson = Lesson(id: lessonID,
+                                    chaper: lessonChapter,
+                                    time: lessonTimeup,
+                                    name: lessonName,
+                                    description: lessonDescription,
+                                    imageURL: "123",
+                                    contentURL: lessonContent)
+        return lesson
     }
 }
 

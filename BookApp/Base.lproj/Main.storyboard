@@ -356,7 +356,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="showDetailTeacher:" destination="A3S-OK-01M" eventType="touchUpInside" id="yyN-GR-ha9"/>
+                                    <action selector="showHotChanel:" destination="A3S-OK-01M" eventType="touchUpInside" id="EUp-aA-QSA"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9i-6q-x6c">
@@ -1332,7 +1332,7 @@
                         <outlet property="bottomView" destination="rfd-4A-nBB" id="hkW-sI-YeK"/>
                         <outlet property="content" destination="LzT-TF-0l9" id="IEA-MO-f5a"/>
                         <outlet property="date" destination="ohx-mY-ZU9" id="0Ij-a5-f77"/>
-                        <outlet property="hightOfNoteView" destination="sFb-Ap-B93" id="2q8-lc-KsS"/>
+                        <outlet property="highOfNoteView" destination="sFb-Ap-B93" id="4rv-oS-JmP"/>
                         <outlet property="note" destination="ngC-in-hQ7" id="5no-RT-hZT"/>
                     </connections>
                 </viewController>

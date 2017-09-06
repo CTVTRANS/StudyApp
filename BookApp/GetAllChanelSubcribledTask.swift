@@ -1,5 +1,5 @@
 //
-//  GetChanelTask.swift
+//  GetAllChanelSubcribledTask.swift
 //  BookApp
 //
 //  Created by kien le van on 9/5/17.
@@ -9,20 +9,16 @@
 import UIKit
 import LCNetwork
 
-class GetChanelSuggestTask: BaseTaskNetwork {
-    
-    private let _lang: Int!
-    private let _limit: Int!
-    private let _page: Int!
-    
-    init(lang: Int, limit: Int, page: Int) {
-        _lang = lang
-        _limit = limit
-        _page = page
-    }
+class GetAllChanelSubcribledTask: BaseTaskNetwork {
 
+    private let _memberID: Int!
+    
+    init(memberID: Int) {
+        _memberID = memberID
+    }
+    
     override func path() -> String! {
-        return getAllChanelSuggestURL
+        return getAllSubcribled
     }
     
     override func method() -> String! {
@@ -30,7 +26,7 @@ class GetChanelSuggestTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["lang": _lang, "limit": _limit, "page": _page]
+        return ["member_id": _memberID]
     }
     
     override func data(withResponse response: Any!) -> Any! {
@@ -40,7 +36,8 @@ class GetChanelSuggestTask: BaseTaskNetwork {
                 let chanel = parseChanel(dictionary: dictionary)
                 listChanel.append(chanel)
             }
+            Constants.sharedInstance.listChanelSubcribled = listChanel
         }
-        return listChanel
+        return true
     }
 }

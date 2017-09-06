@@ -1,15 +1,15 @@
 //
-//  GetChanelTask.swift
+//  GetHotChanelTask.swift
 //  BookApp
 //
-//  Created by kien le van on 9/5/17.
+//  Created by kien le van on 9/6/17.
 //  Copyright © 2017 Le Cong. All rights reserved.
 //
 
 import UIKit
 import LCNetwork
 
-class GetChanelSuggestTask: BaseTaskNetwork {
+class GetHotChanelTask: BaseTaskNetwork {
     
     private let _lang: Int!
     private let _limit: Int!
@@ -20,9 +20,9 @@ class GetChanelSuggestTask: BaseTaskNetwork {
         _limit = limit
         _page = page
     }
-
+    
     override func path() -> String! {
-        return getAllChanelSuggestURL
+        return getHotChanel
     }
     
     override func method() -> String! {
