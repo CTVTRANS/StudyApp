@@ -10,9 +10,8 @@ import UIKit
 
 class NavigationCustom: UIView {
     
-//    var callBackMessageNotification = {}
-//    var callBackVideoNotification = {}
-//    var callBackSearchNotification = {}
+    @IBOutlet weak var rightButton: UIButton!
+    
     var callBackTopButton:((_ typeButton: TopButton) -> Void)?
 
     override init(frame: CGRect) {

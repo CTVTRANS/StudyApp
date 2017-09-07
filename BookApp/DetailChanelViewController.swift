@@ -51,8 +51,8 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     func setupUI() {
-        downloadAllButton.layer.borderColor = UIColor.rgb(r: 245, g: 166, b: 35).cgColor
-        subcribedTeacher.layer.borderColor = UIColor.rgb(r: 245, g: 166, b: 35).cgColor
+        downloadAllButton.layer.borderColor = UIColor.rgb(r: 254, g: 153, b: 0).cgColor
+        subcribedTeacher.layer.borderColor = UIColor.rgb(r: 254, g: 153, b: 0).cgColor
         table.tableFooterView = UIView()
         
         chanelImage.sd_setImage(with: URL(string: chanel.imageTeacherURL))

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DFHeiStd-W5.otf">
+            <string>DFHeiStd-W5</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Setting View Controller-->
+        <scene sceneID="DSt-HA-qLH">
+            <objects>
+                <viewController storyboardIdentifier="SettingViewController" id="aqq-Kc-Bdw" customClass="SettingViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y7q-nB-Ebt"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fvo-zl-dNX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jr3-79-LGF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sbY-3F-8We">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="aqq-Kc-Bdw" id="BuL-1M-ewG"/>
+                                    <outlet property="delegate" destination="aqq-Kc-Bdw" id="RdE-Sq-RwT"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="sbY-3F-8We" firstAttribute="leading" secondItem="Jr3-79-LGF" secondAttribute="leading" id="FJu-69-dxR"/>
+                            <constraint firstAttribute="trailing" secondItem="sbY-3F-8We" secondAttribute="trailing" id="Xqt-TZ-d89"/>
+                            <constraint firstItem="Fvo-zl-dNX" firstAttribute="top" secondItem="sbY-3F-8We" secondAttribute="bottom" id="kOk-Tt-sUl"/>
+                            <constraint firstItem="sbY-3F-8We" firstAttribute="top" secondItem="Jr3-79-LGF" secondAttribute="top" id="plz-EX-1iU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="table" destination="sbY-3F-8We" id="6u7-gM-63q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oxA-PK-FBS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="176.25" y="205.98591549295776"/>
+        </scene>
+        <!--Myprofile View Controller-->
+        <scene sceneID="8XL-ew-ZHo">
+            <objects>
+                <viewController storyboardIdentifier="MyprofileViewController" id="Aci-7N-rH9" customClass="MyprofileViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eui-C1-hmS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Foi-RV-WRP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UMv-dc-xcp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zb-se-q6I">
+                                <rect key="frame" x="0.0" y="15" width="320" height="115"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="gd0-rd-QGS">
+                                        <rect key="frame" x="207" y="20" width="75" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="Phv-jU-Fd3">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                            <constraint firstAttribute="width" secondItem="gd0-rd-QGS" secondAttribute="height" multiplier="1:1" id="sNn-Vm-Fow"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_next" translatesAutoresizingMaskIntoConstraints="NO" id="m2K-uq-9mO">
+                                        <rect key="frame" x="290" y="50.5" width="14" height="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="14" id="Cvh-wO-p9p"/>
+                                            <constraint firstAttribute="height" constant="14" id="WHC-Ov-bEB"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tD7-Dp-avd">
+                                        <rect key="frame" x="20" y="50.5" width="32" height="14"/>
+                                        <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
+                                        <color key="textColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="gd0-rd-QGS" secondAttribute="bottom" constant="20" id="CrH-Cq-Olb">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="trailing" secondItem="m2K-uq-9mO" secondAttribute="trailing" constant="16" id="GrC-bR-gaf"/>
+                                    <constraint firstItem="m2K-uq-9mO" firstAttribute="leading" secondItem="gd0-rd-QGS" secondAttribute="trailing" constant="8" id="QuG-m0-ZTk"/>
+                                    <constraint firstItem="m2K-uq-9mO" firstAttribute="centerY" secondItem="0zb-se-q6I" secondAttribute="centerY" id="fS8-Xl-UsY"/>
+                                    <constraint firstAttribute="height" constant="115" id="hoQ-2C-qKd">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstItem="gd0-rd-QGS" firstAttribute="top" secondItem="0zb-se-q6I" secondAttribute="top" constant="20" id="hzn-AN-WgN">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstItem="tD7-Dp-avd" firstAttribute="centerY" secondItem="0zb-se-q6I" secondAttribute="centerY" id="oqm-Wd-mGP"/>
+                                    <constraint firstItem="tD7-Dp-avd" firstAttribute="leading" secondItem="0zb-se-q6I" secondAttribute="leading" constant="20" id="x3K-bF-Ols"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R3I-Am-GSq">
+                                <rect key="frame" x="0.0" y="130" width="320" height="438"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Aci-7N-rH9" id="UOr-I2-fVK"/>
+                                    <outlet property="delegate" destination="Aci-7N-rH9" id="wTJ-Ma-Xca"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="0zb-se-q6I" firstAttribute="leading" secondItem="UMv-dc-xcp" secondAttribute="leading" id="67c-Bv-647"/>
+                            <constraint firstItem="R3I-Am-GSq" firstAttribute="leading" secondItem="UMv-dc-xcp" secondAttribute="leading" id="OiT-Il-NWA"/>
+                            <constraint firstItem="Foi-RV-WRP" firstAttribute="top" secondItem="R3I-Am-GSq" secondAttribute="bottom" id="Pfx-hf-j6Z"/>
+                            <constraint firstAttribute="trailing" secondItem="0zb-se-q6I" secondAttribute="trailing" id="dkX-8J-XPF"/>
+                            <constraint firstAttribute="trailing" secondItem="R3I-Am-GSq" secondAttribute="trailing" id="gLS-Yk-zZd"/>
+                            <constraint firstItem="0zb-se-q6I" firstAttribute="top" secondItem="UMv-dc-xcp" secondAttribute="top" constant="15" id="xEj-Qv-WN9">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                            <constraint firstItem="R3I-Am-GSq" firstAttribute="top" secondItem="0zb-se-q6I" secondAttribute="bottom" id="zSU-oU-jWT">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="avatar" destination="gd0-rd-QGS" id="819-P6-tG8"/>
+                        <outlet property="heightOfAvatar" destination="Phv-jU-Fd3" id="QJB-xc-WNZ"/>
+                        <outlet property="table" destination="R3I-Am-GSq" id="jxu-TG-6HU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kJO-Fv-DnK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="920.625" y="205.98591549295776"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_arrow_next" width="64" height="64"/>
+        <image name="userPlaceHolder" width="320" height="213"/>
+    </resources>
+</document>
