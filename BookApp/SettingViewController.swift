@@ -16,6 +16,8 @@ class SettingViewController: BaseViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "設置"
+        let backItem = UIBarButtonItem()
+        navigationItem.backBarButtonItem = backItem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "幫助中心",
                                                             style: .done,
                                                             target: self,
@@ -75,6 +77,7 @@ class SettingViewController: BaseViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SettingViewCell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingViewCell
         let secsionObject = arraySetting[indexPath.section]
+        cell.name.textColor = UIColor.black
         cell.binData(settingCell: secsionObject.arr[indexPath.row])
         return cell
     }

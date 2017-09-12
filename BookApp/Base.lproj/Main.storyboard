@@ -34,7 +34,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fhx-kl-zT0" customClass="NavigationCustom" customModule="BookApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="cd4-BB-or2"/>
                                 </constraints>
@@ -234,7 +234,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBU-eH-7HV" customClass="NavigationCustom" customModule="BookApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="cDg-ar-bwa"/>
                                 </constraints>
@@ -293,7 +293,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEo-Il-7e0">
-                                                <rect key="frame" x="27" y="33" width="34" height="15"/>
+                                                <rect key="frame" x="27" y="34" width="34" height="15"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -430,7 +430,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ro4-C9-m0M" customClass="NavigationCustom" customModule="BookApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="ieX-TM-O3G"/>
                                 </constraints>
@@ -477,7 +477,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snH-4c-JSq">
-                                        <rect key="frame" x="230" y="84" width="39" height="17"/>
+                                        <rect key="frame" x="222" y="84" width="39" height="17"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -486,7 +486,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ct7-oQ-opC">
-                                        <rect key="frame" x="230" y="55" width="34" height="15"/>
+                                        <rect key="frame" x="222" y="55" width="34" height="15"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -510,13 +510,13 @@
                                     </constraint>
                                     <constraint firstAttribute="trailing" secondItem="23W-an-muQ" secondAttribute="trailing" id="B1S-uN-bzk"/>
                                     <constraint firstItem="snH-4c-JSq" firstAttribute="centerY" secondItem="lXV-tC-Ff5" secondAttribute="centerY" id="C4J-tM-39v"/>
-                                    <constraint firstItem="snH-4c-JSq" firstAttribute="leading" secondItem="lXV-tC-Ff5" secondAttribute="trailing" constant="16" id="DLW-Rq-K0J"/>
+                                    <constraint firstItem="snH-4c-JSq" firstAttribute="leading" secondItem="lXV-tC-Ff5" secondAttribute="trailing" constant="8" id="DLW-Rq-K0J"/>
                                     <constraint firstAttribute="bottom" secondItem="5nc-Zo-xH7" secondAttribute="bottom" constant="30" id="F7P-KU-pEf">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </constraint>
-                                    <constraint firstItem="ct7-oQ-opC" firstAttribute="leading" secondItem="U9h-Mt-DQW" secondAttribute="trailing" constant="16" id="J4S-ms-g8z"/>
+                                    <constraint firstItem="ct7-oQ-opC" firstAttribute="leading" secondItem="U9h-Mt-DQW" secondAttribute="trailing" constant="8" id="J4S-ms-g8z"/>
                                     <constraint firstItem="23W-an-muQ" firstAttribute="top" secondItem="pVr-0Y-bD4" secondAttribute="top" id="Ob3-DN-glk"/>
                                     <constraint firstItem="U9h-Mt-DQW" firstAttribute="leading" secondItem="5nc-Zo-xH7" secondAttribute="trailing" constant="16" id="Oil-nM-mB3"/>
                                     <constraint firstItem="lXV-tC-Ff5" firstAttribute="leading" secondItem="5nc-Zo-xH7" secondAttribute="trailing" constant="16" id="Q9b-9K-myl"/>
@@ -738,7 +738,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="meD-IQ-ijD" customClass="NavigationCustom" customModule="BookApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="eQW-65-uDn"/>
                                 </constraints>
@@ -898,7 +898,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0s-1h-fAa">
-                                                <rect key="frame" x="294" y="144.5" width="18" height="9"/>
+                                                <rect key="frame" x="294" y="145.5" width="18" height="9"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="9"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

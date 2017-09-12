@@ -42,7 +42,7 @@ class ChanelSubscribeController: BaseViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ChanelViewCell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChanelViewCell
         cell.binData(chanel: listChanelSubcribled[indexPath.row])
-        cell.subcribleButton.setTitle("unsubcrible", for: .normal)
+        cell.subcribleButton.setTitle("退訂", for: .normal)
         cell.callBackButton = {
             let unSubcrible: SubcribleChanelTask =
                 SubcribleChanelTask(memberID: 1,

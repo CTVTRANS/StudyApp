@@ -83,6 +83,20 @@ extension BaseTaskNetwork {
                                     contentURL: lessonContent)
         return lesson
     }
+    
+    func parseGroup(dictionary: [String: Any]) -> SecrectGroup {
+        let idGroup = dictionary["id"] as? Int ?? 999
+        let titleGroup = dictionary["title"] as? String ?? " "
+        let imageGroup = dictionary["image"] as? String ?? " "
+        let idWechatGroup = dictionary["wechat"] as? String ?? " "
+        let adressGroup = dictionary["address"] as? String ?? " "
+        let group = SecrectGroup(id: idGroup,
+                                 name: titleGroup,
+                                 imageURL: imageGroup,
+                                 idWechat: idWechatGroup,
+                                 adress: adressGroup)
+        return group
+    }
 }
 
 extension UILabel {

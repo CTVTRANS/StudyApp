@@ -18,7 +18,7 @@
         <!--Setting View Controller-->
         <scene sceneID="DSt-HA-qLH">
             <objects>
-                <viewController storyboardIdentifier="SettingViewController" id="aqq-Kc-Bdw" customClass="SettingViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingViewController" hidesBottomBarWhenPushed="YES" id="aqq-Kc-Bdw" customClass="SettingViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y7q-nB-Ebt"/>
                         <viewControllerLayoutGuide type="bottom" id="Fvo-zl-dNX"/>
@@ -85,10 +85,9 @@
                                             <constraint firstAttribute="height" constant="14" id="WHC-Ov-bEB"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tD7-Dp-avd">
-                                        <rect key="frame" x="20" y="50.5" width="32" height="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="頭像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tD7-Dp-avd">
+                                        <rect key="frame" x="20" y="50.5" width="28" height="14"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
-                                        <color key="textColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>

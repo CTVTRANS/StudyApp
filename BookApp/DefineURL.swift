@@ -11,7 +11,6 @@ import UIKit
 let getBookTypeURL: String = "/api/book/list_category"
 let getBookForEachTypeURL: String = "/api/book/list_post_by_category"
 let getBookSuggestForTypeURL: String = "/api/book/list_suggest_posts_by_category"
-
 let getBookNewestURL: String = "/api/book/list_latest_posts"
 let getAllBookSuggestURL: String = "/api/book/list_all_suggest_posts"
 let getAllBookFreeURL: String = "/api/book/list_free"
@@ -33,6 +32,13 @@ let likeUnlikeURL: String = "/api/like/like"
 let bookMarkURL: String = "/api/collection/collect"
 let checkBookMarkedURL: String = "/api/collection/check_collect"
 let getAllCommentURL: String = "/api/comment/latest"
+
+let getProfileMemberURL: String = "/api/member/detail"
+
+let getAllGroupURL: String = "/api/group/list_group"
+let getAllGroupJoinedURL: String = "/api/group/list_subscribe"
+let getListNewsInGroupURL: String = "/api/group/list_post_by_group"
+let subcribleGroupURL: String = "/api/group/subscribe"
 
 let css: String = "<style> img{max-width:100%} </style>"
 

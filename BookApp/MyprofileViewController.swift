@@ -17,20 +17,36 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.backBarButtonItem?.title = "Back"
-        navigationController?.navigationBar.backItem?.title = "Back"
+        setupNavigationBar()
         table.register(UINib.init(nibName: "SettingViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.tableFooterView = UIView()
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
         customData()
     }
+    
+    func setupNavigationBar() {
+        let label = UILabel(frame: CGRect(x:0, y:0, width:150, height:50))
+        label.backgroundColor = UIColor.clear
+        label.numberOfLines = 2
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textAlignment = .center
+        label.textColor = UIColor.rgb(r: 82, g: 82, b: 82)
+        label.text = "個人信息\n會員編號: 123456789"
+        navigationItem.titleView = label
+        
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToRootView))
+    }
+    
+    func backToRootView() {
+        navigationController?.popToRootViewController(animated: true)
+    }
 
     func customData() {
-        let setting1 = SettingCellModel(name: "1", specialName: "", arrrowDetail: true, nameDetail: "")
-        let setting2 = SettingCellModel(name: "2", specialName: "", arrrowDetail: true, nameDetail: "")
-        let setting3 = SettingCellModel(name: "3", specialName: "", arrrowDetail: true, nameDetail: "")
-        let setting4 = SettingCellModel(name: "4", specialName: "", arrrowDetail: true, nameDetail: "")
-        let setting5 = SettingCellModel(name: "", specialName: "hello", arrrowDetail: false, nameDetail: "")
+        let setting1 = SettingCellModel(name: "姓名", specialName: "", arrrowDetail: true, nameDetail: "")
+        let setting2 = SettingCellModel(name: "郵箱", specialName: "", arrrowDetail: true, nameDetail: "")
+        let setting3 = SettingCellModel(name: "密碼", specialName: "", arrrowDetail: true, nameDetail: "")
+        let setting4 = SettingCellModel(name: "完善資料", specialName: "", arrrowDetail: true, nameDetail: "")
+        let setting5 = SettingCellModel(name: "", specialName: "退出登錄", arrrowDetail: false, nameDetail: "")
         
         let arraySetting1 = ListSetting(array: [setting1, setting2, setting3, setting4])
         let arraySetting2 = ListSetting(array: [setting5])
@@ -69,6 +85,8 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SettingViewCell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingViewCell
         let secsionObject = arraySetting[indexPath.section]
+        cell.name.textColor = UIColor.black
+        cell.specialName.textColor = UIColor.black
         cell.binData(settingCell: secsionObject.arr[indexPath.row])
         return cell
     }

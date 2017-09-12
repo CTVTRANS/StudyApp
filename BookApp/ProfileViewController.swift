@@ -21,6 +21,20 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let getProfileTask: GetProfileMemberTask = GetProfileMemberTask(id: 1)
+        requestWithTask(task: getProfileTask, success: { (data) in
+            let member: ProfileMember = Constants.sharedInstance.memberProfile!
+            self.avatar.sd_setImage(with: URL(string: member.avatar), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
+            self.point.text = String(member.point)
+            if member.level != 1 {
+                self.status.text = "NO VIP"
+            } else {
+                self.status.text = "VIP"
+            }
+        }) { (error) in
+            
+        }
+        
         customData()
         setupCallBack()
         table.register(UINib.init(nibName: "SettingViewCell", bundle: nil), forCellReuseIdentifier: "cell")
@@ -33,14 +47,15 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    
+    
     func customData() {
-        let setting1 = SettingCellModel(name: "筆記漂流", specialName: "", arrrowDetail: true, nameDetail: "")
-        let setting2 = SettingCellModel(name: "線下活動", specialName: "", arrrowDetail: true, nameDetail: "")
-        let setting3 = SettingCellModel(name: "積分商城", specialName: "", arrrowDetail: true, nameDetail: "")
-        let setting4 = SettingCellModel(name: "購物記錄", specialName: "", arrrowDetail: true, nameDetail: "")
-        let setting5 = SettingCellModel(name: "會員狀態", specialName: "", arrrowDetail: true, nameDetail: "")
-        let arraySetting1 = ListSetting(array: [setting1, setting2, setting3, setting4])
-        let arraySetting2 = ListSetting(array: [setting5])
+        let setting1 = SettingCellModel(name: "線下活動", specialName: "", arrrowDetail: true, nameDetail: "")
+        let setting2 = SettingCellModel(name: "積分商城", specialName: "", arrrowDetail: true, nameDetail: "")
+        let setting3 = SettingCellModel(name: "購物記錄", specialName: "", arrrowDetail: true, nameDetail: "")
+        let setting4 = SettingCellModel(name: "會員狀態", specialName: "", arrrowDetail: true, nameDetail: "")
+        let arraySetting1 = ListSetting(array: [setting1, setting2, setting3])
+        let arraySetting2 = ListSetting(array: [setting4])
         arraySetting.append(arraySetting1)
         arraySetting.append(arraySetting2)
     }
@@ -91,6 +106,20 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
+         let myStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+        if indexPath.section == 1 {
+            let vc: VipDetailViewController = myStoryboard.instantiateViewController(withIdentifier: "VipDetailViewController") as! VipDetailViewController
+            navigationController?.pushViewController(vc, animated: true)
+            return
+        }
+        if indexPath.row == 0 {
+            let vc: ActivityOfflineViewController = myStoryboard.instantiateViewController(withIdentifier: "ActivityOfflineViewController") as! ActivityOfflineViewController
+            navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 1 {
+            
+        } else {
+            
+        }
     }
     
     func setupCallBack() {
