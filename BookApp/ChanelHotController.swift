@@ -19,6 +19,18 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
         table.estimatedRowHeight = 140
         table.register(UINib.init(nibName: "ChanelViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.tableFooterView = UIView()
+//        let getHotChanel: GetHotChanelTask = GetHotChanelTask(lang: Constants.sharedInstance.language, limit: 20, page: 1)
+//        requestWithTask(task: getHotChanel, success: { (data) in
+//            self.listChanelHot = data as! [Chanel]
+//            self.table.reloadData()
+//        }) { (error) in
+//            print("")
+//        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
         let getHotChanel: GetHotChanelTask = GetHotChanelTask(lang: Constants.sharedInstance.language, limit: 20, page: 1)
         requestWithTask(task: getHotChanel, success: { (data) in
             self.listChanelHot = data as! [Chanel]
@@ -26,11 +38,6 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
         }) { (error) in
             print("")
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -45,23 +52,24 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
         let cell: ChanelViewCell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChanelViewCell
         let chanel = listChanelHot[indexPath.row]
         cell.binData(chanel: chanel)
-        for chanelHot in Constants.sharedInstance.listChanelSubcribled! {
+        for chanelHot in Constants.sharedInstance.listChanelSubcribled {
             if chanel.idChanel ==  chanelHot.idChanel{
-                cell.subcribleButton.setTitle("subcribled", for: .normal)
+                cell.subcribleButton.setTitle("  已訂閱頻道  ", for: .normal)
                 cell.subcribleButton.isEnabled = false
                 break
             } else {
-                 cell.subcribleButton.setTitle("sub", for: .normal)
+                 cell.subcribleButton.setTitle("  訂閱頻道  ", for: .normal)
             }
         }
         cell.callBackButton = { [weak self] in
             let subcrible: SubcribleChanelTask =
                 SubcribleChanelTask(memberID: 1,
-                                    chanelID: self!.listChanelHot[indexPath.row].idChanel)
+                                    chanelID: chanel.idChanel)
             self?.requestWithTask(task: subcrible, success: { (data) in
                 let status: Subcrible = data as! Subcrible
                 if status == Subcrible.subcrible {
-                    cell.subcribleButton.setTitle("subcribled", for: .normal)
+                    Constants.sharedInstance.listChanelSubcribled.append(chanel)
+                    cell.subcribleButton.setTitle("  已訂閱頻道  ", for: .normal)
                     cell.subcribleButton.isEnabled = false
                 }
             }) { (error) in

@@ -8,22 +8,28 @@
 
 import UIKit
 import LCNetwork
+import AFNetworking
 
 class BaseViewController: UIViewController {
     
     var activity: UIActivityIndicatorView?
     var backGroundview: UIView?
-
+    let managerNetWork = AFNetworkReachabilityManager.shared()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        AFNetworkReachabilityManager.shared().startMonitoring()
     }
     
     func requestWithTask(task: BaseTaskNetwork, success: @escaping BlockSuccess, failure: @escaping BlockFailure) {
-        task.request(blockSucess: { (data) in
-            success(data)
-        }) { (error) in
-            failure(error)
+        if AFNetworkReachabilityManager.shared().isReachable {
+            task.request(blockSucess: { (data) in
+                success(data)
+            }) { (error) in
+                failure(error)
+            }
+        } else {
+            _ = UIAlertController.showAlertWith(title: "Error", message: "No internet acess", inViewController: self)
         }
     }
     

@@ -14,7 +14,8 @@ class NotificationVideoViewController: BaseViewController, UITableViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        table.tableFooterView = UIView()
+        table.estimatedRowHeight = 140
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,6 +26,11 @@ class NotificationVideoViewController: BaseViewController, UITableViewDelegate, 
         let cell: VideoNotificationCell = table.dequeueReusableCell(withIdentifier: "VideoNotificationCell", for: indexPath) as! VideoNotificationCell
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     @IBAction func pressedBackButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

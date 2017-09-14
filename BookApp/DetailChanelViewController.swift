@@ -23,12 +23,12 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     @IBOutlet weak var downloadAllButton: UIButton!
     @IBOutlet weak var subcribedTeacher: UIButton!
     @IBOutlet weak var heightImageChanel: NSLayoutConstraint!
-
     var chanel: Chanel!
+    
     private var lessonUploaded = [Lesson]()
     private var loadedListLessonUpload = false
     private var loadedNumberView = false
-    private var currentlesson: Int?
+    private var oldlessonPlay: Int?
     private var player: AVPlayer?
     private var playerItem: AVPlayerItem?
     
@@ -42,7 +42,6 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         var heightHeader: CGFloat = 188
         heightHeader.adjustsSizeToRealIPhoneSize = 188
         table.tableHeaderView?.frame.size.height = heightHeader
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,10 +90,12 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     func checkSubcribleed() {
-        for chanelSubcribled in Constants.sharedInstance.listChanelSubcribled! {
+        let allChanelSubcrible:[Chanel] = Constants.sharedInstance.listChanelSubcribled
+        for chanelSubcribled in allChanelSubcrible {
             if chanel.idChanel == chanelSubcribled.idChanel {
-                subcribedTeacher.setTitle("subcribled", for: .normal)
+                subcribedTeacher.setTitle("  已訂閱頻道  ", for: .normal)
                 subcribedTeacher.isEnabled = false
+                break
             }
         }
     }
@@ -108,7 +109,11 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         let lesson: Lesson = lessonUploaded[indexPath.row]
         cell.binData(chap: lesson)
         if lesson.isPlay == 1 {
-            cell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+            if lesson.pause == 1 {
+                cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
+            } else {
+                cell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+            }
         } else {
             cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
         }
@@ -117,7 +122,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             case "download":
                 print("download")
             case "play":
-                self?.playAudio(lesson: lesson, oldLessonPlay: indexPath.row)
+                self?.playAudio(lesson: lesson, current: indexPath.row)
             default :
                 return
             }
@@ -125,17 +130,26 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         return cell
     }
     
-    func playAudio(lesson: Lesson, oldLessonPlay: Int) {
-        player = nil
+    func playAudio(lesson: Lesson, current: Int) {
         if lesson.isPlay == 1 {
-            lesson.isPlay = 0
+            if  player?.rate == 1 {
+                lesson.pause = 1
+                player?.pause()
+            } else {
+                lesson.pause = 0
+                player?.play()
+            }
             self.table.reloadData()
             return
         }
-        if currentlesson != nil {
-            lessonUploaded[(currentlesson!)].isPlay = 0
+        player = nil
+        lesson.chanelOwner = chanel.nameChanel
+        Constants.sharedInstance.historyViewChanelLesson.append(lesson)
+        if oldlessonPlay != nil {
+            lessonUploaded[(oldlessonPlay!)].isPlay = 0
+            lessonUploaded[(oldlessonPlay!)].pause = 0
         }
-        currentlesson = oldLessonPlay
+        oldlessonPlay = current
         lesson.isPlay = 1
         let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
         requestWithTask(task: viewed, success: { (data) in
@@ -169,7 +183,8 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         requestWithTask(task: subcrible, success: { (data) in
             let status: Subcrible = data as! Subcrible
             if status == Subcrible.subcrible {
-                self.subcribedTeacher.setTitle("subcriblred", for: .normal)
+                Constants.sharedInstance.listChanelSubcribled.append(self.chanel)
+                self.subcribedTeacher.setTitle("  已訂閱頻道  ", for: .normal)
                 self.subcribedTeacher.isEnabled = false
             }
         }) { (error) in

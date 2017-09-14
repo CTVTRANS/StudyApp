@@ -36,10 +36,14 @@ enum BottomButton: Int {
 }
 
 class Constants: NSObject {
-    var listBookType: [BookType]?
-    var listChanelSubcribled: [Chanel]?
-    var memberProfile: ProfileMember?
-    var listGroupJoined: [SecrectGroup]?
+    var listBookType: [BookType] = []
+    var listChanelSubcribled: [Chanel] = []
+    var listGroupJoined: [SecrectGroup] = []
     var language: Int = 1
+    
+    var historyViewChanelLesson:[Lesson] = []
+    var memberProfile: ProfileMember?
+    var listDownloadLesson: [Lesson] = []
+    var listDownloadBook: [Book] = []
     static let sharedInstance = Constants()
 }

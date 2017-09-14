@@ -98,9 +98,10 @@ class SettingViewController: BaseViewController, UITableViewDataSource, UITableV
         case 1:
             print("1")
         case 2:
-            print("2")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "AppInfomationViewController") as! AppInfomationViewController
+            navigationController?.pushViewController(vc, animated: true)
         default:
-            print("3")
+            break
         }
     }
 

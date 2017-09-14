@@ -19,6 +19,8 @@ class Book {
     private var _audio, _video: String!
     private var _content, _desCription: String!
     private var _numberLike, _numberComment, _numberBookMark: Int!
+    private var _isPlay: Int = 0
+    private var _pause: Int = 0
     
     init(id: Int,
          type: Int,
@@ -68,33 +70,19 @@ class Book {
     }
     
     var numberHumanReaed: Int {
-        get {
-            return _numberHumanReaded!
-        }
-        set {
-            _numberHumanReaded = newValue
-        }
+        get { return _numberHumanReaded!}
+        set { _numberHumanReaded = newValue}
     }
     var numberLike: Int {
-        get {
-            return _numberLike
-        }
-        set {
-            _numberLike = newValue
-        }
+        get { return _numberLike}
+        set { _numberLike = newValue}
     }
     var numberComment: Int {
-        get {
-            return _numberComment
-        }
-        set {
-            _numberComment = newValue
-        }
+        get { return _numberComment}
+        set { _numberComment = newValue}
     }
     var numberBookMark: Int {
-        get {
-            return _numberBookMark
-        }
+        return _numberBookMark
     }
     var timeUpBook: String {
         return _timeUpBook!
@@ -113,5 +101,13 @@ class Book {
     }
     var description: String {
         return _desCription!
+    }
+    var isPlay: Int {
+        get { return _isPlay}
+        set { _isPlay = newValue}
+    }
+    var pause: Int {
+        get { return _pause}
+        set { _pause = newValue}
     }
 }

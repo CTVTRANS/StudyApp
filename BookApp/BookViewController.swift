@@ -45,14 +45,14 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         let getTypeTask: GetTypeOfBookTask = GetTypeOfBookTask()
         showActivity(inView: self.view)
         requestWithTask(task: getTypeTask, success: { (data) in
-            self.bookTypeArray = Constants.sharedInstance.listBookType!
+            self.bookTypeArray = Constants.sharedInstance.listBookType
             self.tableBookType.reloadData()
             self.loadedTypeBook = true
             if (self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest) {
                  self.stopActivityIndicator()
             }
         }) { (error) in
-            
+            self.stopActivityIndicator()
         }
         
         let getNewestBookTask: GetBookNewestTask = GetBookNewestTask()
@@ -66,7 +66,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
             let dateupBook = self.newestBook.timeUpBook.components(separatedBy: " ")
             self.newestBookTimeUp.text = dateupBook[0]
         }) { (error) in
-            
+            self.stopActivityIndicator()
         }
         
         let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest(limit: 3, page: 1)
@@ -77,7 +77,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
                 self.stopActivityIndicator()
             }
         }) { (error) in
-            
+            self.stopActivityIndicator()
         }
         
         let getBookFree: GetBookFree = GetBookFree(limit: 3, page: 1)
@@ -88,7 +88,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
                 self.stopActivityIndicator()
             }
         }) { (error) in
-            
+            self.stopActivityIndicator()
         }
     }
     

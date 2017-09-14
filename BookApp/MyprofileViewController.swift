@@ -93,6 +93,38 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 1 {
+            print("logout")
+            return
+        }
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
+        switch indexPath.row {
+        case TypeView.name.rawValue:
+            vc.typeViewShow = TypeView.name
+        case TypeView.email.rawValue:
+            vc.typeViewShow = TypeView.email
+        case TypeView.pass.rawValue:
+            vc.typeViewShow = TypeView.pass
+        case TypeView.information.rawValue:
+            vc.typeViewShow = TypeView.information
+        default:
+            break
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
 
+    @IBAction func pressedChangeAvatar(_ sender: Any) {
+        let _ =
+            UIAlertController.showActionSheetWith(arrayTitle: ["pick from iphone", "use camera"],
+                                                  handlerAction: { (index) in
+                                                    switch index {
+                                                    case 0:
+                                                        print("pick from iphone")
+                                                    case 1:
+                                                        print("use camera")
+                                                    default:
+                                                        break
+                                                    }
+            }, in: self)
+    }
 }

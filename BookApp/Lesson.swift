@@ -15,6 +15,8 @@ class Lesson: NSObject {
     private let _name, _description: String!
     private let _imageChapterURL, _contentChapterURL: String!
     private var _isPlay: Int = 0
+    private var _pause: Int = 0
+    private var _ownerOFChanel: String?
     
     init(id: Int, chaper: Int, time: String, name: String, description: String,
          imageURL: String, contentURL: String) {
@@ -53,6 +55,22 @@ class Lesson: NSObject {
         }
         set {
             _isPlay = newValue
+        }
+    }
+    var pause: Int {
+        get {
+            return _pause
+        }
+        set {
+            _pause = newValue
+        }
+    }
+    var chanelOwner: String {
+        get {
+            return _ownerOFChanel!
+        }
+        set {
+            _ownerOFChanel = newValue
         }
     }
 }

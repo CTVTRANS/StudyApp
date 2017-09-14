@@ -14,7 +14,8 @@ class NotificationMessageViewController: BaseViewController, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        table.tableFooterView = UIView()
+        table.estimatedRowHeight = 140
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,6 +31,10 @@ class NotificationMessageViewController: BaseViewController, UITableViewDelegate
         table.deselectRow(at: indexPath, animated: true)
         let vc: DetailNotificationMessageController = self.storyboard?.instantiateViewController(withIdentifier: "DetailNotificationMessageController") as! DetailNotificationMessageController
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 
     @IBAction func pressedReadAllMessage(_ sender: Any) {

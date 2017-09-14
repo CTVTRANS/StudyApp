@@ -99,6 +99,40 @@ extension BaseTaskNetwork {
     }
 }
 
+extension UIAlertController {
+    class func showAlertWith(title: String, message: String, inViewController: UIViewController) {
+        let alertView = UIAlertController(title: title,
+                                          message: message,
+                                          preferredStyle: UIAlertControllerStyle.alert)
+        let action = UIAlertAction(title: "OK",
+                                   style: UIAlertActionStyle.default) { (UIAlertAction) in
+                                    alertView.dismiss(animated: true, completion: nil)
+        }
+        alertView.addAction(action)
+        inViewController.present(alertView, animated: true, completion: nil)
+    }
+    
+    class func showActionSheetWith(arrayTitle: [String],
+                                   handlerAction: @escaping ((_ index: Int) -> Void),
+                                   in viewController: UIViewController) {
+        let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        for index in 0..<arrayTitle.count {
+            let action = UIAlertAction(title: arrayTitle[index],
+                                       style: .default,
+                                       handler: { (UIAlertAction) in
+                handlerAction(index)
+            })
+            alertView.addAction(action)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel) { (UIAlertAction) in
+        }
+        alertView.addAction(cancelAction)
+        viewController.present(alertView, animated: true, completion: nil)
+    }
+}
+
+
 extension UILabel {
     var adjustFontToRealIPhoneSize: Bool {
         set {

@@ -26,7 +26,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             self.table.reloadData()
             self.stopActivityIndicator()
         }) { (error) in
-            
+            self.stopActivityIndicator()
         }
         
     }
@@ -85,4 +85,5 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             }
         }
     }
+    
 }

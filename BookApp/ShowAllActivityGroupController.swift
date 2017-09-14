@@ -45,18 +45,18 @@ class ShowAllActivityGroupController: BaseViewController, UITableViewDelegate, U
             }
             
         }) { (eoor) in
-            
+            self.stopActivityIndicator()
         }
         let getGroupJoined: GetGroupJoinedTask = GetGroupJoinedTask(id: 1)
         requestWithTask(task: getGroupJoined, success: { (data) in
-            Constants.sharedInstance.listGroupJoined = data as? [SecrectGroup]
+            Constants.sharedInstance.listGroupJoined = (data as? [SecrectGroup])!
             self.loadedGroupJoined = true
             if self.loadedAllGroup && self.loadedGroupJoined {
                 self.table.reloadData()
                 self.stopActivityIndicator()
             }
         }) { (error) in
-            
+            self.stopActivityIndicator()
         }
     }
     

@@ -15,54 +15,95 @@ class ChanelViewController: BaseViewController {
     @IBOutlet weak var freeChanel: CustomChanelCollection!
     private var loadedChanelSuggest = false
     private var loadedChanelFree = false
+    var currentPageSuggest = 1
+    var currentFree = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: self.view)
         callBack()
         setupCallBackNavigation()
-        suggestChanel.name.text = "--"
-        freeChanel.name.text = "--"
-        let getChanelSuggest: GetChanelSuggestTask =
-            GetChanelSuggestTask(lang: Constants.sharedInstance.language,
-                                 limit: 3,
-                                 page: 1)
-        requestWithTask(task: getChanelSuggest, success: { [weak self] (data) in
-            let suggestArray: [Chanel] = data as! [Chanel]
-            self?.suggestChanel.reloadChanel(arrayChanel: suggestArray)
-            self?.loadedChanelSuggest = true
-            if (self?.loadedChanelSuggest)! && (self?.loadedChanelFree)! {
-                self?.stopActivityIndicator()
-            }
-        }) { (error) in
-            
-        }
-        let getFreeChanel: GetChanelFreeTask =
-            GetChanelFreeTask(lang: Constants.sharedInstance.language,
-                              limit: 3,
-                              page: 1)
-        requestWithTask(task: getFreeChanel, success: { [weak self] (data) in
-            let freeArray: [Chanel] = data as! [Chanel]
-            self?.freeChanel.reloadChanel(arrayChanel: freeArray)
-            self?.loadedChanelFree = true
-            if (self?.loadedChanelSuggest)! && (self?.loadedChanelFree)! {
-                self?.stopActivityIndicator()
-            }
-        }) { (error) in
-            
-        }
+        suggestChanel.name.text = "熱門老師"
+        freeChanel.name.text = "猜你喜歡"
+        getData()
+//        let getChanelSuggest: GetChanelSuggestTask =
+//            GetChanelSuggestTask(lang: Constants.sharedInstance.language,
+//                                 limit: 3,
+//                                 page: 1)
+//        requestWithTask(task: getChanelSuggest, success: { [weak self] (data) in
+//            let suggestArray: [Chanel] = data as! [Chanel]
+//            self?.suggestChanel.reloadChanel(arrayChanel: suggestArray)
+//            self?.loadedChanelSuggest = true
+//            if (self?.loadedChanelSuggest)! && (self?.loadedChanelFree)! {
+//                self?.stopActivityIndicator()
+//            }
+//        }) { (error) in
+//            
+//        }
+//        let getFreeChanel: GetChanelFreeTask =
+//            GetChanelFreeTask(lang: Constants.sharedInstance.language,
+//                              limit: 3,
+//                              page: 1)
+//        requestWithTask(task: getFreeChanel, success: { [weak self] (data) in
+//            let freeArray: [Chanel] = data as! [Chanel]
+//            self?.freeChanel.reloadChanel(arrayChanel: freeArray)
+//            self?.loadedChanelFree = true
+//            if (self?.loadedChanelSuggest)! && (self?.loadedChanelFree)! {
+//                self?.stopActivityIndicator()
+//            }
+//        }) { (error) in
+//            
+//        }
         
         let getChaelSubcrible: GetAllChanelSubcribledTask = GetAllChanelSubcribledTask(memberID: 1)
         requestWithTask(task: getChaelSubcrible, success: { (data) in
             
         }) { (error) in
-            
+            self.stopActivityIndicator()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    func getData() {
+        let getChanelSuggest: GetChanelSuggestTask =
+            GetChanelSuggestTask(lang: Constants.sharedInstance.language,
+                                 limit: 3,
+                                 page: currentPageSuggest)
+        requestWithTask(task: getChanelSuggest, success: { [weak self] (data) in
+            let suggestArray: [Chanel] = data as! [Chanel]
+            if suggestArray.count > 0 {
+                self?.currentPageSuggest += 1
+                self?.suggestChanel.reloadChanel(arrayChanel: suggestArray)
+                self?.loadedChanelSuggest = true
+                if (self?.loadedChanelSuggest)! && (self?.loadedChanelFree)! {
+                    self?.stopActivityIndicator()
+                }
+            }
+        }) { (error) in
+            self.stopActivityIndicator()
+        }
+        let getFreeChanel: GetChanelFreeTask =
+            GetChanelFreeTask(lang: Constants.sharedInstance.language,
+                              limit: 3,
+                              page: currentFree)
+        requestWithTask(task: getFreeChanel, success: { [weak self] (data) in
+            let freeArray: [Chanel] = data as! [Chanel]
+            if freeArray.count > 0 {
+                self?.currentFree += 1
+                self?.freeChanel.reloadChanel(arrayChanel: freeArray)
+                self?.loadedChanelFree = true
+                if (self?.loadedChanelSuggest)! && (self?.loadedChanelFree)! {
+                    self?.stopActivityIndicator()
+                }
+            }
+        }) { (error) in
+            self.stopActivityIndicator()
+        }
+
     }
     
     func callBack() {
@@ -107,5 +148,9 @@ class ChanelViewController: BaseViewController {
         let chanelStoryboard = UIStoryboard(name: "Chanel", bundle: nil)
         let controller: ChanelSubscribeController = chanelStoryboard.instantiateViewController(withIdentifier: "ChanelSubscribeController") as! ChanelSubscribeController
         self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @IBAction func loadMore(_ sender: Any) {
+        getData()
     }
 }

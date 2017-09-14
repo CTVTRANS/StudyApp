@@ -53,11 +53,11 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                 self.table.reloadData()
                 self.stopActivityIndicator()
             }) { (error) in
-                
+                self.stopActivityIndicator()
             }
 
         }) { (error) in
-            
+            self.stopActivityIndicator()
         }
     }
     

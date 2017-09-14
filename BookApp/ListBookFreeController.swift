@@ -17,6 +17,7 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         navigationItem.title = "BookFree"
         table.estimatedRowHeight = 140
+        table.register(UINib.init(nibName: "ListBookFreee", bundle: nil), forCellReuseIdentifier: "cell")
         let getBookFree: GetBookFree = GetBookFree(limit: 10, page: 1)
         showActivity(inView: UIApplication.shared.keyWindow!)
         requestWithTask(task: getBookFree, success: { (data) in
@@ -38,7 +39,7 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ListBookFreeCell = table.dequeueReusableCell(withIdentifier: "ListBookFreeCell", for: indexPath) as! ListBookFreeCell
+        let cell: ListBookFreee = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ListBookFreee
         cell.binData(book: listBook[indexPath.row])
         return cell
     }

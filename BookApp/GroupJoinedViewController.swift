@@ -19,7 +19,7 @@ class GroupJoinedViewController: BaseViewController, UICollectionViewDelegate, U
         let getGroupJoined: GetGroupJoinedTask = GetGroupJoinedTask(id: 1)
         requestWithTask(task: getGroupJoined, success: { (data) in
             self.listGroupJoind = data as! [SecrectGroup]
-            Constants.sharedInstance.listGroupJoined = data as? [SecrectGroup]
+            Constants.sharedInstance.listGroupJoined = (data as? [SecrectGroup])!
             self.collection.reloadData()
         }) { (error) in
             
