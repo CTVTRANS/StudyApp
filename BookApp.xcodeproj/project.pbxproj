@@ -44,6 +44,13 @@
 		6DE922A31F6779C500EE24EC /* GetAllGroupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE922A21F6779C500EE24EC /* GetAllGroupTask.swift */; };
 		6DE922A51F677C6800EE24EC /* GetGroupJoinedTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE922A41F677C6800EE24EC /* GetGroupJoinedTask.swift */; };
 		6DE922A71F678EC000EE24EC /* GetNewsInGroupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE922A61F678EC000EE24EC /* GetNewsInGroupTask.swift */; };
+		6DEB2CD91F6B7E1800FC5DA3 /* SubcribleGroupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB2CD81F6B7E1800FC5DA3 /* SubcribleGroupTask.swift */; };
+		6DEB9BE91F6BBBD900D858B3 /* PriceMix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB9BE81F6BBBD900D858B3 /* PriceMix.swift */; };
+		6DEB9BEB1F6BC01900D858B3 /* GetListProductByPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB9BEA1F6BC01900D858B3 /* GetListProductByPoint.swift */; };
+		6DEB9BED1F6BC03400D858B3 /* GetListProductByPointAndMoney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB9BEC1F6BC03400D858B3 /* GetListProductByPointAndMoney.swift */; };
+		6DEB9BEF1F6BC04F00D858B3 /* GetProductVip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB9BEE1F6BC04F00D858B3 /* GetProductVip.swift */; };
+		6DEB9BF11F6BC1BE00D858B3 /* GetAllproductTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB9BF01F6BC1BE00D858B3 /* GetAllproductTask.swift */; };
+		6DEB9BF31F6BC4DE00D858B3 /* Vip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB9BF21F6BC4DE00D858B3 /* Vip.swift */; };
 		6DED74B91F4C1D6800E4E42F /* BookTypeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DED74B81F4C1D6800E4E42F /* BookTypeViewCell.swift */; };
 		6DED804E1F66781400ACC77F /* DetailSingleGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DED804D1F66781400ACC77F /* DetailSingleGroupViewController.swift */; };
 		6DED80501F66783700ACC77F /* DetailSingleGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DED804F1F66783700ACC77F /* DetailSingleGroupCell.swift */; };
@@ -189,6 +196,13 @@
 		6DE922A21F6779C500EE24EC /* GetAllGroupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAllGroupTask.swift; sourceTree = "<group>"; };
 		6DE922A41F677C6800EE24EC /* GetGroupJoinedTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGroupJoinedTask.swift; sourceTree = "<group>"; };
 		6DE922A61F678EC000EE24EC /* GetNewsInGroupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetNewsInGroupTask.swift; sourceTree = "<group>"; };
+		6DEB2CD81F6B7E1800FC5DA3 /* SubcribleGroupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcribleGroupTask.swift; sourceTree = "<group>"; };
+		6DEB9BE81F6BBBD900D858B3 /* PriceMix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceMix.swift; sourceTree = "<group>"; };
+		6DEB9BEA1F6BC01900D858B3 /* GetListProductByPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetListProductByPoint.swift; sourceTree = "<group>"; };
+		6DEB9BEC1F6BC03400D858B3 /* GetListProductByPointAndMoney.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetListProductByPointAndMoney.swift; sourceTree = "<group>"; };
+		6DEB9BEE1F6BC04F00D858B3 /* GetProductVip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetProductVip.swift; sourceTree = "<group>"; };
+		6DEB9BF01F6BC1BE00D858B3 /* GetAllproductTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAllproductTask.swift; sourceTree = "<group>"; };
+		6DEB9BF21F6BC4DE00D858B3 /* Vip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vip.swift; sourceTree = "<group>"; };
 		6DED74B81F4C1D6800E4E42F /* BookTypeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTypeViewCell.swift; sourceTree = "<group>"; };
 		6DED804D1F66781400ACC77F /* DetailSingleGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSingleGroupViewController.swift; sourceTree = "<group>"; };
 		6DED804F1F66783700ACC77F /* DetailSingleGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSingleGroupCell.swift; sourceTree = "<group>"; };
@@ -500,6 +514,11 @@
 				6DE922A21F6779C500EE24EC /* GetAllGroupTask.swift */,
 				6DE922A41F677C6800EE24EC /* GetGroupJoinedTask.swift */,
 				6DE922A61F678EC000EE24EC /* GetNewsInGroupTask.swift */,
+				6DEB2CD81F6B7E1800FC5DA3 /* SubcribleGroupTask.swift */,
+				6DEB9BEA1F6BC01900D858B3 /* GetListProductByPoint.swift */,
+				6DEB9BEC1F6BC03400D858B3 /* GetListProductByPointAndMoney.swift */,
+				6DEB9BEE1F6BC04F00D858B3 /* GetProductVip.swift */,
+				6DEB9BF01F6BC1BE00D858B3 /* GetAllproductTask.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -570,6 +589,7 @@
 			children = (
 				6DEFD56D1F500EF500393E77 /* BookType.swift */,
 				6DF310FC1F4288AC008B2878 /* Book.swift */,
+				6DEB9BE81F6BBBD900D858B3 /* PriceMix.swift */,
 			);
 			name = Book;
 			sourceTree = "<group>";
@@ -591,6 +611,7 @@
 				6DE922991F676CB700EE24EC /* SecrectGroup.swift */,
 				6DE9229B1F676DEB00EE24EC /* NewsInGroups.swift */,
 				6DE9229D1F676F2700EE24EC /* ProfileMember.swift */,
+				6DEB9BF21F6BC4DE00D858B3 /* Vip.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -833,12 +854,14 @@
 				6DE922A11F67757D00EE24EC /* GetProfileMemberTask.swift in Sources */,
 				6DEF72411F5FD15A008392A0 /* ChanelHotController.swift in Sources */,
 				6DF7279F1F5561A700E0D242 /* LoginViewController.swift in Sources */,
+				6DEB9BE91F6BBBD900D858B3 /* PriceMix.swift in Sources */,
 				6DF417551F46A2AF00F5032E /* CustomChanelCollection.swift in Sources */,
 				6DEFD7501F4A7D2F00FB0CA5 /* BookVideoController.swift in Sources */,
 				6DE922A51F677C6800EE24EC /* GetGroupJoinedTask.swift in Sources */,
 				6DF2FD791F5D2E850004CF04 /* VideoNotificationCell.swift in Sources */,
 				58C39DE01F3C4F5D001741EB /* NewsModel.swift in Sources */,
 				6DF4FFF71F5EA54700DF73A0 /* SubcribleChanelTask.swift in Sources */,
+				6DEB2CD91F6B7E1800FC5DA3 /* SubcribleGroupTask.swift in Sources */,
 				6DF4DF631F6A865A00F46CA6 /* AppInfomationViewController.swift in Sources */,
 				6DEF72431F5FD87F008392A0 /* GetHotChanelTask.swift in Sources */,
 				6DF2FD7F1F5D617E0004CF04 /* CheckLikedTask.swift in Sources */,
@@ -846,10 +869,12 @@
 				6DF808EC1F627A9200608770 /* ActivityGroupCell.swift in Sources */,
 				6DF4DF611F6A7D6500F46CA6 /* ChangeProfileViewController.swift in Sources */,
 				6DF59A581F624CA7007DFB85 /* ShowAllActivityGroupController.swift in Sources */,
+				6DEB9BF31F6BC4DE00D858B3 /* Vip.swift in Sources */,
 				6DF0E2151F5FB30B007DEA72 /* ChanelViewCell.swift in Sources */,
 				6DEDBD5C1F459B8500526AD0 /* BookCollectionViewCell.swift in Sources */,
 				6DEEEFFB1F6125CF0078EEE1 /* DownloadedViewController.swift in Sources */,
 				58C39DDB1F3C47AB001741EB /* MainViewCell.swift in Sources */,
+				6DEB9BF11F6BC1BE00D858B3 /* GetAllproductTask.swift in Sources */,
 				6DF727941F55427600E0D242 /* LikeTask.swift in Sources */,
 				6DEFD56C1F500C5400393E77 /* DefineURL.swift in Sources */,
 				6DED804E1F66781400ACC77F /* DetailSingleGroupViewController.swift in Sources */,
@@ -923,7 +948,9 @@
 				6D111E821F5668E300D28394 /* GetAllComment.swift in Sources */,
 				6DEF72451F5FEE0B008392A0 /* ProfileViewController.swift in Sources */,
 				6DEFA8931F60E53B00374113 /* SettingCellModel.swift in Sources */,
+				6DEB9BEF1F6BC04F00D858B3 /* GetProductVip.swift in Sources */,
 				58AF8D6D1F3EA9F40080A017 /* BookViewController.swift in Sources */,
+				6DEB9BED1F6BC03400D858B3 /* GetListProductByPointAndMoney.swift in Sources */,
 				6DF2FD811F5D61930004CF04 /* CheckBookMarkedTask.swift in Sources */,
 				6DE922A71F678EC000EE24EC /* GetNewsInGroupTask.swift in Sources */,
 				6DF2FD7D1F5D388B0004CF04 /* SearchViewController.swift in Sources */,
@@ -931,6 +958,7 @@
 				6DEEF0051F6145A10078EEE1 /* VipDetailViewController.swift in Sources */,
 				6DF727A31F55719200E0D242 /* ForgetPassViewController.swift in Sources */,
 				6D2187E81F5E53D200C205CE /* ChanelViewController.swift in Sources */,
+				6DEB9BEB1F6BC01900D858B3 /* GetListProductByPoint.swift in Sources */,
 				58C39DE41F3C576C001741EB /* DetailNewsController.swift in Sources */,
 				6DF0284E1F56AB3700CEE331 /* GetBookFree.swift in Sources */,
 				58AF8D6B1F3D92490080A017 /* Constants.swift in Sources */,

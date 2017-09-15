@@ -30,6 +30,13 @@ extension BaseTaskNetwork {
         let numberLikeBook = dictionary["number_of_likes"] as? Int ?? 123
         let numberCommentBook = dictionary["number_of_comments"] as? Int ?? 123
         let numberBookMark = dictionary["number_of_collection"] as? Int ?? 123
+        let price = dictionary["price_by_point"] as? Int
+        
+        let priceMixDictionay = dictionary["price_mix"] as? [String: Any]
+        let priceMix_Point = priceMixDictionay?["point"] as? Int ?? 123
+        let priceMix_Money = priceMixDictionay?["money"] as? Int ?? 123
+        let priceMixOfBook = PriceMix(point: priceMix_Point, money: priceMix_Money)
+        
         let book: Book = Book(id: idBook,
                               type: idTypeBook,
                               typeName: nameTypeBook,
@@ -44,7 +51,9 @@ extension BaseTaskNetwork {
                               numberLike: numberLikeBook,
                               numberComment: numberCommentBook,
                               numberBookMark: numberBookMark,
-                              desCription: descriptionBook)
+                              desCription: descriptionBook,
+                              price: price,
+                              priceMix: priceMixOfBook)
         return book
     }
     
@@ -132,6 +141,13 @@ extension UIAlertController {
     }
 }
 
+extension Array where Element: Equatable {
+    mutating func remove(object: Element) {
+        if let index = index(of: object) {
+            remove(at: index)
+        }
+    }
+}
 
 extension UILabel {
     var adjustFontToRealIPhoneSize: Bool {

@@ -38,10 +38,16 @@ let getProfileMemberURL: String = "/api/member/detail"
 let getAllGroupURL: String = "/api/group/list_group"
 let getAllGroupJoinedURL: String = "/api/group/list_subscribe"
 let getListNewsInGroupURL: String = "/api/group/list_post_by_group"
-let subcribleGroupURL: String = "/api/group/subscribe"
+let subcribleGroupURL: String = "/api/group/multi_subscribe"
+
+let getAllProductByPointURL: String = "/api/product/list_product_point"
+let getAllProductByPointAndMoneyURL: String = "/api/product/list_product_price_mix"
+let getAllProductURL:String = "/api/product/list_all_product"
+let getAllVipProductURL: String = "/api/product/list_package"
 
 let css: String = "<style> img{max-width:100%} </style>"
 
 class DefineURL: NSObject {
+    
 
 }

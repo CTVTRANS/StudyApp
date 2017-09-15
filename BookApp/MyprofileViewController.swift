@@ -14,21 +14,25 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var heightOfAvatar: NSLayoutConstraint!
     var arraySetting = [ListSetting]()
+    let memberProfile = Constants.sharedInstance.memberProfile
+    let picker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        picker.delegate = self
+        customData()
         setupNavigationBar()
         table.register(UINib.init(nibName: "SettingViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.tableFooterView = UIView()
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
-        customData()
+        
     }
     
     func setupNavigationBar() {
         let label = UILabel(frame: CGRect(x:0, y:0, width:150, height:50))
         label.backgroundColor = UIColor.clear
         label.numberOfLines = 2
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textAlignment = .center
         label.textColor = UIColor.rgb(r: 82, g: 82, b: 82)
         label.text = "個人信息\n會員編號: 123456789"
@@ -42,8 +46,8 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     }
 
     func customData() {
-        let setting1 = SettingCellModel(name: "姓名", specialName: "", arrrowDetail: true, nameDetail: "")
-        let setting2 = SettingCellModel(name: "郵箱", specialName: "", arrrowDetail: true, nameDetail: "")
+        let setting1 = SettingCellModel(name: "姓名", specialName: "", arrrowDetail: true, nameDetail: (memberProfile?.name)!)
+        let setting2 = SettingCellModel(name: "郵箱", specialName: "", arrrowDetail: true, nameDetail: (memberProfile?.email)!)
         let setting3 = SettingCellModel(name: "密碼", specialName: "", arrrowDetail: true, nameDetail: "")
         let setting4 = SettingCellModel(name: "完善資料", specialName: "", arrrowDetail: true, nameDetail: "")
         let setting5 = SettingCellModel(name: "", specialName: "退出登錄", arrrowDetail: false, nameDetail: "")
@@ -112,19 +116,44 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
         }
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+//        avatar.contentMode = .scaleAspectFit //3
+//        avatar.image = chosenImage //4
+//        dismiss(animated:true, completion: nil) //5
+//    }
+//    
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        dismiss(animated: true, completion: nil)
+//    }
+//
+//    func pickImageFromLibrary() {
+//        picker.allowsEditing = false
+//        picker.sourceType = .photoLibrary
+//        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+//        picker.modalPresentationStyle = .popover
+//        present(picker, animated: true, completion: nil)
+////        picker.popoverPresentationController?.barButtonItem = sender
+//    }
+    
     @IBAction func pressedChangeAvatar(_ sender: Any) {
         let _ =
             UIAlertController.showActionSheetWith(arrayTitle: ["pick from iphone", "use camera"],
                                                   handlerAction: { (index) in
                                                     switch index {
                                                     case 0:
-                                                        print("pick from iphone")
+                                                        print("pick image")
+//                                                        self.pickImageFromLibrary()
                                                     case 1:
                                                         print("use camera")
                                                     default:
                                                         break
                                                     }
             }, in: self)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }

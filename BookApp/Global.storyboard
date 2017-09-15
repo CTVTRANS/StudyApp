@@ -838,6 +838,24 @@
             </objects>
             <point key="canvasLocation" x="2090.625" y="842.95774647887322"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="duC-dz-Yby">
+            <objects>
+                <viewController id="BN9-eK-1l9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="syP-jF-pDY"/>
+                        <viewControllerLayoutGuide type="bottom" id="hMR-Fi-OxS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yXB-dx-Pd2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="of3-42-MPG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361" y="1543"/>
+        </scene>
         <!--播放列表-->
         <scene sceneID="fOp-gk-Cqf">
             <objects>

@@ -21,6 +21,8 @@ class Book {
     private var _numberLike, _numberComment, _numberBookMark: Int!
     private var _isPlay: Int = 0
     private var _pause: Int = 0
+    private var _price: Int?
+    private var _priceMix: PriceMix!
     
     init(id: Int,
          type: Int,
@@ -36,7 +38,7 @@ class Book {
          numberLike: Int,
          numberComment: Int,
          numberBookMark: Int,
-         desCription: String ) {
+         desCription: String, price: Int?, priceMix: PriceMix) {
             _id = id
             _type = type
             _typeName = typeName
@@ -52,6 +54,8 @@ class Book {
             _author = author
             _content = content
             _desCription = desCription
+            _price = price
+            _priceMix = priceMix
     }
     var type: Int {
         return _type
@@ -109,5 +113,11 @@ class Book {
     var pause: Int {
         get { return _pause}
         set { _pause = newValue}
+    }
+    var price: Int? {
+        return _price
+    }
+    var priceMix: PriceMix {
+        return _priceMix
     }
 }
