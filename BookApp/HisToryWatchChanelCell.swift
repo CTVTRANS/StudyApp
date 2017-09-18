@@ -25,8 +25,8 @@ class HistoryWatchChanelCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        playChanelButton.layer.borderColor = UIColor.rgb(r: 255, g: 102, b: 0).cgColor
-        removeChanelButton.layer.borderColor = UIColor.rgb(r: 255, g: 102, b: 0).cgColor
+        playChanelButton.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        removeChanelButton.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
     }
     
@@ -37,6 +37,16 @@ class HistoryWatchChanelCell: UITableViewCell {
         nameLesson.text = lesson.name
         numberChap.text = String(lesson.chapter)
         nameChanel.text = lesson.chanelOwner
+        if lesson.isPlay == 1 {
+            if lesson.pause == 1 {
+                imagePlay.image = #imageLiteral(resourceName: "audio_play")
+            } else {
+                imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+            }
+        } else {
+            imagePlay.image = #imageLiteral(resourceName: "audio_play")
+        }
+
     }
     
     @IBAction func pressedPlayChanelButton(_ sender: Any) {

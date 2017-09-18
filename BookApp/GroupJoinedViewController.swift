@@ -16,35 +16,36 @@ class GroupJoinedViewController: BaseViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "線下活動"
-        let getGroupJoined: GetGroupJoinedTask = GetGroupJoinedTask(id: 1)
+        let getGroupJoined: GetGroupJoinedTask = GetGroupJoinedTask(idMember: 1)
         requestWithTask(task: getGroupJoined, success: { (data) in
-            self.listGroupJoind = data as! [SecrectGroup]
-            Constants.sharedInstance.listGroupJoined = (data as? [SecrectGroup])!
-            self.collection.reloadData()
+            if let list = data as? [SecrectGroup] {
+                self.listGroupJoind = list
+                Constants.sharedInstance.listGroupJoined = list
+                self.collection.reloadData()
+            }
         }) { (error) in
-            
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-//    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listGroupJoind.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: GroupJoinedCell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! GroupJoinedCell
-        cell.binData(group: listGroupJoind[indexPath.row])
-        return cell
+        if let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? GroupJoinedCell {
+            cell.binData(group: listGroupJoind[indexPath.row])
+            return cell
+        }
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)
+        return UIEdgeInsets(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -58,8 +59,9 @@ class GroupJoinedViewController: BaseViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc: DetailSingleGroupViewController = storyboard?.instantiateViewController(withIdentifier: "DetailSingleGroupViewController") as! DetailSingleGroupViewController
-        vc.groupSelected = listGroupJoind[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailSingleGroupViewController") as? DetailSingleGroupViewController {
+            vc.groupSelected = listGroupJoind[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

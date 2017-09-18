@@ -39,11 +39,13 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
     private func viewfromNibForClass() -> UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        return view
+        if let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView {
+            return view
+        }
+        return UIView()
     }
     
-    public func setupView(image: UIImage){
+    public func setupView(image: UIImage) {
         detailImage.image = image
     }
     
@@ -54,9 +56,9 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: BookCollectionViewCell = bookCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BookCollectionViewCell
-        cell.binData(book: bookArray[indexPath.row])
-        return cell
+        let cell = bookCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BookCollectionViewCell
+        cell?.binData(book: bookArray[indexPath.row])
+        return cell!
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -73,7 +75,7 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 0, 0, 0)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView,

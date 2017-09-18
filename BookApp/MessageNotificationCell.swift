@@ -14,7 +14,4 @@ class MessageNotificationCell: UITableViewCell {
         super.awakeFromNib()
         
     }
-
- 
-
 }

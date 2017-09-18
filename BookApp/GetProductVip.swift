@@ -32,7 +32,7 @@ class GetProductVip: BaseTaskNetwork {
             let descriptionVip = dictionary["description"] as? String ?? "dasdf"
             let contentVip = dictionary["content"] as? String ?? "sdaf"
             let priceVip = dictionary["price"] as? Int ?? 123
-            vip = Vip(id: idVip,
+            vip = Vip(idVip: idVip,
                       title: titleVip,
                       imageURL: imageVip,
                       description: descriptionVip,

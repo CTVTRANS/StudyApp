@@ -41,33 +41,35 @@ class HistoryWatchChanelViewController: BaseViewController, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: HistoryWatchChanelCell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HistoryWatchChanelCell
-        let lesson = listHistoryLesson[indexPath.row]
-        cell.binData(lesson: lesson)
-        if lesson.isPlay == 1 {
-            if lesson.pause == 1 {
-                cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
+        if let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HistoryWatchChanelCell {
+            let lesson = listHistoryLesson[indexPath.row]
+            cell.binData(lesson: lesson)
+            if lesson.isPlay == 1 {
+                if lesson.pause == 1 {
+                    cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
+                } else {
+                    cell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+                }
             } else {
-                cell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+                cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
             }
-        } else {
-            cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
-        }
-        cell.callBackButton = { [weak self] (action: String) in
-            switch action {
-            case "playChanel":
-                self?.playLeesonOfChanel(lesson: lesson, current: indexPath.row)
-                break
-            case "removeChanel":
-                Constants.sharedInstance.historyViewChanelLesson.remove(at: indexPath.row)
-                self?.listHistoryLesson = Constants.sharedInstance.historyViewChanelLesson
-                self?.table.reloadData()
-                break
-            default:
-                break
+            cell.callBackButton = { [weak self] (action: String) in
+                switch action {
+                case "playChanel":
+                    self?.playLeesonOfChanel(lesson: lesson, current: indexPath.row)
+                    break
+                case "removeChanel":
+                    Constants.sharedInstance.historyViewChanelLesson.remove(at: indexPath.row)
+                    self?.listHistoryLesson = Constants.sharedInstance.historyViewChanelLesson
+                    self?.table.reloadData()
+                    break
+                default:
+                    break
+                }
             }
+            return cell
         }
-        return cell
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -108,7 +110,4 @@ class HistoryWatchChanelViewController: BaseViewController, UITableViewDataSourc
             }
         }
     }
-    
-    
-
 }

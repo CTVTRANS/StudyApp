@@ -32,32 +32,74 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTitle()
         setupCallBackClickCell()
         setupCallBackNavigation()
-        
+        getBookNewest()
+        getBookSuggest()
+        getBookFree()
+        let getTypeTask: GetTypeOfBookTask = GetTypeOfBookTask()
+        showActivity(inView: self.view)
+        requestWithTask(task: getTypeTask, success: { (_) in
+            self.bookTypeArray = Constants.sharedInstance.listBookType
+            self.tableBookType.reloadData()
+            self.loadedTypeBook = true
+            if self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest {
+                 self.stopActivityIndicator()
+            }
+        }) { (error) in
+            self.stopActivityIndicator()
+            _ = UIAlertController(title: " ",
+                                  message: error as? String,
+                                  preferredStyle: .alert)
+        }
+    }
+    
+    func setUpTitle() {
         suggestBookView.setupView(image: #imageLiteral(resourceName: "ic_reload"))
         suggestBookView.detailTitle.text = "換一換"
         suggestBookView.titleView.text = "猜你喜歡"
         freeBookView.setupView(image: #imageLiteral(resourceName: "ic_next"))
         freeBookView.detailTitle.text = "全部"
         freeBookView.titleView.text = "限時免費"
-        
-        let getTypeTask: GetTypeOfBookTask = GetTypeOfBookTask()
-        showActivity(inView: self.view)
-        requestWithTask(task: getTypeTask, success: { (data) in
-            self.bookTypeArray = Constants.sharedInstance.listBookType
-            self.tableBookType.reloadData()
-            self.loadedTypeBook = true
-            if (self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest) {
-                 self.stopActivityIndicator()
+    }
+    
+    func getBookSuggest() {
+        let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest(limit: 3, page: 1)
+        requestWithTask(task: getBookSuggest, success: { (data) in
+            self.suggestBookView.reloadData(arrayOfBook: (data as? [Book])!)
+            self.loadedBookSuggest = true
+            if self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest {
+                self.stopActivityIndicator()
             }
         }) { (error) in
             self.stopActivityIndicator()
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
-        
+    }
+    
+    func getBookFree() {
+        let getBookFree: GetBookFree = GetBookFree(limit: 3, page: 1)
+        requestWithTask(task: getBookFree, success: { (data) in
+            self.freeBookView.reloadData(arrayOfBook: (data as? [Book])!)
+            self.loadefBookFree = true
+            if self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest {
+                self.stopActivityIndicator()
+            }
+        }) { (error) in
+            self.stopActivityIndicator()
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
+        }
+    }
+    
+    func getBookNewest() {
         let getNewestBookTask: GetBookNewestTask = GetBookNewestTask()
         requestWithTask(task: getNewestBookTask, success: { (data) in
-            self.newestBook = data as! Book
+            self.newestBook = (data as? Book)!
             self.newestBookImage.sd_setImage(with: URL(string: self.newestBook.imageURL))
             self.newestBooktype.text = " " + self.newestBook.typeName + " "
             self.newestBookName.text = self.newestBook.name
@@ -67,28 +109,9 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
             self.newestBookTimeUp.text = dateupBook[0]
         }) { (error) in
             self.stopActivityIndicator()
-        }
-        
-        let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest(limit: 3, page: 1)
-        requestWithTask(task: getBookSuggest, success: { (data) in
-            self.suggestBookView.reloadData(arrayOfBook: data as! [Book])
-            self.loadedBookSuggest = true
-            if (self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest) {
-                self.stopActivityIndicator()
-            }
-        }) { (error) in
-            self.stopActivityIndicator()
-        }
-        
-        let getBookFree: GetBookFree = GetBookFree(limit: 3, page: 1)
-        requestWithTask(task: getBookFree, success: { (data) in
-            self.freeBookView.reloadData(arrayOfBook: data as! [Book])
-            self.loadefBookFree = true
-            if (self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest) {
-                self.stopActivityIndicator()
-            }
-        }) { (error) in
-            self.stopActivityIndicator()
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
     }
     
@@ -97,28 +120,30 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+//    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookTypeArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: BookTypeViewCell = tableBookType.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BookTypeViewCell
-        cell.binData(typeBook: bookTypeArray[indexPath.row])
-        return cell
+        let cell = tableBookType.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BookTypeViewCell
+        cell?.binData(typeBook: bookTypeArray[indexPath.row])
+        return cell!
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let type: BookType = bookTypeArray[indexPath.row]
-        let getBook: GetBookSuggestForType = GetBookSuggestForType(category: type.typeID, limit: 3)
+        let getBook = GetBookSuggestForType(category: type.typeID, limit: 3)
         requestWithTask(task: getBook, success: { (data) in
-            self.suggestBookView.reloadData(arrayOfBook: data as! [Book])
+            self.suggestBookView.reloadData(arrayOfBook: (data as? [Book])!)
         }) { (error) in
-
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
         
 //        let getBook: GetListBookForTypeTask  = GetListBookForTypeTask(category: type.typeID, page: "1")
@@ -132,37 +157,37 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     func setupCallBackClickCell() {
         let bookStoryboard = UIStoryboard(name: "Book", bundle: nil)
         suggestBookView.callBackClickCell = {[weak self] (bookSelected: Book) in
-            let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
-            vc.bookSelected = bookSelected
-            self?.navigationController?.pushViewController(vc, animated: true)
+            let vc = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as? BookDetailViewController
+            vc?.bookSelected = bookSelected
+            self?.navigationController?.pushViewController(vc!, animated: true)
         }
         suggestBookView.callBackReloadButton = { [weak self] in
-//            self?.showActivity(with: "loading...", inView: (self?.suggestBookView)!)
             let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest(limit: 3, page: 2)
             self?.requestWithTask(task: getBookSuggest, success: { (data) in
-                self?.suggestBookView.reloadData(arrayOfBook: data as! [Book])
-//                self?.stopActivityIndicator()
+                self?.suggestBookView.reloadData(arrayOfBook: (data as? [Book])!)
             }) { (error) in
-                
+                _ = UIAlertController(title: nil,
+                                      message: error as? String,
+                                      preferredStyle: .alert)
             }
         }
         
         freeBookView.callBackClickCell = {[weak self] (bookSelected: Book) in
-            let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
-            vc.bookSelected = bookSelected
-            self?.navigationController?.pushViewController(vc, animated: true)
+            let vc = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as? BookDetailViewController
+            vc?.bookSelected = bookSelected
+            self?.navigationController?.pushViewController(vc!, animated: true)
         }
         freeBookView.callBackReloadButton = { [weak self] in
-            let vc: ListBookFreeController = bookStoryboard.instantiateViewController(withIdentifier: "ListBookFreeController") as! ListBookFreeController
-            self?.navigationController?.pushViewController(vc, animated: true)
+            let vc = bookStoryboard.instantiateViewController(withIdentifier: "ListBookFreeController") as? ListBookFreeController
+            self?.navigationController?.pushViewController(vc!, animated: true)
         }
     }
     
     @IBAction func pressedShowDetailBook(_ sender: Any) {
         let bookStoryboard = UIStoryboard(name: "Book", bundle: nil)
-        let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
-        vc.bookSelected = newestBook
-        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as? BookDetailViewController
+        vc?.bookSelected = newestBook
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func setupCallBackNavigation() {
@@ -170,14 +195,14 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
             let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
             switch typeButton {
             case TopButton.messageNotification:
-                let vc: UINavigationController = myStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as! UINavigationController
-                self?.present(vc, animated: true, completion: nil)
+                let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as? UINavigationController
+                self?.present(vc!, animated: true, completion: nil)
             case TopButton.videoNotification:
-                let vc: UINavigationController = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as! UINavigationController
-                self?.present(vc, animated: true, completion: nil)
+                let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as? UINavigationController
+                self?.present(vc!, animated: true, completion: nil)
             case TopButton.search:
-                let vc: SearchViewController = myStoryboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-                self?.present(vc, animated: true, completion: nil)
+                let vc = myStoryboard.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController
+                self?.present(vc!, animated: true, completion: nil)
             }
         }
     }

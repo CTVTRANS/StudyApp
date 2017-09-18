@@ -17,6 +17,7 @@ class SettingViewController: BaseViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         navigationItem.title = "設置"
         let backItem = UIBarButtonItem()
+        backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "幫助中心",
                                                             style: .done,
@@ -75,20 +76,28 @@ class SettingViewController: BaseViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: SettingViewCell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingViewCell
-        let secsionObject = arraySetting[indexPath.section]
-        cell.name.textColor = UIColor.black
-        cell.binData(settingCell: secsionObject.arr[indexPath.row])
-        return cell
+        if let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingViewCell {
+            let secsionObject = arraySetting[indexPath.section]
+            cell.name.textColor = UIColor.black
+            cell.binData(settingCell: secsionObject.arr[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            let vc: MyprofileViewController = storyboard?.instantiateViewController(withIdentifier: "MyprofileViewController") as! MyprofileViewController
-            navigationItem.backBarButtonItem?.title = "Back"
-            navigationController?.navigationBar.backItem?.title = "Back"
-            navigationController?.pushViewController(vc, animated: true)
+            if Constants.sharedInstance.memberProfile == nil {
+                let mystoryboard = UIStoryboard(name: "Global", bundle: nil)
+                if let vc = mystoryboard.instantiateViewController(withIdentifier: "Login") as? UINavigationController {
+                    navigationController?.present(vc, animated: true, completion: nil)
+                }
+                return
+            }
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "MyprofileViewController") as? MyprofileViewController {
+                navigationController?.pushViewController(vc, animated: true)
+            }
             return
         }
         let row = indexPath.row
@@ -98,12 +107,11 @@ class SettingViewController: BaseViewController, UITableViewDataSource, UITableV
         case 1:
             print("1")
         case 2:
-            let vc = storyboard?.instantiateViewController(withIdentifier: "AppInfomationViewController") as! AppInfomationViewController
-            navigationController?.pushViewController(vc, animated: true)
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "AppInfomationViewController") as? AppInfomationViewController {
+                navigationController?.pushViewController(vc, animated: true)
+            }
         default:
             break
         }
     }
-
-
 }

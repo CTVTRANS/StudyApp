@@ -15,6 +15,4 @@ class ListBookType: NSObject {
     init(typeBook: BookType) {
         _listBookType.append(typeBook)
     }
-    
-    
 }

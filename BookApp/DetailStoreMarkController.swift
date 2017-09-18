@@ -28,24 +28,36 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
         let getproductByPointAndMoney: GetListProductByPointAndMoney = GetListProductByPointAndMoney(limit: 20, page: page)
         if typeRequest == 1 {
             requestWithTask(task: getAllproduct, success: { (data) in
-                self.listProduct = data as! [Book]
-                self.collection.reloadData()
+                if let list = data as? [Book] {
+                    self.listProduct = list
+                    self.collection.reloadData()
+                }
             }, failure: { (error) in
-                
+                _ = UIAlertController(title: nil,
+                                      message: error as? String,
+                                      preferredStyle: .alert)
             })
-        } else if (typeRequest == 2) {
+        } else if typeRequest == 2 {
             requestWithTask(task: getProductByPoint, success: { (data) in
-                self.listProduct = data as! [Book]
-                self.collection.reloadData()
+                if let list = data as? [Book] {
+                    self.listProduct = list
+                    self.collection.reloadData()
+                }
             }, failure: { (error) in
-                
+                _ = UIAlertController(title: nil,
+                                      message: error as? String,
+                                      preferredStyle: .alert)
             })
         } else {
             requestWithTask(task: getproductByPointAndMoney, success: { (data) in
-                self.listProduct = data as! [Book]
-                self.collection.reloadData()
+                if let list = data as? [Book] {
+                    self.listProduct = list
+                    self.collection.reloadData()
+                }
             }, failure: { (error) in
-                
+                _ = UIAlertController(title: nil,
+                                      message: error as? String,
+                                      preferredStyle: .alert)
             })
         }
     }
@@ -60,9 +72,11 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! StoreMarkViewCell
+        if let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as? StoreMarkViewCell {
         cell.binData(book: listProduct[indexPath.row])
         return cell
+        }
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -71,8 +85,9 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "BuyProductViewController") as! BuyProductViewController
-        vc.product = listProduct[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "BuyProductViewController") as? BuyProductViewController {
+            vc.product = listProduct[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

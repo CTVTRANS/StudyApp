@@ -36,8 +36,10 @@ class CustomChanelCollection: UIView, UICollectionViewDelegate, UICollectionView
     private func viewfromNibForClass() -> UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        return view
+        if let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView {
+            return view
+        }
+        return UIView()
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -47,9 +49,11 @@ class CustomChanelCollection: UIView, UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: ChanelCollectionCell = chanelCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChanelCollectionCell
-        cell.binData(chanel: arrChanel[indexPath.row])
-        return cell
+        if let cell = chanelCollection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ChanelCollectionCell {
+            cell.binData(chanel: arrChanel[indexPath.row])
+            return cell
+        }
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -66,7 +70,7 @@ class CustomChanelCollection: UIView, UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 0, 0, 0)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView,

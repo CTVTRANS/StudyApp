@@ -20,28 +20,28 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         let checkLiked: CheckLikedTask = CheckLikedTask(likeType: Object.book.rawValue,
                                                         memberID: 1,
-                                                        objectID: bookSelected.id)
+                                                        objectID: bookSelected.idBook)
         requestWithTask(task: checkLiked, success: { [weak self] (data) in
-            let status: Bool = data as! Bool
-            if status {
+            let status = data as? Bool
+            if status! {
                 self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
             } else {
                 self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
             }
-        }) { (error) in
+        }) { (_) in
             
         }
         let checkBookMarked: CheckBookMarkedTask = CheckBookMarkedTask(bookMarkType: Object.book.rawValue,
                                                                        memberID: 1,
-                                                                       objectID: bookSelected.id)
+                                                                       objectID: bookSelected.idBook)
         requestWithTask(task: checkBookMarked, success: { [weak self] (data) in
-            let status: Bool = data as! Bool
-            if status {
+            let status = data as? Bool
+            if status! {
                 self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMarked")
             } else {
                 self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMark")
             }
-        }) { (error) in
+        }) { (_) in
             
         }
 
@@ -63,41 +63,41 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     
     func setupScroll() {
         scroll.contentSize = CGSize(width: 3 * widthScreen, height: scroll.frame.height)
-        let audioVC: BookAudioController =
-            self.storyboard?.instantiateViewController(withIdentifier: "BookAudio") as! BookAudioController
-        audioVC.book = bookSelected
-        audioVC.view.frame = CGRect(x: 0,
+        let audioVC =
+            self.storyboard?.instantiateViewController(withIdentifier: "BookAudio") as? BookAudioController
+        audioVC?.book = bookSelected
+        audioVC?.view.frame = CGRect(x: 0,
                                     y: 0,
                                     width: scroll.frame.size.width,
                                     height: scroll.frame.height)
-        let videoVC: BookVideoController =
-            self.storyboard?.instantiateViewController(withIdentifier: "BookVideo") as! BookVideoController
-        videoVC.book = bookSelected
-        videoVC.view.frame = CGRect(x: widthScreen,
+        let videoVC =
+            self.storyboard?.instantiateViewController(withIdentifier: "BookVideo") as? BookVideoController
+        videoVC?.book = bookSelected
+        videoVC?.view.frame = CGRect(x: widthScreen,
                                     y: 0,
                                     width: scroll.frame.size.width,
                                     height: scroll.frame.height)
-        let textVC: BookTextController =
-            self.storyboard?.instantiateViewController(withIdentifier: "BookText") as! BookTextController
-        textVC.book = bookSelected
-        textVC.view.frame = CGRect(x: 2 * widthScreen,
+        let textVC =
+            self.storyboard?.instantiateViewController(withIdentifier: "BookText") as? BookTextController
+        textVC?.book = bookSelected
+        textVC?.view.frame = CGRect(x: 2 * widthScreen,
                                    y: 0,
                                    width: scroll.frame.size.width,
                                    height: scroll.frame.height)
-        audioVC.willMove(toParentViewController: self)
-        self.addChildViewController(audioVC)
-        audioVC.didMove(toParentViewController: self)
-        scroll.addSubview(audioVC.view)
+        audioVC?.willMove(toParentViewController: self)
+        self.addChildViewController(audioVC!)
+        audioVC?.didMove(toParentViewController: self)
+        scroll.addSubview((audioVC?.view)!)
         
-        videoVC.willMove(toParentViewController: self)
-        self.addChildViewController(videoVC)
-        videoVC.didMove(toParentViewController: self)
-        scroll.addSubview(videoVC.view)
+        videoVC?.willMove(toParentViewController: self)
+        self.addChildViewController(videoVC!)
+        videoVC?.didMove(toParentViewController: self)
+        scroll.addSubview(videoVC!.view)
         
-        textVC.willMove(toParentViewController: self)
-        self.addChildViewController(textVC)
-        textVC.didMove(toParentViewController: self)
-        scroll.addSubview(textVC.view)
+        textVC?.willMove(toParentViewController: self)
+        self.addChildViewController(textVC!)
+        textVC?.didMove(toParentViewController: self)
+        scroll.addSubview(textVC!.view)
     }
     
     func setupSahreView() {
@@ -111,17 +111,17 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             case BottomButton.back:
                 self?.navigationController?.popViewController(animated: true)
             case BottomButton.bookMark:
-                let vc: UINavigationController = myStoryboard.instantiateViewController(withIdentifier: "Login") as! UINavigationController
-                self?.present(vc, animated: true, completion: nil)
+                let vc = myStoryboard.instantiateViewController(withIdentifier: "Login") as? UINavigationController
+                self?.present(vc!, animated: true, completion: nil)
             case BottomButton.comment:
-                let vc: CommentController = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as! CommentController
-                vc.idObject = self?.bookSelected?.id
-                vc.commentType = Object.book.rawValue
-                self?.present(vc, animated: false, completion: nil)
+                let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController
+                vc?.idObject = self?.bookSelected?.idBook
+                vc?.commentType = Object.book.rawValue
+                self?.present(vc!, animated: false, completion: nil)
             case BottomButton.like:
                 let likeTask: LikeTask = LikeTask(likeType: Object.book.rawValue,
                                                   memberID: 1,
-                                                  objectId: self!.bookSelected.id)
+                                                  objectId: self!.bookSelected.idBook)
                 self?.requestWithTask(task: likeTask, success: { (data) in
                     let status: Like = (data as? Like)!
                     var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
@@ -135,7 +135,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
                         self?.bookSelected.numberLike = currentLike
                         self?.bottomView.numberLike.text = String(currentLike)
                     }
-                }, failure: { (error) in
+                }, failure: { (_) in
                     
                 })
             case BottomButton.download:
@@ -146,7 +146,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position: CGFloat = scroll.contentOffset.x / scroll.frame.size.width
-        if ( position > 1.7) {
+        if position > 1.7 {
             self.bottomView.downloadButton.isHidden = true
             self.bottomView.downloadImage.isHidden = true
         } else {
@@ -155,15 +155,15 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         }
         switch position {
         case 0...0.3 :
-            topTabbar.audioButton.setTitleColor(UIColor.rgb(r: 255, g: 101, b: 0), for: .normal)
+            topTabbar.audioButton.setTitleColor(UIColor.rgb(red: 255, green: 101, blue: 0), for: .normal)
             topTabbar.textButton.setTitleColor(UIColor.black, for: .normal)
             topTabbar.videoButton.setTitleColor(UIColor.black, for: .normal)
         case 0.8...1.2 :
-            topTabbar.videoButton.setTitleColor(UIColor.rgb(r: 255, g: 101, b: 0), for: .normal)
+            topTabbar.videoButton.setTitleColor(UIColor.rgb(red: 255, green: 101, blue: 0), for: .normal)
             topTabbar.textButton.setTitleColor(UIColor.black, for: .normal)
             topTabbar.audioButton.setTitleColor(UIColor.black, for: .normal)
         case 1.8...2.7 :
-            topTabbar.textButton.setTitleColor(UIColor.rgb(r: 255, g: 101, b: 0), for: .normal)
+            topTabbar.textButton.setTitleColor(UIColor.rgb(red: 255, green: 101, blue: 0), for: .normal)
             topTabbar.videoButton.setTitleColor(UIColor.black, for: .normal)
             topTabbar.audioButton.setTitleColor(UIColor.black, for: .normal)
         default: break

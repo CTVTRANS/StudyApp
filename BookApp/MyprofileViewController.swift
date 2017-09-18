@@ -8,24 +8,23 @@
 
 import UIKit
 
-class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var heightOfAvatar: NSLayoutConstraint!
-    var arraySetting = [ListSetting]()
+    var arraySetting: [ListSetting] = []
     let memberProfile = Constants.sharedInstance.memberProfile
     let picker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        picker.delegate = self
-        customData()
+        picker.delegate = self
         setupNavigationBar()
         table.register(UINib.init(nibName: "SettingViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.tableFooterView = UIView()
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
-        
+        customData()
     }
     
     func setupNavigationBar() {
@@ -34,7 +33,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
         label.numberOfLines = 2
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textAlignment = .center
-        label.textColor = UIColor.rgb(r: 82, g: 82, b: 82)
+        label.textColor = UIColor.rgb(red: 82, green: 82, blue: 82)
         label.text = "個人信息\n會員編號: 123456789"
         navigationItem.titleView = label
         
@@ -51,7 +50,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
         let setting3 = SettingCellModel(name: "密碼", specialName: "", arrrowDetail: true, nameDetail: "")
         let setting4 = SettingCellModel(name: "完善資料", specialName: "", arrrowDetail: true, nameDetail: "")
         let setting5 = SettingCellModel(name: "", specialName: "退出登錄", arrrowDetail: false, nameDetail: "")
-        
+//
         let arraySetting1 = ListSetting(array: [setting1, setting2, setting3, setting4])
         let arraySetting2 = ListSetting(array: [setting5])
         arraySetting.append(arraySetting1)
@@ -87,12 +86,14 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: SettingViewCell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingViewCell
-        let secsionObject = arraySetting[indexPath.section]
-        cell.name.textColor = UIColor.black
-        cell.specialName.textColor = UIColor.black
-        cell.binData(settingCell: secsionObject.arr[indexPath.row])
-        return cell
+        if let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SettingViewCell {
+            let secsionObject = arraySetting[indexPath.section]
+            cell.name.textColor = UIColor.black
+            cell.specialName.textColor = UIColor.black
+            cell.binData(settingCell: secsionObject.arr[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -101,52 +102,60 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
             print("logout")
             return
         }
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
-        switch indexPath.row {
-        case TypeView.name.rawValue:
-            vc.typeViewShow = TypeView.name
-        case TypeView.email.rawValue:
-            vc.typeViewShow = TypeView.email
-        case TypeView.pass.rawValue:
-            vc.typeViewShow = TypeView.pass
-        case TypeView.information.rawValue:
-            vc.typeViewShow = TypeView.information
-        default:
-            break
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as? ChangeProfileViewController {
+            switch indexPath.row {
+            case TypeView.name.rawValue:
+                vc.typeViewShow = TypeView.name
+            case TypeView.email.rawValue:
+                vc.typeViewShow = TypeView.email
+            case TypeView.pass.rawValue:
+                vc.typeViewShow = TypeView.pass
+            case TypeView.information.rawValue:
+                vc.typeViewShow = TypeView.information
+            default:
+                break
+            }
+            navigationController?.pushViewController(vc, animated: true)
         }
-        navigationController?.pushViewController(vc, animated: true)
     }
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-//        avatar.contentMode = .scaleAspectFit //3
-//        avatar.image = chosenImage //4
-//        dismiss(animated:true, completion: nil) //5
-//    }
-//    
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        dismiss(animated: true, completion: nil)
-//    }
-//
-//    func pickImageFromLibrary() {
-//        picker.allowsEditing = false
-//        picker.sourceType = .photoLibrary
-//        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-//        picker.modalPresentationStyle = .popover
-//        present(picker, animated: true, completion: nil)
-////        picker.popoverPresentationController?.barButtonItem = sender
-//    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            avatar.image = chosenImage //4
+            dismiss(animated:true, completion: nil) //5
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+
+    func pickImageFromLibrary() {
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        picker.modalPresentationStyle = .popover
+        present(picker, animated: true, completion: nil)
+//        picker.popoverPresentationController?.barButtonItem = sender
+    }
+    
+    func shootAvatar() {
+        picker.allowsEditing = true
+        picker.sourceType = UIImagePickerControllerSourceType.camera
+        picker.cameraCaptureMode = .photo
+        picker.modalPresentationStyle = .fullScreen
+        present(picker, animated: true, completion: nil)
+    }
     
     @IBAction func pressedChangeAvatar(_ sender: Any) {
-        let _ =
+        _ =
             UIAlertController.showActionSheetWith(arrayTitle: ["pick from iphone", "use camera"],
                                                   handlerAction: { (index) in
                                                     switch index {
                                                     case 0:
-                                                        print("pick image")
-//                                                        self.pickImageFromLibrary()
+                                                        self.pickImageFromLibrary()
                                                     case 1:
-                                                        print("use camera")
+                                                        self.shootAvatar()
                                                     default:
                                                         break
                                                     }

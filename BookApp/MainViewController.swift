@@ -18,17 +18,21 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         setupCallBack()
         
-        let getAllNews : GetAllNewsTask = GetAllNewsTask(limit: 20, page: 1)
+        let getAllNews: GetAllNewsTask = GetAllNewsTask(limit: 20, page: 1)
         showActivity(inView: self.view)
         table.estimatedRowHeight = 140
         requestWithTask(task: getAllNews, success: { (data) in
-            self.arrayNews = data as! [NewsModel]
-            self.table.reloadData()
-            self.stopActivityIndicator()
+            if let list = data as? [NewsModel] {
+                 self.arrayNews = list
+                self.table.reloadData()
+                self.stopActivityIndicator()
+            }
         }) { (error) in
             self.stopActivityIndicator()
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,26 +46,31 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MainViewCell = table.dequeueReusableCell(withIdentifier: "MainViewCell", for: indexPath) as! MainViewCell
+        if let cell = table.dequeueReusableCell(withIdentifier: "MainViewCell", for: indexPath) as? MainViewCell {
         cell.binData(news: arrayNews[indexPath.row])
         return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
         let type = arrayNews[indexPath.row].typeNews
-        if (type == 1) {
-            let vc: DetailNewsController = storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailNewsController
-            vc.news = arrayNews[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
+        if type == 1 {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailNewsController {
+                vc.news = arrayNews[indexPath.row]
+                navigationController?.pushViewController(vc, animated: true)
+            }
         } else if type == 2 {
-            let vc: Type2DetailNewsViewController = storyboard?.instantiateViewController(withIdentifier: "Type2Detail") as! Type2DetailNewsViewController
-            vc.news = arrayNews[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "Type2Detail") as? Type2DetailNewsViewController {
+                vc.news = arrayNews[indexPath.row]
+                navigationController?.pushViewController(vc, animated: true)
+            }
         } else {
-            let vc: Type3DetailNewsController = storyboard?.instantiateViewController(withIdentifier: "Type3DetailNewsController") as! Type3DetailNewsController
-            vc.news = arrayNews[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "Type3DetailNewsController") as? Type3DetailNewsController {
+                vc.news = arrayNews[indexPath.row]
+                navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     
@@ -74,16 +83,18 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
             switch typeButton {
             case TopButton.messageNotification:
-                let vc: UINavigationController = myStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as! UINavigationController
-                self?.present(vc, animated: true, completion: nil)
+                if let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as? UINavigationController {
+                    self?.present(vc, animated: true, completion: nil)
+                }
             case TopButton.videoNotification:
-                let vc: UINavigationController = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as! UINavigationController
-                self?.present(vc, animated: true, completion: nil)
+                if let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as? UINavigationController {
+                    self?.present(vc, animated: true, completion: nil)
+                }
             case TopButton.search:
-                let vc: SearchViewController = myStoryboard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-                 self?.present(vc, animated: true, completion: nil)
+                if let vc = myStoryboard.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController {
+                    self?.present(vc, animated: true, completion: nil)
+                }
             }
         }
     }
-    
 }

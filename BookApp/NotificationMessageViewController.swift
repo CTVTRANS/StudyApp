@@ -23,14 +23,17 @@ class NotificationMessageViewController: BaseViewController, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MessageNotificationCell = table.dequeueReusableCell(withIdentifier: "MessageNotificationCell", for: indexPath) as! MessageNotificationCell
-        return cell
+        if let cell = table.dequeueReusableCell(withIdentifier: "MessageNotificationCell", for: indexPath) as? MessageNotificationCell {
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
-        let vc: DetailNotificationMessageController = self.storyboard?.instantiateViewController(withIdentifier: "DetailNotificationMessageController") as! DetailNotificationMessageController
-        self.navigationController?.pushViewController(vc, animated: true)
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailNotificationMessageController") as? DetailNotificationMessageController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

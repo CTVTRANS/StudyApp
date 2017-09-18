@@ -37,7 +37,7 @@ extension BaseTaskNetwork {
         let priceMix_Money = priceMixDictionay?["money"] as? Int ?? 123
         let priceMixOfBook = PriceMix(point: priceMix_Point, money: priceMix_Money)
         
-        let book: Book = Book(id: idBook,
+        let book: Book = Book(idBook: idBook,
                               type: idTypeBook,
                               typeName: nameTypeBook,
                               name: nameBook,
@@ -83,7 +83,7 @@ extension BaseTaskNetwork {
         let lessonDescription = dictionary["description"] as? String ?? "asd"
         let lessonContent = dictionary["audio"] as? String ?? "asdf"
         let  lessonTimeup = dictionary["created_at"] as? String ?? "sas"
-        let lesson: Lesson = Lesson(id: lessonID,
+        let lesson: Lesson = Lesson(idLesson: lessonID,
                                     chaper: lessonChapter,
                                     time: lessonTimeup,
                                     name: lessonName,
@@ -99,7 +99,7 @@ extension BaseTaskNetwork {
         let imageGroup = dictionary["image"] as? String ?? " "
         let idWechatGroup = dictionary["wechat"] as? String ?? " "
         let adressGroup = dictionary["address"] as? String ?? " "
-        let group = SecrectGroup(id: idGroup,
+        let group = SecrectGroup(idGroup: idGroup,
                                  name: titleGroup,
                                  imageURL: imageGroup,
                                  idWechat: idWechatGroup,
@@ -112,9 +112,9 @@ extension UIAlertController {
     class func showAlertWith(title: String, message: String, inViewController: UIViewController) {
         let alertView = UIAlertController(title: title,
                                           message: message,
-                                          preferredStyle: UIAlertControllerStyle.alert)
+                                          preferredStyle: .alert)
         let action = UIAlertAction(title: "OK",
-                                   style: UIAlertActionStyle.default) { (UIAlertAction) in
+                                   style: UIAlertActionStyle.default) { (_) in
                                     alertView.dismiss(animated: true, completion: nil)
         }
         alertView.addAction(action)
@@ -128,13 +128,13 @@ extension UIAlertController {
         for index in 0..<arrayTitle.count {
             let action = UIAlertAction(title: arrayTitle[index],
                                        style: .default,
-                                       handler: { (UIAlertAction) in
+                                       handler: { (_) in
                 handlerAction(index)
             })
             alertView.addAction(action)
         }
         let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel) { (UIAlertAction) in
+                                         style: .cancel) { (_) in
         }
         alertView.addAction(cancelAction)
         viewController.present(alertView, animated: true, completion: nil)
@@ -156,16 +156,16 @@ extension UILabel {
                 let currentFont = self.font
                 var sizeScale: CGFloat = 1
                 let device = Device()
-                if (device == .simulator(.iPhone7)
+                if device == .simulator(.iPhone7)
                     || device == .simulator(.iPhone6)
                     || device == .iPhone6
-                    || device == .iPhone7) {
+                    || device == .iPhone7 {
                     sizeScale = 1.2
-                } else if (device == .simulator(.iPhone6Plus)
+                } else if device == .simulator(.iPhone6Plus)
                     || device == .simulator(.iPhone7Plus)
                     || device == .iPhone6Plus
                     || device == .iPhone7Plus
-                    || device == .iPhone6s) {
+                    || device == .iPhone6s {
                     sizeScale = 1.3
                 }
                 self.font = currentFont?.withSize((currentFont?.pointSize)! * sizeScale)
@@ -184,16 +184,16 @@ extension UITextField {
                 let currentFont = self.font
                 var sizeScale: CGFloat = 1
                 let device = Device()
-                if (device == .simulator(.iPhone7)
+                if device == .simulator(.iPhone7)
                     || device == .simulator(.iPhone6)
                     || device == .iPhone6
-                    || device == .iPhone7) {
+                    || device == .iPhone7 {
                     sizeScale = 1.2
-                } else if (device == .simulator(.iPhone6Plus)
+                } else if device == .simulator(.iPhone6Plus)
                     || device == .simulator(.iPhone7Plus)
                     || device == .iPhone6Plus
                     || device == .iPhone7Plus
-                    || device == .iPhone6s) {
+                    || device == .iPhone6s {
                     sizeScale = 1.3
                 }
                 self.font = currentFont?.withSize((currentFont?.pointSize)! * sizeScale)
@@ -212,16 +212,16 @@ extension NSLayoutConstraint {
                 let currentConstant = self.constant
                 var sizeScale: CGFloat = 1
                 let device = Device()
-                if (device == .simulator(.iPhone7)
+                if device == .simulator(.iPhone7)
                     || device == .simulator(.iPhone6)
                     || device == .iPhone6
-                    || device == .iPhone7) {
+                    || device == .iPhone7 {
                     sizeScale = 1.2
-                } else if (device == .simulator(.iPhone6Plus)
+                } else if device == .simulator(.iPhone6Plus)
                         || device == .simulator(.iPhone7Plus)
                         || device == .iPhone6Plus
                         || device == .iPhone7Plus
-                        || device == .iPhone6s) {
+                        || device == .iPhone6s {
                     sizeScale = 1.3
                 }
                 self.constant = currentConstant * sizeScale
@@ -241,16 +241,16 @@ extension UIButton {
                 var sizeScale: CGFloat = 1
 //                let model = UIDevice.current.model
                 let device = Device()
-                if (device == .simulator(.iPhone7)
+                if device == .simulator(.iPhone7)
                     || device == .simulator(.iPhone6)
                     || device == .iPhone6
-                    || device == .iPhone7) {
+                    || device == .iPhone7 {
                     sizeScale = 1.2
-                } else if (device == .simulator(.iPhone6Plus)
+                } else if device == .simulator(.iPhone6Plus)
                     || device == .simulator(.iPhone7Plus)
                     || device == .iPhone6Plus
                     || device == .iPhone7Plus
-                    || device == .iPhone6s) {
+                    || device == .iPhone6s {
                     sizeScale = 1.3
                 }
 //                if model == "iPhone 6" {
@@ -274,16 +274,16 @@ extension CGFloat {
         set {
             var sizeScale: CGFloat = 1
             let device = Device()
-            if (device == .simulator(.iPhone7)
+            if device == .simulator(.iPhone7)
                 || device == .simulator(.iPhone6)
                 || device == .iPhone6
-                || device == .iPhone7) {
+                || device == .iPhone7 {
                 sizeScale = 1.2
-            } else if (device == .simulator(.iPhone6Plus)
+            } else if device == .simulator(.iPhone6Plus)
                 || device == .simulator(.iPhone7Plus)
                 || device == .iPhone6Plus
                 || device == .iPhone7Plus
-                || device == .iPhone6s) {
+                || device == .iPhone6s {
                 sizeScale = 1.3
             }
             self = newValue * sizeScale
@@ -299,12 +299,12 @@ extension UITabBarControllerDelegate {
     public func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         
         let fromView: UIView = tabBarController.selectedViewController!.view
-        let toView  : UIView = viewController.view
+        let toView: UIView = viewController.view
         if fromView == toView {
             return false
         }
         
-        UIView.transition(from: fromView, to: toView, duration: 0.3, options: UIViewAnimationOptions.transitionCrossDissolve) { (finished:Bool) in
+        UIView.transition(from: fromView, to: toView, duration: 0.3, options: UIViewAnimationOptions.transitionCrossDissolve) { (_: Bool) in
             
         }
         return true
@@ -312,11 +312,10 @@ extension UITabBarControllerDelegate {
 }
 
 extension UIColor {
-    class func rgb(r: Float, g: Float, b: Float) -> UIColor {
-        return UIColor(colorLiteralRed: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1.0)
+    class func rgb(red: Float, green: Float, blue: Float) -> UIColor {
+        return UIColor(colorLiteralRed: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
     }
 }
-
 
 /*
 extension UIDevice {

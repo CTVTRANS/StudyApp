@@ -9,18 +9,18 @@
 import UIKit
 
 class NewsModel: NSObject {
-    private var _id, _typeNews: Int!
+    private var _idNews, _typeNews: Int!
     private var _nameTypeNews: String!
     private var _author: String!
-    private var _imageURL,_content, _note: String!
+    private var _imageURL, _content, _note: String!
     private var _titleNews, _detailTitle, _timeUp: String!
     private var _numberViewNews, _numberLikeNews, _numberCommentNews, _numberBookMarkNews: Int!
     
-    init(id: Int, author: String, imageUrl: String, title: String,
+    init(idNews: Int, author: String, imageUrl: String, title: String,
          detail: String, type: Int, nameType: String, content: String, note: String,
          timeUp: String, numberView: Int, numberLike: Int,
          numberComment: Int, numberBookMark: Int) {
-            _id = id
+            _idNews = idNews
             _author = author
             _imageURL = imageUrl
             _titleNews = title
@@ -35,8 +35,8 @@ class NewsModel: NSObject {
             _numberCommentNews = numberComment
             _numberBookMarkNews = numberBookMark
     }
-    var id: Int {
-        return _id
+    var idNews: Int {
+        return _idNews
     }
     var author: String {
         return _author

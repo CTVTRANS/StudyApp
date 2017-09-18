@@ -20,7 +20,7 @@ class ChanelViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        subcribleButton.layer.borderColor = UIColor.rgb(r: 245, g: 166, b: 35).cgColor
+        subcribleButton.layer.borderColor = UIColor.rgb(red: 245, green: 166, blue: 35).cgColor
         imageChanel.layer.cornerRadius = heightOfImage.constant / 2
     }
     

@@ -23,8 +23,10 @@ class NotificationVideoViewController: BaseViewController, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: VideoNotificationCell = table.dequeueReusableCell(withIdentifier: "VideoNotificationCell", for: indexPath) as! VideoNotificationCell
+        if let cell = table.dequeueReusableCell(withIdentifier: "VideoNotificationCell", for: indexPath) as? VideoNotificationCell {
         return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

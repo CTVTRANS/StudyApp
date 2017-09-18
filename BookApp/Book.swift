@@ -10,7 +10,7 @@ import UIKit
 
 class Book {
     
-    private var _id, _type: Int!
+    private var _idBook, _type: Int!
     private var _typeName, _nameBook: String!
     private var _author: String!
     private var _imageBookUrl: String!
@@ -24,7 +24,7 @@ class Book {
     private var _price: Int?
     private var _priceMix: PriceMix!
     
-    init(id: Int,
+    init(idBook: Int,
          type: Int,
          typeName: String,
          name: String,
@@ -39,7 +39,7 @@ class Book {
          numberComment: Int,
          numberBookMark: Int,
          desCription: String, price: Int?, priceMix: PriceMix) {
-            _id = id
+            _idBook = idBook
             _type = type
             _typeName = typeName
             _nameBook = name
@@ -91,10 +91,10 @@ class Book {
     var timeUpBook: String {
         return _timeUpBook!
     }
-    var id: Int {
-        return _id!
+    var idBook: Int {
+        return _idBook!
     }
-    var audio : String {
+    var audio: String {
         return _audio!
     }
     var video: String {

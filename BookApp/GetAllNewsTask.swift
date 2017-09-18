@@ -50,7 +50,7 @@ class GetAllNewsTask: BaseTaskNetwork {
                 let newsNumberLike = dictionary["number_of_likes"] as? Int ?? 123
                 let newsNumberComment = dictionary["number_of_comments"] as? Int ?? 123
                 let newsNumberBookMark = dictionary["number_of_collection"] as? Int ?? 123
-                let news: NewsModel = NewsModel(id: newsID,
+                let news: NewsModel = NewsModel(idNews: newsID,
                                                 author: newsAuthor,
                                                 imageUrl: newsImage,
                                                 title: newsName,

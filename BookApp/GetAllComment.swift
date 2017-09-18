@@ -50,7 +50,7 @@ class GetAllComment: BaseTaskNetwork {
                 let userAvata = dictionary["author_avatar"] as? String ?? "999"
                 
                 let user: User = User(name: userName, age: 18, sex: 1, avata: userAvata)
-                let commentObject: Comment = Comment(id: iDComment,
+                let commentObject: Comment = Comment(idComment: iDComment,
                                                      user: user,
                                                      time: timeComment,
                                                      numberlikeComment: numberLikeComment,

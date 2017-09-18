@@ -40,7 +40,7 @@ class GetNewsInGroupTask: BaseTaskNetwork {
                 let idNews = dictionary["id"] as? Int ?? 1234
                 let imageURL = dictionary["image"] as? String ?? "123"
                 let title = dictionary["description"] as? String ?? "123"
-                let news = NewsInGroups(id: idNews, image: imageURL, title: title)
+                let news = NewsInGroups(idNews: idNews, image: imageURL, title: title)
                 listPost.append(news)
             }
         }

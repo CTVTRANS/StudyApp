@@ -13,8 +13,8 @@ class GetGroupJoinedTask: BaseTaskNetwork {
     
     private var _idMember: Int!
     
-    init(id: Int) {
-        _idMember = id
+    init(idMember: Int) {
+        _idMember = idMember
     }
 
     override func path() -> String! {

@@ -72,5 +72,3 @@ class BaseViewController: UIViewController {
         backGroundview?.removeFromSuperview()
     }
 }
-
-

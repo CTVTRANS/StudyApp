@@ -18,7 +18,7 @@ class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.backItem?.title = ""
-        showAreCodeButton.layer.borderColor = UIColor.rgb(r: 255, g: 101, b: 0).cgColor
+        showAreCodeButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,7 +30,6 @@ class LoginViewController: BaseViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-
 
     @IBAction func pressedDismissButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

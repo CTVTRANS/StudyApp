@@ -25,8 +25,8 @@ class BookDownloadCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        playButton.layer.borderColor = UIColor.rgb(r: 255, g: 102, b: 0).cgColor
-        removeButton.layer.borderColor = UIColor.rgb(r: 255, g: 102, b: 0).cgColor
+        playButton.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        removeButton.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
 
     }
 
@@ -38,8 +38,16 @@ class BookDownloadCell: UITableViewCell {
         imageBook.sd_setImage(with: URL(string: book.imageURL))
         let date = book.timeUpBook.components(separatedBy: " ")
         timeUp.text = date[0]
+        if book.isPlay == 1 {
+            if book.pause == 1 {
+                imagePlay.image = #imageLiteral(resourceName: "audio_play")
+            } else {
+                imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+            }
+        } else {
+            imagePlay.image = #imageLiteral(resourceName: "audio_play")
+        }
     }
-
     
     @IBAction func pressedPlayButton(_ sender: Any) {
         self.callBackButton!("playBook")

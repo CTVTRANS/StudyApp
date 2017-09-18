@@ -13,12 +13,13 @@ class SplashViewController: BaseViewController {
     @IBOutlet weak var startButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        startButton.layer.borderColor = UIColor.rgb(r: 113, g: 112, b: 110).cgColor
+        startButton.layer.borderColor = UIColor.rgb(red: 113, green: 112, blue: 110).cgColor
     }
     
     @IBAction func pressedStartButton(_ sender: Any) {
-        let vc: UITabBarController = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        self.present(vc, animated: false, completion: nil)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController {
+            self.present(vc, animated: false, completion: nil)
+        }
     }
 
 }

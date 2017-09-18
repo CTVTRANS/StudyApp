@@ -10,23 +10,23 @@ import UIKit
 
 class Vip: NSObject {
 
-    private var _id: Int!
+    private var _idVip: Int!
     private var _title: String!
     private var _imageURL: String!
     private var _description: String!
     private var _content: String!
     private var _price: Int!
     
-    init(id: Int, title: String, imageURL: String, description: String, content: String, price: Int) {
-        _id = id
+    init(idVip: Int, title: String, imageURL: String, description: String, content: String, price: Int) {
+        _idVip = idVip
         _title = title
         _imageURL = imageURL
         _description = description
         _content = content
         _price = price
     }
-    var id: Int {
-        return _id
+    var idVip: Int {
+        return _idVip
     }
     var title: String {
         return _title

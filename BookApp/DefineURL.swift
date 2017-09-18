@@ -25,6 +25,7 @@ let subcribleURL = "/api/teacher/subscribe"
 let increaseViewChanelURL = "/api/teacher/play_lesson"
 
 let getAllNewsURL: String = "/api/post/list_latest_post"
+let getAllTypeNewsURL = "/api/post/list_category"
 
 let sendCommentURL: String = "/api/comment/add"
 let checkLikeedURL: String = "/api/like/check_like"
@@ -32,6 +33,8 @@ let likeUnlikeURL: String = "/api/like/like"
 let bookMarkURL: String = "/api/collection/collect"
 let checkBookMarkedURL: String = "/api/collection/check_collect"
 let getAllCommentURL: String = "/api/comment/latest"
+let searchBookURL: String = "/api/search/book"
+let searchNewsURL: String = "/api/search/news"
 
 let getProfileMemberURL: String = "/api/member/detail"
 
@@ -42,12 +45,11 @@ let subcribleGroupURL: String = "/api/group/multi_subscribe"
 
 let getAllProductByPointURL: String = "/api/product/list_product_point"
 let getAllProductByPointAndMoneyURL: String = "/api/product/list_product_price_mix"
-let getAllProductURL:String = "/api/product/list_all_product"
+let getAllProductURL: String = "/api/product/list_all_product"
 let getAllVipProductURL: String = "/api/product/list_package"
 
 let css: String = "<style> img{max-width:100%} </style>"
 
 class DefineURL: NSObject {
     
-
 }

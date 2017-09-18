@@ -19,14 +19,14 @@ class CustomTopTabbar: UIView {
     @IBOutlet weak var videoButton: UIButton!
     @IBOutlet weak var audioButton: UIButton!
     
-    var y: CGFloat?
-    var width: CGFloat?
-    var hight: CGFloat?
+    private var originY: CGFloat!
+    private var width: CGFloat!
+    private var hight: CGFloat!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
-        y = animationView.frame.origin.y
+        originY = animationView.frame.origin.y
         width = widthScreen/3
         hight = animationView.frame.size.height
     }
@@ -44,21 +44,21 @@ class CustomTopTabbar: UIView {
     private func viewfromNibForClass() -> UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        return view
+        if let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView {
+            return view
+        }
+        return UIView()
     }
 
     @IBAction func showAudio(_ sender: Any) {
-        self.changeViewPressed!(audioButton.frame.origin.x, y!, width!, hight!, 0)
+        self.changeViewPressed!(audioButton.frame.origin.x, originY!, width!, hight!, 0)
     }
     
     @IBAction func showVideo(_ sender: Any) {
-        self.changeViewPressed!(videoButton.frame.origin.x, y!, width!, hight!, 1)
+        self.changeViewPressed!(videoButton.frame.origin.x, originY!, width!, hight!, 1)
     }
     
     @IBAction func showText(_ sender: Any) {
-        self.changeViewPressed!(textButton.frame.origin.x, y!, width!, hight!, 2)
+        self.changeViewPressed!(textButton.frame.origin.x, originY, width!, hight!, 2)
     }
-    
-    
 }

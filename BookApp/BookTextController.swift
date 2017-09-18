@@ -19,7 +19,7 @@ class BookTextController: BaseViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: UIApplication.shared.keyWindow!)
-        textDetailButton.layer.borderColor = UIColor.rgb(r: 255, g: 101, b: 0).cgColor
+        textDetailButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
         let content: String = css + (book?.content)!
         webview.loadHTMLString(content, baseURL: nil)
         webview.delegate = self

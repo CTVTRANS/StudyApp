@@ -19,13 +19,6 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
         table.estimatedRowHeight = 140
         table.register(UINib.init(nibName: "ChanelViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.tableFooterView = UIView()
-//        let getHotChanel: GetHotChanelTask = GetHotChanelTask(lang: Constants.sharedInstance.language, limit: 20, page: 1)
-//        requestWithTask(task: getHotChanel, success: { (data) in
-//            self.listChanelHot = data as! [Chanel]
-//            self.table.reloadData()
-//        }) { (error) in
-//            print("")
-//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -33,10 +26,12 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
         navigationController?.setNavigationBarHidden(false, animated: false)
         let getHotChanel: GetHotChanelTask = GetHotChanelTask(lang: Constants.sharedInstance.language, limit: 20, page: 1)
         requestWithTask(task: getHotChanel, success: { (data) in
-            self.listChanelHot = data as! [Chanel]
+            self.listChanelHot = (data as? [Chanel])!
             self.table.reloadData()
         }) { (error) in
-            print("")
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
     }
     
@@ -49,41 +44,43 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ChanelViewCell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChanelViewCell
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ChanelViewCell
         let chanel = listChanelHot[indexPath.row]
-        cell.binData(chanel: chanel)
+        cell?.binData(chanel: chanel)
         for chanelHot in Constants.sharedInstance.listChanelSubcribled {
-            if chanel.idChanel ==  chanelHot.idChanel{
-                cell.subcribleButton.setTitle("  已訂閱頻道  ", for: .normal)
-                cell.subcribleButton.isEnabled = false
+            if chanel.idChanel ==  chanelHot.idChanel {
+                cell?.subcribleButton.setTitle("  已訂閱頻道  ", for: .normal)
+                cell?.subcribleButton.isEnabled = false
                 break
             } else {
-                 cell.subcribleButton.setTitle("  訂閱頻道  ", for: .normal)
+                 cell?.subcribleButton.setTitle("  訂閱頻道  ", for: .normal)
             }
         }
-        cell.callBackButton = { [weak self] in
+        cell?.callBackButton = { [weak self] in
             let subcrible: SubcribleChanelTask =
                 SubcribleChanelTask(memberID: 1,
                                     chanelID: chanel.idChanel)
             self?.requestWithTask(task: subcrible, success: { (data) in
-                let status: Subcrible = data as! Subcrible
+                let status: Subcrible = (data as? Subcrible)!
                 if status == Subcrible.subcrible {
                     Constants.sharedInstance.listChanelSubcribled.append(chanel)
-                    cell.subcribleButton.setTitle("  已訂閱頻道  ", for: .normal)
-                    cell.subcribleButton.isEnabled = false
+                    cell?.subcribleButton.setTitle("  已訂閱頻道  ", for: .normal)
+                    cell?.subcribleButton.isEnabled = false
                 }
             }) { (error) in
-                
+                _ = UIAlertController(title: nil,
+                                      message: error as? String,
+                                      preferredStyle: .alert)
             }
         }
-        return cell
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
-        let detailTeacherVC: DetailChanelViewController = storyboard!.instantiateViewController(withIdentifier: "DetailChanelViewController") as! DetailChanelViewController
-        detailTeacherVC.chanel = listChanelHot[indexPath.row]
-        self.navigationController?.pushViewController(detailTeacherVC, animated: true)
+        let detailTeacherVC = storyboard!.instantiateViewController(withIdentifier: "DetailChanelViewController") as? DetailChanelViewController
+        detailTeacherVC?.chanel = listChanelHot[indexPath.row]
+        self.navigationController?.pushViewController(detailTeacherVC!, animated: true)
     }
     
     deinit {

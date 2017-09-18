@@ -50,8 +50,8 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     func setupUI() {
-        downloadAllButton.layer.borderColor = UIColor.rgb(r: 254, g: 153, b: 0).cgColor
-        subcribedTeacher.layer.borderColor = UIColor.rgb(r: 254, g: 153, b: 0).cgColor
+        downloadAllButton.layer.borderColor = UIColor.rgb(red: 254, green: 153, blue: 0).cgColor
+        subcribedTeacher.layer.borderColor = UIColor.rgb(red: 254, green: 153, blue: 0).cgColor
         table.tableFooterView = UIView()
         
         chanelImage.sd_setImage(with: URL(string: chanel.imageTeacherURL))
@@ -64,13 +64,15 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     func getDataFromServer() {
         let getNumberView: GetTotaViewOfChanel = GetTotaViewOfChanel(chanelID: chanel.idChanel)
         requestWithTask(task: getNumberView, success: { (data) in
-            self.chanel.numberView = data as! Int
-            self.numberView.text = String(self.chanel.numberView)
-            self.loadedNumberView = true
-            if self.loadedNumberView && self.loadedListLessonUpload {
-                self.stopActivityIndicator()
+            if let numberViewChanel = data as? Int {
+                self.chanel.numberView = numberViewChanel
+                self.numberView.text = String(numberViewChanel)
+                self.loadedNumberView = true
+                if self.loadedNumberView && self.loadedListLessonUpload {
+                    self.stopActivityIndicator()
+                }
             }
-        }) { (error) in
+        }) { (_) in
             
         }
         let getLesson: GetListlessonOfChanelTask =
@@ -78,25 +80,26 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
                                       limit: 10,
                                       page: 1)
         requestWithTask(task: getLesson, success: { (data) in
-            self.lessonUploaded = data as! [Lesson]
-            self.table.reloadData()
-            self.loadedListLessonUpload = true
-            if self.loadedNumberView && self.loadedListLessonUpload {
-                self.stopActivityIndicator()
+            if let arrayLesson = data as? [Lesson] {
+                self.lessonUploaded  = arrayLesson
+                self.table.reloadData()
+                self.loadedListLessonUpload = true
+                if self.loadedNumberView && self.loadedListLessonUpload {
+                    self.stopActivityIndicator()
+                }
             }
         }) { (error) in
-            
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
     }
     
     func checkSubcribleed() {
-        let allChanelSubcrible:[Chanel] = Constants.sharedInstance.listChanelSubcribled
-        for chanelSubcribled in allChanelSubcrible {
-            if chanel.idChanel == chanelSubcribled.idChanel {
-                subcribedTeacher.setTitle("  已訂閱頻道  ", for: .normal)
-                subcribedTeacher.isEnabled = false
-                break
-            }
+        let allChanelSubcrible: [Chanel] = Constants.sharedInstance.listChanelSubcribled
+        for chanelSubcribled in allChanelSubcrible where chanel.idChanel == chanelSubcribled.idChanel {
+            subcribedTeacher.setTitle("  已訂閱頻道  ", for: .normal)
+            subcribedTeacher.isEnabled = false
         }
     }
 
@@ -105,29 +108,22 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ChanelUpLoaeCell = tableView.dequeueReusableCell(withIdentifier: "ChanelUpLoaeCell", for: indexPath) as! ChanelUpLoaeCell
-        let lesson: Lesson = lessonUploaded[indexPath.row]
-        cell.binData(chap: lesson)
-        if lesson.isPlay == 1 {
-            if lesson.pause == 1 {
-                cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
-            } else {
-                cell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ChanelUpLoaeCell", for: indexPath) as? ChanelUpLoaeCell {
+            let lesson: Lesson = lessonUploaded[indexPath.row]
+            cell.binData(chap: lesson)
+            cell.callBackButton = { [weak self] (typeButton: String) in
+                switch typeButton {
+                case "download":
+                    print("download")
+                case "play":
+                    self?.playAudio(lesson: lesson, current: indexPath.row)
+                default :
+                    return
+                }
             }
-        } else {
-            cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
+            return cell
         }
-        cell.callBackButton = { [weak self] (typeButton: String) in
-            switch typeButton {
-            case "download":
-                print("download")
-            case "play":
-                self?.playAudio(lesson: lesson, current: indexPath.row)
-            default :
-                return
-            }
-        }
-        return cell
+        return UITableViewCell()
     }
     
     func playAudio(lesson: Lesson, current: Int) {
@@ -153,14 +149,15 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         lesson.isPlay = 1
         let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
         requestWithTask(task: viewed, success: { (data) in
-            let status = data as! String
-            if status == "success" {
-                self.chanel.numberView += 1
-                let numberView = self.chanel.numberView
-                self.numberView.text = String(numberView)
-                self.table.reloadData()
+            if let status = data as? String {
+                if status == "success" {
+                    self.chanel.numberView += 1
+                    let numberView = self.chanel.numberView
+                    self.numberView.text = String(numberView)
+                    self.table.reloadData()
+                }
             }
-        }) { (error) in
+        }) { (_) in
             
         }
         let asset = AVAsset(url: URL(string: lesson.contentURL)!)
@@ -181,13 +178,14 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     @IBAction func pressedSubcribeButton(_ sender: Any) {
         let subcrible: SubcribleChanelTask = SubcribleChanelTask(memberID: 1, chanelID: chanel.idChanel)
         requestWithTask(task: subcrible, success: { (data) in
-            let status: Subcrible = data as! Subcrible
-            if status == Subcrible.subcrible {
-                Constants.sharedInstance.listChanelSubcribled.append(self.chanel)
-                self.subcribedTeacher.setTitle("  已訂閱頻道  ", for: .normal)
-                self.subcribedTeacher.isEnabled = false
+            if let status: Subcrible = data as? Subcrible {
+                if status == Subcrible.subcrible {
+                    Constants.sharedInstance.listChanelSubcribled.append(self.chanel)
+                    self.subcribedTeacher.setTitle("  已訂閱頻道  ", for: .normal)
+                    self.subcribedTeacher.isEnabled = false
+                }
             }
-        }) { (error) in
+        }) { (_) in
             
         }
     }

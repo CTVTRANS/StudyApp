@@ -44,22 +44,22 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let newsCell: NewsBookmarkedCell = table.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as! NewsBookmarkedCell
-        newsCell.binData(news: listBookMarkOfNews[indexPath.row])
+        let newsCell = table.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as? NewsBookmarkedCell
+        newsCell?.binData(news: listBookMarkOfNews[indexPath.row])
         
-        let bookCell: BookDownloadCell = table.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as! BookDownloadCell
+        let bookCell = table.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BookDownloadCell
         let book = listBookMarkOfBook[indexPath.row]
-        bookCell.binData(book: book)
+        bookCell?.binData(book: book)
         if book.isPlay == 1 {
             if book.pause == 1 {
-                bookCell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
+                bookCell?.imagePlay.image = #imageLiteral(resourceName: "audio_play")
             } else {
-                bookCell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+                bookCell?.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
             }
         } else {
-            bookCell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
+            bookCell?.imagePlay.image = #imageLiteral(resourceName: "audio_play")
         }
-        bookCell.callBackButton = { [weak self] (action: String) in
+        bookCell?.callBackButton = { [weak self] (action: String) in
             switch action {
             case "playBook":
                 self?.playAudioOfBook(book: book, current: indexPath.row)
@@ -72,9 +72,9 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
             }
         }
         if segment.selectedSegmentIndex == 0 {
-            return newsCell
+            return newsCell!
         } else {
-            return bookCell
+            return bookCell!
         }
     }
     
@@ -87,18 +87,18 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
         if segment.selectedSegmentIndex == 0 {
             let myStoryBoard = UIStoryboard(name: "Main", bundle: nil)
             let type = listBookMarkOfNews[indexPath.row].typeNews
-            if (type == 1) {
-                let vc: DetailNewsController = myStoryBoard.instantiateViewController(withIdentifier: "Detail") as! DetailNewsController
-                vc.news = listBookMarkOfNews[indexPath.row]
-                navigationController?.pushViewController(vc, animated: true)
+            if type == 1 {
+                let vc = myStoryBoard.instantiateViewController(withIdentifier: "Detail") as? DetailNewsController
+                vc?.news = listBookMarkOfNews[indexPath.row]
+                navigationController?.pushViewController(vc!, animated: true)
             } else if type == 2 {
-                let vc: Type2DetailNewsViewController = myStoryBoard.instantiateViewController(withIdentifier: "Type2Detail") as! Type2DetailNewsViewController
-                vc.news = listBookMarkOfNews[indexPath.row]
-                navigationController?.pushViewController(vc, animated: true)
+                let vc = myStoryBoard.instantiateViewController(withIdentifier: "Type2Detail") as? Type2DetailNewsViewController
+                vc?.news = listBookMarkOfNews[indexPath.row]
+                navigationController?.pushViewController(vc!, animated: true)
             } else {
-                let vc: Type3DetailNewsController = myStoryBoard.instantiateViewController(withIdentifier: "Type3DetailNewsController") as! Type3DetailNewsController
-                vc.news = listBookMarkOfNews[indexPath.row]
-                navigationController?.pushViewController(vc, animated: true)
+                let vc = myStoryBoard.instantiateViewController(withIdentifier: "Type3DetailNewsController") as? Type3DetailNewsController
+                vc?.news = listBookMarkOfNews[indexPath.row]
+                navigationController?.pushViewController(vc!, animated: true)
             }
         }
     }

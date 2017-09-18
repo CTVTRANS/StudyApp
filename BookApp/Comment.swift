@@ -9,21 +9,21 @@
 import UIKit
 
 class Comment: NSObject {
-    private var _id: Int!
+    private var _idComment: Int!
     private var _userComment: User!
     private var _timeComment: String!
     private var _numberLikeComment: Int!
     private var _contentComment: String!
 
-    init(id: Int, user: User, time: String, numberlikeComment: Int, content: String) {
-        _id = id
+    init(idComment: Int, user: User, time: String, numberlikeComment: Int, content: String) {
+        _idComment = idComment
         _userComment = user
         _timeComment = time
         _numberLikeComment = numberlikeComment
         _contentComment = content
     }
-    var id: Int {
-        return _id
+    var idComment: Int {
+        return _idComment
     }
     var userComment: User {
         return _userComment

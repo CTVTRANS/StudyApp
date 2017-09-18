@@ -17,16 +17,15 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        showAll.layer.borderColor = UIColor.rgb(r: 255, g: 102, b: 0).cgColor
-        showMark.layer.borderColor = UIColor.rgb(r: 255, g: 102, b: 0).cgColor
-        showMarkAndMoney.layer.borderColor = UIColor.rgb(r: 255, g: 102, b: 0).cgColor
+        showAll.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        showMark.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        showMarkAndMoney.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
     }
     
     func binData() {
         
     }
 
-    
     @IBAction func pressedShowAllButton(_ sender: Any) {
         
     }

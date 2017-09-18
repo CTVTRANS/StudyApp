@@ -15,7 +15,6 @@ class Chanel: NSObject {
     private var _imageTeacherURL, _nameTeahcer: String!
     private var _idChanel, _numberView: Int!
     
-    
     init(idChanel: Int,
          nameChanel: String,
          imageChanelURL: String,
@@ -36,7 +35,7 @@ class Chanel: NSObject {
     var nameChanel: String {
         return _nameChanel
     }
-    var idChanel : Int {
+    var idChanel: Int {
         return _idChanel
     }
     var typeChanel: String {

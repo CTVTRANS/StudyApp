@@ -10,7 +10,7 @@ import UIKit
 
 class Lesson: NSObject {
     
-    private let _id, _chapter: Int!
+    private let _idLesson, _chapter: Int!
     private let _timeUp: String!
     private let _name, _description: String!
     private let _imageChapterURL, _contentChapterURL: String!
@@ -18,9 +18,9 @@ class Lesson: NSObject {
     private var _pause: Int = 0
     private var _ownerOFChanel: String?
     
-    init(id: Int, chaper: Int, time: String, name: String, description: String,
+    init(idLesson: Int, chaper: Int, time: String, name: String, description: String,
          imageURL: String, contentURL: String) {
-        _id = id
+        _idLesson = idLesson
         _chapter = chaper
         _timeUp = time
         _name = name
@@ -29,7 +29,7 @@ class Lesson: NSObject {
         _contentChapterURL = contentURL
     }
     var idChap: Int {
-        return _id
+        return _idLesson
     }
     var chapter: Int {
         return _chapter

@@ -11,7 +11,7 @@ import UIKit
 let widthScreen: CGFloat = UIScreen.main.bounds.width
 let hightScreen: CGFloat = UIScreen.main.bounds.height
 
-enum Object: Int{
+enum Object: Int {
     case news = 0, book, comment
 }
 
@@ -36,12 +36,13 @@ enum BottomButton: Int {
 }
 
 class Constants: NSObject {
+    var listNewsType: [NewsType] = []
     var listBookType: [BookType] = []
     var listChanelSubcribled: [Chanel] = []
     var listGroupJoined: [SecrectGroup] = []
     var language: Int = 1
     
-    var historyViewChanelLesson:[Lesson] = []
+    var historyViewChanelLesson: [Lesson] = []
     var memberProfile: ProfileMember?
     var listDownloadLesson: [Lesson] = []
     var listDownloadBook: [Book] = []

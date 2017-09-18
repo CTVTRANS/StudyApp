@@ -30,14 +30,18 @@ class DetailSingleGroupViewController: BaseViewController, UITableViewDelegate, 
         
         imageGroup.layer.cornerRadius = heightOfImage.constant / 2
         let getNewsInGroup: GetNewsInGroupTask =
-            GetNewsInGroupTask(idGroup: (groupSelected?.id)!,
+            GetNewsInGroupTask(idGroup: (groupSelected?.idGroup)!,
                                limit: 20,
                                page: 1)
         requestWithTask(task: getNewsInGroup, success: { (data) in
-            self.arrayNews = data as! [NewsInGroups]
-            self.table.reloadData()
+            if let  array = data as? [NewsInGroups] {
+                self.arrayNews = array
+                self.table.reloadData()
+            }
         }) { (error) in
-            
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
     }
 
@@ -55,9 +59,11 @@ class DetailSingleGroupViewController: BaseViewController, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: DetailSingleGroupCell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DetailSingleGroupCell
-        cell.binData(news: arrayNews[indexPath.row])
+        if let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DetailSingleGroupCell {
+            cell.binData(news: arrayNews[indexPath.row])
         return cell
+        }
+        return UITableViewCell()
     }
     
     @IBAction func pressedJoinButton(_ sender: Any) {

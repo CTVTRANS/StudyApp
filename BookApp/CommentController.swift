@@ -16,8 +16,8 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var commentTextView: UITextView!
     
     var tap: UITapGestureRecognizer?
-    var arrayOfComment = [Comment]()
-    var arrayCommentHot = [Comment]()
+//    var arrayOfComment = [Comment]()
+//    var arrayCommentHot = [Comment]()
     var arrayObject = [SpecialComment]()
     var idObject: Int?
     var commentType: Int?
@@ -36,9 +36,8 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         let getCommentHot: GetCommentHot = GetCommentHot(commentType: commentType!,
                                                          idObject: commentType!)
         requestWithTask(task: getCommentHot, success: { (data) in
-            self.arrayCommentHot = data as! [Comment]
-            if self.arrayCommentHot.count > 0 {
-                let hotComment: SpecialComment = SpecialComment(name: "熱評", array: self.arrayCommentHot)
+            if let arrayCommentHot = data as? [Comment] {
+                let hotComment: SpecialComment = SpecialComment(name: "熱評", array: arrayCommentHot)
                 self.arrayObject.append(hotComment)
             }
             
@@ -47,17 +46,24 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                                                           limitComment: 20,
                                                           pageing: 1)
             self.requestWithTask(task: getComment, success: { (data) in
-                self.arrayOfComment = data as! [Comment]
-                let normalComment: SpecialComment = SpecialComment(name: "最新", array: self.arrayOfComment)
-                self.arrayObject.append(normalComment)
-                self.table.reloadData()
-                self.stopActivityIndicator()
+                if let arrayOfComment = data as? [Comment] {
+                    let normalComment: SpecialComment = SpecialComment(name: "最新", array: arrayOfComment)
+                    self.arrayObject.append(normalComment)
+                    self.table.reloadData()
+                    self.stopActivityIndicator()
+                }
             }) { (error) in
                 self.stopActivityIndicator()
+                _ = UIAlertController(title: nil,
+                                      message: error as? String,
+                                      preferredStyle: .alert)
             }
 
         }) { (error) in
             self.stopActivityIndicator()
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
     }
     
@@ -73,7 +79,7 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view: UIView = UIView(frame: CGRect(x: 0, y: 0, width: table.frame.size.width, height: 30))
-        view.backgroundColor = UIColor.rgb(r: 254, g: 153, b: 0)
+        view.backgroundColor = UIColor.rgb(red: 254, green: 153, blue: 0)
         let nameTypeComment: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: table.frame.size.width, height: 30))
         nameTypeComment.font = UIFont(name: "DFHei Std W5", size: 15)
         nameTypeComment.text = arrayObject[section].name
@@ -81,7 +87,7 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         nameTypeComment.textColor = UIColor.white
         nameTypeComment.backgroundColor = UIColor.clear
         view.addSubview(nameTypeComment)
-        return view;
+        return view
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -97,45 +103,46 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CommentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell
         let sectionObject = arrayObject[indexPath.section]
         let commenObject = sectionObject.comment[indexPath.row]
-        cell.binData(commentObject: commenObject)
+        cell?.binData(commentObject: commenObject)
         let checkLike: CheckLikedTask = CheckLikedTask(likeType: Object.comment.rawValue,
                                                         memberID: 1,
-                                                        objectID: commenObject.id)
+                                                        objectID: commenObject.idComment)
         requestWithTask(task: checkLike, success: { (data) in
-            let status: Bool = data as! Bool
-            if status {
-                cell.imageLike.image = #imageLiteral(resourceName: "ic_bottom_liked")
-            } else {
-                 cell.imageLike.image = #imageLiteral(resourceName: "ic_bottom_like")
+            if let status = data as? Bool {
+                if status {
+                    cell?.imageLike.image = #imageLiteral(resourceName: "ic_bottom_liked")
+                } else {
+                     cell?.imageLike.image = #imageLiteral(resourceName: "ic_bottom_like")
+                }
             }
-        }) { (error) in
+        }) { (_) in
             
         }
         
-        cell.pressLikeComment = { [weak self] in
+        cell?.pressLikeComment = { [weak self] in
             let likeComment: LikeTask = LikeTask(likeType: Object.comment.rawValue,
                                                  memberID: 1,
-                                                 objectId: commenObject.id)
+                                                 objectId: commenObject.idComment)
             self?.requestWithTask(task: likeComment, success: { (data) in
                 let status: Like = (data as? Like)!
-                var currentLike: Int = Int(cell.numberLike.text!)!
+                var currentLike: Int = Int(cell!.numberLike.text!)!
                 if status == Like.like {
                     currentLike += 1
-                    cell.imageLike.image = #imageLiteral(resourceName: "ic_bottom_liked")
-                    cell.numberLike.text = String(currentLike)
+                    cell?.imageLike.image = #imageLiteral(resourceName: "ic_bottom_liked")
+                    cell?.numberLike.text = String(currentLike)
                 } else {
                     currentLike -= 1
-                    cell.imageLike.image = #imageLiteral(resourceName: "ic_bottom_like")
-                    cell.numberLike.text = String(currentLike)
+                    cell?.imageLike.image = #imageLiteral(resourceName: "ic_bottom_like")
+                    cell?.numberLike.text = String(currentLike)
                 }
-            }, failure: { (error) in
+            }, failure: { (_) in
                 
             })
         }
-        return cell
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -159,7 +166,7 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
             self.commentTextView.text = ""
             self.commentTextView.endEditing(true)
             print(data!)
-        }) { (error) in
+        }) { (_) in
             
         }
     }
@@ -167,10 +174,10 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     @objc func keyboardNotification(notification1: NSNotification) {
         if let userInfo = notification1.userInfo {
             let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let duration: TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
             let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
             let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
-            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
             if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
                 self.navigationItem.leftBarButtonItem?.isEnabled = true
                 self.navigationItem.rightBarButtonItem?.isEnabled = true

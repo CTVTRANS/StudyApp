@@ -14,8 +14,8 @@ class BuyProductViewController: BaseViewController {
     @IBOutlet weak var statusTranfer: UILabel!
     @IBOutlet weak var numberMark: UILabel!
     @IBOutlet weak var titleProduct: UILabel!
-    @IBOutlet weak var buyButton_Case1: UIButton!
-    @IBOutlet weak var buyButton_Case2: UIButton!
+    @IBOutlet weak var buyButtonCase1: UIButton!
+    @IBOutlet weak var buyButtonCase2: UIButton!
     
     @IBOutlet weak var point1: UILabel!
     @IBOutlet weak var money1: UILabel!
@@ -27,8 +27,8 @@ class BuyProductViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        buyButton_Case1.layer.borderColor = UIColor.rgb(r: 255, g: 102, b: 0).cgColor
-        buyButton_Case2.layer.borderColor = UIColor.rgb(r: 255, g: 102, b: 0).cgColor
+        buyButtonCase1.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        buyButtonCase2.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
         if let book = product as? Book {
             titleProduct.text = book.name
             imageProduct.sd_setImage(with: URL(string: book.imageURL))

@@ -10,22 +10,22 @@ import UIKit
 
 class SecrectGroup: NSObject {
     
-    private var _id: Int!
+    private var _idGroup: Int!
     private var _name: String!
     private var _imageURL: String!
     private var _idWechat: String!
     private var _adress: String!
     
-    init(id: Int, name: String, imageURL: String, idWechat: String, adress: String) {
-        _id = id
+    init(idGroup: Int, name: String, imageURL: String, idWechat: String, adress: String) {
+        _idGroup = idGroup
         _name = name
         _imageURL = imageURL
         _idWechat = idWechat
         _adress = adress
     }
     
-    var id: Int {
-        return _id
+    var idGroup: Int {
+        return _idGroup
     }
     var name: String {
         return _name

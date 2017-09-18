@@ -21,11 +21,15 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
         let getBookFree: GetBookFree = GetBookFree(limit: 10, page: 1)
         showActivity(inView: UIApplication.shared.keyWindow!)
         requestWithTask(task: getBookFree, success: { (data) in
-            self.listBook = data as! [Book]
-            self.table.reloadData()
-            self.stopActivityIndicator()
+            if let list  = data as? [Book] {
+                self.listBook = list
+                self.table.reloadData()
+                self.stopActivityIndicator()
+            }
         }) { (error) in
-            
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
     }
     
@@ -39,9 +43,11 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ListBookFreee = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ListBookFreee
-        cell.binData(book: listBook[indexPath.row])
-        return cell
+        if let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ListBookFreee {
+            cell.binData(book: listBook[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -51,8 +57,9 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
         let bookStoryboard = UIStoryboard(name: "Book", bundle: nil)
-        let vc: BookDetailViewController = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as! BookDetailViewController
-        vc.bookSelected = listBook[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
+        if let vc = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as? BookDetailViewController {
+            vc.bookSelected = listBook[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

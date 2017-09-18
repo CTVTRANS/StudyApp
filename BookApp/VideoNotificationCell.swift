@@ -14,7 +14,4 @@ class VideoNotificationCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
- 
-
 }

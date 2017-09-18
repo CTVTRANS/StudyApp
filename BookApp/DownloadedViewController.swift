@@ -46,44 +46,17 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let chaneCell: HistoryWatchChanelCell = table.dequeueReusableCell(withIdentifier: "chanelCell", for: indexPath) as! HistoryWatchChanelCell
-        let lesson = listChanelDownloaded[indexPath.row]
-        chaneCell.binData(lesson: lesson)
-        if lesson.isPlay == 1 {
-            if lesson.pause == 1 {
-                chaneCell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
-            } else {
-                chaneCell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
-            }
-        } else {
-            chaneCell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
+        if segment.selectedSegmentIndex == 0 {
+            return self.chanelCell(indexPath: indexPath)
         }
-        chaneCell.callBackButton = { [weak self] (action: String) in
-            switch action {
-            case "playChanel":
-                self?.playLeesonOfChanel(lesson: lesson, current: indexPath.row)
-                break
-            case "removeChanel":
-                self?.listChanelDownloaded.remove(at: indexPath.row)
-                self?.table.reloadData()
-                break
-            default:
-                break
-            }
-        }
-        let bookCell: BookDownloadCell = table.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as! BookDownloadCell
+        return bookCell(indexPath: indexPath)
+    }
+    
+    func bookCell(indexPath: IndexPath) -> BookDownloadCell {
+        let bookCell = table.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BookDownloadCell
         let book = listBookDownloaded[indexPath.row]
-        bookCell.binData(book: book)
-        if book.isPlay == 1 {
-            if book.pause == 1 {
-                bookCell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
-            } else {
-                bookCell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
-            }
-        } else {
-            bookCell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
-        }
-        bookCell.callBackButton = { [weak self] (action: String) in
+        bookCell?.binData(book: book)
+        bookCell?.callBackButton = { [weak self] (action: String) in
             switch action {
             case "playBook":
                 self?.playAudioOfBook(book: book, current: indexPath.row)
@@ -96,12 +69,27 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
                 break
             }
         }
-        
-        if segment.selectedSegmentIndex == 0 {
-            return bookCell
-        } else {
-            return chaneCell
+        return bookCell!
+    }
+    
+    func chanelCell(indexPath: IndexPath) -> HistoryWatchChanelCell {
+        let chaneCell = table.dequeueReusableCell(withIdentifier: "chanelCell", for: indexPath) as? HistoryWatchChanelCell
+        let lesson = listChanelDownloaded[indexPath.row]
+        chaneCell?.binData(lesson: lesson)
+        chaneCell?.callBackButton = { [weak self] (action: String) in
+            switch action {
+            case "playChanel":
+                self?.playLeesonOfChanel(lesson: lesson, current: indexPath.row)
+                break
+            case "removeChanel":
+                self?.listChanelDownloaded.remove(at: indexPath.row)
+                self?.table.reloadData()
+                break
+            default:
+                break
+            }
         }
+        return chaneCell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

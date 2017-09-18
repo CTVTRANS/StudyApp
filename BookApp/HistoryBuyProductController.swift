@@ -30,12 +30,12 @@ class HistoryBuyProductController: BaseViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell1 = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let cell2: ListBookFreee = table.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as! ListBookFreee
-        cell2.bottomView.isHidden = true
+        let cell2 = table.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? ListBookFreee
+        cell2?.bottomView.isHidden = true
         if indexPath.row < 6 {
             return cell1
         }
-        return cell2
+        return cell2!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

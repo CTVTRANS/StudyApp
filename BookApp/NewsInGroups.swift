@@ -10,18 +10,18 @@ import UIKit
 
 class NewsInGroups: NSObject {
     
-    private var _id: Int!
+    private var _idNews: Int!
     private var _imageNews: String!
     private var _title: String!
     
-    init(id: Int, image: String, title: String) {
-        _id = id
+    init(idNews: Int, image: String, title: String) {
+        _idNews = idNews
         _imageNews = image
         _title = title
     }
     
-    var id: Int {
-        return _id
+    var idNews: Int {
+        return _idNews
     }
     var imageURL: String {
         return _imageNews

@@ -29,7 +29,7 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: UIApplication.shared.keyWindow!)
-        videoDetailButton.layer.borderColor = UIColor.rgb(r: 255, g: 101, b: 0).cgColor
+        videoDetailButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
         web.delegate = self
         let content = css + (book?.description)!
         web.loadHTMLString(content, baseURL: nil)
@@ -44,13 +44,13 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
             DispatchQueue.main.async {
                 let item = AVPlayerItem(asset: asset)
                 self.player = AVPlayer(playerItem: item)
-                self.player?.addObserver(self, forKeyPath: "rate", options: .new , context: nil)
+                self.player?.addObserver(self, forKeyPath: "rate", options: .new, context: nil)
                 
                 self.playerViewController.player =  self.player
                 self.playerViewController.view.frame = self.headerView.bounds
                 self.headerView.addSubview(self.playerViewController.view)
                 self.loadedVideo = true
-                if (self.loadedVideo && self.loadedWebView) {
+                if self.loadedVideo && self.loadedWebView {
                     self.stopActivityIndicator()
                 }
             }
@@ -73,9 +73,8 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
     func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         let currentviewController =  navigationController?.visibleViewController
         
-        if currentviewController != playerViewController
-        {
-            currentviewController?.present(playerViewController,animated: true,completion:nil)
+        if currentviewController != playerViewController {
+            currentviewController?.present(playerViewController, animated: true, completion: nil)
         }
 
     }
@@ -85,7 +84,7 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
         hightOfWebView.constant = hightOfContenWebView
         print(web.frame.size.height)
         self.loadedWebView = true
-        if (self.loadedVideo && self.loadedWebView) {
+        if self.loadedVideo && self.loadedWebView {
             self.stopActivityIndicator()
         }
     }

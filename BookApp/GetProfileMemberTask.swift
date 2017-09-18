@@ -10,26 +10,11 @@ import UIKit
 import LCNetwork
 
 class GetProfileMemberTask: BaseTaskNetwork {
-    
-//    _id = id
-//    _memberCode = memberCode
-//    _level = level
-//    _name = name
-//    _country = country
-//    _phoneNumber = phoneNumber
-//    _email = email
-//    _avatar = avatar
-//    _sex = sex
-//    _dateOfBirth = birDay
-//    _job = job
-//    _marriage = marriage
-//    _hobby = hobby
-//    _poit = point
 
     private var _memberID: Int!
     
-    init(id: Int) {
-        _memberID = id
+    init(idMember: Int) {
+        _memberID = idMember
     }
     
     override func path() -> String! {
@@ -61,7 +46,7 @@ class GetProfileMemberTask: BaseTaskNetwork {
             let memberHobby = dictionary["hobby"] as? String ?? " "
             let memberPoint = dictionary["point"] as? Int ?? 9999
             
-            let member: ProfileMember = ProfileMember(id: memberID,
+            let member: ProfileMember = ProfileMember(idMember: memberID,
                                                       memberCode: memberCode,
                                                       level: memberLevel,
                                                       name: memberName,

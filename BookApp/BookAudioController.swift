@@ -45,7 +45,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: UIApplication.shared.keyWindow!)
-        audioDetailButton.layer.borderColor = UIColor.rgb(r: 255, g: 101, b: 0).cgColor
+        audioDetailButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
         imageBook.sd_setImage(with: URL(string: (book?.imageURL)!))
         web.delegate = self
         let content = css + (book?.description)!
@@ -71,8 +71,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
             DispatchQueue.main.async {
                 let item = AVPlayerItem(asset: asset)
                 self.player = AVPlayer(playerItem: item)
-                self.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) {
-                    [weak self] time in
+                self.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { [weak self] time in
                     guard let strongSelf = self else {
                         return
                     }
@@ -81,7 +80,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
                     
                     if UIApplication.shared.applicationState == .active {
                         let second: Int = Int(timeString)!
-                        if ( second % 60 ) < 10 {
+                        if second % 60 < 10 {
                             strongSelf.currentSecondTime.text = "0" + String( second % 60)
                         } else {
                             strongSelf.currentSecondTime.text = String( second % 60)
@@ -89,7 +88,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
                         
                         if ( second / 60) > 0 {
                             strongSelf.currentMinAudio.text = "0" + String (second / 60) + ":"
-                        } else if (second / 60 > 9) {
+                        } else if second / 60 > 9 {
                             strongSelf.currentMinAudio.text = String (second / 60) + ":"
                         }
                     } else {
@@ -100,7 +99,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
                 self.totalTime = CMTimeGetSeconds(duration)
                 self.customSliderBar()
                 self.loadedAudio = true
-                if (self.loadedAudio && self.loadedWebView) {
+                if self.loadedAudio && self.loadedWebView {
                     self.stopActivityIndicator()
                 }
             }
@@ -112,12 +111,10 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         let hightOfContenWebView: CGFloat = web.scrollView.contentSize.height
         hightOfWebView.constant = hightOfContenWebView
         self.loadedWebView = true
-        if (self.loadedAudio && self.loadedWebView) {
+        if self.loadedAudio && self.loadedWebView {
             self.stopActivityIndicator()
         }
     }
-    
- 
     
     func customSliderBar() {
         sliderBar.maximumValue = Float(totalTime!)
@@ -125,18 +122,18 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         let myMins = Int(totalTime! / 60)
         self.totalTimeAudio.text = String(myMins) + ":" + String(mySecs)
         sliderBar.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)
-        sliderBar.minimumTrackTintColor = UIColor.rgb(r: 255, g: 106, b: 6)
+        sliderBar.minimumTrackTintColor = UIColor.rgb(red: 255, green: 106, blue: 6)
         sliderBar.addTarget(self, action: #selector(playbackSliderValueChanged(_:)), for: .valueChanged)
     }
     
-    func playbackSliderValueChanged(_ playbackSlider:UISlider) {
-        let seconds : Int64 = Int64(playbackSlider.value)
-        let targetTime:CMTime = CMTimeMake(seconds, 1)
+    func playbackSliderValueChanged(_ playbackSlider: UISlider) {
+        let seconds: Int64 = Int64(playbackSlider.value)
+        let targetTime: CMTime = CMTimeMake(seconds, 1)
         player?.seek(to: targetTime)
     }
     
-    func videoDidStart(note : NSNotification) {
-        if (player?.rate == 0) {
+    func videoDidStart(note: NSNotification) {
+        if player?.rate == 0 {
             print("pause video")
         } else {
             print("start video")
@@ -154,16 +151,16 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     }
     
     @IBAction func pressedPrevious(_ sender: Any) {
-        sliderBar.value = sliderBar.value - 15
-        let seconds : Int64 = Int64(sliderBar.value)
-        let targetTime:CMTime = CMTimeMake(seconds, 1)
+        sliderBar.value -= 15
+        let seconds: Int64 = Int64(sliderBar.value)
+        let targetTime: CMTime = CMTimeMake(seconds, 1)
         player?.seek(to: targetTime)
     }
     
     @IBAction func pressedNext(_ sender: Any) {
-        sliderBar.value = sliderBar.value + 15
-        let seconds : Int64 = Int64(sliderBar.value)
-        let targetTime:CMTime = CMTimeMake(seconds, 1)
+        sliderBar.value += 15
+        let seconds: Int64 = Int64(sliderBar.value)
+        let targetTime: CMTime = CMTimeMake(seconds, 1)
         player?.seek(to: targetTime)
     }
     
