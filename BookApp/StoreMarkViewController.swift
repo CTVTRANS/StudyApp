@@ -63,19 +63,19 @@ class StoreMarkViewController: BaseViewController, UICollectionViewDelegate, UIC
     
     @IBAction func pressedShowAllButton(_ sender: Any) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailStoreMarkController") as? DetailStoreMarkController {
-            vc.typeRequest = 1
+            vc.typeRequest = TypeProductRequest.all
             navigationController?.pushViewController(vc, animated: true)
         }
     }
     @IBAction func pressedShowMarkButton(_ sender: Any) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailStoreMarkController") as? DetailStoreMarkController {
-            vc.typeRequest = 2
+            vc.typeRequest = TypeProductRequest.point
             navigationController?.pushViewController(vc, animated: true)
         }
     }
     @IBAction func pressedShowMarkAndMoney(_ sender: Any) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailStoreMarkController") as? DetailStoreMarkController {
-            vc.typeRequest = 3
+            vc.typeRequest = TypeProductRequest.pointAndMoney
             navigationController?.pushViewController(vc, animated: true)
         }
     }

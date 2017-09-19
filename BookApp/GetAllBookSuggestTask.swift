@@ -9,7 +9,7 @@
 import UIKit
 import LCNetwork
 
-class GetAllBookSuggest: BaseTaskNetwork {
+class GetAllBookSuggestTask: BaseTaskNetwork {
     
     private let _limit: Int!
     private let _page: Int!
@@ -34,7 +34,7 @@ class GetAllBookSuggest: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listBook = [Book]()
+        var listBook: [Book] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let book = self.parseBook(dictionary: dictionary)

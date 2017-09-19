@@ -10,5 +10,41 @@ import UIKit
 import LCNetwork
 
 class SearchNewsTask: BaseTaskNetwork {
+    
+    private var _keyWord: String!
+    private var _limit: Int!
+    private var _page: Int!
+    
+    init(keyWord: String, limit: Int, page: Int) {
+        _keyWord = keyWord
+        _limit = limit
+        _page = page
+    }
+    
+    override func parameters() -> [AnyHashable : Any]! {
+        return ["keyword": _keyWord,
+                "lang": Constants.sharedInstance.language,
+                "limit": _limit,
+                "page": _page]
+    }
+    
+    override func path() -> String! {
+        return searchNewsURL
+    }
+    
+    override func method() -> String! {
+        return GET
+    }
+
+    override func data(withResponse response: Any!) -> Any! {
+        var araayNews: [NewsModel] = []
+        if let object = response as? [[String: Any]] {
+            for dictionary in object {
+                let news: NewsModel = parseNews(dictionary: dictionary)
+                araayNews.append(news)
+            }
+        }
+        return araayNews
+    }
 
 }

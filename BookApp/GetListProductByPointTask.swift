@@ -1,5 +1,5 @@
 //
-//  GetListProductByPointAndMoney.swift
+//  GetListProductByPoint.swift
 //  BookApp
 //
 //  Created by kien le van on 9/15/17.
@@ -9,8 +9,8 @@
 import UIKit
 import LCNetwork
 
-class GetListProductByPointAndMoney: BaseTaskNetwork {
-
+class GetListProductByPointTask: BaseTaskNetwork {
+    
     private var _limit: Int!
     private var _page: Int!
     
@@ -20,7 +20,7 @@ class GetListProductByPointAndMoney: BaseTaskNetwork {
     }
     
     override func path() -> String! {
-        return getAllProductByPointAndMoneyURL
+        return getAllProductByPointURL
     }
     
     override func method() -> String! {
@@ -32,7 +32,7 @@ class GetListProductByPointAndMoney: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listBook = [Book]()
+        var listBook: [Book] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let book = self.parseBook(dictionary: dictionary)

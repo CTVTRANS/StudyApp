@@ -9,7 +9,7 @@
 import UIKit
 import LCNetwork
 
-class GetBookSuggestForType: BaseTaskNetwork {
+class GetBookSuggestForTypeTask: BaseTaskNetwork {
     
     private let _category: Int!
     private let _limit: Int!
@@ -32,7 +32,7 @@ class GetBookSuggestForType: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listBook = [Book]()
+        var listBook: [Book] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let book = self.parseBook(dictionary: dictionary)

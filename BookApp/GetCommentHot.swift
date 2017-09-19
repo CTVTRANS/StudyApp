@@ -33,7 +33,7 @@ class GetCommentHot: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listComment = [Comment]()
+        var listComment: [Comment] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let iDComment = dictionary["comment_id"] as? Int ?? 999

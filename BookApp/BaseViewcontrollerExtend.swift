@@ -30,11 +30,11 @@ extension BaseTaskNetwork {
         let numberLikeBook = dictionary["number_of_likes"] as? Int ?? 123
         let numberCommentBook = dictionary["number_of_comments"] as? Int ?? 123
         let numberBookMark = dictionary["number_of_collection"] as? Int ?? 123
-        let price = dictionary["price_by_point"] as? Int
+        let price = dictionary["price_by_point"] as? Int ?? 0
         
         let priceMixDictionay = dictionary["price_mix"] as? [String: Any]
-        let priceMix_Point = priceMixDictionay?["point"] as? Int ?? 123
-        let priceMix_Money = priceMixDictionay?["money"] as? Int ?? 123
+        let priceMix_Point = priceMixDictionay?["point"] as? Int ?? 0
+        let priceMix_Money = priceMixDictionay?["money"] as? Int ?? 0
         let priceMixOfBook = PriceMix(point: priceMix_Point, money: priceMix_Money)
         
         let book: Book = Book(idBook: idBook,
@@ -105,6 +105,54 @@ extension BaseTaskNetwork {
                                  idWechat: idWechatGroup,
                                  adress: adressGroup)
         return group
+    }
+    
+    func parseNews(dictionary: [String: Any]) -> NewsModel {
+        let newsID = dictionary["post_id"] as? Int ?? 123
+        let newsAuthor = dictionary["author"] as? String ?? "kien"
+        let newsName = dictionary["post_name"] as? String ?? "123"
+        let newsImage = dictionary["post_image"] as? String ?? "123"
+        let newsDescription = dictionary["post_description"] as? String ?? "123"
+        let newsContent = dictionary["post_content"] as? String ?? "123"
+        let newsNote = dictionary["post_note"] as? String ?? "123"
+        let newsTimeup = dictionary["updated_at"] as? String ?? "123"
+        let newsType = dictionary["post_display_type"] as? Int ?? 123
+        let newsNameType = dictionary["post_name"] as? String ?? "123"
+        let newsNumberLike = dictionary["number_of_likes"] as? Int ?? 123
+        let newsNumberComment = dictionary["number_of_comments"] as? Int ?? 123
+        let newsNumberBookMark = dictionary["number_of_collection"] as? Int ?? 123
+        
+        let news: NewsModel = NewsModel(idNews: newsID,
+                                        author: newsAuthor,
+                                        imageUrl: newsImage,
+                                        title: newsName,
+                                        detail: newsDescription,
+                                        type: newsType,
+                                        nameType: newsNameType,
+                                        content: newsContent,
+                                        note: newsNote,
+                                        timeUp: newsTimeup,
+                                        numberView: 123,
+                                        numberLike: newsNumberLike,
+                                        numberComment: newsNumberComment,
+                                        numberBookMark: newsNumberBookMark)
+        return news
+    }
+    
+    func parseVip(dictionary: [String: Any]) -> Vip {
+        let idVip = dictionary["id"] as? Int ?? 123
+        let titleVip = dictionary["title"] as? String ?? "123"
+        let imageVip = dictionary["image"] as? String ?? "123"
+        let descriptionVip = dictionary["description"] as? String ?? "dasdf"
+        let contentVip = dictionary["content"] as? String ?? "sdaf"
+        let priceVip = dictionary["price"] as? Int ?? 123
+        let vip = Vip(idVip: idVip,
+                  title: titleVip,
+                  imageURL: imageVip,
+                  description: descriptionVip,
+                  content: contentVip,
+                  price: priceVip)
+        return vip
     }
 }
 
@@ -316,52 +364,3 @@ extension UIColor {
         return UIColor(colorLiteralRed: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
     }
 }
-
-/*
-extension UIDevice {
-    
-    var modelName: String {
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let machineMirror = Mirror(reflecting: systemInfo.machine)
-        let identifier = machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8, value != 0 else { return identifier }
-            return identifier + String(UnicodeScalar(UInt8(value)))
-        }
-        
-        switch identifier {
-        case "iPod5,1":                                 return "iPod Touch 5"
-        case "iPod7,1":                                 return "iPod Touch 6"
-        case "iPhone3,1", "iPhone3,2", "iPhone3,3":     return "iPhone 4"
-        case "iPhone4,1":                               return "iPhone 4s"
-        case "iPhone5,1", "iPhone5,2":                  return "iPhone 5"
-        case "iPhone5,3", "iPhone5,4":                  return "iPhone 5c"
-        case "iPhone6,1", "iPhone6,2":                  return "iPhone 5s"
-        case "iPhone7,2":                               return "iPhone 6"
-        case "iPhone7,1":                               return "iPhone 6 Plus"
-        case "iPhone8,1":                               return "iPhone 6s"
-        case "iPhone8,2":                               return "iPhone 6s Plus"
-        case "iPhone9,1", "iPhone9,3":                  return "iPhone 7"
-        case "iPhone9,2", "iPhone9,4":                  return "iPhone 7 Plus"
-        case "iPhone8,4":                               return "iPhone SE"
-        case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2"
-        case "iPad3,1", "iPad3,2", "iPad3,3":           return "iPad 3"
-        case "iPad3,4", "iPad3,5", "iPad3,6":           return "iPad 4"
-        case "iPad4,1", "iPad4,2", "iPad4,3":           return "iPad Air"
-        case "iPad5,3", "iPad5,4":                      return "iPad Air 2"
-        case "iPad6,11", "iPad6,12":                    return "iPad 5"
-        case "iPad2,5", "iPad2,6", "iPad2,7":           return "iPad Mini"
-        case "iPad4,4", "iPad4,5", "iPad4,6":           return "iPad Mini 2"
-        case "iPad4,7", "iPad4,8", "iPad4,9":           return "iPad Mini 3"
-        case "iPad5,1", "iPad5,2":                      return "iPad Mini 4"
-        case "iPad6,3", "iPad6,4":                      return "iPad Pro 9.7 Inch"
-        case "iPad6,7", "iPad6,8":                      return "iPad Pro 12.9 Inch"
-        case "iPad7,1", "iPad7,2":                      return "iPad Pro 12.9 Inch 2. Generation"
-        case "iPad7,3", "iPad7,4":                      return "iPad Pro 10.5 Inch"
-        case "AppleTV5,3":                              return "Apple TV"
-        case "i386", "x86_64":                          return "Simulator"
-        default:                                        return identifier
-        }
-    }
-}
- */

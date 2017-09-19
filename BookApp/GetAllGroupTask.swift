@@ -24,7 +24,7 @@ class GetAllGroupTask: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listGroup = [SecrectGroup]()
+        var listGroup: [SecrectGroup] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let group = parseGroup(dictionary: dictionary)

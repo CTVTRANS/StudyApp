@@ -91,7 +91,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                     self?.present(vc, animated: true, completion: nil)
                 }
             case TopButton.search:
-                if let vc = myStoryboard.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController {
+                if let vc = myStoryboard.instantiateViewController(withIdentifier: "Search") as? UINavigationController {
                     self?.present(vc, animated: true, completion: nil)
                 }
             }

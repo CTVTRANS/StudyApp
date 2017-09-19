@@ -65,7 +65,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     }
     
     func getBookSuggest() {
-        let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest(limit: 3, page: 1)
+        let getBookSuggest: GetAllBookSuggestTask = GetAllBookSuggestTask(limit: 3, page: 1)
         requestWithTask(task: getBookSuggest, success: { (data) in
             self.suggestBookView.reloadData(arrayOfBook: (data as? [Book])!)
             self.loadedBookSuggest = true
@@ -81,7 +81,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     }
     
     func getBookFree() {
-        let getBookFree: GetBookFree = GetBookFree(limit: 3, page: 1)
+        let getBookFree: GetBookFreeTask = GetBookFreeTask(limit: 3, page: 1)
         requestWithTask(task: getBookFree, success: { (data) in
             self.freeBookView.reloadData(arrayOfBook: (data as? [Book])!)
             self.loadefBookFree = true
@@ -119,11 +119,6 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-//    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookTypeArray.count
@@ -137,7 +132,8 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let type: BookType = bookTypeArray[indexPath.row]
-        let getBook = GetBookSuggestForType(category: type.typeID, limit: 3)
+        let getBook: GetBookSuggestForTypeTask =
+            GetBookSuggestForTypeTask(category: type.typeID, limit: 3)
         requestWithTask(task: getBook, success: { (data) in
             self.suggestBookView.reloadData(arrayOfBook: (data as? [Book])!)
         }) { (error) in
@@ -145,13 +141,6 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
                                   message: error as? String,
                                   preferredStyle: .alert)
         }
-        
-//        let getBook: GetListBookForTypeTask  = GetListBookForTypeTask(category: type.typeID, page: "1")
-//        requestWithTask(task: getBook, success: { (data) in
-//            self.suggestBookView.reloadData(arrayOfBook: data as! [Book])
-//        }) { (error) in
-//            
-//        }
     }
     
     func setupCallBackClickCell() {
@@ -162,7 +151,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
             self?.navigationController?.pushViewController(vc!, animated: true)
         }
         suggestBookView.callBackReloadButton = { [weak self] in
-            let getBookSuggest: GetAllBookSuggest = GetAllBookSuggest(limit: 3, page: 2)
+            let getBookSuggest: GetAllBookSuggestTask = GetAllBookSuggestTask(limit: 3, page: 2)
             self?.requestWithTask(task: getBookSuggest, success: { (data) in
                 self?.suggestBookView.reloadData(arrayOfBook: (data as? [Book])!)
             }) { (error) in
@@ -201,7 +190,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
                 let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as? UINavigationController
                 self?.present(vc!, animated: true, completion: nil)
             case TopButton.search:
-                let vc = myStoryboard.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController
+                let vc = myStoryboard.instantiateViewController(withIdentifier: "Search") as? UINavigationController
                 self?.present(vc!, animated: true, completion: nil)
             }
         }

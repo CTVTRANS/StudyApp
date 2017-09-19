@@ -32,7 +32,7 @@ class GetAllproductTask: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listBook = [Book]()
+        var listBook: [Book] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let book = self.parseBook(dictionary: dictionary)

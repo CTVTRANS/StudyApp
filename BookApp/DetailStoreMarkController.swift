@@ -7,59 +7,60 @@
 //
 
 import UIKit
+import LCNetwork
 
 class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collection: UICollectionView!
     
     private var page = 1
-    var typeRequest: Int!
-    var listProduct: [Book] = []
+    var typeRequest: TypeProductRequest!
+//    private var listBook: [Book] = []
+//    private var listVip: [Vip] = []
+    private var listProduct: [AnyObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collection.register(UINib.init(nibName: "StoreMarkViewCell", bundle: nil), forCellWithReuseIdentifier: "cell2")
-        getData()
+        getProduct()
     }
     
-    func getData() {
+    func getProduct() {
         let getAllproduct: GetAllproductTask = GetAllproductTask(limit: 20, page: page)
-        let getProductByPoint: GetListProductByPoint = GetListProductByPoint(limit: 20, page: page)
-        let getproductByPointAndMoney: GetListProductByPointAndMoney = GetListProductByPointAndMoney(limit: 20, page: page)
-        if typeRequest == 1 {
-            requestWithTask(task: getAllproduct, success: { (data) in
-                if let list = data as? [Book] {
-                    self.listProduct = list
-                    self.collection.reloadData()
+        let getProductByPoint: GetListProductByPointTask = GetListProductByPointTask(limit: 20, page: page)
+        let getproductByPointAndMoney: GetListProductByPointAndMoneyTask = GetListProductByPointAndMoneyTask(limit: 20, page: page)
+        
+        if typeRequest == TypeProductRequest.all {
+            let getProductVip: GetProductVipTask = GetProductVipTask()
+            requestWithTask(task: getProductVip, success: { (data) in
+                if let arrayVip = data as? [Vip] {
+                    self.listProduct = arrayVip
+                    self.getProductBookWith(task: getAllproduct)
                 }
-            }, failure: { (error) in
-                _ = UIAlertController(title: nil,
-                                      message: error as? String,
-                                      preferredStyle: .alert)
+            }, failure: { (_) in
+                
             })
-        } else if typeRequest == 2 {
-            requestWithTask(task: getProductByPoint, success: { (data) in
-                if let list = data as? [Book] {
-                    self.listProduct = list
-                    self.collection.reloadData()
-                }
-            }, failure: { (error) in
-                _ = UIAlertController(title: nil,
-                                      message: error as? String,
-                                      preferredStyle: .alert)
-            })
+        } else if typeRequest == TypeProductRequest.point {
+            getProductBookWith(task: getProductByPoint)
         } else {
-            requestWithTask(task: getproductByPointAndMoney, success: { (data) in
-                if let list = data as? [Book] {
-                    self.listProduct = list
-                    self.collection.reloadData()
-                }
-            }, failure: { (error) in
-                _ = UIAlertController(title: nil,
-                                      message: error as? String,
-                                      preferredStyle: .alert)
-            })
+            getProductBookWith(task: getproductByPointAndMoney)
         }
+    }
+    
+    func getProductBookWith(task: BaseTaskNetwork) {
+        requestWithTask(task: task, success: { (data) in
+            if let list = data as? [Book] {
+//                self.listBook = list
+                for book in list {
+                    self.listProduct.append(book)
+                }
+                self.collection.reloadData()
+            }
+        }, failure: { (error) in
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
+        })
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +74,7 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as? StoreMarkViewCell {
-        cell.binData(book: listProduct[indexPath.row])
+        cell.binData(product: listProduct[indexPath.row], type: typeRequest)
         return cell
         }
         return UICollectionViewCell()

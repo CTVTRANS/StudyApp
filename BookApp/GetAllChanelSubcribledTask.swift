@@ -30,7 +30,7 @@ class GetAllChanelSubcribledTask: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listChanel = [Chanel]()
+        var listChanel: [Chanel] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let chanel = parseChanel(dictionary: dictionary)

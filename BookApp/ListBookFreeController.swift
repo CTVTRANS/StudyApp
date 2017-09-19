@@ -18,7 +18,7 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
         navigationItem.title = "BookFree"
         table.estimatedRowHeight = 140
         table.register(UINib.init(nibName: "ListBookFreee", bundle: nil), forCellReuseIdentifier: "cell")
-        let getBookFree: GetBookFree = GetBookFree(limit: 10, page: 1)
+        let getBookFree: GetBookFreeTask = GetBookFreeTask(limit: 10, page: 1)
         showActivity(inView: UIApplication.shared.keyWindow!)
         requestWithTask(task: getBookFree, success: { (data) in
             if let list  = data as? [Book] {

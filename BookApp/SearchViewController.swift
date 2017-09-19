@@ -14,30 +14,44 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var table: UITableView!
     
     @IBOutlet weak var typeView: CustomHistorySearch!
+    @IBOutlet weak var titleForViewTypes: UILabel!
+    @IBOutlet weak var titleForViewHot: UILabel!
     @IBOutlet weak var heightOfTypeView: NSLayoutConstraint!
     @IBOutlet weak var hotView: CustomHistorySearch!
     @IBOutlet weak var heightOfHotView: NSLayoutConstraint!
     
+    @IBOutlet weak var iconSearchBook: UILabel!
     private var listBook: [Book] = []
     private var listTypeBook: [String] = []
     private var loadedTypeBook = false
     
-    private var listNew: [NewsModel] = []
+    @IBOutlet weak var iconSearchNews: UILabel!
+    private var listNews: [NewsModel] = []
     private var listTypeNews: [String] = []
     private var loadedTypeNews = false
     private var seachBook: Bool = true
+    
+    private var listHot: [String] = ["kien", "nam can", "tho sut", "thanh chan", "chan tu dan", "li lien kiet", "thanh long"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         table.isHidden = true
         table.tableFooterView = UIView()
+        table.estimatedRowHeight = 140
         searchBar.backgroundImage = UIImage()
         setUp()
         setUPCallBack()
+        showTypeAndHotKeyWord()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
     }
     
     private func setUp() {
-        typeView.title.text = "types"
+        titleForViewTypes.text = "Types"
+        titleForViewHot.text = "Hot"
         let getAllTypeNews: GetAllTypeNewsTask = GetAllTypeNewsTask()
         requestWithTask(task: getAllTypeNews, success: { (_) in
             self.loadedTypeNews = true
@@ -78,7 +92,7 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         if seachBook {
             return listBook.count
         }
-        return listNew.count
+        return listNews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,12 +100,74 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         if seachBook {
             cell?.binData(objec: listBook[indexPath.row])
         } else {
-            cell?.binData(objec: listNew[indexPath.row])
+            cell?.binData(objec: listNews[indexPath.row])
         }
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if seachBook {
+            let myStoryboard = UIStoryboard(name: "Book", bundle: nil)
+            if let vc = myStoryboard.instantiateViewController(withIdentifier: "BookDetail") as? BookDetailViewController {
+                vc.bookSelected = listBook[indexPath.row]
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        } else {
+            let myStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let type = listNews[indexPath.row].typeNews
+            if type == 1 {
+                if let vc = myStoryboard.instantiateViewController(withIdentifier: "Detail") as? DetailNewsController {
+                    vc.news = listNews[indexPath.row]
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+            } else if type == 2 {
+                if let vc = myStoryboard.instantiateViewController(withIdentifier: "Type2Detail") as? Type2DetailNewsViewController {
+                    vc.news = listNews[indexPath.row]
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+            } else {
+                if let vc = myStoryboard.instantiateViewController(withIdentifier: "Type3DetailNewsController") as? Type3DetailNewsController {
+                    vc.news = listNews[indexPath.row]
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        listNews.removeAll()
+        listBook.removeAll()
+        if seachBook && searchBar.text != nil {
+            let searchBookTask: SearchBookTask = SearchBookTask(keyWord: searchBar.text!, limit: 10, page: 1)
+            requestWithTask(task: searchBookTask, success: { (data) in
+                if let arrayBook =  data as? [Book] {
+                    self.listBook = arrayBook
+                    self.table.isHidden = false
+                    self.titleForViewTypes.isHidden = true
+                    self.titleForViewHot.isHidden = true
+                    self.table.reloadData()
+                }
+            }, failure: { (_) in
+                
+            })
+        } else if !seachBook && searchBar.text != nil {
+            let searchNewsTask: SearchNewsTask = SearchNewsTask(keyWord: searchBar.text!, limit: 10, page: 1)
+            requestWithTask(task: searchNewsTask, success: { (data) in
+                if let arrayNews = data as? [NewsModel] {
+                    self.listNews = arrayNews
+                    self.table.isHidden = false
+                    self.titleForViewTypes.isHidden = true
+                    self.titleForViewHot.isHidden = true
+                    self.table.reloadData()
+                }
+            }, failure: { (_) in
+                
+            })
+        }
         searchBar.endEditing(true)
     }
     
@@ -106,16 +182,17 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func pressedChangeType(_ sender: Any) {
+        searchBar.text = ""
         if seachBook {
+            iconSearchBook.textColor = UIColor.black
+            iconSearchNews.textColor = UIColor.rgb(red: 255, green: 102, blue: 0)
             seachBook = false
         } else {
+            iconSearchBook.textColor = UIColor.rgb(red: 255, green: 102, blue: 0)
+            iconSearchNews.textColor = UIColor.black
             seachBook = true
         }
         showTypeAndHotKeyWord()
-        listBook.removeAll()
-        listNew.removeAll()
-        table.reloadData()
-        table.isHidden = true
     }
     
     private func showTypeAndHotKeyWord() {
@@ -125,9 +202,19 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
             typeView.listText = listTypeNews
         }
         typeView.realoadData()
+        hotView.listText = listHot
+        hotView.realoadData()
+        heightOfTypeView.constant = typeView.heightForView!
+        listBook.removeAll()
+        listNews.removeAll()
+        table.isHidden = true
     }
     
     func searchAction() {
         
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }

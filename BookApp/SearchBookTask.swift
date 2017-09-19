@@ -20,4 +20,30 @@ class SearchBookTask: BaseTaskNetwork {
         _limit = limit
         _page = page
     }
+    
+    override func parameters() -> [AnyHashable : Any]! {
+        return ["keyword": _keyWord,
+                "lang": Constants.sharedInstance.language,
+                "limit": _limit,
+                "page": _page]
+    }
+    
+    override func path() -> String! {
+        return searchBookURL
+    }
+    
+    override func method() -> String! {
+        return GET
+    }
+    
+    override func data(withResponse response: Any!) -> Any! {
+        var listBook: [Book] = []
+        if let object = response as? [[String: Any]] {
+            for dictionary in object {
+                let book = parseBook(dictionary: dictionary)
+                listBook.append(book)
+            }
+        }
+        return listBook
+    }
 }

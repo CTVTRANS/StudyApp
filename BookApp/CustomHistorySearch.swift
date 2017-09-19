@@ -9,19 +9,19 @@
 import UIKit
 
 class CustomHistorySearch: UIView {
-
-    @IBOutlet weak var title: UILabel!
     
     private var linecount = 1
-    private var originY: CGFloat = 30.0
-    private var originX: CGFloat = 10.0
-    private let spaceHorizontoal: CGFloat = 10.0
-    private let spaceVertical: CGFloat = 12.0
+    private var originY: CGFloat = 0.0
+    private var originX: CGFloat = 16.0
+    private let spaceHorizontoal: CGFloat = 12.0
+    private let spaceVertical: CGFloat = 10.0
     
     var listText: [String] = []
     var callBackButton:((_ nameButton: String) -> Void)?
     
-    var myView: UIView?
+    private var myView: UIView?
+    private var height: CGFloat = 10
+    var heightForView: CGFloat?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,43 +53,49 @@ class CustomHistorySearch: UIView {
         return UIView()
     }
     
-    func show(myView: UIView, aray: [String]) {
+    private func show(myView: UIView, aray: [String]) {
         for index in 0..<listText.count {
             let button = UIButton()
             button.setTitle(aray[index], for: .normal)
-//            button.titleLabel?.text = aray[index]
             button.tag = index
             button.layer.cornerRadius = 5
             button.layer.borderWidth = 0.5
-            var sizeFont: CGFloat = 14
-            sizeFont.adjustsSizeToRealIPhoneSize = 14
+            var sizeFont: CGFloat = 13
+            sizeFont.adjustsSizeToRealIPhoneSize = 13
             
             button.titleLabel!.font = UIFont(name: "DFHeiStd-W5", size: sizeFont)
             button.setTitleColor(.black, for: .normal)
-            button.layer.borderColor = UIColor.black.cgColor
+            button.layer.borderColor = UIColor.rgb(red: 201, green: 201, blue: 201).cgColor
             let widthButton = (button.titleLabel?.intrinsicContentSize.width)! + 20
             let heightButton = (button.titleLabel?.intrinsicContentSize.height)! + 8
-            
+            height = heightButton
             if originX + widthButton + spaceHorizontoal > widthScreen {
                 linecount += 1
                 originX = 10.0
             }
-            let yButton = originY + spaceHorizontoal * CGFloat(linecount) + CGFloat((linecount - 1)) * heightButton
+            let yButton = originY + spaceVertical * CGFloat(linecount) + CGFloat((linecount - 1)) * heightButton
             button.frame = CGRect(x: originX, y: yButton, width: widthButton, height: heightButton)
             myView.addSubview(button)
             originX += (widthButton + 10.0)
             button.addTarget(self, action: #selector(pressedButton(_ :)), for: .touchUpInside)
         }
+        heightForView = originY + spaceVertical * CGFloat(linecount) + CGFloat(linecount) * height
+        myView.frame.size.height = heightForView!
     }
     
     func realoadData() {
         myView?.subviews.forEach({$0.removeFromSuperview()})
         originX = 10.0
+        linecount = 1
         show(myView: myView!, aray: listText)
         self.setNeedsDisplay()
     }
     
     @objc func pressedButton(_ sender: UIButton) {
         self.callBackButton!(listText[sender.tag])
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }

@@ -34,7 +34,7 @@ class GetListlessonOfChanelTask: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listLesson = [Lesson]()
+        var listLesson: [Lesson] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let lesson = parseLesson(dictionary: dictionary)

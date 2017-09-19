@@ -35,6 +35,9 @@ enum BottomButton: Int {
     case back = 0, download, bookMark, like, comment
 }
 
+enum TypeProductRequest: Int {
+    case point = 0, pointAndMoney, all
+}
 class Constants: NSObject {
     var listNewsType: [NewsType] = []
     var listBookType: [BookType] = []

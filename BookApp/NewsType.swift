@@ -10,7 +10,7 @@ import UIKit
 
 class NewsType: NSObject {
     
-    private var _idType:Int!
+    private var _idType: Int!
     private var _nameType: String!
     private var _description: String!
     

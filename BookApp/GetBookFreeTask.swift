@@ -1,30 +1,32 @@
 //
-//  GetListBookForTypeTask.swift
+//  GetBookFree.swift
 //  BookApp
 //
-//  Created by kien le van on 8/25/17.
+//  Created by kien le van on 8/30/17.
 //  Copyright © 2017 Le Cong. All rights reserved.
 //
 
 import UIKit
 import LCNetwork
 
-class GetListBookForTypeTask: BaseTaskNetwork {
+class GetBookFreeTask: BaseTaskNetwork {
     
-    private let _category: Int!
-    private let _page: String!
+    private let _limit: Int!
+    private let _page: Int!
     
-    init(category: Int, page: String) {
-        _category = category
+    init(limit: Int, page: Int) {
+        _limit = limit
         _page = page
     }
-
+    
     override func path() -> String! {
-        return getBookForEachTypeURL
+        return getAllBookFreeURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["category": _category, "page": _page]
+        return ["lang": Constants.sharedInstance.language,
+                "limit": _limit,
+                "page": _page]
     }
     
     override func method() -> String! {
@@ -33,8 +35,8 @@ class GetListBookForTypeTask: BaseTaskNetwork {
     
     override func data(withResponse response: Any!) -> Any! {
         var listBook: [Book] = []
-        if let listObject = response as? [[String: Any]] {
-            for dictionary in listObject {
+        if let object = response as? [[String: Any]] {
+            for dictionary in object {
                 let book = self.parseBook(dictionary: dictionary)
                 listBook.append(book)
             }

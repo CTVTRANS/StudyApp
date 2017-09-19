@@ -24,6 +24,7 @@ class GetAllTypeNewsTask: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
+        var listTypeNew: [NewsType] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let idType = dictionary["cat_id"] as? Int ?? 1234
@@ -32,9 +33,10 @@ class GetAllTypeNewsTask: BaseTaskNetwork {
                 let type: NewsType = NewsType(idType: idType,
                                               nameType: nameType,
                                               desciptionType: descriptionType)
-                Constants.sharedInstance.listNewsType.append(type)
+                listTypeNew.append(type)
             }
         }
+        Constants.sharedInstance.listNewsType = listTypeNew
         return response
     }
 }

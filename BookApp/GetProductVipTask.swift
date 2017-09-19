@@ -1,5 +1,5 @@
 //
-//  GetListProductByPoint.swift
+//  GetProductVip.swift
 //  BookApp
 //
 //  Created by kien le van on 9/15/17.
@@ -9,18 +9,10 @@
 import UIKit
 import LCNetwork
 
-class GetListProductByPoint: BaseTaskNetwork {
-    
-    private var _limit: Int!
-    private var _page: Int!
-    
-    init(limit: Int, page: Int) {
-        _limit = limit
-        _page = page
-    }
+class GetProductVipTask: BaseTaskNetwork {
     
     override func path() -> String! {
-        return getAllProductByPointURL
+        return getAllVipProductURL
     }
     
     override func method() -> String! {
@@ -28,17 +20,18 @@ class GetListProductByPoint: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["lang": Constants.sharedInstance.language, "limit": _limit, "page": _page]
+        return ["lang": Constants.sharedInstance.language]
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listBook = [Book]()
+        var listVip: [Vip] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
-                let book = self.parseBook(dictionary: dictionary)
-                listBook.append(book)
+                let vip = self.parseVip(dictionary: dictionary)
+                listVip.append(vip)
             }
         }
-        return listBook
+        return listVip
     }
+
 }

@@ -34,7 +34,7 @@ class GetNewsInGroupTask: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listPost = [NewsInGroups]()
+        var listPost: [NewsInGroups] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
                 let idNews = dictionary["id"] as? Int ?? 1234
