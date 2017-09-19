@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import FSPagerView
 
-class ChanelViewController: BaseViewController {
+class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerViewDataSource {
 
     @IBOutlet weak var navigationView: NavigationCustom!
     @IBOutlet weak var suggestChanel: CustomChanelCollection!
@@ -18,6 +19,23 @@ class ChanelViewController: BaseViewController {
     var currentPageSuggest = 1
     var currentFree = 1
     
+    private var listSlider: [SliderShow] = []
+    @IBOutlet weak var pageControlView: FSPageControl! {
+        didSet {
+            self.pageControlView.transform = CGAffineTransform(rotationAngle: .pi/2)
+            self.pageControlView.contentHorizontalAlignment = .center
+            self.pageControlView.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        }
+    }
+
+    @IBOutlet weak var sliderShow: FSPagerView! {
+        didSet {
+            sliderShow.scrollDirection = .vertical
+            self.sliderShow.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+            self.sliderShow.itemSize = .zero
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: self.view)
@@ -25,6 +43,7 @@ class ChanelViewController: BaseViewController {
         setupCallBackNavigation()
         suggestChanel.name.text = "熱門老師"
         freeChanel.name.text = "猜你喜歡"
+        getBaner()
         getData()
         let getChaelSubcrible: GetAllChanelSubcribledTask = GetAllChanelSubcribledTask(memberID: 1)
         requestWithTask(task: getChaelSubcrible, success: { (_) in
@@ -40,6 +59,21 @@ class ChanelViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    // MARK: Get Baner From Server
+    
+    func getBaner() {
+        let getBanerTask = GetSliderBanerTask(typeSlider: ScreenShow.chanel.rawValue)
+        requestWithTask(task: getBanerTask, success: { (data) in
+            if let listBaner = data as? [SliderShow] {
+                self.listSlider = listBaner
+                self.pageControlView.numberOfPages = self.listSlider.count
+                self.sliderShow.reloadData()
+            }
+        }) { (_) in
+            
+        }
     }
     
     func getData() {
@@ -81,8 +115,40 @@ class ChanelViewController: BaseViewController {
                                   message: error as? String,
                                   preferredStyle: .alert)
         }
-
     }
+    
+    // MARK: FSPagerView Data Source
+    
+    func numberOfItems(in pagerView: FSPagerView) -> Int {
+        return listSlider.count
+    }
+    
+    func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+        let cell = sliderShow.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        cell.imageView?.sd_setImage(with: URL(string:listSlider[index].imageURL), completed: { (_, _, _, _) in
+        })
+        cell.imageView?.contentMode = .scaleAspectFill
+        cell.imageView?.clipsToBounds = true
+        return cell
+    }
+    
+    // MARK: FSPagerView Delegate
+    
+    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        sliderShow.deselectItem(at: index, animated: true)
+        sliderShow.scrollToItem(at: index, animated: true)
+        self.pageControlView.currentPage = index
+        print(index)
+    }
+    
+    func pagerViewDidScroll(_ pagerView: FSPagerView) {
+        guard self.pageControlView.currentPage != pagerView.currentIndex else {
+            return
+        }
+        self.pageControlView.currentPage = pagerView.currentIndex
+    }
+    
+    // MARK: Call Back
     
     func callBack() {
         let teacherStoryboard = UIStoryboard(name: "Chanel", bundle: nil)

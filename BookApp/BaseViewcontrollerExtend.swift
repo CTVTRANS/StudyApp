@@ -181,7 +181,7 @@ extension UIAlertController {
             })
             alertView.addAction(action)
         }
-        let cancelAction = UIAlertAction(title: "Cancel",
+        let cancelAction = UIAlertAction(title: "取消",
                                          style: .cancel) { (_) in
         }
         alertView.addAction(cancelAction)

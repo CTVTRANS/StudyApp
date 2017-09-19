@@ -149,13 +149,13 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     
     @IBAction func pressedChangeAvatar(_ sender: Any) {
         _ =
-            UIAlertController.showActionSheetWith(arrayTitle: ["pick from iphone", "use camera"],
+            UIAlertController.showActionSheetWith(arrayTitle: ["拍照", "從相冊選擇"],
                                                   handlerAction: { (index) in
                                                     switch index {
                                                     case 0:
-                                                        self.pickImageFromLibrary()
-                                                    case 1:
                                                         self.shootAvatar()
+                                                    case 1:
+                                                        self.pickImageFromLibrary()
                                                     default:
                                                         break
                                                     }

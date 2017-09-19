@@ -1022,9 +1022,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bo-xj-g68">
-                                        <rect key="frame" x="264" y="27" width="48" height="30"/>
+                                        <rect key="frame" x="281" y="27" width="31" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="Cancel">
+                                        <state key="normal" title="取消">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1080,7 +1080,7 @@
                                         </constraints>
                                     </view>
                                     <searchBar contentMode="redraw" placeholder="search" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUn-8r-zOI">
-                                        <rect key="frame" x="80" y="20" width="184" height="44"/>
+                                        <rect key="frame" x="80" y="20" width="201" height="44"/>
                                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="barTintColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>

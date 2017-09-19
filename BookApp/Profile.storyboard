@@ -141,7 +141,7 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="立刻儲值升等 年費:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tg0-v7-Xb9">
-                                        <rect key="frame" x="80" y="16" width="111" height="13"/>
+                                        <rect key="frame" x="80" y="15.5" width="111" height="13"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -150,7 +150,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRP-uV-MEd">
-                                        <rect key="frame" x="226" y="16" width="13" height="13"/>
+                                        <rect key="frame" x="226" y="15.5" width="13" height="13"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -162,7 +162,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="388" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoE-Qs-nEy">
-                                        <rect key="frame" x="199" y="16" width="22" height="13"/>
+                                        <rect key="frame" x="199" y="15.5" width="22" height="13"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -218,7 +218,7 @@
             </objects>
             <point key="canvasLocation" x="-600" y="698"/>
         </scene>
-        <!--Activity Offline View Controller-->
+        <!--Data Source-->
         <scene sceneID="tAb-kk-rlx">
             <objects>
                 <viewController storyboardIdentifier="ActivityOfflineViewController" hidesBottomBarWhenPushed="YES" id="5BD-ir-FC2" customClass="ActivityOfflineViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -230,24 +230,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NMI-RM-1eW">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NMI-RM-1eW" customClass="FSPagerView" customModule="FSPagerView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="133"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="26C065948D929539F314A0608BF3F594" translatesAutoresizingMaskIntoConstraints="NO" id="gNw-Np-bOR">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="133"/>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="gNw-Np-bOR" firstAttribute="leading" secondItem="NMI-RM-1eW" secondAttribute="leading" id="LnS-xl-59h"/>
-                                    <constraint firstAttribute="bottom" secondItem="gNw-Np-bOR" secondAttribute="bottom" id="eQI-4O-vFs"/>
                                     <constraint firstAttribute="height" constant="133" id="rdH-ZP-YiS">
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </constraint>
-                                    <constraint firstAttribute="trailing" secondItem="gNw-Np-bOR" secondAttribute="trailing" id="tm3-wX-FlD"/>
-                                    <constraint firstItem="gNw-Np-bOR" firstAttribute="top" secondItem="NMI-RM-1eW" secondAttribute="top" id="yhb-gg-PGv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isInfinite" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="automaticSlidingInterval">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="5BD-ir-FC2" id="yg3-Lo-KEh"/>
+                                    <outlet property="delegate" destination="5BD-ir-FC2" id="o4l-ua-G7C"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgX-c9-qEV" customClass="FSPageControl" customModule="FSPagerView">
+                                <rect key="frame" x="0.0" y="103" width="320" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="83q-0n-3Ay"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t44-m8-tI1">
@@ -280,6 +288,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pgX-c9-qEV" firstAttribute="leading" secondItem="9Lk-pT-KMu" secondAttribute="leading" id="09R-G3-9bi"/>
+                            <constraint firstAttribute="trailing" secondItem="pgX-c9-qEV" secondAttribute="trailing" id="2PL-7t-bCJ"/>
                             <constraint firstItem="NMI-RM-1eW" firstAttribute="top" secondItem="9Lk-pT-KMu" secondAttribute="top" id="5r3-ol-GWu"/>
                             <constraint firstAttribute="trailing" secondItem="NMI-RM-1eW" secondAttribute="trailing" id="HJV-se-QGa"/>
                             <constraint firstItem="NMI-RM-1eW" firstAttribute="leading" secondItem="9Lk-pT-KMu" secondAttribute="leading" id="Q4q-cj-l0s"/>
@@ -289,16 +299,19 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </constraint>
+                            <constraint firstItem="pgX-c9-qEV" firstAttribute="bottom" secondItem="NMI-RM-1eW" secondAttribute="bottom" id="oUj-9a-qxb"/>
                             <constraint firstItem="t44-m8-tI1" firstAttribute="leading" secondItem="9Lk-pT-KMu" secondAttribute="leading" constant="30" id="xM1-db-Aju"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addGroupButton" destination="t44-m8-tI1" id="ubu-AD-EuU"/>
+                        <outlet property="pageControlView" destination="pgX-c9-qEV" id="JsB-zT-1fM"/>
+                        <outlet property="sliderShow" destination="NMI-RM-1eW" id="hYm-kq-pCN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAY-fc-UDe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-600" y="1403"/>
+            <point key="canvasLocation" x="-600" y="1402.8169014084508"/>
         </scene>
         <!--History Buy Product Controller-->
         <scene sceneID="7BK-aJ-Teq">
@@ -351,7 +364,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEo-Ds-1Gq">
-                                                    <rect key="frame" x="119" y="34.5" width="34" height="15"/>
+                                                    <rect key="frame" x="119" y="34" width="34" height="15"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -516,7 +529,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vq0-eB-MT2">
-                                        <rect key="frame" x="241" y="0.0" width="63" height="30"/>
+                                        <rect key="frame" x="241" y="0.5" width="63" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="    關注    ">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -679,7 +692,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxz-Mi-ETC">
-                                                    <rect key="frame" x="46" y="9" width="32" height="14"/>
+                                                    <rect key="frame" x="46" y="9.5" width="32" height="14"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -817,7 +830,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcz-Ti-zD9">
-                                                    <rect key="frame" x="72" y="29" width="9.5" height="14"/>
+                                                    <rect key="frame" x="72" y="29.5" width="9.5" height="14"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

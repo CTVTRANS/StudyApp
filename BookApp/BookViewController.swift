@@ -8,8 +8,9 @@
 
 import UIKit
 import SDWebImage
+import FSPagerView
 
-class BookViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class BookViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, FSPagerViewDelegate, FSPagerViewDataSource {
 
     @IBOutlet weak var navigationCustom: NavigationCustom!
     @IBOutlet weak var tableBookType: UICollectionView!
@@ -30,29 +31,39 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     private var loadedBookSuggest: Bool = false
     private var loadefBookFree: Bool = false
     
+    private var listSlider: [SliderShow] = []
+    @IBOutlet weak var sliderShow: FSPagerView! {
+        didSet {
+            self.sliderShow.scrollDirection = .vertical
+            self.sliderShow.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+            self.sliderShow.itemSize = .zero
+        }
+    }
+    @IBOutlet weak var pageControlView: FSPageControl! {
+        didSet {
+            self.pageControlView.transform = CGAffineTransform(rotationAngle: .pi/2)
+            self.pageControlView.contentHorizontalAlignment = .center
+            self.pageControlView.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTitle()
         setupCallBackClickCell()
         setupCallBackNavigation()
+        showActivity(inView: self.view)
+        getBaner()
         getBookNewest()
         getBookSuggest()
         getBookFree()
-        let getTypeTask: GetTypeOfBookTask = GetTypeOfBookTask()
-        showActivity(inView: self.view)
-        requestWithTask(task: getTypeTask, success: { (_) in
-            self.bookTypeArray = Constants.sharedInstance.listBookType
-            self.tableBookType.reloadData()
-            self.loadedTypeBook = true
-            if self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest {
-                 self.stopActivityIndicator()
-            }
-        }) { (error) in
-            self.stopActivityIndicator()
-            _ = UIAlertController(title: " ",
-                                  message: error as? String,
-                                  preferredStyle: .alert)
-        }
+        getTypeBook()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     func setUpTitle() {
@@ -63,6 +74,42 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         freeBookView.detailTitle.text = "全部"
         freeBookView.titleView.text = "限時免費"
     }
+    
+    // MARK: Get Baner From Server
+    
+    func getBaner() {
+        let getBanerTask = GetSliderBanerTask(typeSlider: ScreenShow.book.rawValue)
+        requestWithTask(task: getBanerTask, success: { (data) in
+            if let listBaner = data as? [SliderShow] {
+                self.listSlider = listBaner
+                self.pageControlView.numberOfPages = self.listSlider.count
+                self.sliderShow.reloadData()
+            }
+        }) { (_) in
+            
+        }
+    }
+    
+    // MARK: Get Type Book
+    
+    func getTypeBook() {
+        let getTypeTask: GetTypeOfBookTask = GetTypeOfBookTask()
+        requestWithTask(task: getTypeTask, success: { (_) in
+            self.bookTypeArray = Constants.sharedInstance.listBookType
+            self.tableBookType.reloadData()
+            self.loadedTypeBook = true
+            if self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest {
+                self.stopActivityIndicator()
+            }
+        }) { (error) in
+            self.stopActivityIndicator()
+            _ = UIAlertController(title: " ",
+                                  message: error as? String,
+                                  preferredStyle: .alert)
+        }
+    }
+    
+    // MARK: Get Book Suggest
     
     func getBookSuggest() {
         let getBookSuggest: GetAllBookSuggestTask = GetAllBookSuggestTask(limit: 3, page: 1)
@@ -80,6 +127,8 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         }
     }
     
+    // MARK: Get Book Free
+    
     func getBookFree() {
         let getBookFree: GetBookFreeTask = GetBookFreeTask(limit: 3, page: 1)
         requestWithTask(task: getBookFree, success: { (data) in
@@ -95,6 +144,8 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
                                   preferredStyle: .alert)
         }
     }
+    
+    // MARK: Get Book Newest
     
     func getBookNewest() {
         let getNewestBookTask: GetBookNewestTask = GetBookNewestTask()
@@ -115,11 +166,8 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-
+    // MARK: TableView Data Souce
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookTypeArray.count
     }
@@ -129,6 +177,8 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         cell?.binData(typeBook: bookTypeArray[indexPath.row])
         return cell!
     }
+    
+    // MARK: TableView Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let type: BookType = bookTypeArray[indexPath.row]
@@ -142,6 +192,39 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
                                   preferredStyle: .alert)
         }
     }
+    
+    // MARK: FSPagerView Data Source
+    
+    func numberOfItems(in pagerView: FSPagerView) -> Int {
+        return listSlider.count
+    }
+    
+    func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+        let cell = sliderShow.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        cell.imageView?.sd_setImage(with: URL(string:listSlider[index].imageURL), completed: { (_, _, _, _) in
+        })
+        cell.imageView?.contentMode = .scaleAspectFill
+        cell.imageView?.clipsToBounds = true
+        return cell
+    }
+    
+    // MARK: FSPagerView Delegate
+    
+    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        sliderShow.deselectItem(at: index, animated: true)
+        sliderShow.scrollToItem(at: index, animated: true)
+        self.pageControlView.currentPage = index
+        print(index)
+    }
+    
+    func pagerViewDidScroll(_ pagerView: FSPagerView) {
+        guard self.pageControlView.currentPage != pagerView.currentIndex else {
+            return
+        }
+        self.pageControlView.currentPage = pagerView.currentIndex // Or Use KVO with property "currentIndex"
+    }
+    
+    // MARK: Call Back
     
     func setupCallBackClickCell() {
         let bookStoryboard = UIStoryboard(name: "Book", bundle: nil)

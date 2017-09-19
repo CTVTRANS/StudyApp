@@ -38,6 +38,7 @@ let searchNewsURL: String = "/api/search/news"
 
 let getProfileMemberURL: String = "/api/member/detail"
 
+let getSlidershowURL: String = "/api/slide/get?screen_show"
 let getAllGroupURL: String = "/api/group/list_group"
 let getAllGroupJoinedURL: String = "/api/group/list_subscribe"
 let getListNewsInGroupURL: String = "/api/group/list_post_by_group"
