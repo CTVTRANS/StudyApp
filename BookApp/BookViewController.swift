@@ -58,7 +58,6 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         getBookSuggest()
         getBookFree()
         getTypeBook()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

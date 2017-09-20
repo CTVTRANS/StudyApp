@@ -35,11 +35,12 @@ class CheckBookMarkedTask: BaseTaskNetwork {
     
     override func data(withResponse response: Any!) -> Any! {
         if let dictionary = response as? [String: Any] {
+            let totalNumberBookMark = dictionary["total_collected"] as? Int ?? 0
             let status: Bool = dictionary["status"] as? Bool ?? false
             if status {
-                return true
+                return (true, totalNumberBookMark)
             } else {
-                return false
+                return (false, totalNumberBookMark)
             }
         }
         return false

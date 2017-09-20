@@ -117,7 +117,7 @@ extension BaseTaskNetwork {
         let newsNote = dictionary["post_note"] as? String ?? "123"
         let newsTimeup = dictionary["updated_at"] as? String ?? "123"
         let newsType = dictionary["post_display_type"] as? Int ?? 123
-        let newsNameType = dictionary["post_name"] as? String ?? "123"
+        let newsNameType = dictionary["cat_name"] as? String ?? "123"
         let newsNumberLike = dictionary["number_of_likes"] as? Int ?? 123
         let newsNumberComment = dictionary["number_of_comments"] as? Int ?? 123
         let newsNumberBookMark = dictionary["number_of_collection"] as? Int ?? 123

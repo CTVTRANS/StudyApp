@@ -46,13 +46,15 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
                                                                        memberID: 1,
                                                                        objectID: news.idNews)
         requestWithTask(task: checkBookMarked, success: { [weak self] (data) in
-            if let status = data as? Bool {
-                if status {
+            if let status = data as? (Bool, Int) {
+                if status.0 {
                     self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMarked")
                 } else {
                     self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMark")
                 }
-                }
+                self?.news.numberBookMark = status.1
+                self?.bottomView.numberBookmark.text = String(status.1)
+            }
         }) { (_) in
             
         }
@@ -90,7 +92,7 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
         bottomView.downloadButton.isHidden = true
         bottomView.numberLike.text = String(news.numberLike)
         bottomView.numberComment.text = String(news.numberComment)
-        bottomView.numberBookmark.text = String(news.numberBookMark)
+//        bottomView.numberBookmark.text = String(news.numberBookMark)
         
         bottomView.pressedBottomButton = { [weak self] (typeButton: BottomButton) in
             switch typeButton {

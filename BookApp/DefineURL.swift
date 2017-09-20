@@ -14,6 +14,7 @@ let getBookSuggestForTypeURL: String = "/api/book/list_suggest_posts_by_category
 let getBookNewestURL: String = "/api/book/list_latest_posts"
 let getAllBookSuggestURL: String = "/api/book/list_all_suggest_posts"
 let getAllBookFreeURL: String = "/api/book/list_free"
+let getAllBookBookmarkedURL: String = "/api/collection/collection_book"
 
 let getAllChanelSuggestURL: String = "/api/teacher/list_all_suggest_teacher"
 let getChanelFreeURL: String = "/api/teacher/list_free"
@@ -26,6 +27,7 @@ let increaseViewChanelURL = "/api/teacher/play_lesson"
 
 let getAllNewsURL: String = "/api/post/list_latest_post"
 let getAllTypeNewsURL = "/api/post/list_category"
+let getAllNewsBookmarkedURL: String = "/api/collection/collection_news"
 
 let sendCommentURL: String = "/api/comment/add"
 let checkLikeedURL: String = "/api/like/check_like"

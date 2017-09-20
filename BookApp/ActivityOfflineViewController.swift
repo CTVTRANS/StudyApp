@@ -21,7 +21,7 @@ class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, 
     }
     @IBOutlet weak var pageControlView: FSPageControl! {
         didSet {
-            self.pageControlView.contentHorizontalAlignment = .right
+            self.pageControlView.contentHorizontalAlignment = .center
             self.pageControlView.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         }
     }

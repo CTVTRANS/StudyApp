@@ -91,26 +91,34 @@
                                                         <constraint firstAttribute="height" constant="30" id="kPw-H8-bgv"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3H-jI-zt4">
-                                                    <rect key="frame" x="62" y="11" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="總積分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3H-jI-zt4">
+                                                    <rect key="frame" x="68" y="14" width="36" height="12"/>
+                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnK-99-17B">
-                                                    <rect key="frame" x="110" y="11" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnK-99-17B">
+                                                    <rect key="frame" x="112" y="12.5" width="10" height="15"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="i3H-jI-zt4" firstAttribute="leading" secondItem="BFx-O5-6El" secondAttribute="trailing" constant="8" id="4uw-qR-0wm"/>
                                                 <constraint firstItem="BFx-O5-6El" firstAttribute="centerY" secondItem="OCg-7w-oIf" secondAttribute="centerY" id="F22-FS-uEH"/>
+                                                <constraint firstItem="CnK-99-17B" firstAttribute="leading" secondItem="i3H-jI-zt4" secondAttribute="trailing" constant="8" id="NnY-8M-qsl"/>
+                                                <constraint firstItem="CnK-99-17B" firstAttribute="centerY" secondItem="OCg-7w-oIf" secondAttribute="centerY" id="boC-rd-TGY"/>
                                                 <constraint firstAttribute="height" constant="40" id="mbn-bb-AiP"/>
                                                 <constraint firstItem="BFx-O5-6El" firstAttribute="leading" secondItem="OCg-7w-oIf" secondAttribute="leading" constant="30" id="p9d-H1-FtT"/>
+                                                <constraint firstItem="i3H-jI-zt4" firstAttribute="centerY" secondItem="OCg-7w-oIf" secondAttribute="centerY" id="tmn-UJ-fP3"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dd5-S6-Ktl">
@@ -123,12 +131,14 @@
                                                         <constraint firstAttribute="height" constant="22" id="XPM-B6-c36"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clg-15-Fz9">
-                                                    <rect key="frame" x="70" y="10" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兌換紀錄" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clg-15-Fz9">
+                                                    <rect key="frame" x="60" y="13.5" width="56" height="14"/>
+                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -136,13 +146,28 @@
                                                 <constraint firstItem="laj-Bu-f4I" firstAttribute="centerY" secondItem="dd5-S6-Ktl" secondAttribute="centerY" id="KoC-QE-4Pd"/>
                                                 <constraint firstAttribute="height" constant="40" id="i9r-7O-MHk"/>
                                                 <constraint firstItem="laj-Bu-f4I" firstAttribute="leading" secondItem="dd5-S6-Ktl" secondAttribute="leading" constant="30" id="oTt-ud-qIo"/>
+                                                <constraint firstItem="Clg-15-Fz9" firstAttribute="centerY" secondItem="dd5-S6-Ktl" secondAttribute="centerY" id="ppE-LE-l1T"/>
+                                                <constraint firstItem="Clg-15-Fz9" firstAttribute="leading" secondItem="laj-Bu-f4I" secondAttribute="trailing" constant="8" id="t5F-S2-iUc"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8DE-aR-VxE">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8DE-aR-VxE" customClass="FSPagerView" customModule="FSPagerView">
                                             <rect key="frame" x="0.0" y="40" width="320" height="130"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="130" id="WOP-EF-fUh"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="automaticSlidingInterval">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isInfinite" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dU7-zy-veW" customClass="FSPageControl" customModule="FSPagerView">
+                                            <rect key="frame" x="0.0" y="140" width="320" height="30"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="k4c-lu-tLW"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y18-5E-s7t">
@@ -154,7 +179,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="lxZ-tn-yO4"/>
                                                     </constraints>
-                                                    <state key="normal" title="all product">
+                                                    <state key="normal" title="所有商品">
                                                         <color key="titleColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
@@ -165,6 +190,7 @@
                                                             <integer key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="pressedShowAllButton:" destination="e2y-yV-hdV" eventType="touchUpInside" id="Qv2-fG-BiO"/>
@@ -176,7 +202,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="fmc-Xh-MpA"/>
                                                     </constraints>
-                                                    <state key="normal" title="point+$">
+                                                    <state key="normal" title="積分＋現金">
                                                         <color key="titleColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
@@ -187,16 +213,20 @@
                                                             <integer key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="pressedShowMarkAndMoney:" destination="e2y-yV-hdV" eventType="touchUpInside" id="pTl-WL-0D6"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-sE-5LW">
-                                                    <rect key="frame" x="16" y="99" width="34" height="15"/>
-                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精選推薦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-sE-5LW">
+                                                    <rect key="frame" x="16" y="100" width="56" height="14"/>
+                                                    <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdn-pA-JoH">
                                                     <rect key="frame" x="117.5" y="22" width="85" height="60"/>
@@ -204,7 +234,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="M1r-oX-WZJ"/>
                                                     </constraints>
-                                                    <state key="normal" title="point">
+                                                    <state key="normal" title="純積分">
                                                         <color key="titleColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
@@ -215,6 +245,7 @@
                                                             <integer key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="pressedShowMarkButton:" destination="e2y-yV-hdV" eventType="touchUpInside" id="zlH-GM-Vug"/>
@@ -247,18 +278,23 @@
                                         <constraint firstItem="OCg-7w-oIf" firstAttribute="width" secondItem="dd5-S6-Ktl" secondAttribute="width" id="WgP-PL-DGs"/>
                                         <constraint firstAttribute="trailing" secondItem="y18-5E-s7t" secondAttribute="trailing" id="ZNY-ii-9TZ"/>
                                         <constraint firstItem="OCg-7w-oIf" firstAttribute="leading" secondItem="UmU-VG-LCB" secondAttribute="leading" id="cO7-El-n4Q"/>
+                                        <constraint firstAttribute="trailing" secondItem="dU7-zy-veW" secondAttribute="trailing" id="dQD-j7-49w"/>
                                         <constraint firstAttribute="bottom" secondItem="y18-5E-s7t" secondAttribute="bottom" id="eEW-Ws-6xQ"/>
                                         <constraint firstItem="dd5-S6-Ktl" firstAttribute="top" secondItem="UmU-VG-LCB" secondAttribute="top" id="eI8-WB-lsa"/>
                                         <constraint firstItem="8DE-aR-VxE" firstAttribute="top" secondItem="dd5-S6-Ktl" secondAttribute="bottom" id="ecu-oZ-mSt"/>
+                                        <constraint firstItem="dU7-zy-veW" firstAttribute="leading" secondItem="UmU-VG-LCB" secondAttribute="leading" id="hpm-cv-C5O"/>
                                         <constraint firstItem="8DE-aR-VxE" firstAttribute="leading" secondItem="UmU-VG-LCB" secondAttribute="leading" id="l4w-n0-XsK"/>
                                         <constraint firstItem="8DE-aR-VxE" firstAttribute="top" secondItem="OCg-7w-oIf" secondAttribute="bottom" id="qeS-Vw-45E"/>
                                         <constraint firstAttribute="trailing" secondItem="8DE-aR-VxE" secondAttribute="trailing" id="rpJ-tS-hy7"/>
+                                        <constraint firstItem="y18-5E-s7t" firstAttribute="top" secondItem="dU7-zy-veW" secondAttribute="bottom" id="vVQ-pj-znW"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="markNumber" destination="CnK-99-17B" id="42A-Bu-LgA"/>
+                                        <outlet property="pageControlView" destination="dU7-zy-veW" id="N0q-DN-74P"/>
                                         <outlet property="showAll" destination="mBE-d1-b6G" id="i2R-4K-PXn"/>
                                         <outlet property="showMark" destination="Cdn-pA-JoH" id="yFe-Iu-ngG"/>
                                         <outlet property="showMarkAndMoney" destination="mra-Vv-eT4" id="gCN-AD-9sh"/>
+                                        <outlet property="sliderShow" destination="8DE-aR-VxE" id="0f4-xh-zgN"/>
                                     </connections>
                                 </collectionReusableView>
                                 <connections>
@@ -377,7 +413,7 @@
                                 <rect key="frame" x="0.0" y="187" width="320" height="32"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0X-Cp-shl">
-                                        <rect key="frame" x="18" y="10" width="29.5" height="13"/>
+                                        <rect key="frame" x="18" y="9.5" width="29.5" height="13"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                         <color key="textColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -393,7 +429,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaS-MD-Acb">
-                                        <rect key="frame" x="63.5" y="10" width="29.5" height="13"/>
+                                        <rect key="frame" x="63.5" y="9.5" width="29.5" height="13"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -459,7 +495,7 @@
                                         <rect key="frame" x="80" y="61" width="160" height="22"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqF-Od-Od1">
-                                                <rect key="frame" x="23" y="4" width="10" height="15"/>
+                                                <rect key="frame" x="23" y="3.5" width="10" height="15"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W7" family="DFHei Std" pointSize="15"/>
                                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -468,7 +504,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCk-yc-sli">
-                                                <rect key="frame" x="106" y="5" width="32" height="14"/>
+                                                <rect key="frame" x="106" y="4.5" width="32" height="14"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -477,7 +513,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PpD-nk-RVG">
-                                                <rect key="frame" x="38" y="5" width="32" height="14"/>
+                                                <rect key="frame" x="38" y="4.5" width="32" height="14"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -495,7 +531,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ku4-z2-cfm">
-                                                <rect key="frame" x="91" y="4" width="10" height="15"/>
+                                                <rect key="frame" x="91" y="3.5" width="10" height="15"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W7" family="DFHei Std" pointSize="15"/>
                                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -554,7 +590,7 @@
                                         <rect key="frame" x="80" y="141" width="160" height="22"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoL-eH-RAv">
-                                                <rect key="frame" x="23" y="4" width="10" height="15"/>
+                                                <rect key="frame" x="23" y="3.5" width="10" height="15"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W7" family="DFHei Std" pointSize="15"/>
                                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -563,7 +599,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBb-mf-CBe">
-                                                <rect key="frame" x="106" y="5" width="32" height="14"/>
+                                                <rect key="frame" x="106" y="4.5" width="32" height="14"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -572,7 +608,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hP-8o-yrS">
-                                                <rect key="frame" x="38" y="5" width="32" height="14"/>
+                                                <rect key="frame" x="38" y="4.5" width="32" height="14"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -590,7 +626,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfx-gS-aau">
-                                                <rect key="frame" x="91" y="4" width="10" height="15"/>
+                                                <rect key="frame" x="91" y="3.5" width="10" height="15"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W7" family="DFHei Std" pointSize="15"/>
                                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -825,7 +861,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="頭像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tD7-Dp-avd">
-                                        <rect key="frame" x="20" y="51" width="28" height="14"/>
+                                        <rect key="frame" x="20" y="50.5" width="28" height="14"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -928,7 +964,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dJ-RF-x95">
-                                        <rect key="frame" x="22" y="89.5" width="236" height="1"/>
+                                        <rect key="frame" x="22" y="90" width="236" height="1"/>
                                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="OqB-49-bvM"/>
@@ -942,7 +978,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t9s-Ls-eBi">
-                                        <rect key="frame" x="22" y="168.5" width="236" height="1"/>
+                                        <rect key="frame" x="22" y="169" width="236" height="1"/>
                                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="hz2-xf-PL1"/>
@@ -956,7 +992,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlE-q0-vab">
-                                        <rect key="frame" x="22" y="11.5" width="39" height="38.5"/>
+                                        <rect key="frame" x="22" y="12" width="39" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38.5" id="vGU-mo-AYY">
                                                 <userDefinedRuntimeAttributes>
@@ -972,7 +1008,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBX-Lg-ISK">
-                                        <rect key="frame" x="22" y="51" width="39" height="38.5"/>
+                                        <rect key="frame" x="22" y="51" width="39" height="39"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -981,7 +1017,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhG-CX-0OG">
-                                        <rect key="frame" x="22" y="90.5" width="39" height="38.5"/>
+                                        <rect key="frame" x="22" y="91" width="39" height="38"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -990,7 +1026,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgP-jW-YBX">
-                                        <rect key="frame" x="22" y="130" width="39" height="38.5"/>
+                                        <rect key="frame" x="22" y="130" width="39" height="39"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -999,7 +1035,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNQ-d4-jKn">
-                                        <rect key="frame" x="22" y="169.5" width="39" height="35.5"/>
+                                        <rect key="frame" x="22" y="170" width="39" height="35"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1008,7 +1044,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vcz-Kd-bdF">
-                                        <rect key="frame" x="69" y="11.5" width="189" height="38.5"/>
+                                        <rect key="frame" x="69" y="12" width="189" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38.5" id="MGJ-bh-x5e">
                                                 <userDefinedRuntimeAttributes>
@@ -1024,7 +1060,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="glW-fK-BgR">
-                                        <rect key="frame" x="69" y="90.5" width="189" height="38.5"/>
+                                        <rect key="frame" x="69" y="91" width="189" height="38"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1033,7 +1069,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Am8-zT-ZpF">
-                                        <rect key="frame" x="69" y="130" width="189" height="38.5"/>
+                                        <rect key="frame" x="69" y="130" width="189" height="39"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1042,7 +1078,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A1q-1z-49L">
-                                        <rect key="frame" x="69" y="169.5" width="189" height="35.5"/>
+                                        <rect key="frame" x="69" y="170" width="189" height="35"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1051,7 +1087,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NFK-Nu-W2z">
-                                        <rect key="frame" x="69" y="51" width="189" height="38.5"/>
+                                        <rect key="frame" x="69" y="51" width="189" height="39"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1357,7 +1393,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzt-LL-GsX">
-                                <rect key="frame" x="143.5" y="90" width="34" height="15"/>
+                                <rect key="frame" x="143" y="90" width="34" height="15"/>
                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1366,7 +1402,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5G-ml-gFl">
-                                <rect key="frame" x="143.5" y="117" width="34" height="15"/>
+                                <rect key="frame" x="143" y="117" width="34" height="15"/>
                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
                                 <color key="textColor" red="0.56862745098039214" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1392,7 +1428,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="copyright" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9c-Fi-DdD">
-                                <rect key="frame" x="129.5" y="487" width="61.5" height="17"/>
+                                <rect key="frame" x="129" y="487" width="62" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.56862745098039214" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

@@ -40,7 +40,10 @@ enum TypeProductRequest: Int {
 }
 
 enum ScreenShow: Int {
-    case book = 0, chanel, group
+    case book = 0
+    case chanel = 1
+    case buyProduct = 2
+    case group = 3
 }
 
 class Constants: NSObject {
@@ -54,5 +57,6 @@ class Constants: NSObject {
     var memberProfile: ProfileMember?
     var listDownloadLesson: [Lesson] = []
     var listDownloadBook: [Book] = []
+    
     static let sharedInstance = Constants()
 }

@@ -23,6 +23,8 @@ class Book {
     private var _pause: Int = 0
     private var _price: Int?
     private var _priceMix: PriceMix!
+    private var _audioOffline: URL?
+    private var _imageOffline: URL?
     
     init(idBook: Int,
          type: Int,
@@ -57,6 +59,45 @@ class Book {
             _price = price
             _priceMix = priceMix
     }
+    
+    required init(coder decoder: NSCoder) {
+        _idBook = decoder.decodeObject(forKey: "_idBook") as? Int
+        _type = decoder.decodeObject(forKey: "_type") as? Int
+        _typeName = decoder.decodeObject(forKey: "_typeName") as? String
+        _nameBook = decoder.decodeObject(forKey: "_nameBook") as? String
+        _imageOffline = decoder.decodeObject(forKey: "_imageOffline") as? URL
+        _timeUpBook = decoder.decodeObject(forKey: "_timeUpBook") as? String
+        _numberHumanReaded = decoder.decodeObject(forKey: "_numberHumanReaded") as? Int
+        _author = decoder.decodeObject(forKey: "_author") as? String
+        _audioOffline = decoder.decodeObject(forKey: "_audioOffline") as? URL
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(_idBook, forKey: "_idBook")
+        coder.encode(_type, forKey: "_type")
+        coder.encode(_typeName, forKey: "_typeName")
+        coder.encode(_nameBook, forKey: "_nameBook")
+        coder.encode(_imageOffline, forKey: "_imageOffline")
+        coder.encode(_timeUpBook, forKey: "_timeUpBook")
+        coder.encode(_numberHumanReaded, forKey: "_numberHumanReaded")
+        coder.encode(_author, forKey: "_author")
+        coder.encode(_audioOffline, forKey: "_audioOffline")
+    }
+    
+    class func saveBook(myAccount: Book) {
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: myAccount)
+        UserDefaults.standard.set(encodedData, forKey: "bookDownload")
+    }
+    
+    class func getAccount() -> Book? {
+        if let data = UserDefaults.standard.data(forKey: "bookDownload"),
+            let myAccount = NSKeyedUnarchiver.unarchiveObject(with: data) as? Book {
+            return myAccount
+        }
+        let myAccount: Book? = nil
+        return myAccount!
+    }
+    
     var type: Int {
         return _type
     }
@@ -86,7 +127,12 @@ class Book {
         set { _numberComment = newValue}
     }
     var numberBookMark: Int {
-        return _numberBookMark
+        get {
+            return _numberBookMark
+        }
+        set {
+            _numberBookMark = newValue
+        }
     }
     var timeUpBook: String {
         return _timeUpBook!
@@ -119,5 +165,21 @@ class Book {
     }
     var priceMix: PriceMix {
         return _priceMix
+    }
+    var audioOffline: URL {
+        get {
+            return _audioOffline!
+        }
+        set {
+            _audioOffline = newValue
+        }
+    }
+    var imageOffline: URL {
+        get {
+            return _imageOffline!
+        }
+        set {
+            _imageOffline = newValue
+        }
     }
 }

@@ -26,13 +26,38 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
         table.tableFooterView = UIView()
         table.estimatedRowHeight = 140
         table.register(UINib.init(nibName: "BookDownloadCell", bundle: nil), forCellReuseIdentifier: "bookCell")
-
+        getBookBookmarked()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = "我的收藏"
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        getNewsBookmarked()
+    }
+    
+    func getNewsBookmarked() {
+        let getNewsTask = GetAllNewsBookmarkedTask(page: 1)
+        requestWithTask(task: getNewsTask, success: { (data) in
+            if let listNews = data as? [NewsModel] {
+                self.listBookMarkOfNews = listNews
+                self.table.reloadData()
+            }
+        }) { (_) in
+            
+        }
+    }
+    
+    func getBookBookmarked() {
+        let getBookTask = GetAllBookBookmarkedTask(page: 1)
+        requestWithTask(task: getBookTask, success: { (data) in
+            if let listBook = data as? [Book] {
+                self.listBookMarkOfBook = listBook
+                self.table.reloadData()
+            }
+        }) { (_) in
+            
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,38 +69,37 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if segment.selectedSegmentIndex == 0 {
+            return newsCells(indexPath: indexPath)
+        } else {
+            return bookCells(indexPath: indexPath)
+        }
+    }
+    
+    func newsCells(indexPath: IndexPath) -> NewsBookmarkedCell {
         let newsCell = table.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as? NewsBookmarkedCell
         newsCell?.binData(news: listBookMarkOfNews[indexPath.row])
-        
+        return newsCell!
+    }
+    
+    func bookCells(indexPath: IndexPath) -> BookDownloadCell {
         let bookCell = table.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BookDownloadCell
         let book = listBookMarkOfBook[indexPath.row]
         bookCell?.binData(book: book)
-        if book.isPlay == 1 {
-            if book.pause == 1 {
-                bookCell?.imagePlay.image = #imageLiteral(resourceName: "audio_play")
-            } else {
-                bookCell?.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
-            }
-        } else {
-            bookCell?.imagePlay.image = #imageLiteral(resourceName: "audio_play")
-        }
         bookCell?.callBackButton = { [weak self] (action: String) in
             switch action {
             case "playBook":
                 self?.playAudioOfBook(book: book, current: indexPath.row)
                 break
             case "removeBook":
-                self?.listBookMarkOfBook.remove(at: indexPath.row)
+                self?.removeBookmark(indexPath: indexPath)
+                self?.table.reloadData()
                 break
             default:
                 break
             }
         }
-        if segment.selectedSegmentIndex == 0 {
-            return newsCell!
-        } else {
-            return bookCell!
-        }
+        return bookCell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -131,6 +155,18 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
                 self.player?.play()
                 self.table.reloadData()
             }
+        }
+    }
+    
+    func removeBookmark(indexPath: IndexPath) {
+        let removeBookmarkTask = BookMarkTask(bookMarkType: Object.book.rawValue,
+                                              memberID: 1,
+                                              objectId: listBookMarkOfBook[indexPath.row].idBook)
+        requestWithTask(task: removeBookmarkTask, success: { (_) in
+            self.listBookMarkOfBook.remove(at: indexPath.row)
+            self.table.reloadData()
+        }) { (_) in
+            
         }
     }
     

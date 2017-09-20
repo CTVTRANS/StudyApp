@@ -14,13 +14,13 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
     @IBOutlet weak var collection: UICollectionView!
     
     private var page = 1
+    var navigationTitle: String?
     var typeRequest: TypeProductRequest!
-//    private var listBook: [Book] = []
-//    private var listVip: [Vip] = []
     private var listProduct: [AnyObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = navigationTitle
         collection.register(UINib.init(nibName: "StoreMarkViewCell", bundle: nil), forCellWithReuseIdentifier: "cell2")
         getProduct()
     }
@@ -50,7 +50,6 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
     func getProductBookWith(task: BaseTaskNetwork) {
         requestWithTask(task: task, success: { (data) in
             if let list = data as? [Book] {
-//                self.listBook = list
                 for book in list {
                     self.listProduct.append(book)
                 }

@@ -31,15 +31,19 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         }) { (_) in
             
         }
-        let checkBookMarked: CheckBookMarkedTask = CheckBookMarkedTask(bookMarkType: Object.book.rawValue,
-                                                                       memberID: 1,
-                                                                       objectID: bookSelected.idBook)
+        let checkBookMarked: CheckBookMarkedTask =
+            CheckBookMarkedTask(bookMarkType: Object.book.rawValue,
+                                memberID: 1,
+                                objectID: bookSelected.idBook)
         requestWithTask(task: checkBookMarked, success: { [weak self] (data) in
-            let status = data as? Bool
-            if status! {
-                self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMarked")
-            } else {
-                self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMark")
+            if let status = data as? (Bool, Int) {
+                if status.0 {
+                    self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMarked")
+                } else {
+                    self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMark")
+                }
+                self?.bookSelected.numberBookMark = status.1
+                self?.bottomView.numberBookmark.text = String(status.1)
             }
         }) { (_) in
             
@@ -53,7 +57,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         
         bottomView.numberComment.text = String(bookSelected.numberComment)
         bottomView.numberLike.text = String(bookSelected.numberLike)
-        bottomView.numberBookmark.text = String(bookSelected.numberBookMark)
+//        bottomView.numberBookmark.text = String(bookSelected.numberBookMark)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,37 +115,65 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             case BottomButton.back:
                 self?.navigationController?.popViewController(animated: true)
             case BottomButton.bookMark:
-                let vc = myStoryboard.instantiateViewController(withIdentifier: "Login") as? UINavigationController
-                self?.present(vc!, animated: true, completion: nil)
+//                let vc = myStoryboard.instantiateViewController(withIdentifier: "Login") as? UINavigationController
+//                self?.present(vc!, animated: true, completion: nil)
+                self?.pressedBookmark()
             case BottomButton.comment:
                 let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController
                 vc?.idObject = self?.bookSelected?.idBook
                 vc?.commentType = Object.book.rawValue
                 self?.present(vc!, animated: false, completion: nil)
             case BottomButton.like:
-                let likeTask: LikeTask = LikeTask(likeType: Object.book.rawValue,
-                                                  memberID: 1,
-                                                  objectId: self!.bookSelected.idBook)
-                self?.requestWithTask(task: likeTask, success: { (data) in
-                    let status: Like = (data as? Like)!
-                    var currentLike: Int = Int(self!.bottomView.numberLike.text!)!
-                    if status == Like.like {
-                        self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
-                        currentLike += 1
-                        self?.bookSelected.numberLike = currentLike
-                        self?.bottomView.numberLike.text = String(currentLike)
-                    } else {
-                        currentLike -= 1
-                        self?.bookSelected.numberLike = currentLike
-                        self?.bottomView.numberLike.text = String(currentLike)
-                    }
-                }, failure: { (_) in
-                    
-                })
+                self?.pressedLike()
             case BottomButton.download:
                 print("Download")
             }
         }
+    }
+    
+    func pressedBookmark() {
+        let bookMarkTask: BookMarkTask = BookMarkTask(bookMarkType: Object.book.rawValue,
+                                                      memberID: 1,
+                                                      objectId: bookSelected.idBook)
+        self.requestWithTask(task: bookMarkTask, success: { (data) in
+            let status: BookMark = (data as? BookMark)!
+            var currentBookMark: Int = Int(self.bottomView.numberBookmark.text!)!
+            if status == BookMark.bookMark {
+                self.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMarked")
+                currentBookMark += 1
+                self.bookSelected.numberBookMark = currentBookMark
+                self.bottomView.numberBookmark.text = String(currentBookMark)
+            } else {
+                self.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMark")
+                currentBookMark -= 1
+                self.bookSelected.numberBookMark = currentBookMark
+                self.bottomView.numberBookmark.text = String(currentBookMark)
+            }
+        }, failure: { (_) in
+            
+        })
+    }
+    
+    func pressedLike() {
+        let likeTask: LikeTask = LikeTask(likeType: Object.book.rawValue,
+                                          memberID: 1,
+                                          objectId: bookSelected.idBook)
+        requestWithTask(task: likeTask, success: { (data) in
+            let status: Like = (data as? Like)!
+            var currentLike: Int = Int(self.bottomView.numberLike.text!)!
+            if status == Like.like {
+                self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
+                currentLike += 1
+                self.bookSelected.numberLike = currentLike
+                self.bottomView.numberLike.text = String(currentLike)
+            } else {
+                currentLike -= 1
+                self.bookSelected.numberLike = currentLike
+                self.bottomView.numberLike.text = String(currentLike)
+            }
+        }, failure: { (_) in
+            
+        })
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

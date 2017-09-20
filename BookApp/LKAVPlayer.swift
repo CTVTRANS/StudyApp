@@ -13,6 +13,5 @@ import AVFoundation
 class LKAVPlayer: NSObject {
     
     var audioPlayer: AVPlayer?
-    var videoPlayer: AVPlayer?
     static let sharedInstance = LKAVPlayer()
 }

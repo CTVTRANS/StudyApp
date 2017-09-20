@@ -94,6 +94,8 @@
 		6DEFD7501F4A7D2F00FB0CA5 /* BookVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFD74F1F4A7D2F00FB0CA5 /* BookVideoController.swift */; };
 		6DEFD7521F4A7D3E00FB0CA5 /* BookTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFD7511F4A7D3E00FB0CA5 /* BookTextController.swift */; };
 		6DEFD7541F4A974800FB0CA5 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFD7531F4A974800FB0CA5 /* BookDetailViewController.swift */; };
+		6DEFEFDD1F71FB0C00916C98 /* GetAllNewsBookmarkedTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFEFDC1F71FB0C00916C98 /* GetAllNewsBookmarkedTask.swift */; };
+		6DEFEFDF1F71FB2800916C98 /* GetAllBookBookmarkedTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFEFDE1F71FB2800916C98 /* GetAllBookBookmarkedTask.swift */; };
 		6DF0284C1F56AA6900CEE331 /* GetBookSuggestForTypeTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF0284B1F56AA6900CEE331 /* GetBookSuggestForTypeTask.swift */; };
 		6DF0284E1F56AB3700CEE331 /* GetBookFreeTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF0284D1F56AB3700CEE331 /* GetBookFreeTask.swift */; };
 		6DF07B771F690A940017C1CB /* StoreMarkViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF07B751F690A940017C1CB /* StoreMarkViewCell.swift */; };
@@ -255,6 +257,8 @@
 		6DEFD74F1F4A7D2F00FB0CA5 /* BookVideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookVideoController.swift; sourceTree = "<group>"; };
 		6DEFD7511F4A7D3E00FB0CA5 /* BookTextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTextController.swift; sourceTree = "<group>"; };
 		6DEFD7531F4A974800FB0CA5 /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
+		6DEFEFDC1F71FB0C00916C98 /* GetAllNewsBookmarkedTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAllNewsBookmarkedTask.swift; sourceTree = "<group>"; };
+		6DEFEFDE1F71FB2800916C98 /* GetAllBookBookmarkedTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAllBookBookmarkedTask.swift; sourceTree = "<group>"; };
 		6DF0284B1F56AA6900CEE331 /* GetBookSuggestForTypeTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBookSuggestForTypeTask.swift; sourceTree = "<group>"; };
 		6DF0284D1F56AB3700CEE331 /* GetBookFreeTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBookFreeTask.swift; sourceTree = "<group>"; };
 		6DF07B751F690A940017C1CB /* StoreMarkViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMarkViewCell.swift; sourceTree = "<group>"; };
@@ -564,6 +568,7 @@
 			children = (
 				6DEF67C91F550EA000D6BBCC /* GetAllNewsTask.swift */,
 				6DEEA5491F6FCB8700116848 /* GetAllTypeNewsTask.swift */,
+				6DEFEFDC1F71FB0C00916C98 /* GetAllNewsBookmarkedTask.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 				6DEFC1921F53D305006C696B /* GetBookNewestTask.swift */,
 				6D87DCAE1F5405D500269351 /* GetAllBookSuggestTask.swift */,
 				6DF0284D1F56AB3700CEE331 /* GetBookFreeTask.swift */,
+				6DEFEFDE1F71FB2800916C98 /* GetAllBookBookmarkedTask.swift */,
 			);
 			name = Book;
 			sourceTree = "<group>";
@@ -1001,11 +1007,13 @@
 				6DF4FFF91F5EA57200DF73A0 /* GetTotaViewOfChanel.swift in Sources */,
 				6DF702F51F6103C700FAF762 /* HistoryWatchChanelCell.swift in Sources */,
 				6DF4FFF31F5E973100DF73A0 /* Lesson.swift in Sources */,
+				6DEFEFDF1F71FB2800916C98 /* GetAllBookBookmarkedTask.swift in Sources */,
 				6D21CBA51F59A7C9003E9146 /* LKAVPlayer.swift in Sources */,
 				6DF2FD7B1F5D2ED10004CF04 /* DetailNotificationMessageController.swift in Sources */,
 				6DF727A11F556B6200E0D242 /* RegisterViewController.swift in Sources */,
 				6DF3E0FC1F5CE11500C10D31 /* Type3DetailNewsController.swift in Sources */,
 				6DEFC1931F53D305006C696B /* GetBookNewestTask.swift in Sources */,
+				6DEFEFDD1F71FB0C00916C98 /* GetAllNewsBookmarkedTask.swift in Sources */,
 				6DED74B91F4C1D6800E4E42F /* BookTypeViewCell.swift in Sources */,
 				6DEEF0031F613AC10078EEE1 /* NewsBookmarkedCell.swift in Sources */,
 				6DF5C2A31F57CF3800A89363 /* ListBookFreeCell.swift in Sources */,
