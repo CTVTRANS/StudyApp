@@ -50,8 +50,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, FSPagerViewDataSou
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.sd_setImage(with: URL(string:listSlider[index].imageURL), completed: { (_, _, _, _) in
-        })
+        cell.imageView?.sd_setImage(with: URL(string:listSlider[index].imageURL))
         cell.imageView?.contentMode = .scaleAspectFill
         cell.imageView?.clipsToBounds = true
         return cell

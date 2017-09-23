@@ -35,7 +35,6 @@ class BookDownloadCell: UITableViewCell {
         name.text = book.name
         descriptionBook.text = book.author
         numberView.text = String(book.numberHumanReaed)
-        imageBook.sd_setImage(with: URL(string: book.imageURL))
         let date = book.timeUpBook.components(separatedBy: " ")
         timeUp.text = date[0]
         if book.isPlay == 1 {
@@ -47,6 +46,16 @@ class BookDownloadCell: UITableViewCell {
         } else {
             imagePlay.image = #imageLiteral(resourceName: "audio_play")
         }
+        if let filePath = book.imageOffline?.path {
+            if FileManager.default.fileExists(atPath: filePath) {
+                do {
+                    let data = try? Data(contentsOf: book.imageOffline!)
+                    imageBook?.image = UIImage(data: data!)
+                }
+            }
+            return
+        }
+        imageBook?.sd_setImage(with: URL(string: book.imageURL), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
     }
     
     @IBAction func pressedPlayButton(_ sender: Any) {

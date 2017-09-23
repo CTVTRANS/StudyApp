@@ -148,8 +148,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func pressedChangeAvatar(_ sender: Any) {
-        _ =
-            UIAlertController.showActionSheetWith(arrayTitle: ["拍照", "從相冊選擇"],
+        _ = UIAlertController.showActionSheetWith(arrayTitle: ["拍照", "從相冊選擇"],
                                                   handlerAction: { (index) in
                                                     switch index {
                                                     case 0:

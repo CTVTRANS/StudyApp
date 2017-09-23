@@ -24,7 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="157" height="164"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9L-F2-Fma">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9L-F2-Fma">
                         <rect key="frame" x="8" y="122" width="141" height="14"/>
                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                         <nil key="textColor"/>
@@ -33,7 +33,7 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="hoM-MW-5dx">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hoM-MW-5dx">
                         <rect key="frame" x="0.0" y="0.0" width="157" height="110"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
@@ -117,10 +117,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FA1-AV-f1P">
-                        <rect key="frame" x="8" y="144" width="28" height="13"/>
+                        <rect key="frame" x="8" y="144" width="24" height="13"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rt0-7e-iQQ">
-                                <rect key="frame" x="0.0" y="0.0" width="13" height="13"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rt0-7e-iQQ">
+                                <rect key="frame" x="0.0" y="0.0" width="9" height="13"/>
                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -129,7 +129,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMa-hQ-Ynx">
-                                <rect key="frame" x="16" y="0.0" width="12" height="13"/>
+                                <rect key="frame" x="12" y="0.0" width="12" height="13"/>
                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -170,6 +170,7 @@
             </constraints>
             <size key="customSize" width="156" height="165"/>
             <connections>
+                <outlet property="avatar" destination="hoM-MW-5dx" id="HTO-qO-8Pl"/>
                 <outlet property="moneyBook" destination="imw-wK-VMl" id="j49-VN-dfO"/>
                 <outlet property="moneyBookView" destination="Crs-y1-hOu" id="uIF-Se-pex"/>
                 <outlet property="moneyVip" destination="rt0-7e-iQQ" id="u9Y-XL-wBf"/>
@@ -181,7 +182,4 @@
             <point key="canvasLocation" x="52.5" y="100"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="userPlaceHolder" width="320" height="213"/>
-    </resources>
 </document>

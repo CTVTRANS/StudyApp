@@ -107,6 +107,7 @@ class StoreMarkViewController: BaseViewController, UICollectionViewDelegate, UIC
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "BuyProductViewController") as? BuyProductViewController {
+            vc.product = listProduct[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
     }

@@ -14,6 +14,9 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var topShare: TopViewShare!
     @IBOutlet weak var topTabbar: CustomTopTabbar!
     @IBOutlet weak var bottomView: BottomView!
+    
+    var downloadImageSuccess = false
+    var downloadAuidosucess = false
     var bookSelected: Book!
     
     override func viewDidLoad() {
@@ -29,7 +32,6 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
                 self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
             }
         }) { (_) in
-            
         }
         let checkBookMarked: CheckBookMarkedTask =
             CheckBookMarkedTask(bookMarkType: Object.book.rawValue,
@@ -46,7 +48,6 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
                 self?.bottomView.numberBookmark.text = String(status.1)
             }
         }) { (_) in
-            
         }
 
         setupScroll()
@@ -57,7 +58,6 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         
         bottomView.numberComment.text = String(bookSelected.numberComment)
         bottomView.numberLike.text = String(bookSelected.numberLike)
-//        bottomView.numberBookmark.text = String(bookSelected.numberBookMark)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,8 +115,6 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             case BottomButton.back:
                 self?.navigationController?.popViewController(animated: true)
             case BottomButton.bookMark:
-//                let vc = myStoryboard.instantiateViewController(withIdentifier: "Login") as? UINavigationController
-//                self?.present(vc!, animated: true, completion: nil)
                 self?.pressedBookmark()
             case BottomButton.comment:
                 let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController
@@ -126,9 +124,43 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             case BottomButton.like:
                 self?.pressedLike()
             case BottomButton.download:
-                print("Download")
+                self?.pressedDowload()
             }
         }
+    }
+    
+    func pressedDowload() {
+        let downloadImage = DownloadTask(path: bookSelected.imageURL)
+        downloadFileSuccess(task: downloadImage, success: { (data) in
+            if let imageOflline = data as? URL {
+                self.downloadImageSuccess = true
+                self.bookSelected.imageOffline = imageOflline
+                if self.downloadAuidosucess && self.downloadImageSuccess {
+                    self.setListBookBdownload()
+                }
+            }
+        }) { (_) in
+        }
+        let downloadAudio = DownloadTask(path: bookSelected.audio)
+        downloadFileSuccess(task: downloadAudio, success: { (data) in
+            if let audioOffline = data as? URL {
+                self.downloadAuidosucess = true
+                self.bookSelected.audioOffline = audioOffline
+                if self.downloadAuidosucess && self.downloadImageSuccess {
+                    self.setListBookBdownload()
+                }
+            }
+        }) { (_) in
+        }
+    }
+    
+    func setListBookBdownload() {
+        var listBookDownaloaed = Book.getBook()
+        for singleBook in listBookDownaloaed! where singleBook.idBook == bookSelected.idBook {
+            return
+        }
+        listBookDownaloaed?.append(bookSelected)
+        Book.saveBook(myBook: listBookDownaloaed!)
     }
     
     func pressedBookmark() {

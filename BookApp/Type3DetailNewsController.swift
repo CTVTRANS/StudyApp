@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Social
 
 class Type3DetailNewsController: BaseViewController, UIWebViewDelegate {
 
@@ -69,15 +70,7 @@ class Type3DetailNewsController: BaseViewController, UIWebViewDelegate {
                             style: .done,
                             target: self,
                             action: nil)
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"),
-                            style: .plain,
-                            target: self,
-                            action: #selector(share))
-    }
-    
-    @objc private func share() {
-        print("share")
+        setupRightSlideOut()
     }
 
     func setupCallBackButton() {
@@ -85,7 +78,6 @@ class Type3DetailNewsController: BaseViewController, UIWebViewDelegate {
         bottomView.downloadImage.isHidden = true
         bottomView.numberLike.text = String(news.numberLike)
         bottomView.numberComment.text = String(news.numberComment)
-//        bottomView.numberBookmark.text = String(news.numberBookMark)
         
         bottomView.pressedBottomButton = { [weak self] (typeButotn: BottomButton) in
             switch typeButotn {

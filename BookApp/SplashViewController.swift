@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWRevealViewController
 
 class SplashViewController: BaseViewController {
 
@@ -17,7 +18,7 @@ class SplashViewController: BaseViewController {
     }
     
     @IBAction func pressedStartButton(_ sender: Any) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as? SWRevealViewController {
             self.present(vc, animated: false, completion: nil)
         }
     }

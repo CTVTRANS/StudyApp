@@ -172,7 +172,7 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="E1n-iG-jz8">
+                                                <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E1n-iG-jz8">
                                                     <rect key="frame" x="22" y="28" width="81" height="113"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="81" id="CaY-rr-u9u">
@@ -206,7 +206,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCb-Xn-1Ny">
-                                                    <rect key="frame" x="294" y="130.5" width="18" height="9"/>
+                                                    <rect key="frame" x="294" y="131" width="18" height="9"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="9"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -292,7 +292,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RX0-eo-49i">
                                                 <rect key="frame" x="115" y="16" width="90" height="90"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="sTb-OJ-cqW">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sTb-OJ-cqW">
                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audio_play" translatesAutoresizingMaskIntoConstraints="NO" id="g8W-rh-a9P">
@@ -340,7 +340,7 @@
                                                 </constraints>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RK-ZO-azt">
-                                                <rect key="frame" x="63" y="128" width="21" height="16"/>
+                                                <rect key="frame" x="63" y="128" width="20.5" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -349,7 +349,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTq-AC-by0">
-                                                <rect key="frame" x="84" y="128" width="17" height="16"/>
+                                                <rect key="frame" x="83.5" y="128" width="16.5" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -358,13 +358,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7B-gD-V43">
-                                                <rect key="frame" x="104" y="126" width="6" height="21"/>
+                                                <rect key="frame" x="103" y="126" width="6" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPT-oS-GAL">
-                                                <rect key="frame" x="113" y="128" width="13" height="16"/>
+                                                <rect key="frame" x="112" y="128" width="13" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -541,10 +541,10 @@
                                         </constraints>
                                     </view>
                                     <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvI-qy-jDY">
-                                        <rect key="frame" x="8" y="180" width="304" height="275"/>
+                                        <rect key="frame" x="8" y="180" width="304" height="10"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="275" id="Asl-lS-iE5">
+                                            <constraint firstAttribute="height" constant="10" id="Asl-lS-iE5">
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
@@ -552,10 +552,10 @@
                                         </constraints>
                                     </webView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wog-Oh-yno">
-                                        <rect key="frame" x="0.0" y="455" width="320" height="96"/>
+                                        <rect key="frame" x="0.0" y="190" width="320" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ojh-JK-gvG">
-                                                <rect key="frame" x="114.5" y="33.5" width="91" height="29"/>
+                                                <rect key="frame" x="114.5" y="20.5" width="91" height="29"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="17"/>
                                                 <state key="normal" title="  點數換書  ">
                                                     <color key="titleColor" red="1" green="0.396078431372549" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -569,13 +569,16 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="pressedBuy:" destination="exC-w5-VcB" eventType="touchUpInside" id="fLQ-HE-lZa"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Ojh-JK-gvG" firstAttribute="centerX" secondItem="wog-Oh-yno" secondAttribute="centerX" id="pms-v1-ff4"/>
                                             <constraint firstItem="Ojh-JK-gvG" firstAttribute="centerY" secondItem="wog-Oh-yno" secondAttribute="centerY" id="sHn-tY-CYE"/>
-                                            <constraint firstAttribute="height" constant="96" id="vHy-ue-yVW">
+                                            <constraint firstAttribute="height" constant="70" id="vHy-ue-yVW">
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
@@ -652,10 +655,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkH-uh-ABo">
-                                        <rect key="frame" x="0.0" y="455" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="190" width="320" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Yq-dU-ehq">
-                                                <rect key="frame" x="114.5" y="35.5" width="91" height="29"/>
+                                                <rect key="frame" x="114.5" y="20.5" width="91" height="29"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="17"/>
                                                 <state key="normal" title="  點數換書  ">
                                                     <color key="titleColor" red="1" green="0.396078431372549" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -669,20 +672,23 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="pressedBuy:" destination="hEp-we-T9I" eventType="touchUpInside" id="ZMo-Mp-Xg1"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="6Yq-dU-ehq" firstAttribute="centerY" secondItem="FkH-uh-ABo" secondAttribute="centerY" id="KZO-cd-4P8"/>
                                             <constraint firstItem="6Yq-dU-ehq" firstAttribute="centerX" secondItem="FkH-uh-ABo" secondAttribute="centerX" id="LmU-1Z-xX0"/>
-                                            <constraint firstAttribute="height" constant="100" id="hTY-QD-KTO"/>
+                                            <constraint firstAttribute="height" constant="70" id="hTY-QD-KTO"/>
                                         </constraints>
                                     </view>
                                     <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KnR-ed-Vny">
-                                        <rect key="frame" x="8" y="180" width="304" height="275"/>
+                                        <rect key="frame" x="8" y="180" width="304" height="10"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="275" id="ivN-28-fMO"/>
+                                            <constraint firstAttribute="height" constant="10" id="ivN-28-fMO"/>
                                         </constraints>
                                     </webView>
                                 </subviews>
@@ -738,17 +744,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0BC-tW-Dfn">
-                                        <rect key="frame" x="8" y="0.0" width="304" height="200"/>
+                                        <rect key="frame" x="8" y="0.0" width="304" height="10"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="hLh-2E-x7h"/>
+                                            <constraint firstAttribute="height" constant="10" id="hLh-2E-x7h"/>
                                         </constraints>
                                     </webView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GVl-KR-le0">
-                                        <rect key="frame" x="0.0" y="200" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="10" width="320" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7s-hO-4mA">
-                                                <rect key="frame" x="114.5" y="35.5" width="91" height="29"/>
+                                                <rect key="frame" x="114.5" y="20.5" width="91" height="29"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="17"/>
                                                 <state key="normal" title="  點數換書  ">
                                                     <color key="titleColor" red="1" green="0.396078431372549" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -762,12 +768,15 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="pressedBuy:" destination="hnr-d7-yCv" eventType="touchUpInside" id="Boo-Hc-eZG"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="v7s-hO-4mA" firstAttribute="centerY" secondItem="GVl-KR-le0" secondAttribute="centerY" id="496-CU-3hG"/>
-                                            <constraint firstAttribute="height" constant="100" id="WRh-pD-z43"/>
+                                            <constraint firstAttribute="height" constant="70" id="WRh-pD-z43"/>
                                             <constraint firstItem="v7s-hO-4mA" firstAttribute="centerX" secondItem="GVl-KR-le0" secondAttribute="centerX" id="kI3-Y0-fPZ"/>
                                         </constraints>
                                     </view>
@@ -809,7 +818,6 @@
         <image name="audio_next" width="64" height="64"/>
         <image name="audio_play" width="64" height="64"/>
         <image name="audio_previous" width="64" height="64"/>
-        <image name="demo" width="313" height="195"/>
         <image name="flame" width="32" height="32"/>
     </resources>
 </document>

@@ -32,6 +32,14 @@ class BookTextController: BaseViewController, UIWebViewDelegate {
         stopActivityIndicator()
     }
     
+    @IBAction func pressedBuy(_ sender: Any) {
+        let myStoryBoard = UIStoryboard(name: "Setting", bundle: nil)
+        if let vc = myStoryBoard.instantiateViewController(withIdentifier: "BuyProductViewController") as? BuyProductViewController {
+            vc.product = book
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

@@ -27,7 +27,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7F-Rk-GNq">
                         <rect key="frame" x="8" y="10" width="52" height="52"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="O8r-Qs-vAm">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O8r-Qs-vAm">
                                 <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audio_play" translatesAutoresizingMaskIntoConstraints="NO" id="oPc-Rd-a9k">
@@ -197,7 +197,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="avatar" destination="O8r-Qs-vAm" id="U4y-pB-F1N"/>
+                <outlet property="avatar" destination="O8r-Qs-vAm" id="YxN-MM-cRB"/>
                 <outlet property="descriptionLesson" destination="MrN-Oy-k0f" id="Fyw-Kl-HGX"/>
                 <outlet property="heightOfAvatar" destination="fJq-4T-yAX" id="Kcu-8o-UYs"/>
                 <outlet property="imagePlay" destination="oPc-Rd-a9k" id="PMy-iA-tNx"/>
@@ -213,6 +213,5 @@
     </objects>
     <resources>
         <image name="audio_play" width="64" height="64"/>
-        <image name="userPlaceHolder" width="320" height="213"/>
     </resources>
 </document>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Social
 
 class Type2DetailNewsViewController: BaseViewController {
 
@@ -64,11 +65,7 @@ class Type2DetailNewsViewController: BaseViewController {
                             style: .done,
                             target: self,
                             action: nil)
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"),
-                            style: .plain,
-                            target: self,
-                            action: #selector(share))
+        setupRightSlideOut()
     }
     
     func setupUI() {
@@ -85,7 +82,6 @@ class Type2DetailNewsViewController: BaseViewController {
         bottomView.downloadImage.isHidden = true
         bottomView.numberLike.text = String(news.numberLike)
         bottomView.numberComment.text = String(news.numberComment)
-//        bottomView.numberBookmark.text = String(news.numberBookMark)
         
         bottomView.pressedBottomButton = { [weak self] (typeButotn: BottomButton) in
             switch typeButotn {
@@ -153,9 +149,4 @@ class Type2DetailNewsViewController: BaseViewController {
             
         })
     }
-    
-    @objc private func share() {
-        print("share")
-    }
-
 }

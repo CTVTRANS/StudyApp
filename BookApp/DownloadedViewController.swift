@@ -27,8 +27,18 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
         table.estimatedRowHeight = 140
         table.register(UINib.init(nibName: "HistoryWatchChanelCell", bundle: nil), forCellReuseIdentifier: "chanelCell")
         table.register(UINib.init(nibName: "BookDownloadCell", bundle: nil), forCellReuseIdentifier: "bookCell")
-        listBookDownloaded = Constants.sharedInstance.listDownloadBook
-        listChanelDownloaded = Constants.sharedInstance.listDownloadLesson
+        getBookDownloaded()
+        getLessonDownloaded()
+    }
+    
+    func getBookDownloaded() {
+        listBookDownloaded = Book.getBook()!
+        table.reloadData()
+    }
+    
+    func getLessonDownloaded() {
+        listChanelDownloaded = Lesson.getLesson()!
+        table.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,9 +57,9 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if segment.selectedSegmentIndex == 0 {
-            return self.chanelCell(indexPath: indexPath)
+            return bookCell(indexPath: indexPath)
         }
-        return bookCell(indexPath: indexPath)
+        return self.chanelCell(indexPath: indexPath)
     }
     
     func bookCell(indexPath: IndexPath) -> BookDownloadCell {
@@ -62,6 +72,7 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
                 self?.playAudioOfBook(book: book, current: indexPath.row)
                 break
             case "removeBook":
+                self?.pressRemoveBook(book: book)
                 self?.listBookDownloaded.remove(at: indexPath.row)
                 self?.table.reloadData()
                 break
@@ -119,16 +130,18 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
         }
         oldlessonPlay = current
         lesson.isPlay = 1
-        let asset = AVAsset(url: URL(string: lesson.contentURL)!)
-        let keys: [String] = ["audio"]
-        asset.loadValuesAsynchronously(forKeys: keys) {
-            DispatchQueue.main.async {
-                self.playerItem = AVPlayerItem(asset: asset)
-                self.player = AVPlayer(playerItem: self.playerItem)
-                self.player?.play()
-                self.table.reloadData()
-            }
+        playerItem = AVPlayerItem(url: lesson.audioOffline)
+        player = AVPlayer(playerItem: playerItem)
+        player?.play()
+        table.reloadData()
+    }
+    
+    func pressRemoveBook(book: Book) {
+        var listBook: [Book] = Book.getBook()!
+        for index in 0..<listBook.count where listBook[index].idBook == book.idBook {
+            listBook.remove(at: index)
         }
+        Book.saveBook(myBook: listBook)
     }
     
     func playAudioOfBook(book: Book, current: Int) {
@@ -150,20 +163,13 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
         }
         oldBookPlay = current
         book.isPlay = 1
-        let asset = AVAsset(url: URL(string: book.audio)!)
-        let keys: [String] = ["audio"]
-        asset.loadValuesAsynchronously(forKeys: keys) {
-            DispatchQueue.main.async {
-                self.playerItem = AVPlayerItem(asset: asset)
-                self.player = AVPlayer(playerItem: self.playerItem)
-                self.player?.play()
-                self.table.reloadData()
-            }
-        }
+        playerItem = AVPlayerItem(url: book.audioOffline!)
+        player = AVPlayer(playerItem: playerItem)
+        player?.play()
+        table.reloadData()
     }
     
     @IBAction func pressedSegment(_ sender: Any) {
         table.reloadData()
     }
-    
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class StoreMarkViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var pointBookView: UIView!
     @IBOutlet weak var moneyBookView: UIView!
     @IBOutlet weak var moneyBook: UILabel!
@@ -26,6 +27,7 @@ class StoreMarkViewCell: UICollectionViewCell {
     
     func binData(product: AnyObject, type: TypeProductRequest) {
         if let book = product as? Book {
+            avatar.sd_setImage(with: URL(string: book.imageURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
             moneyVipView.isHidden = true
             title.text = book.name
             if type == TypeProductRequest.pointAndMoney ||
@@ -45,6 +47,7 @@ class StoreMarkViewCell: UICollectionViewCell {
             return
         }
         if let vip = product as? Vip {
+            avatar.sd_setImage(with: URL(string: vip.imageURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
             moneyBookView.isHidden = true
             pointBookView.isHidden = true
             title.text = vip.title

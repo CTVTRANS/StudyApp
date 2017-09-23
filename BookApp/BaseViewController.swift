@@ -9,6 +9,8 @@
 import UIKit
 import LCNetwork
 import AFNetworking
+import Social
+import SWRevealViewController
 
 class BaseViewController: UIViewController {
     
@@ -19,6 +21,15 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AFNetworkReachabilityManager.shared().startMonitoring()
+    }
+    
+    func setupRightSlideOut() {
+        if self.revealViewController() != nil {
+            revealViewController().rightViewRevealWidth = 80
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"), style: .plain, target: self.revealViewController(), action: #selector(revealViewController().rightRevealToggle(_:)))
+//            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        }
     }
     
     func requestWithTask(task: BaseTaskNetwork, success: @escaping BlockSuccess, failure: @escaping BlockFailure) {

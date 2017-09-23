@@ -12,9 +12,9 @@ class ResultSearch: UITableViewCell {
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var descriptionTitle: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,7 +25,10 @@ class ResultSearch: UITableViewCell {
     func binData(objec: Any) {
         if let book = objec as? Book {
             title.text = book.name
-            descriptionTitle.text = book.description
+            let arrayString = book.descriptionBook.components(separatedBy: "</p>")
+            let firstString = arrayString[0]
+            let index = firstString.index(firstString.startIndex, offsetBy: 4)
+            descriptionTitle.text = firstString.substring(from: index)
             return
         }
         if let news = objec as? NewsModel {

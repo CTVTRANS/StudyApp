@@ -55,8 +55,6 @@ class Constants: NSObject {
     
     var historyViewChanelLesson: [Lesson] = []
     var memberProfile: ProfileMember?
-    var listDownloadLesson: [Lesson] = []
-    var listDownloadBook: [Book] = []
     
     static let sharedInstance = Constants()
 }

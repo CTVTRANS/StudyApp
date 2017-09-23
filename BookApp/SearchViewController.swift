@@ -31,7 +31,7 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     private var loadedTypeNews = false
     private var seachBook: Bool = true
     
-    private var listHot: [String] = ["kien", "nam can", "tho sut", "thanh chan", "chan tu dan", "li lien kiet", "thanh long"]
+    private var listHot: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +50,8 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     }
     
     private func setUp() {
-        titleForViewTypes.text = "Types"
-        titleForViewHot.text = "Hot"
+        titleForViewTypes.text = "分類搜索"
+        titleForViewHot.text = " "
         let getAllTypeNews: GetAllTypeNewsTask = GetAllTypeNewsTask()
         requestWithTask(task: getAllTypeNews, success: { (_) in
             self.loadedTypeNews = true
@@ -147,8 +147,6 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
                 if let arrayBook =  data as? [Book] {
                     self.listBook = arrayBook
                     self.table.isHidden = false
-                    self.titleForViewTypes.isHidden = true
-                    self.titleForViewHot.isHidden = true
                     self.table.reloadData()
                 }
             }, failure: { (_) in
@@ -160,8 +158,6 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
                 if let arrayNews = data as? [NewsModel] {
                     self.listNews = arrayNews
                     self.table.isHidden = false
-                    self.titleForViewTypes.isHidden = true
-                    self.titleForViewHot.isHidden = true
                     self.table.reloadData()
                 }
             }, failure: { (_) in

@@ -68,11 +68,7 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
                             style: .done,
                             target: self,
                             action: nil)
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"),
-                            style: .plain,
-                            target: self,
-                            action: #selector(share))
+        setupRightSlideOut()
     }
     
     func setupUI() {
@@ -92,7 +88,6 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
         bottomView.downloadButton.isHidden = true
         bottomView.numberLike.text = String(news.numberLike)
         bottomView.numberComment.text = String(news.numberComment)
-//        bottomView.numberBookmark.text = String(news.numberBookMark)
         
         bottomView.pressedBottomButton = { [weak self] (typeButton: BottomButton) in
             switch typeButton {
@@ -160,10 +155,6 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
         }, failure: { (_) in
             
         })
-    }
-    
-    @objc private func share() {
-        print("share")
     }
     
     deinit {

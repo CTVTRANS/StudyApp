@@ -46,7 +46,16 @@ class HistoryWatchChanelCell: UITableViewCell {
         } else {
             imagePlay.image = #imageLiteral(resourceName: "audio_play")
         }
-
+        if let filePath = lesson.imageOffline?.path {
+            if FileManager.default.fileExists(atPath: filePath) {
+                do {
+                    let data = try? Data(contentsOf: lesson.imageOffline!)
+                    avatar?.image = UIImage(data: data!)
+                }
+            }
+            return
+        }
+        avatar.sd_setImage(with: URL(string: lesson.imageChapURL), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
     }
     
     @IBAction func pressedPlayChanelButton(_ sender: Any) {

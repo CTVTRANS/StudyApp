@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="81" height="146"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="Vha-hC-17U">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vha-hC-17U">
                         <rect key="frame" x="0.0" y="0.0" width="81" height="113"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="113" id="sab-Cx-nKI">
@@ -58,7 +58,4 @@
             <point key="canvasLocation" x="53.5" y="137"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="demo" width="313" height="195"/>
-    </resources>
 </document>

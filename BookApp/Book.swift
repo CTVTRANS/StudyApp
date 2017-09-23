@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Book {
+class Book: NSObject, NSCoding {
     
     private var _idBook, _type: Int!
     private var _typeName, _nameBook: String!
@@ -84,18 +84,18 @@ class Book {
         coder.encode(_audioOffline, forKey: "_audioOffline")
     }
     
-    class func saveBook(myAccount: Book) {
-        let encodedData = NSKeyedArchiver.archivedData(withRootObject: myAccount)
-        UserDefaults.standard.set(encodedData, forKey: "bookDownload")
+    class func saveBook(myBook: [Book]) {
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: myBook)
+        UserDefaults.standard.set(encodedData, forKey: "bookDownloaded")
     }
     
-    class func getAccount() -> Book? {
-        if let data = UserDefaults.standard.data(forKey: "bookDownload"),
-            let myAccount = NSKeyedUnarchiver.unarchiveObject(with: data) as? Book {
-            return myAccount
+    class func getBook() -> [Book]? {
+        if let data = UserDefaults.standard.data(forKey: "bookDownloaded"),
+            let listBook = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Book] {
+            return listBook
         }
-        let myAccount: Book? = nil
-        return myAccount!
+        let listBook: [Book] = []
+        return listBook
     }
     
     var type: Int {
@@ -127,12 +127,8 @@ class Book {
         set { _numberComment = newValue}
     }
     var numberBookMark: Int {
-        get {
-            return _numberBookMark
-        }
-        set {
-            _numberBookMark = newValue
-        }
+        get { return _numberBookMark}
+        set { _numberBookMark = newValue}
     }
     var timeUpBook: String {
         return _timeUpBook!
@@ -149,7 +145,7 @@ class Book {
     var content: String {
         return _content!
     }
-    var description: String {
+    var descriptionBook: String {
         return _desCription!
     }
     var isPlay: Int {
@@ -166,20 +162,12 @@ class Book {
     var priceMix: PriceMix {
         return _priceMix
     }
-    var audioOffline: URL {
-        get {
-            return _audioOffline!
-        }
-        set {
-            _audioOffline = newValue
-        }
+    var audioOffline: URL? {
+        get { return _audioOffline}
+        set { _audioOffline = newValue}
     }
-    var imageOffline: URL {
-        get {
-            return _imageOffline!
-        }
-        set {
-            _imageOffline = newValue
-        }
+    var imageOffline: URL? {
+        get { return _imageOffline}
+        set { _imageOffline = newValue}
     }
 }

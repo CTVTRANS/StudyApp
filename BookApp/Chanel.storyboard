@@ -120,7 +120,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="188"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="RkG-4u-wcd">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RkG-4u-wcd">
                                             <rect key="frame" x="20" y="16" width="94" height="94"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="94" id="BPF-6p-hDB">
@@ -132,7 +132,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfm-aU-Cx7">
-                                            <rect key="frame" x="20" y="130" width="133" height="40"/>
+                                            <rect key="frame" x="20" y="130" width="132.5" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="Rj8-vq-liG">
@@ -160,7 +160,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6m-nP-R3o">
-                                            <rect key="frame" x="168" y="130" width="132" height="40"/>
+                                            <rect key="frame" x="167.5" y="130" width="132.5" height="40"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="hv7-dI-eip">
@@ -283,13 +283,13 @@
                                         <rect key="frame" x="0.0" y="216" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XEa-D1-zhI" id="c6E-bH-zT1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOa-in-UdQ">
                                                     <rect key="frame" x="16" y="8" width="54" height="54"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="cFH-EA-jz3">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cFH-EA-jz3">
                                                             <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audio_play" translatesAutoresizingMaskIntoConstraints="NO" id="2JD-bo-Qea">
@@ -343,7 +343,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eO-W7-tfY">
-                                                    <rect key="frame" x="78" y="35" width="10" height="14"/>
+                                                    <rect key="frame" x="78" y="35" width="9.5" height="14"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -352,7 +352,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_download" translatesAutoresizingMaskIntoConstraints="NO" id="D3P-H0-u5m">
-                                                    <rect key="frame" x="276" y="5" width="20" height="20"/>
+                                                    <rect key="frame" x="276" y="25" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="QSY-rN-EoH"/>
                                                         <constraint firstAttribute="height" constant="20" id="itu-tl-dyC"/>
@@ -368,7 +368,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YLU-bj-SXL">
-                                                    <rect key="frame" x="290" y="0.0" width="30" height="30"/>
+                                                    <rect key="frame" x="250.5" y="0.0" width="69.5" height="69.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="YLU-bj-SXL" secondAttribute="height" multiplier="1:1" id="foZ-K4-MS7"/>
                                                     </constraints>
@@ -454,7 +454,6 @@
     </scenes>
     <resources>
         <image name="audio_play" width="64" height="64"/>
-        <image name="demo" width="313" height="195"/>
         <image name="ic_bottom_download" width="64" height="64"/>
     </resources>
 </document>

@@ -32,20 +32,29 @@ class BuyProductViewController: BaseViewController {
         navigationItem.title = ""
         if let book = product as? Book {
             titleProduct.text = book.name
-            imageProduct.sd_setImage(with: URL(string: book.imageURL))
+            imageProduct.sd_setImage(with: URL(string: book.imageURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
         }
         if let vip = product as? Vip {
+            imageProduct.sd_setImage(with: URL(string: vip.imageURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
             titleProduct.text = vip.title
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isTranslucent = false
         navigationController?.isNavigationBarHidden = false
     }
     @IBAction func pressedBuyButtonCase1(_ sender: Any) {
+        
     }
     @IBAction func pressedBuyButtonCase2(_ sender: Any) {
+        
     }
 
+    @IBAction func pressedEditInfomationBin(_ sender: Any) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailBinController") as? DetailBinController {
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

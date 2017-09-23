@@ -16,20 +16,20 @@ class BaseViewcontrollerExtend: NSObject {
 
 extension BaseTaskNetwork {
     func parseBook(dictionary: [String: Any]) -> Book {
-        let idBook = dictionary["post_id"] as? Int ?? 999
-        let idTypeBook = dictionary["cat_id"] as? Int ?? 123
-        let nameTypeBook = dictionary["cat_name"] as? String ?? "123"
-        let nameBook = dictionary["post_name"] as? String ?? "123"
-        let authorBook = dictionary["author"] as? String ?? "23"
-        let imageURLBook = dictionary["post_image"] as? String ?? "123"
-        let descriptionBook = dictionary["post_description"] as? String ?? "123"
-        let audioBook = dictionary["post_audio"] as? String ?? "123"
-        let videoBook = dictionary["post_video"] as? String ?? "123"
-        let contentBook = dictionary["post_content"] as? String ?? "abc"
-        let timeUpBook = dictionary["updated_at"] as? String ?? "123"
-        let numberLikeBook = dictionary["number_of_likes"] as? Int ?? 123
-        let numberCommentBook = dictionary["number_of_comments"] as? Int ?? 123
-        let numberBookMark = dictionary["number_of_collection"] as? Int ?? 123
+        let idBook = dictionary["post_id"] as? Int ?? 0
+        let idTypeBook = dictionary["cat_id"] as? Int ?? 0
+        let nameTypeBook = dictionary["cat_name"] as? String ?? " "
+        let nameBook = dictionary["post_name"] as? String ?? " "
+        let authorBook = dictionary["author"] as? String ?? " "
+        let imageURLBook = dictionary["post_image"] as? String ?? " "
+        let descriptionBook = dictionary["post_description"] as? String ?? " "
+        let audioBook = dictionary["post_audio"] as? String ?? " "
+        let videoBook = dictionary["post_video"] as? String ?? " "
+        let contentBook = dictionary["post_content"] as? String ?? " "
+        let timeUpBook = dictionary["updated_at"] as? String ?? " "
+        let numberLikeBook = dictionary["number_of_likes"] as? Int ?? 0
+        let numberCommentBook = dictionary["number_of_comments"] as? Int ?? 0
+        let numberBookMark = dictionary["number_of_collection"] as? Int ?? 0
         let price = dictionary["price_by_point"] as? Int ?? 0
         
         let priceMixDictionay = dictionary["price_mix"] as? [String: Any]
@@ -43,7 +43,7 @@ extension BaseTaskNetwork {
                               name: nameBook,
                               author: authorBook,
                               imageUrl: imageURLBook,
-                              numberReaded: 123,
+                              numberReaded: 0,
                               timeUp: timeUpBook,
                               audio: audioBook,
                               video: videoBook,
@@ -58,13 +58,13 @@ extension BaseTaskNetwork {
     }
     
     func parseChanel(dictionary: [String: Any]) -> Chanel {
-        let chanelName = dictionary["channel_title"] as? String ?? "asd"
+        let chanelName = dictionary["channel_title"] as? String ?? " "
         let chanelID = dictionary["post_id"] as? Int ?? 123
-        let chanelType = dictionary["cat_name"] as? String ?? "asd"
-        let chanelImage = dictionary["channel_image"] as? String ?? "asd"
-        let teacherName = dictionary["teacher_name"] as? String ?? "asd"
-        let teacherImage = dictionary["teacher_image"] as? String ?? "ad"
-        let chanelTimeUp = dictionary[""] as? String ?? "12-8-2017 7:34:45"
+        let chanelType = dictionary["cat_name"] as? String ?? " "
+        let chanelImage = dictionary["channel_image"] as? String ?? " "
+        let teacherName = dictionary["teacher_name"] as? String ?? " "
+        let teacherImage = dictionary["teacher_image"] as? String ?? " "
+        let chanelTimeUp = dictionary[""] as? String ?? " "
         let chanel: Chanel = Chanel(idChanel: chanelID,
                                     nameChanel: chanelName,
                                     imageChanelURL: chanelImage,
@@ -77,24 +77,24 @@ extension BaseTaskNetwork {
     }
     
     func parseLesson(dictionary: [String: Any]) -> Lesson {
-        let lessonID = dictionary["id"] as? Int ?? 1234
-        let lessonChapter = dictionary["chapter"] as? Int ?? 23
-        let lessonName = dictionary["title"] as? String ?? "asd"
-        let lessonDescription = dictionary["description"] as? String ?? "asd"
-        let lessonContent = dictionary["audio"] as? String ?? "asdf"
-        let  lessonTimeup = dictionary["created_at"] as? String ?? "sas"
+        let lessonID = dictionary["id"] as? Int ?? 0
+        let lessonChapter = dictionary["chapter"] as? Int ?? 0
+        let lessonName = dictionary["title"] as? String ?? " "
+        let lessonDescription = dictionary["description"] as? String ?? " "
+        let lessonContent = dictionary["audio"] as? String ?? " "
+        let  lessonTimeup = dictionary["created_at"] as? String ?? " "
         let lesson: Lesson = Lesson(idLesson: lessonID,
                                     chaper: lessonChapter,
                                     time: lessonTimeup,
                                     name: lessonName,
                                     description: lessonDescription,
-                                    imageURL: "123",
+                                    imageURL: " ",
                                     contentURL: lessonContent)
         return lesson
     }
     
     func parseGroup(dictionary: [String: Any]) -> SecrectGroup {
-        let idGroup = dictionary["id"] as? Int ?? 999
+        let idGroup = dictionary["id"] as? Int ?? 9999999
         let titleGroup = dictionary["title"] as? String ?? " "
         let imageGroup = dictionary["image"] as? String ?? " "
         let idWechatGroup = dictionary["wechat"] as? String ?? " "
@@ -108,19 +108,19 @@ extension BaseTaskNetwork {
     }
     
     func parseNews(dictionary: [String: Any]) -> NewsModel {
-        let newsID = dictionary["post_id"] as? Int ?? 123
-        let newsAuthor = dictionary["author"] as? String ?? "kien"
-        let newsName = dictionary["post_name"] as? String ?? "123"
-        let newsImage = dictionary["post_image"] as? String ?? "123"
-        let newsDescription = dictionary["post_description"] as? String ?? "123"
-        let newsContent = dictionary["post_content"] as? String ?? "123"
-        let newsNote = dictionary["post_note"] as? String ?? "123"
-        let newsTimeup = dictionary["updated_at"] as? String ?? "123"
-        let newsType = dictionary["post_display_type"] as? Int ?? 123
-        let newsNameType = dictionary["cat_name"] as? String ?? "123"
-        let newsNumberLike = dictionary["number_of_likes"] as? Int ?? 123
-        let newsNumberComment = dictionary["number_of_comments"] as? Int ?? 123
-        let newsNumberBookMark = dictionary["number_of_collection"] as? Int ?? 123
+        let newsID = dictionary["post_id"] as? Int ?? 0
+        let newsAuthor = dictionary["author"] as? String ?? " "
+        let newsName = dictionary["post_name"] as? String ?? " "
+        let newsImage = dictionary["post_image"] as? String ?? " "
+        let newsDescription = dictionary["post_description"] as? String ?? " "
+        let newsContent = dictionary["post_content"] as? String ?? " "
+        let newsNote = dictionary["post_note"] as? String ?? " "
+        let newsTimeup = dictionary["updated_at"] as? String ?? " "
+        let newsType = dictionary["post_display_type"] as? Int ?? 1
+        let newsNameType = dictionary["cat_name"] as? String ?? " "
+        let newsNumberLike = dictionary["number_of_likes"] as? Int ?? 0
+        let newsNumberComment = dictionary["number_of_comments"] as? Int ?? 0
+        let newsNumberBookMark = dictionary["number_of_collection"] as? Int ?? 0
         
         let news: NewsModel = NewsModel(idNews: newsID,
                                         author: newsAuthor,
@@ -140,12 +140,12 @@ extension BaseTaskNetwork {
     }
     
     func parseVip(dictionary: [String: Any]) -> Vip {
-        let idVip = dictionary["id"] as? Int ?? 123
-        let titleVip = dictionary["title"] as? String ?? "123"
-        let imageVip = dictionary["image"] as? String ?? "123"
-        let descriptionVip = dictionary["description"] as? String ?? "dasdf"
-        let contentVip = dictionary["content"] as? String ?? "sdaf"
-        let priceVip = dictionary["price"] as? Int ?? 123
+        let idVip = dictionary["id"] as? Int ?? 0
+        let titleVip = dictionary["title"] as? String ?? " "
+        let imageVip = dictionary["image"] as? String ?? " "
+        let descriptionVip = dictionary["description"] as? String ?? " "
+        let contentVip = dictionary["content"] as? String ?? " "
+        let priceVip = dictionary["price"] as? Int ?? 0
         let vip = Vip(idVip: idVip,
                   title: titleVip,
                   imageURL: imageVip,

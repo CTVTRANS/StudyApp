@@ -62,7 +62,7 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo" translatesAutoresizingMaskIntoConstraints="NO" id="4gX-g3-uQ9">
+                    <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4gX-g3-uQ9">
                         <rect key="frame" x="22" y="28" width="81" height="113"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="113" id="2cI-yy-FdS">
@@ -178,7 +178,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="demo" width="313" height="195"/>
         <image name="flame" width="32" height="32"/>
     </resources>
 </document>

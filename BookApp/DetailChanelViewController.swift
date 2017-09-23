@@ -28,6 +28,9 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     private var lessonUploaded = [Lesson]()
     private var loadedListLessonUpload = false
     private var loadedNumberView = false
+    private var downloadImageSucess = true
+    private var downloadAudioSucess = false
+    
     private var oldlessonPlay: Int?
     private var player: AVPlayer?
     private var playerItem: AVPlayerItem?
@@ -114,7 +117,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             cell.callBackButton = { [weak self] (typeButton: String) in
                 switch typeButton {
                 case "download":
-                    print("download")
+                    self?.pressedDownload(lesson: lesson)
                 case "play":
                     self?.playAudio(lesson: lesson, current: indexPath.row)
                 default :
@@ -124,6 +127,43 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func pressedDownload(lesson: Lesson) {
+        lesson.chanelOwner = chanel.nameChanel
+        let downloadImageLesson = DownloadTask(path: lesson.imageChapURL)
+        downloadFileSuccess(task: downloadImageLesson, success: { (data) in
+            if let imageOffline = data as? URL {
+                lesson.imageOffline = imageOffline
+                self.downloadImageSucess = true
+                if self.downloadImageSucess && self.downloadAudioSucess {
+                    self.setListLesson(chap: lesson)
+                }
+            }
+        }) { (_) in
+        }
+        
+        let downloadLesson = DownloadTask(path: lesson.contentURL)
+        downloadFileSuccess(task: downloadLesson, success: { (data) in
+            if let audioOffline = data as? URL {
+                lesson.audioOffline = audioOffline
+                self.downloadAudioSucess = true
+                if self.downloadImageSucess && self.downloadAudioSucess {
+                    self.setListLesson(chap: lesson)
+                }
+            }
+        }) { (_) in
+        }
+    }
+    
+    func setListLesson(chap: Lesson) {
+        var listLesson = Lesson.getLesson()
+        for singleLesson in listLesson! where chap.idChap == singleLesson.idChap {
+            return
+        }
+        listLesson?.append(chap)
+        Lesson.saveLesson(lesson: listLesson!)
+        print("sucess")
     }
     
     func playAudio(lesson: Lesson, current: Int) {
@@ -191,11 +231,12 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func pressedDownloadAll(_ sender: Any) {
-        
+        for singleLesson in lessonUploaded {
+            pressedDownload(lesson: singleLesson)
+        }
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
 }

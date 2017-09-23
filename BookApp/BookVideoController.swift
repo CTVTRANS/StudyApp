@@ -31,7 +31,7 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
         showActivity(inView: UIApplication.shared.keyWindow!)
         videoDetailButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
         web.delegate = self
-        let content = css + (book?.description)!
+        let content = css + (book?.descriptionBook)!
         web.loadHTMLString(content, baseURL: nil)
         web.scrollView.isScrollEnabled = false
         loadVideo()
@@ -45,8 +45,18 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
                 let item = AVPlayerItem(asset: asset)
                 self.player = AVPlayer(playerItem: item)
                 self.player?.addObserver(self, forKeyPath: "rate", options: .new, context: nil)
-                
+                self.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { [weak self] time in
+                    let timeString = String(format: "%02.0f", CMTimeGetSeconds(time))
+                    let timeSecond = Float(timeString)
+                    if Constants.sharedInstance.memberProfile == nil || Constants.sharedInstance.memberProfile?.level == 0 {
+                        if timeSecond! >= 90.0 {
+                            self?.player?.pause()
+                            self?.player?.seek(to: kCMTimeZero)
+                        }
+                    }
+                }
                 self.playerViewController.player =  self.player
+                self.playerViewController.showsPlaybackControls  = true
                 self.playerViewController.view.frame = self.headerView.bounds
                 self.headerView.addSubview(self.playerViewController.view)
                 self.loadedVideo = true
@@ -89,8 +99,12 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
         }
     }
     
-    @IBAction func pressedStart(_ sender: Any) {
-        
+    @IBAction func pressedBuy(_ sender: Any) {
+        let myStoryBoard = UIStoryboard(name: "Setting", bundle: nil)
+        if let vc = myStoryBoard.instantiateViewController(withIdentifier: "BuyProductViewController") as? BuyProductViewController {
+            vc.product = book
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     deinit {

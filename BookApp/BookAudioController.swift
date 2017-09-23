@@ -30,17 +30,8 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     var loadedWebView: Bool = false
     var book: Book?
     var totalTime: Float64?
-//    lazy var player: AVQueuePlayer = self.makePlayer()
     var player: AVPlayer?
     var playerItem: AVPlayerItem?
-    
-//    private lazy var song: AVPlayerItem = {
-//        let url = URL(string: (self.book?.audio)!)
-//        self.playerItem = AVPlayerItem(url: url!)
-//        let duration = self.playerItem?.asset.duration
-//        self.totalTime = CMTimeGetSeconds(duration!)
-//        return self.playerItem!
-//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +39,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         audioDetailButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
         imageBook.sd_setImage(with: URL(string: (book?.imageURL)!))
         web.delegate = self
-        let content = css + (book?.description)!
+        let content = css + (book?.descriptionBook)!
         web.loadHTMLString(content, baseURL: nil)
         web.scrollView.isScrollEnabled = false
         sliderBar.minimumValue = 0
@@ -76,7 +67,16 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
                         return
                     }
                     let timeString = String(format: "%02.0f", CMTimeGetSeconds(time))
-                    self?.sliderBar.value += 1
+                    self?.sliderBar.value = Float(timeString)!
+                    if strongSelf.sliderBar.value >= strongSelf.sliderBar.maximumValue {
+                        self?.player?.seek(to: kCMTimeZero)
+                        strongSelf.player?.pause()
+                        strongSelf.buttonImge.image = #imageLiteral(resourceName: "audio_play")
+                        strongSelf.sliderBar.value = strongSelf.sliderBar.minimumValue
+                        strongSelf.currentSecondTime.text = "00"
+                        strongSelf.currentMinAudio.text = "00:"
+                        return
+                    }
                     
                     if UIApplication.shared.applicationState == .active {
                         let second: Int = Int(timeString)!
@@ -117,7 +117,12 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     }
     
     func customSliderBar() {
-        sliderBar.maximumValue = Float(totalTime!)
+        if Constants.sharedInstance.memberProfile != nil &&
+            (Constants.sharedInstance.memberProfile?.level)! >= 0 {
+            sliderBar.maximumValue = Float(totalTime!)
+        } else {
+             sliderBar.maximumValue = Float(90)
+        }
         let mySecs = Int(totalTime!) % 60
         let myMins = Int(totalTime! / 60)
         self.totalTimeAudio.text = String(myMins) + ":" + String(mySecs)
@@ -168,6 +173,13 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         if player?.rate == 1 {
             player?.pause()
             buttonImge.image = #imageLiteral(resourceName: "audio_play")
+        }
+    }
+    @IBAction func pressedBuy(_ sender: Any) {
+        let myStoryBoard = UIStoryboard(name: "Setting", bundle: nil)
+        if let vc = myStoryBoard.instantiateViewController(withIdentifier: "BuyProductViewController") as? BuyProductViewController {
+            vc.product = book
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
