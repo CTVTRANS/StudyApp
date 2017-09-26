@@ -31,7 +31,6 @@ class DetailSingleGroupViewController: BaseViewController, UITableViewDelegate, 
         imageGroup.layer.cornerRadius = heightOfImage.constant / 2
         let getNewsInGroup: GetNewsInGroupTask =
             GetNewsInGroupTask(idGroup: (groupSelected?.idGroup)!,
-                               limit: 20,
                                page: 1)
         requestWithTask(task: getNewsInGroup, success: { (data) in
             if let  array = data as? [NewsInGroups] {

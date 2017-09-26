@@ -12,27 +12,28 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var table: UITableView!
     var listChanelHot = [Chanel]()
-    let listChanelSubcribled = Constants.sharedInstance.listChanelSubcribled
+    private let listChanelSubcribled = Constants.sharedInstance.listChanelSubcribled
+    private var isLoading = false
+    private var isMoreData = true
+    private var pager = 1
+    lazy var footerView = UIView.initFooterView()
+    private var indicator: UIActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         table.estimatedRowHeight = 140
         table.register(UINib.init(nibName: "ChanelViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        table.tableFooterView = UIView()
+        if let ac = footerView.viewWithTag(8) as? UIActivityIndicatorView {
+            indicator = ac
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
-        let getHotChanel: GetHotChanelTask = GetHotChanelTask(lang: Constants.sharedInstance.language, limit: 20, page: 1)
-        requestWithTask(task: getHotChanel, success: { (data) in
-            self.listChanelHot = (data as? [Chanel])!
-            self.table.reloadData()
-        }) { (error) in
-            _ = UIAlertController(title: nil,
-                                  message: error as? String,
-                                  preferredStyle: .alert)
-        }
+        listChanelHot.removeAll()
+        pager = 1
+        loadMore()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -81,6 +82,38 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
         let detailTeacherVC = storyboard!.instantiateViewController(withIdentifier: "DetailChanelViewController") as? DetailChanelViewController
         detailTeacherVC?.chanel = listChanelHot[indexPath.row]
         self.navigationController?.pushViewController(detailTeacherVC!, animated: true)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let endOftable = table.contentOffset.y >= (table.contentSize.height - table.frame.size.height)
+        if isMoreData && endOftable && !isLoading && !scrollView.isDragging && !scrollView.isDecelerating {
+            isLoading = true
+            table.tableFooterView = footerView
+            indicator?.startAnimating()
+            loadMore()
+        }
+    }
+    
+    func loadMore() {
+        let getHotChanel: GetHotChanelTask = GetHotChanelTask(page: pager)
+        requestWithTask(task: getHotChanel, success: { (data) in
+            if let list = data as? [Chanel] {
+                self.listChanelHot += list
+                self.stopActivityIndicator()
+                self.isLoading = false
+                self.pager += 1
+                self.indicator?.stopAnimating()
+                self.table.reloadData()
+                if list.count == 0 {
+                    self.isMoreData = false
+                    self.table.tableFooterView = UIView()
+                }
+            }
+        }) { (error) in
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
+        }
     }
     
     deinit {

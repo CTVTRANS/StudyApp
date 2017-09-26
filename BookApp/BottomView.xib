@@ -11,9 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomView" customModule="BookApp" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="XNo-Yf-fwG" id="UkK-F2-9zJ"/>
+                <outlet property="backImage" destination="wzz-j5-KpS" id="z3T-78-eQ6"/>
+                <outlet property="bookMarkButton" destination="ZtJ-Db-pBK" id="zeD-Xg-RI9"/>
                 <outlet property="bookMarkImage" destination="mJB-FO-YhU" id="FeY-fR-FSp"/>
                 <outlet property="downloadButton" destination="3VP-Nq-hap" id="iTo-kq-89m"/>
                 <outlet property="downloadImage" destination="jQ3-is-Rf0" id="gp5-Qt-cFB"/>
+                <outlet property="likeButton" destination="HZk-0j-pVE" id="In7-TD-8hW"/>
                 <outlet property="likeImage" destination="x3k-sf-JK0" id="tVK-As-SeG"/>
                 <outlet property="numberBookmark" destination="4L5-bP-bwf" id="iZd-Wu-QAD"/>
                 <outlet property="numberComment" destination="cD1-hC-Goj" id="cDg-dr-B9D"/>

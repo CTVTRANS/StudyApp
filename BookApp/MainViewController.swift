@@ -12,27 +12,22 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var navigationCustoms: NavigationCustom!
     @IBOutlet weak var table: UITableView!
-    var arrayNews = [NewsModel]()
+    private var pager = 1
+    private var isMoreData = true
+    private var isLoadMore = false
+    private var arrayNews: [NewsModel] = []
+    lazy var footerView = UIView.initFooterView()
+    private var indicator: UIActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCallBack()
-        
-        let getAllNews: GetAllNewsTask = GetAllNewsTask(limit: 20, page: 1)
         showActivity(inView: self.view)
         table.estimatedRowHeight = 140
-        requestWithTask(task: getAllNews, success: { (data) in
-            if let list = data as? [NewsModel] {
-                 self.arrayNews = list
-                self.table.reloadData()
-                self.stopActivityIndicator()
-            }
-        }) { (error) in
-            self.stopActivityIndicator()
-            _ = UIAlertController(title: nil,
-                                  message: error as? String,
-                                  preferredStyle: .alert)
+        if let ac = footerView.viewWithTag(8) as? UIActivityIndicatorView {
+            indicator = ac
         }
+        loadMoreData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +71,39 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let endOftable = table.contentOffset.y >= (table.contentSize.height - table.frame.size.height)
+        if isMoreData && endOftable && !isLoadMore && !scrollView.isDragging && !scrollView.isDecelerating {
+            isLoadMore = true
+            table.tableFooterView = footerView
+            indicator?.startAnimating()
+            loadMoreData()
+        }
+    }
+    
+    func loadMoreData() {
+        let getAllNews: GetAllNewsTask = GetAllNewsTask(page: pager)
+        requestWithTask(task: getAllNews, success: { (data) in
+            if let list = data as? [NewsModel] {
+                self.arrayNews += list
+                self.table.reloadData()
+                self.isLoadMore = false
+                self.stopActivityIndicator()
+                self.indicator?.stopAnimating()
+                self.pager += 1
+                if list.count == 0 {
+                    self.isMoreData = false
+                    self.table.tableFooterView = UIView()
+                }
+            }
+        }) { (error) in
+            self.stopActivityIndicator()
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
+        }
     }
     
     func setupCallBack() {

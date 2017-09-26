@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 let widthScreen: CGFloat = UIScreen.main.bounds.width
 let hightScreen: CGFloat = UIScreen.main.bounds.height
@@ -54,7 +56,12 @@ class Constants: NSObject {
     var language: Int = 1
     
     var historyViewChanelLesson: [Lesson] = []
+    var historyViewAudio: [Book] = []
     var memberProfile: ProfileMember?
+    
+    var asset: AVAsset?
+    var player: AVPlayer?
+    var playerItem: AVPlayerItem?
     
     static let sharedInstance = Constants()
 }

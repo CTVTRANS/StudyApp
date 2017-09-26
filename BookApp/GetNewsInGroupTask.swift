@@ -12,12 +12,10 @@ import LCNetwork
 class GetNewsInGroupTask: BaseTaskNetwork {
     
     private var _idGroup: Int!
-    private var _limit: Int!
     private var _page: Int!
     
-    init(idGroup: Int, limit: Int, page: Int) {
+    init(idGroup: Int, page: Int) {
         _idGroup = idGroup
-        _limit = limit
         _page = page
     }
     
@@ -30,7 +28,7 @@ class GetNewsInGroupTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["group_id": _idGroup, "limit": _limit, "page": _page]
+        return ["group_id": _idGroup, "limit": 20, "page": _page]
     }
     
     override func data(withResponse response: Any!) -> Any! {

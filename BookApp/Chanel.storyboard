@@ -114,7 +114,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-Vc-QvJ">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="484"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="cc6-Rk-Sfp">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="188"/>
@@ -423,19 +423,34 @@
                                     <outlet property="delegate" destination="CzM-0D-yIB" id="h0Z-US-aNB"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vDH-tC-p8t" customClass="BottomView" customModule="BookApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                <color key="backgroundColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="uS8-bB-44n">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ULb-fs-2jl" firstAttribute="leading" secondItem="g5g-Kf-RNJ" secondAttribute="leading" id="9c5-38-R2D"/>
+                            <constraint firstAttribute="trailing" secondItem="vDH-tC-p8t" secondAttribute="trailing" id="Eei-GA-T1B"/>
                             <constraint firstAttribute="trailing" secondItem="8wl-Vc-QvJ" secondAttribute="trailing" id="QdF-qG-ytE"/>
-                            <constraint firstItem="yN1-PU-5Wm" firstAttribute="top" secondItem="8wl-Vc-QvJ" secondAttribute="bottom" id="WJR-la-hVK"/>
+                            <constraint firstItem="yN1-PU-5Wm" firstAttribute="top" secondItem="vDH-tC-p8t" secondAttribute="bottom" id="cmx-rd-7FL"/>
                             <constraint firstItem="8wl-Vc-QvJ" firstAttribute="top" secondItem="ULb-fs-2jl" secondAttribute="bottom" id="fDy-MT-PtQ"/>
                             <constraint firstItem="ULb-fs-2jl" firstAttribute="top" secondItem="g5g-Kf-RNJ" secondAttribute="top" id="i8U-bl-gAe"/>
                             <constraint firstAttribute="trailing" secondItem="ULb-fs-2jl" secondAttribute="trailing" id="jl9-qv-VZH"/>
+                            <constraint firstItem="vDH-tC-p8t" firstAttribute="leading" secondItem="g5g-Kf-RNJ" secondAttribute="leading" id="kJx-FV-GKC"/>
+                            <constraint firstItem="vDH-tC-p8t" firstAttribute="top" secondItem="8wl-Vc-QvJ" secondAttribute="bottom" id="n1K-Nd-4Zm"/>
                             <constraint firstItem="8wl-Vc-QvJ" firstAttribute="leading" secondItem="g5g-Kf-RNJ" secondAttribute="leading" id="w9d-5I-aSA"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="vDH-tC-p8t" id="ljh-cO-kgB"/>
                         <outlet property="chaneType" destination="wsN-zy-L4s" id="JZs-Kk-aAF"/>
                         <outlet property="chanelImage" destination="RkG-4u-wcd" id="3QN-og-7nn"/>
                         <outlet property="downloadAllButton" destination="L6m-nP-R3o" id="7ax-I7-vSX"/>

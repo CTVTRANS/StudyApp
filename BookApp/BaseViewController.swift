@@ -83,3 +83,27 @@ class BaseViewController: UIViewController {
         backGroundview?.removeFromSuperview()
     }
 }
+
+extension UIView {
+    class func initFooterView() -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: widthScreen, height: 100))
+        let activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activity.tag = 8
+        activity.frame = CGRect(x: view.frame.size.width / 2 - 10, y: 40, width: 20, height: 20)
+        activity.hidesWhenStopped = true
+        view.addSubview(activity)
+        return view
+    }
+}
+
+extension UICollectionReusableView {
+    class func initFooterLoadmore() -> UICollectionReusableView {
+        let view = UICollectionReusableView(frame: CGRect(x: 0, y: 0, width: widthScreen, height: 100))
+        let activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activity.tag = 8
+        activity.frame = CGRect(x: view.frame.size.width / 2 - 10, y: 40, width: 20, height: 20)
+        activity.hidesWhenStopped = true
+        view.addSubview(activity)
+        return view
+    }
+}

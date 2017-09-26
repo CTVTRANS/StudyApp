@@ -24,6 +24,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
         table.register(UINib.init(nibName: "SettingViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.tableFooterView = UIView()
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
+        avatar.sd_setImage(with: URL(string: (memberProfile?.avatar)!), placeholderImage: #imageLiteral(resourceName: "place_holder"))
         customData()
     }
     

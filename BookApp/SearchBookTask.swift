@@ -12,19 +12,17 @@ import LCNetwork
 class SearchBookTask: BaseTaskNetwork {
 
     private var _keyWord: String!
-    private var _limit: Int!
     private var _page: Int!
     
-    init(keyWord: String, limit: Int, page: Int) {
+    init(keyWord: String, page: Int) {
         _keyWord = keyWord
-        _limit = limit
         _page = page
     }
     
     override func parameters() -> [AnyHashable : Any]! {
         return ["keyword": _keyWord,
                 "lang": Constants.sharedInstance.language,
-                "limit": _limit,
+                "limit": 20,
                 "page": _page]
     }
     

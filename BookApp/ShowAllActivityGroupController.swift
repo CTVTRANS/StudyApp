@@ -87,9 +87,10 @@ class ShowAllActivityGroupController: BaseViewController, UITableViewDelegate, U
         table.deselectRow(at: indexPath, animated: true)
         let group = arrayGroup[indexPath.row]
         if listIDGroupJoined.contains(group.idGroup) {
-            listIDGroupJoined.remove(group.idGroup)
             for index in 0..<Constants.sharedInstance.listGroupJoined.count where group.idGroup == Constants.sharedInstance.listGroupJoined[index].idGroup {
+                    listIDGroupJoined.remove(group.idGroup)
                     Constants.sharedInstance.listGroupJoined.remove(at: index)
+                break
             }
         } else {
             listIDGroupJoined.insert(group.idGroup)

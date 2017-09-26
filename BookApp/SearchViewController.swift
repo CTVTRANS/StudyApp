@@ -142,7 +142,7 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         listNews.removeAll()
         listBook.removeAll()
         if seachBook && searchBar.text != nil {
-            let searchBookTask: SearchBookTask = SearchBookTask(keyWord: searchBar.text!, limit: 10, page: 1)
+            let searchBookTask: SearchBookTask = SearchBookTask(keyWord: searchBar.text!, page: 1)
             requestWithTask(task: searchBookTask, success: { (data) in
                 if let arrayBook =  data as? [Book] {
                     self.listBook = arrayBook
@@ -153,7 +153,7 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
                 
             })
         } else if !seachBook && searchBar.text != nil {
-            let searchNewsTask: SearchNewsTask = SearchNewsTask(keyWord: searchBar.text!, limit: 10, page: 1)
+            let searchNewsTask: SearchNewsTask = SearchNewsTask(keyWord: searchBar.text!, page: 1)
             requestWithTask(task: searchNewsTask, success: { (data) in
                 if let arrayNews = data as? [NewsModel] {
                     self.listNews = arrayNews

@@ -11,13 +11,9 @@ import LCNetwork
 
 class GetHotChanelTask: BaseTaskNetwork {
     
-    private let _lang: Int!
-    private let _limit: Int!
     private let _page: Int!
     
-    init(lang: Int, limit: Int, page: Int) {
-        _lang = lang
-        _limit = limit
+    init(page: Int) {
         _page = page
     }
     
@@ -30,7 +26,7 @@ class GetHotChanelTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["lang": _lang, "limit": _limit, "page": _page]
+        return ["lang": Constants.sharedInstance.language, "limit": 20, "page": _page]
     }
     
     override func data(withResponse response: Any!) -> Any! {

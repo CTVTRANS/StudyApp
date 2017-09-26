@@ -11,11 +11,9 @@ import LCNetwork
 
 class GetAllNewsTask: BaseTaskNetwork {
     
-    private let _limit: Int!
     private let _page: Int!
     
-    init(limit: Int, page: Int) {
-        _limit = limit
+    init(page: Int) {
         _page = page
     }
 
@@ -25,7 +23,7 @@ class GetAllNewsTask: BaseTaskNetwork {
     
     override func parameters() -> [AnyHashable : Any]! {
         return ["lang": Constants.sharedInstance.language,
-                "limit": _limit,
+                "limit": 30,
                 "page": _page]
     }
     

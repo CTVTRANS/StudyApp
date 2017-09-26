@@ -12,25 +12,22 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var table: UITableView!
     var listBook = [Book]()
+    lazy var footerView = UIView.initFooterView()
+    private var indicator: UIActivityIndicatorView?
+    var isMoreData = true
+    var isLoading = false
+    var pager = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "BookFree"
         table.estimatedRowHeight = 140
         table.register(UINib.init(nibName: "ListBookFreee", bundle: nil), forCellReuseIdentifier: "cell")
-        let getBookFree: GetBookFreeTask = GetBookFreeTask(limit: 10, page: 1)
-        showActivity(inView: UIApplication.shared.keyWindow!)
-        requestWithTask(task: getBookFree, success: { (data) in
-            if let list  = data as? [Book] {
-                self.listBook = list
-                self.table.reloadData()
-                self.stopActivityIndicator()
-            }
-        }) { (error) in
-            _ = UIAlertController(title: nil,
-                                  message: error as? String,
-                                  preferredStyle: .alert)
+        if let ac = footerView.viewWithTag(8) as? UIActivityIndicatorView {
+            indicator = ac
         }
+        showActivity(inView: UIApplication.shared.keyWindow!)
+        loadMore()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +57,38 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
         if let vc = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as? BookDetailViewController {
             vc.bookSelected = listBook[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let endOftable = table.contentOffset.y >= (table.contentSize.height - table.frame.size.height)
+        if isMoreData && endOftable && !isLoading && !scrollView.isDragging && !scrollView.isDecelerating {
+            isLoading = true
+            table.tableFooterView = footerView
+            indicator?.startAnimating()
+            loadMore()
+        }
+    }
+    
+    func loadMore() {
+        let getBookFree: GetBookFreeTask = GetBookFreeTask(limit: 10, page: pager)
+        requestWithTask(task: getBookFree, success: { (data) in
+            if let list  = data as? [Book] {
+                self.listBook += list
+                self.table.reloadData()
+                self.stopActivityIndicator()
+                self.indicator?.stopAnimating()
+                self.isLoading = false
+                self.pager += 1
+                if list.count == 0 {
+                    self.isMoreData = false
+                    self.table.tableFooterView = UIView()
+                }
+            }
+        }) { (error) in
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
         }
     }
 }

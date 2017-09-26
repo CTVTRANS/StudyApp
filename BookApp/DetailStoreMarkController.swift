@@ -14,6 +14,11 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
     @IBOutlet weak var collection: UICollectionView!
     
     private var page = 1
+    private var isMoreData = true
+    private var isLoading = false
+    var footerView: FooterLoadMoreReusableView?
+    private var indicator: UIActivityIndicatorView?
+    
     var navigationTitle: String?
     var typeRequest: TypeProductRequest!
     private var listProduct: [AnyObject] = []
@@ -22,7 +27,7 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
         super.viewDidLoad()
         navigationItem.title = navigationTitle
         collection.register(UINib.init(nibName: "StoreMarkViewCell", bundle: nil), forCellWithReuseIdentifier: "cell2")
-        getProduct()
+        loadMore()
     }
     
     func getProduct() {
@@ -53,6 +58,9 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
                 for book in list {
                     self.listProduct.append(book)
                 }
+                self.page += 1
+                self.isLoading = false
+                self.footerView?.stopAnimate()
                 self.collection.reloadData()
             }
         }, failure: { (error) in
@@ -88,6 +96,94 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
         if let vc = storyboard?.instantiateViewController(withIdentifier: "BuyProductViewController") as? BuyProductViewController {
             vc.product = listProduct[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if isLoading {
+            return CGSize.zero
+        }
+        return CGSize(width: collectionView.bounds.size.width, height: 55)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionElementKindSectionFooter:
+            if let footer = collection.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FooterLoadMoreReusableView", for: indexPath) as? FooterLoadMoreReusableView {
+                footerView = footer
+                return footer
+            }
+            return UICollectionReusableView()
+        default:
+            return UICollectionReusableView()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        if elementKind == UICollectionElementKindSectionFooter {
+            footerView?.prepareInitialAnimation()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
+        if elementKind == UICollectionElementKindSectionFooter {
+            footerView?.stopAnimate()
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let threshold = 100.0
+        let contentOffset = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let diffHeight = contentHeight - contentOffset
+        let frameHeight = scrollView.bounds.size.height
+        var triggerThreshold  = Float((diffHeight - frameHeight))/Float(threshold)
+        triggerThreshold   =  min(triggerThreshold, 0.0)
+        let pullRatio = min(fabs(triggerThreshold), 1.0)
+        self.footerView?.setTransform(inTransform: CGAffineTransform.identity, scaleFactor: CGFloat(pullRatio))
+        if pullRatio >= 1 {
+            self.footerView?.animateFinal()
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let contentOffset = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let diffHeight = contentHeight - contentOffset
+        let frameHeight = scrollView.bounds.size.height
+        let pullHeight  = fabs(diffHeight - frameHeight)
+        if pullHeight == 0.0 {
+            if (self.footerView?.isAnimatingFinal)! {
+                print("load more trigger")
+                self.isLoading = true
+                self.footerView?.startAnimate()
+                loadMore()
+            }
+        }
+    }
+    
+    func loadMore() {
+        let getAllproduct: GetAllproductTask = GetAllproductTask(limit: 20, page: page)
+        let getProductByPoint: GetListProductByPointTask = GetListProductByPointTask(limit: 20, page: page)
+        let getproductByPointAndMoney: GetListProductByPointAndMoneyTask = GetListProductByPointAndMoneyTask(limit: 20, page: page)
+        if typeRequest == TypeProductRequest.all {
+            if page > 1 {
+                self.getProductBookWith(task: getAllproduct)
+                return
+            }
+            let getProductVip: GetProductVipTask = GetProductVipTask()
+            requestWithTask(task: getProductVip, success: { (data) in
+                if let arrayVip = data as? [Vip] {
+                    self.listProduct = arrayVip
+                    self.getProductBookWith(task: getAllproduct)
+                }
+            }, failure: { (_) in
+                
+            })
+        } else if typeRequest == TypeProductRequest.point {
+            getProductBookWith(task: getProductByPoint)
+        } else {
+            getProductBookWith(task: getproductByPointAndMoney)
         }
     }
 }

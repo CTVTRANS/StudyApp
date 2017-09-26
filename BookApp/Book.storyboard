@@ -206,7 +206,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCb-Xn-1Ny">
-                                                    <rect key="frame" x="294" y="131" width="18" height="9"/>
+                                                    <rect key="frame" x="294" y="130.5" width="18" height="9"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="9"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -270,6 +270,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Diu-Zg-1Qn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-549.375" y="582.04225352112678"/>
+        </scene>
+        <!--All Type Book Controller-->
+        <scene sceneID="IvM-Tr-UQa">
+            <objects>
+                <viewController storyboardIdentifier="AllTypeBookController" id="rK5-L1-V8F" customClass="AllTypeBookController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qOg-Be-KRi"/>
+                        <viewControllerLayoutGuide type="bottom" id="XXv-IT-gAF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1IP-Kj-xnr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yXy-ZV-2tb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="klD-6E-9mh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="144" y="581"/>
+        </scene>
+        <!--Single Type Book Controller-->
+        <scene sceneID="4OS-QT-HyU">
+            <objects>
+                <viewController storyboardIdentifier="SingleTypeBookController" id="xvV-ar-zBo" customClass="SingleTypeBookController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5mc-3H-XXb"/>
+                        <viewControllerLayoutGuide type="bottom" id="rso-HE-z45"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="owo-dt-3SL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vRh-HY-LMD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="xvV-ar-zBo" id="pPJ-Dg-ox1"/>
+                                    <outlet property="delegate" destination="xvV-ar-zBo" id="hrc-Tb-XOv"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vRh-HY-LMD" firstAttribute="top" secondItem="owo-dt-3SL" secondAttribute="top" id="2TL-7k-s58"/>
+                            <constraint firstItem="vRh-HY-LMD" firstAttribute="leading" secondItem="owo-dt-3SL" secondAttribute="leading" id="8XJ-Xt-GUw"/>
+                            <constraint firstItem="rso-HE-z45" firstAttribute="top" secondItem="vRh-HY-LMD" secondAttribute="bottom" id="Eqy-9N-kFu"/>
+                            <constraint firstAttribute="trailing" secondItem="vRh-HY-LMD" secondAttribute="trailing" id="sDr-lP-F3A"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="table" destination="vRh-HY-LMD" id="jB8-w6-jBX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zW5-Ji-njA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="847.5" y="580.9859154929577"/>
         </scene>
         <!--Book Audio Controller-->
         <scene sceneID="5Vc-hY-ezP">
@@ -626,7 +682,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Na-2T-SX6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="110.625" y="-120.4225352112676"/>
+            <point key="canvasLocation" x="146" y="-120"/>
         </scene>
         <!--Book Video Controller-->
         <scene sceneID="VOI-Oc-iYF">

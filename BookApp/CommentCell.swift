@@ -24,7 +24,7 @@ class CommentCell: UITableViewCell {
 
     func binData(commentObject: Comment) {
         name.text = commentObject.userComment.name
-        avatar.sd_setImage(with: URL(string:commentObject.userComment.avata), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
+        avatar.sd_setImage(with: URL(string:commentObject.userComment.avata), placeholderImage: #imageLiteral(resourceName: "place_holder"))
         let timeComment: String = commentObject.timeComment
         let dateComment = timeComment.components(separatedBy: " ")
         let date = dateComment[0].components(separatedBy: "-")

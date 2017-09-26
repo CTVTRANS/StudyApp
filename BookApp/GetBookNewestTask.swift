@@ -11,12 +11,18 @@ import LCNetwork
 
 class GetBookNewestTask: BaseTaskNetwork {
     
+    private let _limit: Int!
+    
+    init(limit: Int) {
+        _limit = limit
+    }
+    
     override func path() -> String! {
         return getBookNewestURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["lang": Constants.sharedInstance.language, "limit": "1"]
+        return ["lang": Constants.sharedInstance.language, "limit": _limit]
     }
     
     override func method() -> String! {

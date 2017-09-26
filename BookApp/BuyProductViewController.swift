@@ -33,10 +33,13 @@ class BuyProductViewController: BaseViewController {
         if let book = product as? Book {
             titleProduct.text = book.name
             imageProduct.sd_setImage(with: URL(string: book.imageURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
+            point1.text = String(book.priceMix.point)
+            money1.text = String(book.priceMix.mooney)
         }
         if let vip = product as? Vip {
             imageProduct.sd_setImage(with: URL(string: vip.imageURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
             titleProduct.text = vip.title
+            point1.text = String(vip.price)
         }
     }
 
@@ -45,9 +48,11 @@ class BuyProductViewController: BaseViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.isNavigationBarHidden = false
     }
+    
     @IBAction func pressedBuyButtonCase1(_ sender: Any) {
         
     }
+    
     @IBAction func pressedBuyButtonCase2(_ sender: Any) {
         
     }

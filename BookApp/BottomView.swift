@@ -12,6 +12,10 @@ class BottomView: UIView {
     
     var pressedBottomButton:((_ index: BottomButton) -> Void)?
     
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var backImage: UIImageView!
+    @IBOutlet weak var bookMarkButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var downloadImage: UIImageView!
     @IBOutlet weak var numberBookmark: UILabel!

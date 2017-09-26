@@ -12,9 +12,9 @@ import LCNetwork
 class GetListBookForTypeTask: BaseTaskNetwork {
     
     private let _category: Int!
-    private let _page: String!
+    private let _page: Int!
     
-    init(category: Int, page: String) {
+    init(category: Int, page: Int) {
         _category = category
         _page = page
     }
@@ -24,7 +24,7 @@ class GetListBookForTypeTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["category": _category, "page": _page]
+        return ["category": _category, "limit": 20, "page": _page]
     }
     
     override func method() -> String! {

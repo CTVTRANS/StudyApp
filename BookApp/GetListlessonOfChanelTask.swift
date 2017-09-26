@@ -12,12 +12,10 @@ import LCNetwork
 class GetListlessonOfChanelTask: BaseTaskNetwork {
 
     private let _chanelID: Int!
-    private let _limit: Int!
     private let _page: Int!
     
-    init(chanelID: Int, limit: Int, page: Int) {
+    init(chanelID: Int, page: Int) {
         _chanelID = chanelID
-        _limit = limit
         _page = page
     }
     
@@ -30,7 +28,7 @@ class GetListlessonOfChanelTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["teacher_id": _chanelID, "limit": _limit, "page": _page]
+        return ["teacher_id": _chanelID, "limit": 20, "page": _page]
     }
     
     override func data(withResponse response: Any!) -> Any! {

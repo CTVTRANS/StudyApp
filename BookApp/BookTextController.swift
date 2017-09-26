@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kanna
 
 class BookTextController: BaseViewController, UIWebViewDelegate {
     

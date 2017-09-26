@@ -37,7 +37,9 @@ class HeaderCollectionReusableView: UICollectionReusableView, FSPagerViewDataSou
         showAll.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
         showMark.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
         showMarkAndMoney.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
-        markNumber.text = String(Constants.sharedInstance.memberProfile!.point)
+        if Constants.sharedInstance.memberProfile != nil {
+             markNumber.text = String(Constants.sharedInstance.memberProfile!.point)
+        }
         sliderShow.delegate = self
         sliderShow.dataSource = self
     }

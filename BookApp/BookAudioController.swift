@@ -30,8 +30,6 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     var loadedWebView: Bool = false
     var book: Book?
     var totalTime: Float64?
-    var player: AVPlayer?
-    var playerItem: AVPlayerItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,64 +42,47 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         web.scrollView.isScrollEnabled = false
         sliderBar.minimumValue = 0
         loadAudio()
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(
-                AVAudioSessionCategoryPlayAndRecord,
-                with: .defaultToSpeaker)
-        } catch {
-            print("Failed to set audio session category.  Error: \(error)")
-        }
-         NotificationCenter.default.addObserver(self, selector: #selector(stopAudio(notification:)), name: NSNotification.Name(rawValue: "videoDidStart"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopAudio(notification:)), name: NSNotification.Name(rawValue: "videoDidStart"), object: nil)
     }
     
     func loadAudio() {
-        let asset = AVAsset(url: URL(string: (self.book?.audio)!)!)
+        Constants.sharedInstance.asset = AVAsset(url: URL(string: (self.book?.audio)!)!)
         let keys: [String] = ["audio"]
-        asset.loadValuesAsynchronously(forKeys: keys) {
+        Constants.sharedInstance.asset?.loadValuesAsynchronously(forKeys: keys) {
             DispatchQueue.main.async {
-                let item = AVPlayerItem(asset: asset)
-                self.player = AVPlayer(playerItem: item)
-                self.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { [weak self] time in
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    let timeString = String(format: "%02.0f", CMTimeGetSeconds(time))
-                    self?.sliderBar.value = Float(timeString)!
-                    if strongSelf.sliderBar.value >= strongSelf.sliderBar.maximumValue {
-                        self?.player?.seek(to: kCMTimeZero)
-                        strongSelf.player?.pause()
-                        strongSelf.buttonImge.image = #imageLiteral(resourceName: "audio_play")
-                        strongSelf.sliderBar.value = strongSelf.sliderBar.minimumValue
-                        strongSelf.currentSecondTime.text = "00"
-                        strongSelf.currentMinAudio.text = "00:"
-                        return
-                    }
-                    
-                    if UIApplication.shared.applicationState == .active {
-                        let second: Int = Int(timeString)!
-                        if second % 60 < 10 {
-                            strongSelf.currentSecondTime.text = "0" + String( second % 60)
-                        } else {
-                            strongSelf.currentSecondTime.text = String( second % 60)
-                        }
-                        
-                        if ( second / 60) > 0 {
-                            strongSelf.currentMinAudio.text = "0" + String (second / 60) + ":"
-                        } else if second / 60 > 9 {
-                            strongSelf.currentMinAudio.text = String (second / 60) + ":"
-                        }
-                    } else {
-                        print("Background: \(timeString)")
-                    }
-                }
-                let duration = asset.duration
-                self.totalTime = CMTimeGetSeconds(duration)
+                Constants.sharedInstance.playerItem = AVPlayerItem(asset: Constants.sharedInstance.asset!)
+                Constants.sharedInstance.player = AVPlayer(playerItem: Constants.sharedInstance.playerItem)
+                self.playerOvserver()
+                let duration = Constants.sharedInstance.asset?.duration
+                self.totalTime = CMTimeGetSeconds(duration!)
                 self.customSliderBar()
                 self.loadedAudio = true
                 if self.loadedAudio && self.loadedWebView {
                     self.stopActivityIndicator()
                 }
+            }
+        }
+    }
+    
+    func playerOvserver() {
+        Constants.sharedInstance.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { [weak self] time in
+            guard let strongSelf = self else {
+                return
+            }
+            let timeString = String(format: "%02.0f", CMTimeGetSeconds(time))
+            self?.sliderBar.value = Float(timeString)!
+            if strongSelf.sliderBar.value >= strongSelf.sliderBar.maximumValue {
+                Constants.sharedInstance.player?.seek(to: kCMTimeZero)
+                Constants.sharedInstance.player?.pause()
+                strongSelf.buttonImge.image = #imageLiteral(resourceName: "audio_play")
+                strongSelf.sliderBar.value = strongSelf.sliderBar.minimumValue
+                strongSelf.currentSecondTime.text = "00"
+                strongSelf.currentMinAudio.text = "00:"
+                return
+            }
+            
+            if UIApplication.shared.applicationState == .active {
+               self?.setDataForCurrentTime(timeString: timeString)
             }
         }
     }
@@ -113,6 +94,21 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         self.loadedWebView = true
         if self.loadedAudio && self.loadedWebView {
             self.stopActivityIndicator()
+        }
+    }
+    
+    func setDataForCurrentTime(timeString: String) {
+        let second: Int = Int(timeString)!
+        if second % 60 < 10 {
+            currentSecondTime.text = "0" + String( second % 60)
+        } else {
+            currentSecondTime.text = String( second % 60)
+        }
+        
+        if ( second / 60) > 0 {
+            currentMinAudio.text = "0" + String (second / 60) + ":"
+        } else if second / 60 > 9 {
+            currentMinAudio.text = String (second / 60) + ":"
         }
     }
     
@@ -134,11 +130,11 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     func playbackSliderValueChanged(_ playbackSlider: UISlider) {
         let seconds: Int64 = Int64(playbackSlider.value)
         let targetTime: CMTime = CMTimeMake(seconds, 1)
-        player?.seek(to: targetTime)
+         Constants.sharedInstance.player?.seek(to: targetTime)
     }
     
     func videoDidStart(note: NSNotification) {
-        if player?.rate == 0 {
+        if  Constants.sharedInstance.player?.rate == 0 {
             print("pause video")
         } else {
             print("start video")
@@ -146,11 +142,12 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     }
     
     @IBAction func pressPlay(_ sender: Any) {
-        if player?.rate == 0 {
-            player?.play()
+        if Constants.sharedInstance.player?.rate == 0 {
+            Constants.sharedInstance.player?.play()
+            Constants.sharedInstance.historyViewAudio.append(book!)
             buttonImge.image = #imageLiteral(resourceName: "audio_pause")
         } else {
-            player?.pause()
+            Constants.sharedInstance.player?.pause()
             buttonImge.image = #imageLiteral(resourceName: "audio_play")
         }
     }
@@ -159,19 +156,19 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         sliderBar.value -= 15
         let seconds: Int64 = Int64(sliderBar.value)
         let targetTime: CMTime = CMTimeMake(seconds, 1)
-        player?.seek(to: targetTime)
+        Constants.sharedInstance.player?.seek(to: targetTime)
     }
     
     @IBAction func pressedNext(_ sender: Any) {
         sliderBar.value += 15
         let seconds: Int64 = Int64(sliderBar.value)
         let targetTime: CMTime = CMTimeMake(seconds, 1)
-        player?.seek(to: targetTime)
+         Constants.sharedInstance.player?.seek(to: targetTime)
     }
     
     func stopAudio(notification: Notification) {
-        if player?.rate == 1 {
-            player?.pause()
+        if Constants.sharedInstance.player?.rate == 1 {
+            Constants.sharedInstance.player?.pause()
             buttonImge.image = #imageLiteral(resourceName: "audio_play")
         }
     }

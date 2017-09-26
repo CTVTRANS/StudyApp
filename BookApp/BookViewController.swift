@@ -147,7 +147,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     // MARK: Get Book Newest
     
     func getBookNewest() {
-        let getNewestBookTask: GetBookNewestTask = GetBookNewestTask()
+        let getNewestBookTask: GetBookNewestTask = GetBookNewestTask(limit: 1)
         requestWithTask(task: getNewestBookTask, success: { (data) in
             self.newestBook = (data as? Book)!
             self.newestBookImage.sd_setImage(with: URL(string: self.newestBook.imageURL))
@@ -180,15 +180,10 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     // MARK: TableView Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let type: BookType = bookTypeArray[indexPath.row]
-        let getBook: GetBookSuggestForTypeTask =
-            GetBookSuggestForTypeTask(category: type.typeID, limit: 3)
-        requestWithTask(task: getBook, success: { (data) in
-            self.suggestBookView.reloadData(arrayOfBook: (data as? [Book])!)
-        }) { (error) in
-            _ = UIAlertController(title: nil,
-                                  message: error as? String,
-                                  preferredStyle: .alert)
+        let myStoryboard = UIStoryboard(name: "Book", bundle: nil)
+        if let vc = myStoryboard.instantiateViewController(withIdentifier: "AllTypeBookController") as? AllTypeBookController {
+            vc.startIndex = indexPath.row
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     

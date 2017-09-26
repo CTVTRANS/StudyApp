@@ -16,8 +16,6 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var commentTextView: UITextView!
     
     var tap: UITapGestureRecognizer?
-//    var arrayOfComment = [Comment]()
-//    var arrayCommentHot = [Comment]()
     var arrayObject = [SpecialComment]()
     var idObject: Int?
     var commentType: Int?
@@ -34,17 +32,18 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                                                object: nil)
         commentTextView.delegate = self
         let getCommentHot: GetCommentHot = GetCommentHot(commentType: commentType!,
-                                                         idObject: commentType!)
+                                                         idObject: idObject!)
         requestWithTask(task: getCommentHot, success: { (data) in
             if let arrayCommentHot = data as? [Comment] {
-                let hotComment: SpecialComment = SpecialComment(name: "熱評", array: arrayCommentHot)
-                self.arrayObject.append(hotComment)
+                if arrayCommentHot.count > 0 {
+                    let hotComment: SpecialComment = SpecialComment(name: "熱評", array: arrayCommentHot)
+                    self.arrayObject.append(hotComment)
+                }
             }
             
             let getComment: GetAllComment = GetAllComment(commentType: self.commentType!,
                                                           idObject: self.idObject!,
-                                                          limitComment: 20,
-                                                          pageing: 1)
+                                                          page: 1)
             self.requestWithTask(task: getComment, success: { (data) in
                 if let arrayOfComment = data as? [Comment] {
                     let normalComment: SpecialComment = SpecialComment(name: "最新", array: arrayOfComment)

@@ -12,6 +12,7 @@ import AVKit
 
 class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var bottomView: BottomView!
     @IBOutlet weak var topViewShare: TopViewShare!
     @IBOutlet weak var table: UITableView!
     
@@ -35,16 +36,26 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     private var player: AVPlayer?
     private var playerItem: AVPlayerItem?
     
+    lazy var footerView = UIView.initFooterView()
+    private var indicator: UIActivityIndicatorView?
+    var isMoreData = true
+    var isLoading = false
+    var pager = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         table.estimatedRowHeight = 140
         showActivity(inView: self.view)
         setupUI()
+        setupCallBackBottom()
         checkSubcribleed()
         getDataFromServer()
         var heightHeader: CGFloat = 188
         heightHeader.adjustsSizeToRealIPhoneSize = 188
         table.tableHeaderView?.frame.size.height = heightHeader
+        if let ac = footerView.viewWithTag(8) as? UIActivityIndicatorView {
+            indicator = ac
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +73,17 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         topViewShare.titleTop.text = chanel.nameChanel
         chaneType.text = chanel.typeChanel
         nameTeacher.text = chanel.nameTeacher
+        
+        bottomView.backButton.isHidden = true
+        bottomView.backImage.isHidden = true
+        bottomView.bookMarkImage.isHidden = true
+        bottomView.bookMarkButton.isHidden = true
+        bottomView.downloadImage.isHidden = true
+        bottomView.downloadButton.isHidden = true
+        bottomView.numberBookmark.isHidden = true
+        bottomView.numberLike.isHidden = true
+        bottomView.likeImage.isHidden = true
+        bottomView.likeButton.isHidden = true
     }
     
     func getDataFromServer() {
@@ -78,24 +100,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         }) { (_) in
             
         }
-        let getLesson: GetListlessonOfChanelTask =
-            GetListlessonOfChanelTask(chanelID: chanel.idChanel,
-                                      limit: 10,
-                                      page: 1)
-        requestWithTask(task: getLesson, success: { (data) in
-            if let arrayLesson = data as? [Lesson] {
-                self.lessonUploaded  = arrayLesson
-                self.table.reloadData()
-                self.loadedListLessonUpload = true
-                if self.loadedNumberView && self.loadedListLessonUpload {
-                    self.stopActivityIndicator()
-                }
-            }
-        }) { (error) in
-            _ = UIAlertController(title: nil,
-                                  message: error as? String,
-                                  preferredStyle: .alert)
-        }
+        loadMore()
     }
     
     func checkSubcribleed() {
@@ -127,6 +132,42 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let endOftable = table.contentOffset.y >= (table.contentSize.height - table.frame.size.height)
+        if isMoreData && endOftable && !isLoading && !scrollView.isDragging && !scrollView.isDecelerating {
+            isLoading = true
+            table.tableFooterView = footerView
+            indicator?.startAnimating()
+            loadMore()
+        }
+    }
+    
+    func loadMore() {
+        let getLesson: GetListlessonOfChanelTask =
+            GetListlessonOfChanelTask(chanelID: chanel.idChanel,
+                                      page: pager)
+        requestWithTask(task: getLesson, success: { (data) in
+            if let arrayLesson = data as? [Lesson] {
+                self.lessonUploaded  += arrayLesson
+                self.table.reloadData()
+                self.loadedListLessonUpload = true
+                if self.loadedNumberView && self.loadedListLessonUpload {
+                    self.stopActivityIndicator()
+                }
+                self.pager += 1
+                self.isLoading = false
+                self.indicator?.stopAnimating()
+                if arrayLesson.count == 0 {
+                    self.isMoreData = false
+                }
+            }
+        }) { (error) in
+            _ = UIAlertController(title: nil,
+                                  message: error as? String,
+                                  preferredStyle: .alert)
+        }
     }
     
     func pressedDownload(lesson: Lesson) {
@@ -213,6 +254,18 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    func setupCallBackBottom() {
+        bottomView.pressedBottomButton = { [weak self] typeButton in
+            if typeButton == BottomButton.comment {
+                let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
+                let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController
+//                vc?.idObject = self?.bookSelected?.idBook
+//                vc?.commentType = Object.book.rawValue
+                self?.present(vc!, animated: false, completion: nil)
+            }
+        }
     }
     
     @IBAction func pressedSubcribeButton(_ sender: Any) {

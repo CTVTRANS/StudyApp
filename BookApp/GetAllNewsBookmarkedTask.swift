@@ -26,7 +26,9 @@ class GetAllNewsBookmarkedTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["member_id": 1, "limit": 20, "page": _page]
+        return ["member_id": 1,
+                "limit": 20,
+                "page": _page]
     }
     
     override func data(withResponse response: Any!) -> Any! {

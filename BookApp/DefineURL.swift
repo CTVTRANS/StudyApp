@@ -35,6 +35,7 @@ let likeUnlikeURL: String = "/api/like/like"
 let bookMarkURL: String = "/api/collection/collect"
 let checkBookMarkedURL: String = "/api/collection/check_collect"
 let getAllCommentURL: String = "/api/comment/latest"
+let getAllCommentHotURL: String = "/api/comment/hot"
 let searchBookURL: String = "/api/search/book"
 let searchNewsURL: String = "/api/search/news"
 

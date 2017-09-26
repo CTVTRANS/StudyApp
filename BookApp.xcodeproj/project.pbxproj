@@ -45,6 +45,10 @@
 		6DE922A31F6779C500EE24EC /* GetAllGroupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE922A21F6779C500EE24EC /* GetAllGroupTask.swift */; };
 		6DE922A51F677C6800EE24EC /* GetGroupJoinedTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE922A41F677C6800EE24EC /* GetGroupJoinedTask.swift */; };
 		6DE922A71F678EC000EE24EC /* GetNewsInGroupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE922A61F678EC000EE24EC /* GetNewsInGroupTask.swift */; };
+		6DEA45141F7A4406009290E4 /* FooterLoadMoreReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEA45131F7A4406009290E4 /* FooterLoadMoreReusableView.swift */; };
+		6DEACA421F78E2B60001A57C /* LKPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEACA411F78E2B60001A57C /* LKPlayer.swift */; };
+		6DEACA481F78F05E0001A57C /* SingleTypeBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEACA471F78F05E0001A57C /* SingleTypeBookController.swift */; };
+		6DEACA4A1F78F2BA0001A57C /* AllTypeBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEACA491F78F2BA0001A57C /* AllTypeBookController.swift */; };
 		6DEB2CD91F6B7E1800FC5DA3 /* SubcribleGroupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB2CD81F6B7E1800FC5DA3 /* SubcribleGroupTask.swift */; };
 		6DEB9BE91F6BBBD900D858B3 /* PriceMix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB9BE81F6BBBD900D858B3 /* PriceMix.swift */; };
 		6DEB9BEB1F6BC01900D858B3 /* GetListProductByPointTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEB9BEA1F6BC01900D858B3 /* GetListProductByPointTask.swift */; };
@@ -111,9 +115,9 @@
 		6DF1F4E51F710B320078349B /* GetSliderBanerTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF1F4E41F710B320078349B /* GetSliderBanerTask.swift */; };
 		6DF243A91F4D6F9400366E2F /* Type2DetailNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF243A81F4D6F9400366E2F /* Type2DetailNewsViewController.swift */; };
 		6DF2FD731F5D2E190004CF04 /* NotificationMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2FD721F5D2E190004CF04 /* NotificationMessageViewController.swift */; };
-		6DF2FD751F5D2E3E0004CF04 /* NotificationVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2FD741F5D2E3E0004CF04 /* NotificationVideoViewController.swift */; };
+		6DF2FD751F5D2E3E0004CF04 /* HistoryPlayAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2FD741F5D2E3E0004CF04 /* HistoryPlayAudioController.swift */; };
 		6DF2FD771F5D2E700004CF04 /* MessageNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2FD761F5D2E700004CF04 /* MessageNotificationCell.swift */; };
-		6DF2FD791F5D2E850004CF04 /* VideoNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2FD781F5D2E850004CF04 /* VideoNotificationCell.swift */; };
+		6DF2FD791F5D2E850004CF04 /* HistoryPlayAudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2FD781F5D2E850004CF04 /* HistoryPlayAudioCell.swift */; };
 		6DF2FD7B1F5D2ED10004CF04 /* DetailNotificationMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2FD7A1F5D2ED10004CF04 /* DetailNotificationMessageController.swift */; };
 		6DF2FD7D1F5D388B0004CF04 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2FD7C1F5D388B0004CF04 /* SearchViewController.swift */; };
 		6DF2FD7F1F5D617E0004CF04 /* CheckLikedTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2FD7E1F5D617E0004CF04 /* CheckLikedTask.swift */; };
@@ -147,7 +151,6 @@
 		6DF59A561F623F3F007DFB85 /* ActivityOfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF59A551F623F3F007DFB85 /* ActivityOfflineViewController.swift */; };
 		6DF59A581F624CA7007DFB85 /* ShowAllActivityGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF59A571F624CA7007DFB85 /* ShowAllActivityGroupController.swift */; };
 		6DF5C2A11F57CD4D00A89363 /* ListBookFreeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5C2A01F57CD4D00A89363 /* ListBookFreeController.swift */; };
-		6DF5C2A31F57CF3800A89363 /* ListBookFreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5C2A21F57CF3800A89363 /* ListBookFreeCell.swift */; };
 		6DF6698F1F5819CF00FBC8A7 /* GetCommentHot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6698E1F5819CF00FBC8A7 /* GetCommentHot.swift */; };
 		6DF669911F581DB100FBC8A7 /* SpecialComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF669901F581DB100FBC8A7 /* SpecialComment.swift */; };
 		6DF702EE1F61008400FAF762 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF702ED1F61008400FAF762 /* Profile.storyboard */; };
@@ -217,6 +220,10 @@
 		6DE922A21F6779C500EE24EC /* GetAllGroupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAllGroupTask.swift; sourceTree = "<group>"; };
 		6DE922A41F677C6800EE24EC /* GetGroupJoinedTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGroupJoinedTask.swift; sourceTree = "<group>"; };
 		6DE922A61F678EC000EE24EC /* GetNewsInGroupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetNewsInGroupTask.swift; sourceTree = "<group>"; };
+		6DEA45131F7A4406009290E4 /* FooterLoadMoreReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterLoadMoreReusableView.swift; sourceTree = "<group>"; };
+		6DEACA411F78E2B60001A57C /* LKPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LKPlayer.swift; sourceTree = "<group>"; };
+		6DEACA471F78F05E0001A57C /* SingleTypeBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTypeBookController.swift; sourceTree = "<group>"; };
+		6DEACA491F78F2BA0001A57C /* AllTypeBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTypeBookController.swift; sourceTree = "<group>"; };
 		6DEB2CD81F6B7E1800FC5DA3 /* SubcribleGroupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcribleGroupTask.swift; sourceTree = "<group>"; };
 		6DEB9BE81F6BBBD900D858B3 /* PriceMix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceMix.swift; sourceTree = "<group>"; };
 		6DEB9BEA1F6BC01900D858B3 /* GetListProductByPointTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetListProductByPointTask.swift; sourceTree = "<group>"; };
@@ -283,9 +290,9 @@
 		6DF1F4E41F710B320078349B /* GetSliderBanerTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSliderBanerTask.swift; sourceTree = "<group>"; };
 		6DF243A81F4D6F9400366E2F /* Type2DetailNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type2DetailNewsViewController.swift; sourceTree = "<group>"; };
 		6DF2FD721F5D2E190004CF04 /* NotificationMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMessageViewController.swift; sourceTree = "<group>"; };
-		6DF2FD741F5D2E3E0004CF04 /* NotificationVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationVideoViewController.swift; sourceTree = "<group>"; };
+		6DF2FD741F5D2E3E0004CF04 /* HistoryPlayAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPlayAudioController.swift; sourceTree = "<group>"; };
 		6DF2FD761F5D2E700004CF04 /* MessageNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageNotificationCell.swift; sourceTree = "<group>"; };
-		6DF2FD781F5D2E850004CF04 /* VideoNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoNotificationCell.swift; sourceTree = "<group>"; };
+		6DF2FD781F5D2E850004CF04 /* HistoryPlayAudioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPlayAudioCell.swift; sourceTree = "<group>"; };
 		6DF2FD7A1F5D2ED10004CF04 /* DetailNotificationMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailNotificationMessageController.swift; sourceTree = "<group>"; };
 		6DF2FD7C1F5D388B0004CF04 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6DF2FD7E1F5D617E0004CF04 /* CheckLikedTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckLikedTask.swift; sourceTree = "<group>"; };
@@ -323,7 +330,6 @@
 		6DF59A551F623F3F007DFB85 /* ActivityOfflineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityOfflineViewController.swift; sourceTree = "<group>"; };
 		6DF59A571F624CA7007DFB85 /* ShowAllActivityGroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAllActivityGroupController.swift; sourceTree = "<group>"; };
 		6DF5C2A01F57CD4D00A89363 /* ListBookFreeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListBookFreeController.swift; sourceTree = "<group>"; };
-		6DF5C2A21F57CF3800A89363 /* ListBookFreeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListBookFreeCell.swift; sourceTree = "<group>"; };
 		6DF6698E1F5819CF00FBC8A7 /* GetCommentHot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCommentHot.swift; sourceTree = "<group>"; };
 		6DF669901F581DB100FBC8A7 /* SpecialComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialComment.swift; sourceTree = "<group>"; };
 		6DF702ED1F61008400FAF762 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -507,6 +513,7 @@
 				6DF07B751F690A940017C1CB /* StoreMarkViewCell.swift */,
 				6DF07B761F690A940017C1CB /* StoreMarkViewCell.xib */,
 				6DF07B7B1F691C860017C1CB /* DetailStoreMarkController.swift */,
+				6DEA45131F7A4406009290E4 /* FooterLoadMoreReusableView.swift */,
 				6DF07B7D1F692FBB0017C1CB /* BuyProductViewController.swift */,
 				6DF3CDF51F761DD7004AB72A /* DetailBinController.swift */,
 				6DF59A541F623EB7007DFB85 /* Histoty-Bookmarked-Downloaded */,
@@ -523,6 +530,7 @@
 				6DF669901F581DB100FBC8A7 /* SpecialComment.swift */,
 				6D87DCBE1F54197700269351 /* User.swift */,
 				6DF1F4E21F710A280078349B /* SliderShow.swift */,
+				6DEACA411F78E2B60001A57C /* LKPlayer.swift */,
 				6DEFD5731F501F6B00393E77 /* News */,
 				6DEFD5741F501F7300393E77 /* Book */,
 				6DEFD5751F501F7C00393E77 /* Chanel */,
@@ -556,8 +564,8 @@
 				6DF2FD721F5D2E190004CF04 /* NotificationMessageViewController.swift */,
 				6DF2FD761F5D2E700004CF04 /* MessageNotificationCell.swift */,
 				6DF2FD7A1F5D2ED10004CF04 /* DetailNotificationMessageController.swift */,
-				6DF2FD741F5D2E3E0004CF04 /* NotificationVideoViewController.swift */,
-				6DF2FD781F5D2E850004CF04 /* VideoNotificationCell.swift */,
+				6DF2FD741F5D2E3E0004CF04 /* HistoryPlayAudioController.swift */,
+				6DF2FD781F5D2E850004CF04 /* HistoryPlayAudioCell.swift */,
 				6DF2FD7C1F5D388B0004CF04 /* SearchViewController.swift */,
 				6DF50DBC1F6CD54A004E908A /* ResultSearch.swift */,
 				6D87DCB81F54190400269351 /* CommentController.swift */,
@@ -706,9 +714,10 @@
 				6DEFD74F1F4A7D2F00FB0CA5 /* BookVideoController.swift */,
 				6DEFD7511F4A7D3E00FB0CA5 /* BookTextController.swift */,
 				6DF5C2A01F57CD4D00A89363 /* ListBookFreeController.swift */,
-				6DF5C2A21F57CF3800A89363 /* ListBookFreeCell.swift */,
 				6D2787851F68CC110087D04D /* ListBookFreee.swift */,
 				6D2787861F68CC110087D04D /* ListBookFreee.xib */,
+				6DEACA491F78F2BA0001A57C /* AllTypeBookController.swift */,
+				6DEACA471F78F05E0001A57C /* SingleTypeBookController.swift */,
 			);
 			name = DetailBook;
 			sourceTree = "<group>";
@@ -879,6 +888,7 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/LCNetwork/LCNetwork.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
@@ -891,6 +901,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LCNetwork.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWRevealViewController.framework",
@@ -965,6 +976,7 @@
 				6DF4FFFB1F5EA8B500DF73A0 /* IncreaseVIewChanelTask.swift in Sources */,
 				6DEEA54E1F6FD7D100116848 /* SearchNewsTask.swift in Sources */,
 				6DEF67C61F5506FE00D6BBCC /* SendCommentTask.swift in Sources */,
+				6DEACA421F78E2B60001A57C /* LKPlayer.swift in Sources */,
 				6DF417581F46A56F00F5032E /* ChanelCollectionCell.swift in Sources */,
 				6DE922A11F67757D00EE24EC /* GetProfileMemberTask.swift in Sources */,
 				6DEF72411F5FD15A008392A0 /* ChanelHotController.swift in Sources */,
@@ -973,7 +985,8 @@
 				6DF417551F46A2AF00F5032E /* CustomChanelCollection.swift in Sources */,
 				6DEFD7501F4A7D2F00FB0CA5 /* BookVideoController.swift in Sources */,
 				6DE922A51F677C6800EE24EC /* GetGroupJoinedTask.swift in Sources */,
-				6DF2FD791F5D2E850004CF04 /* VideoNotificationCell.swift in Sources */,
+				6DEACA481F78F05E0001A57C /* SingleTypeBookController.swift in Sources */,
+				6DF2FD791F5D2E850004CF04 /* HistoryPlayAudioCell.swift in Sources */,
 				6DEEA54A1F6FCB8700116848 /* GetAllTypeNewsTask.swift in Sources */,
 				58C39DE01F3C4F5D001741EB /* NewsModel.swift in Sources */,
 				6DF4FFF71F5EA54700DF73A0 /* SubcribleChanelTask.swift in Sources */,
@@ -999,7 +1012,7 @@
 				6DF808EE1F6295D500608770 /* GroupJoinedViewController.swift in Sources */,
 				6DEE6E1F1F68D565005F80F4 /* HistoryMarkCell.swift in Sources */,
 				6DF889301F418F68005F72D7 /* ChanelSubscribeController.swift in Sources */,
-				6DF2FD751F5D2E3E0004CF04 /* NotificationVideoViewController.swift in Sources */,
+				6DF2FD751F5D2E3E0004CF04 /* HistoryPlayAudioController.swift in Sources */,
 				6DF50DBD1F6CD54A004E908A /* ResultSearch.swift in Sources */,
 				6DEFD56E1F500EF500393E77 /* BookType.swift in Sources */,
 				58C39DD01F3C10C0001741EB /* NavigationCustom.swift in Sources */,
@@ -1027,8 +1040,10 @@
 				6DF4FFF51F5E9CDD00DF73A0 /* GetListlessonOfChanelTask.swift in Sources */,
 				6DEDBD551F4593DD00526AD0 /* CustomBookCollection.swift in Sources */,
 				6DF702F21F6102FC00FAF762 /* HistoryWatchChanelViewController.swift in Sources */,
+				6DEA45141F7A4406009290E4 /* FooterLoadMoreReusableView.swift in Sources */,
 				6DE922A31F6779C500EE24EC /* GetAllGroupTask.swift in Sources */,
 				58C39DD21F3C1F41001741EB /* BaseViewController.swift in Sources */,
+				6DEACA4A1F78F2BA0001A57C /* AllTypeBookController.swift in Sources */,
 				58C39DBB1F3C0489001741EB /* AppDelegate.swift in Sources */,
 				6D2187EB1F5E5C2800C205CE /* GetChanelSuggestTask.swift in Sources */,
 				6DE04FD41F414F33002C5E25 /* BaseViewcontrollerExtend.swift in Sources */,
@@ -1059,7 +1074,6 @@
 				6DEFEFDD1F71FB0C00916C98 /* GetAllNewsBookmarkedTask.swift in Sources */,
 				6DED74B91F4C1D6800E4E42F /* BookTypeViewCell.swift in Sources */,
 				6DEEF0031F613AC10078EEE1 /* NewsBookmarkedCell.swift in Sources */,
-				6DF5C2A31F57CF3800A89363 /* ListBookFreeCell.swift in Sources */,
 				6D87DCBD1F54196A00269351 /* Comment.swift in Sources */,
 				6DED80501F66783700ACC77F /* DetailSingleGroupCell.swift in Sources */,
 				6DEEEFF91F6123F20078EEE1 /* BookmarkedViewController.swift in Sources */,

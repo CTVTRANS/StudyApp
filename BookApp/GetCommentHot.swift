@@ -20,7 +20,7 @@ class GetCommentHot: BaseTaskNetwork {
     }
     
     override func path() -> String! {
-        return getAllCommentURL
+        return getAllCommentHotURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {
@@ -39,9 +39,9 @@ class GetCommentHot: BaseTaskNetwork {
                 let iDComment = dictionary["comment_id"] as? Int ?? 999
                 let contentcomment = dictionary["comment_content"] as? String ?? "999"
                 let timeComment = dictionary["comment_time"] as? String ?? "999"
-                let numberLikeComment = dictionary["number_of_likes"] as? Int ?? 999
+                let numberLikeComment = dictionary["number_of_likes"] as? Int ?? 0
                 let userName = dictionary["author_name"] as? String ?? "kien"
-                let userAvata = dictionary["author_avatar"] as? String ?? "999"
+                let userAvata = dictionary["author_avatar"] as? String ?? " "
                 let user: User = User(name: userName, age: 18, sex: 1, avata: userAvata)
                 let commentObject: Comment = Comment(idComment: iDComment,
                                                      user: user,
