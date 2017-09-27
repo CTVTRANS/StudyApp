@@ -25,6 +25,13 @@ class ChangeProfileViewController: BaseViewController {
     @IBOutlet weak var newPassTextField: UITextField!
     @IBOutlet weak var confirmPassTextField: UITextField!
     
+    @IBOutlet weak var sex: UILabel!
+    @IBOutlet weak var birthDay: UILabel!
+    @IBOutlet weak var statusMarrie: UILabel!
+    
+    @IBOutlet weak var hobby: UITextField!
+    @IBOutlet weak var occupation: UITextField!
+    
     var typeViewShow: TypeView = TypeView(rawValue: 0)!
     
     override func viewDidLoad() {
@@ -39,6 +46,8 @@ class ChangeProfileViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+        let rightButton = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(saveInfomation))
+        navigationItem.rightBarButtonItem = rightButton
     }
     
     func showView(tyepViewNeedShow: TypeView) {
@@ -54,6 +63,24 @@ class ChangeProfileViewController: BaseViewController {
             passWordView.isHidden = false
         case .information:
             infomationView.isHidden = false
+        }
+    }
+    
+    func saveInfomation() {
+        Constants.sharedInstance.memberProfile?.dateOfBirth = birthDay.text
+        Constants.sharedInstance.memberProfile?.sex = (sex.text == "female") ? 1 : 0
+        Constants.sharedInstance.memberProfile?.job = occupation.text
+        Constants.sharedInstance.memberProfile?.hobby = hobby.text
+        Constants.sharedInstance.memberProfile?.marriage = statusMarrie.text
+        Constants.sharedInstance.memberProfile?.name = userNameTextField.text!
+    }
+    
+    @IBAction func pressedShowDate(_ sender: Any) {
+        if let dateDialog = SettingDatepicker.instance() as? SettingDatepicker {
+            dateDialog.show()
+            dateDialog.callBackDate = { [weak self] date in
+                self?.birthDay.text = date
+            }
         }
     }
 }

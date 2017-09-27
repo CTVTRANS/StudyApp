@@ -19,7 +19,7 @@ class ChanelCollectionCell: UICollectionViewCell {
     
     func binData(chanel: Chanel) {
         nameTeacher.text = chanel.nameChanel
-        imageChanel.sd_setImage(with: URL(string: chanel.imageChanelURL))
+        imageChanel.sd_setImage(with: URL(string: chanel.imageChanelURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
     }
 
 }

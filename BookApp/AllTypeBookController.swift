@@ -17,25 +17,26 @@ class AllTypeBookController: TYTabPagerController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.isNavigationBarHidden = false
         self.tabBar.layout.barStyle = TYPagerBarStyle.progressView
         self.tabBar.layout.animateDuration = 0.2
+        self.tabBar.backgroundColor = UIColor.rgb(red: 241, green: 241, blue: 241)
         self.tabBar.layout.progressColor = UIColor.rgb(red: 255, green: 102, blue: 0)
         self.tabBar.layout.progressBorderColor = UIColor.rgb(red: 255, green: 102, blue: 0)
         self.tabBar.layout.selectedTextColor = UIColor.rgb(red: 255, green: 102, blue: 0)
+        self.tabBar.layout.cellSpacing = 0
         self.scrollToController(at: startIndex, animate: false)
         self.dataSource = self
         self.delegate = self
         self.loadData()
-        
     }
     
-    override func viewDidLayoutSubviews() {
+    override func viewDidAppear(_ animated: Bool) {
         self.tabBar.scrollToItem(from:  0, to: startIndex, animate: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
     }
     
     func loadData() {

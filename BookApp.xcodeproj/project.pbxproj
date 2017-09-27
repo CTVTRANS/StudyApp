@@ -111,6 +111,13 @@
 		6DF07B7E1F692FBB0017C1CB /* BuyProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF07B7D1F692FBB0017C1CB /* BuyProductViewController.swift */; };
 		6DF0E2151F5FB30B007DEA72 /* ChanelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF0E2131F5FB30B007DEA72 /* ChanelViewCell.swift */; };
 		6DF0E2161F5FB30B007DEA72 /* ChanelViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF0E2141F5FB30B007DEA72 /* ChanelViewCell.xib */; };
+		6DF1D78C1F7B34BD0075F26C /* BaseDailog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF1D78B1F7B34BD0075F26C /* BaseDailog.swift */; };
+		6DF1D7921F7B38CA0075F26C /* SettingChooseSex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF1D7911F7B38CA0075F26C /* SettingChooseSex.swift */; };
+		6DF1D7941F7B38D70075F26C /* SettingChooseSex.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF1D7931F7B38D70075F26C /* SettingChooseSex.xib */; };
+		6DF1D7961F7B39220075F26C /* SettingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF1D7951F7B39220075F26C /* SettingStatus.swift */; };
+		6DF1D7981F7B392D0075F26C /* SettingStatus.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF1D7971F7B392D0075F26C /* SettingStatus.xib */; };
+		6DF1D79A1F7B448F0075F26C /* SettingDatepicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF1D7991F7B448F0075F26C /* SettingDatepicker.xib */; };
+		6DF1D79E1F7B44E80075F26C /* SettingDatepicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF1D79D1F7B44E80075F26C /* SettingDatepicker.swift */; };
 		6DF1F4E31F710A280078349B /* SliderShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF1F4E21F710A280078349B /* SliderShow.swift */; };
 		6DF1F4E51F710B320078349B /* GetSliderBanerTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF1F4E41F710B320078349B /* GetSliderBanerTask.swift */; };
 		6DF243A91F4D6F9400366E2F /* Type2DetailNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF243A81F4D6F9400366E2F /* Type2DetailNewsViewController.swift */; };
@@ -286,6 +293,13 @@
 		6DF07B7D1F692FBB0017C1CB /* BuyProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyProductViewController.swift; sourceTree = "<group>"; };
 		6DF0E2131F5FB30B007DEA72 /* ChanelViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChanelViewCell.swift; sourceTree = "<group>"; };
 		6DF0E2141F5FB30B007DEA72 /* ChanelViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChanelViewCell.xib; sourceTree = "<group>"; };
+		6DF1D78B1F7B34BD0075F26C /* BaseDailog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDailog.swift; sourceTree = "<group>"; };
+		6DF1D7911F7B38CA0075F26C /* SettingChooseSex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingChooseSex.swift; sourceTree = "<group>"; };
+		6DF1D7931F7B38D70075F26C /* SettingChooseSex.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingChooseSex.xib; sourceTree = "<group>"; };
+		6DF1D7951F7B39220075F26C /* SettingStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingStatus.swift; sourceTree = "<group>"; };
+		6DF1D7971F7B392D0075F26C /* SettingStatus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingStatus.xib; sourceTree = "<group>"; };
+		6DF1D7991F7B448F0075F26C /* SettingDatepicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingDatepicker.xib; sourceTree = "<group>"; };
+		6DF1D79D1F7B44E80075F26C /* SettingDatepicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingDatepicker.swift; sourceTree = "<group>"; };
 		6DF1F4E21F710A280078349B /* SliderShow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderShow.swift; sourceTree = "<group>"; };
 		6DF1F4E41F710B320078349B /* GetSliderBanerTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSliderBanerTask.swift; sourceTree = "<group>"; };
 		6DF243A81F4D6F9400366E2F /* Type2DetailNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type2DetailNewsViewController.swift; sourceTree = "<group>"; };
@@ -746,6 +760,13 @@
 				6DEFA8961F60F10400374113 /* MyprofileViewController.swift */,
 				6DF4DF601F6A7D6500F46CA6 /* ChangeProfileViewController.swift */,
 				6DF4DF621F6A865A00F46CA6 /* AppInfomationViewController.swift */,
+				6DF1D78B1F7B34BD0075F26C /* BaseDailog.swift */,
+				6DF1D7911F7B38CA0075F26C /* SettingChooseSex.swift */,
+				6DF1D7931F7B38D70075F26C /* SettingChooseSex.xib */,
+				6DF1D7951F7B39220075F26C /* SettingStatus.swift */,
+				6DF1D7971F7B392D0075F26C /* SettingStatus.xib */,
+				6DF1D79D1F7B44E80075F26C /* SettingDatepicker.swift */,
+				6DF1D7991F7B448F0075F26C /* SettingDatepicker.xib */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -860,13 +881,16 @@
 				6DF07B781F690A940017C1CB /* StoreMarkViewCell.xib in Resources */,
 				6DF889241F41847E005F72D7 /* Book.storyboard in Resources */,
 				6DEEF0011F612C8F0078EEE1 /* BookDownloadCell.xib in Resources */,
+				6DF1D7941F7B38D70075F26C /* SettingChooseSex.xib in Resources */,
 				58C39DC51F3C0489001741EB /* LaunchScreen.storyboard in Resources */,
 				6DF702EE1F61008400FAF762 /* Profile.storyboard in Resources */,
 				58C39DE21F3C5662001741EB /* BottomView.xib in Resources */,
 				6DF889261F418496005F72D7 /* Chanel.storyboard in Resources */,
+				6DF1D7981F7B392D0075F26C /* SettingStatus.xib in Resources */,
 				6D07667A1F6F6AFB00097D8B /* CustomHistorySearch.xib in Resources */,
 				6DF0E2161F5FB30B007DEA72 /* ChanelViewCell.xib in Resources */,
 				58C39DC21F3C0489001741EB /* Assets.xcassets in Resources */,
+				6DF1D79A1F7B448F0075F26C /* SettingDatepicker.xib in Resources */,
 				6DF727991F55505600E0D242 /* CSong3HK-Medium.ttf in Resources */,
 				58C39DC01F3C0489001741EB /* Main.storyboard in Resources */,
 				6DF417531F46A29000F5032E /* CustomChanelCollection.xib in Resources */,
@@ -1013,6 +1037,7 @@
 				6DEE6E1F1F68D565005F80F4 /* HistoryMarkCell.swift in Sources */,
 				6DF889301F418F68005F72D7 /* ChanelSubscribeController.swift in Sources */,
 				6DF2FD751F5D2E3E0004CF04 /* HistoryPlayAudioController.swift in Sources */,
+				6DF1D78C1F7B34BD0075F26C /* BaseDailog.swift in Sources */,
 				6DF50DBD1F6CD54A004E908A /* ResultSearch.swift in Sources */,
 				6DEFD56E1F500EF500393E77 /* BookType.swift in Sources */,
 				58C39DD01F3C10C0001741EB /* NavigationCustom.swift in Sources */,
@@ -1033,6 +1058,7 @@
 				6DF2FD731F5D2E190004CF04 /* NotificationMessageViewController.swift in Sources */,
 				6DF808F01F62978E00608770 /* GroupJoinedCell.swift in Sources */,
 				6DEE6E211F68E914005F80F4 /* StoreMarkViewController.swift in Sources */,
+				6DF1D7961F7B39220075F26C /* SettingStatus.swift in Sources */,
 				6D87DCB91F54190400269351 /* CommentController.swift in Sources */,
 				6DF07B771F690A940017C1CB /* StoreMarkViewCell.swift in Sources */,
 				6DEEA5481F6FCAD900116848 /* NewsType.swift in Sources */,
@@ -1046,6 +1072,7 @@
 				6DEACA4A1F78F2BA0001A57C /* AllTypeBookController.swift in Sources */,
 				58C39DBB1F3C0489001741EB /* AppDelegate.swift in Sources */,
 				6D2187EB1F5E5C2800C205CE /* GetChanelSuggestTask.swift in Sources */,
+				6DF1D7921F7B38CA0075F26C /* SettingChooseSex.swift in Sources */,
 				6DE04FD41F414F33002C5E25 /* BaseViewcontrollerExtend.swift in Sources */,
 				6DEEF0001F612C8F0078EEE1 /* BookDownloadCell.swift in Sources */,
 				6DEE63EB1F73CB5400C10E5E /* ShareViewCell.swift in Sources */,
@@ -1065,6 +1092,7 @@
 				6DEFA8951F60E62D00374113 /* ListSetting.swift in Sources */,
 				6DF4FFF91F5EA57200DF73A0 /* GetTotaViewOfChanel.swift in Sources */,
 				6DF702F51F6103C700FAF762 /* HistoryWatchChanelCell.swift in Sources */,
+				6DF1D79E1F7B44E80075F26C /* SettingDatepicker.swift in Sources */,
 				6DF4FFF31F5E973100DF73A0 /* Lesson.swift in Sources */,
 				6DEFEFDF1F71FB2800916C98 /* GetAllBookBookmarkedTask.swift in Sources */,
 				6DF2FD7B1F5D2ED10004CF04 /* DetailNotificationMessageController.swift in Sources */,

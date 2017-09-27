@@ -90,7 +90,9 @@ class CustomChanelCollection: UIView, UICollectionViewDelegate, UICollectionView
     }
     
     func reloadChanel(arrayChanel: [Chanel]) {
-        arrChanel = arrayChanel
-        chanelCollection.reloadData()
+        if arrayChanel.count > 0 {
+            arrChanel = arrayChanel
+            chanelCollection.reloadData()
+        }
     }
 }

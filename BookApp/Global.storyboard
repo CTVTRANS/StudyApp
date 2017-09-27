@@ -155,7 +155,7 @@
                                     <constraint firstAttribute="height" constant="32" id="S1L-6J-wRa"/>
                                     <constraint firstAttribute="width" constant="32" id="WKv-sl-PD9"/>
                                 </constraints>
-                                <state key="normal" image="ic_DismissLoagin"/>
+                                <state key="normal" image="ic_dismiss"/>
                                 <connections>
                                     <action selector="pressedDismissButton:" destination="Siz-JO-2xH" eventType="touchUpInside" id="R10-qO-xnN"/>
                                 </connections>
@@ -1556,12 +1556,12 @@
     </scenes>
     <resources>
         <image name="download_video_notification" width="64" height="64"/>
-        <image name="ic_DismissLoagin" width="64" height="64"/>
         <image name="ic_back_navigation" width="22" height="22"/>
         <image name="ic_bottom_back" width="64" height="64"/>
         <image name="ic_bottom_comment" width="64" height="64"/>
         <image name="ic_bottom_like" width="64" height="64"/>
         <image name="ic_change_Search" width="32" height="32"/>
+        <image name="ic_dismiss" width="64" height="64"/>
         <image name="playVideoNotification" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>

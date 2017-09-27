@@ -56,6 +56,14 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "BookDetail") as? BookDetailViewController {
+            vc.bookSelected = listBook[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func loadMoreData() {
         let getBook: GetListBookForTypeTask = GetListBookForTypeTask(category: (typeBook?.typeID)!, page: pager)
         requestWithTask(task: getBook, success: { (data) in

@@ -150,7 +150,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         let getNewestBookTask: GetBookNewestTask = GetBookNewestTask(limit: 1)
         requestWithTask(task: getNewestBookTask, success: { (data) in
             self.newestBook = (data as? Book)!
-            self.newestBookImage.sd_setImage(with: URL(string: self.newestBook.imageURL))
+            self.newestBookImage.sd_setImage(with: URL(string: self.newestBook.imageURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
             self.newestBooktype.text = " " + self.newestBook.typeName + " "
             self.newestBookName.text = self.newestBook.name
             self.newestBookDescription.text = self.newestBook.author

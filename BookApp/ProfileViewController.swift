@@ -24,7 +24,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         let getProfileTask: GetProfileMemberTask = GetProfileMemberTask(idMember: 1)
         requestWithTask(task: getProfileTask, success: { (_) in
             let member: ProfileMember = Constants.sharedInstance.memberProfile!
-            self.avatar.sd_setImage(with: URL(string: member.avatar), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
+            self.avatar.sd_setImage(with: URL(string: member.avatar!), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
             self.point.text = String(member.point)
             if member.level != 1 {
                 self.status.text = "NO VIP"
