@@ -49,6 +49,8 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    // MARK: Setup UI
+    
     func customData() {
         let setting1 = SettingCellModel(name: "線下活動", specialName: "", arrrowDetail: true, nameDetail: "")
         let setting2 = SettingCellModel(name: "積分商城", specialName: "", arrrowDetail: true, nameDetail: "")
@@ -59,6 +61,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         arraySetting.append(arraySetting1)
         arraySetting.append(arraySetting2)
     }
+    // MARK: Table Data Source
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return arraySetting.count
@@ -106,6 +109,8 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         return headerView
     }
     
+    // MARK: Table Delegate
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
          let myStoryboard = UIStoryboard(name: "Profile", bundle: nil)
@@ -128,6 +133,8 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    // MARK: Button Control
     
     func setupCallBack() {
         navigationCustom.rightButton.setImage(#imageLiteral(resourceName: "ic_setting"), for: .normal)

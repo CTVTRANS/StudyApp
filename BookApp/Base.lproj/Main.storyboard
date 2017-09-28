@@ -508,7 +508,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snH-4c-JSq">
-                                        <rect key="frame" x="222" y="84.5" width="39" height="17"/>
+                                        <rect key="frame" x="222" y="85" width="39" height="17"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -577,7 +577,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歷史" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3p-6P-WuP">
-                                        <rect key="frame" x="50" y="9.5" width="26" height="13"/>
+                                        <rect key="frame" x="50" y="10" width="26" height="13"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                         <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -624,7 +624,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已下載" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEG-mR-WZK">
-                                        <rect key="frame" x="50" y="9.5" width="39" height="13"/>
+                                        <rect key="frame" x="50" y="10" width="39" height="13"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                         <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -671,7 +671,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收藏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLU-XF-KC6">
-                                        <rect key="frame" x="55" y="9.5" width="26" height="13"/>
+                                        <rect key="frame" x="55" y="10" width="26" height="13"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                         <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1274,8 +1274,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="GJD-Cc-SfD" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="z5D-9A-cpr"/>
                         <segue destination="eyn-U6-b5C" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="rRG-At-Jk1"/>
+                        <segue destination="YeZ-bu-hSI" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="Noy-a8-yD3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zks-mK-9GH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1295,7 +1295,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="74" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZIL-dR-gDa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="74" id="E9b-Fo-bXx" customClass="ShareViewCell" customModule="BookApp" customModuleProvider="target">
@@ -1331,7 +1331,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZIL-dR-gDa" firstAttribute="top" secondItem="Qc9-5G-bf3" secondAttribute="top" id="U7D-7x-3sI"/>
+                            <constraint firstItem="ZIL-dR-gDa" firstAttribute="top" secondItem="tRH-ff-eEg" secondAttribute="bottom" constant="8" id="DL8-gB-bm2"/>
                             <constraint firstAttribute="trailing" secondItem="ZIL-dR-gDa" secondAttribute="trailing" id="k6T-qY-M9s"/>
                             <constraint firstItem="ZIL-dR-gDa" firstAttribute="leading" secondItem="Qc9-5G-bf3" secondAttribute="leading" id="nki-7t-QPd"/>
                             <constraint firstItem="iRZ-pQ-80I" firstAttribute="top" secondItem="ZIL-dR-gDa" secondAttribute="bottom" id="u6g-tk-Chx"/>
@@ -1344,7 +1344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V1g-zg-nA7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-215.625" y="-527.11267605633805"/>
+            <point key="canvasLocation" x="-1213.125" y="-512.32394366197184"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Hvj-Mz-sOd">
@@ -1513,7 +1513,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pi-aQ-iA4">
-                                <rect key="frame" x="39" y="17" width="9" height="13"/>
+                                <rect key="frame" x="39" y="17.5" width="9" height="13"/>
                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1529,7 +1529,7 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6a-dk-20b">
-                                <rect key="frame" x="32" y="94" width="256" height="260"/>
+                                <rect key="frame" x="32" y="94.5" width="256" height="260"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHU-PB-E1R">
                                         <rect key="frame" x="230" y="229" width="10" height="15"/>
@@ -1592,7 +1592,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  句透   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JoK-uT-l6N">
-                                <rect key="frame" x="217" y="85" width="70" height="19"/>
+                                <rect key="frame" x="217" y="85.5" width="70" height="19"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="19"/>
                                 <nil key="textColor"/>
@@ -1602,7 +1602,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你有什麼見解，歡迎留言分享~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC4-93-qaB">
-                                <rect key="frame" x="60" y="384" width="200" height="15"/>
+                                <rect key="frame" x="60" y="384.5" width="200" height="15"/>
                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
                                 <color key="textColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1665,7 +1665,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rz-xb-pXe">
-                                        <rect key="frame" x="39" y="17" width="9" height="13"/>
+                                        <rect key="frame" x="39" y="17.5" width="9" height="13"/>
                                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1842,24 +1842,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H6I-Dk-o2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-84.375" y="1641.5492957746478"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="297-iM-xTU">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GJD-Cc-SfD" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DgE-mg-OZr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="YeZ-bu-hSI" kind="relationship" relationship="rootViewController" id="pDJ-XS-TcV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Frd-do-fmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1213.125" y="-527.11267605633805"/>
         </scene>
     </scenes>
     <resources>

@@ -16,24 +16,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3U-MA-sSJ">
-                    <rect key="frame" x="85" y="194" width="150" height="180"/>
+                    <rect key="frame" x="20" y="194" width="280" height="180"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lck-3c-Bbs">
-                            <rect key="frame" x="8" y="88" width="134" height="30"/>
+                            <rect key="frame" x="8" y="88" width="264" height="30"/>
                             <state key="normal" title="single"/>
                             <connections>
                                 <action selector="pressSingle:" destination="iN0-l3-epB" eventType="touchUpInside" id="bzI-Fb-qXs"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCf-sD-svw">
-                            <rect key="frame" x="8" y="134" width="134" height="30"/>
+                            <rect key="frame" x="8" y="134" width="264" height="30"/>
                             <state key="normal" title="married"/>
                             <connections>
                                 <action selector="pressedMarried:" destination="iN0-l3-epB" eventType="touchUpInside" id="fNU-kw-h6C"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZm-Te-OVr">
-                            <rect key="frame" x="118" y="0.0" width="32" height="32"/>
+                            <rect key="frame" x="240" y="8" width="32" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="gra-nd-FHO"/>
                                 <constraint firstAttribute="width" constant="32" id="nM0-60-kLL"/>
@@ -48,26 +48,27 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="YCf-sD-svw" secondAttribute="trailing" constant="8" id="KPp-ew-JPN"/>
                         <constraint firstAttribute="trailing" secondItem="lck-3c-Bbs" secondAttribute="trailing" constant="8" id="KmA-W6-jmE"/>
-                        <constraint firstItem="PZm-Te-OVr" firstAttribute="top" secondItem="K3U-MA-sSJ" secondAttribute="top" id="OVs-8R-5ph"/>
+                        <constraint firstItem="PZm-Te-OVr" firstAttribute="top" secondItem="K3U-MA-sSJ" secondAttribute="top" constant="8" id="OVs-8R-5ph"/>
                         <constraint firstItem="YCf-sD-svw" firstAttribute="top" secondItem="lck-3c-Bbs" secondAttribute="bottom" constant="16" id="PgU-mI-adC"/>
                         <constraint firstItem="YCf-sD-svw" firstAttribute="leading" secondItem="K3U-MA-sSJ" secondAttribute="leading" constant="8" id="RI3-dn-Cim"/>
-                        <constraint firstAttribute="width" constant="150" id="ZMv-ag-A8b"/>
                         <constraint firstAttribute="height" constant="180" id="bbK-8W-xG5"/>
                         <constraint firstItem="lck-3c-Bbs" firstAttribute="leading" secondItem="K3U-MA-sSJ" secondAttribute="leading" constant="8" id="dYX-wB-Mxp"/>
                         <constraint firstAttribute="bottom" secondItem="YCf-sD-svw" secondAttribute="bottom" constant="16" id="eG0-kU-gST"/>
-                        <constraint firstAttribute="trailing" secondItem="PZm-Te-OVr" secondAttribute="trailing" id="su1-Y6-3e7"/>
+                        <constraint firstAttribute="trailing" secondItem="PZm-Te-OVr" secondAttribute="trailing" constant="8" id="su1-Y6-3e7"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="3"/>
+                            <integer key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="K3U-MA-sSJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8vV-A4-1ka"/>
                 <constraint firstItem="K3U-MA-sSJ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="KGo-JO-3zR"/>
+                <constraint firstAttribute="trailing" secondItem="K3U-MA-sSJ" secondAttribute="trailing" constant="20" id="Nl7-3Y-YMJ"/>
+                <constraint firstItem="K3U-MA-sSJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="OPb-bv-Zh8"/>
             </constraints>
             <connections>
                 <outlet property="contenView" destination="K3U-MA-sSJ" id="bQu-ua-lqu"/>

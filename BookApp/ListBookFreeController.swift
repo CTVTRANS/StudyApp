@@ -35,6 +35,8 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+    // MARK: Table Data Source
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listBook.count
     }
@@ -50,6 +52,8 @@ class ListBookFreeController: BaseViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    // MARK: Table Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)

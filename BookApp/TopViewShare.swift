@@ -10,8 +10,8 @@ import UIKit
 
 class TopViewShare: UIView {
     
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var titleTop: UILabel!
-    var callBack = {}
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,9 +41,4 @@ class TopViewShare: UIView {
         }
         return UIView()
     }
-
-    @IBAction func pressedShare(_ sender: Any) {
-        self.callBack()
-    }
-
 }

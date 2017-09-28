@@ -9,12 +9,16 @@
 import UIKit
 
 class SettingChooseSex: BaseDailog {
+    
+    var calBack:((_ sex: String) -> Void) = {_ in}
 
     @IBAction func pressedFemale(_ sender: Any) {
-        
+        self.hide()
+        self.calBack("female")
     }
    
     @IBAction func pressMale(_ sender: Any) {
-        
+        self.hide()
+        self.calBack("male")
     }
 }

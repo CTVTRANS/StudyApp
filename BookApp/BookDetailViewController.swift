@@ -65,6 +65,8 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    // MAKR: Setup ScrollView
+    
     func setupScroll() {
         scroll.contentSize = CGSize(width: 3 * widthScreen, height: scroll.frame.height)
         let audioVC =
@@ -106,7 +108,14 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     
     func setupSahreView() {
         topShare.titleTop.text = bookSelected?.name
+        if self.revealViewController() != nil {
+            revealViewController().rightViewRevealWidth = 80
+            topShare.shareButton.addTarget(self.revealViewController(), action: #selector(revealViewController().rightRevealToggle(_:)), for: .touchUpInside)
+            self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        }
     }
+    
+    // MARK: Call Back
 
     func setupCallBackBottom() {
         bottomView.pressedBottomButton = { [weak self] (typeButton: BottomButton) in
@@ -128,6 +137,17 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             }
         }
     }
+    
+    func setListBookBdownload() {
+        var listBookDownaloaed = Book.getBook()
+        for singleBook in listBookDownaloaed! where singleBook.idBook == bookSelected.idBook {
+            return
+        }
+        listBookDownaloaed?.append(bookSelected)
+        Book.saveBook(myBook: listBookDownaloaed!)
+    }
+    
+    // MARK: Button Control
     
     func pressedDowload() {
         let downloadImage = DownloadTask(path: bookSelected.imageURL)
@@ -152,15 +172,6 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             }
         }) { (_) in
         }
-    }
-    
-    func setListBookBdownload() {
-        var listBookDownaloaed = Book.getBook()
-        for singleBook in listBookDownaloaed! where singleBook.idBook == bookSelected.idBook {
-            return
-        }
-        listBookDownaloaed?.append(bookSelected)
-        Book.saveBook(myBook: listBookDownaloaed!)
     }
     
     func pressedBookmark() {
@@ -208,6 +219,8 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         })
     }
     
+    // MARK: Scroll Delagate
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position: CGFloat = scroll.contentOffset.x / scroll.frame.size.width
         if position > 1.7 {
@@ -232,7 +245,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             topTabbar.audioButton.setTitleColor(UIColor.black, for: .normal)
         default: break
             
-    }
+        }
         
         let newFrame = CGRect(x: position * (widthScreen / 3),
                               y: topTabbar.animationView.frame.origin.y,

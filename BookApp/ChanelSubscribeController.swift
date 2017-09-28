@@ -37,6 +37,8 @@ class ChanelSubscribeController: BaseViewController, UITableViewDelegate, UITabl
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+    // MARK: Table Data Source
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listChanelSubcribled.count
     }
@@ -68,6 +70,8 @@ class ChanelSubscribeController: BaseViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    // MARK: Table Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)

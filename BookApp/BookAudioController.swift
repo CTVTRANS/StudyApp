@@ -26,16 +26,16 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var currentSecondTime: UILabel!
     @IBOutlet weak var audioDetailButton: UIButton!
     
-    var loadedAudio: Bool = false
-    var loadedWebView: Bool = false
+    private var loadedAudio: Bool = false
+    private var loadedWebView: Bool = false
     var book: Book?
-    var totalTime: Float64?
+    private var totalTime: Float64?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: UIApplication.shared.keyWindow!)
         audioDetailButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
-        imageBook.sd_setImage(with: URL(string: (book?.imageURL)!))
+        imageBook.sd_setImage(with: URL(string: (book?.imageURL)!), placeholderImage: #imageLiteral(resourceName: "place_holder"))
         web.delegate = self
         let content = css + (book?.descriptionBook)!
         web.loadHTMLString(content, baseURL: nil)
@@ -80,7 +80,6 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
                 strongSelf.currentMinAudio.text = "00:"
                 return
             }
-            
             if UIApplication.shared.applicationState == .active {
                self?.setDataForCurrentTime(timeString: timeString)
             }

@@ -36,6 +36,8 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
         loadMore()
     }
     
+    // MARK: Table Data Source
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -76,6 +78,8 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
         }
         return cell!
     }
+    
+    // MARK: Table Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)

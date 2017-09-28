@@ -50,6 +50,19 @@ class BottomView: UIView {
         let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView
         return view!
     }
+    
+    func hiddenBottom() {
+        backButton.isHidden = true
+        backImage.isHidden = true
+        bookMarkImage.isHidden = true
+        bookMarkButton.isHidden = true
+        downloadImage.isHidden = true
+        downloadButton.isHidden = true
+        numberBookmark.isHidden = true
+        numberLike.isHidden = true
+        likeImage.isHidden = true
+        likeButton.isHidden = true
+    }
 
     @IBAction func pressedBack(_ sender: Any) {
         self.pressedBottomButton!(BottomButton.back)

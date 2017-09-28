@@ -157,7 +157,7 @@ extension BaseTaskNetwork {
 }
 
 extension UIAlertController {
-    class func showAlertWith(title: String, message: String, inViewController: UIViewController) {
+    class func initAler(title: String, message: String, inViewController: UIViewController) {
         let alertView = UIAlertController(title: title,
                                           message: message,
                                           preferredStyle: .alert)

@@ -18,12 +18,20 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     private var arrayNews: [NewsModel] = []
     lazy var footerView = UIView.initFooterView()
     private var indicator: UIActivityIndicatorView?
+    lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.backgroundColor = UIColor.white
+        refresh.tintColor = UIColor.gray
+        refresh.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        return refresh
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCallBack()
         showActivity(inView: self.view)
         table.estimatedRowHeight = 140
+        table.addSubview(refreshControl)
         if let ac = footerView.viewWithTag(8) as? UIActivityIndicatorView {
             indicator = ac
         }
@@ -34,6 +42,13 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         table.reloadData()
+    }
+    
+    func reloadData() {
+        pager = 1
+        isMoreData = true
+        arrayNews.removeAll()
+        loadMoreData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,6 +106,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 self.table.reloadData()
                 self.isLoadMore = false
                 self.stopActivityIndicator()
+                self.refreshControl.endRefreshing()
                 self.indicator?.stopAnimating()
                 self.pager += 1
                 if list.count == 0 {

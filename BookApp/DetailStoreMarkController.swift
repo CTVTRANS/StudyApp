@@ -30,27 +30,27 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
         loadMore()
     }
     
-    func getProduct() {
-        let getAllproduct: GetAllproductTask = GetAllproductTask(limit: 20, page: page)
-        let getProductByPoint: GetListProductByPointTask = GetListProductByPointTask(limit: 20, page: page)
-        let getproductByPointAndMoney: GetListProductByPointAndMoneyTask = GetListProductByPointAndMoneyTask(limit: 20, page: page)
-        
-        if typeRequest == TypeProductRequest.all {
-            let getProductVip: GetProductVipTask = GetProductVipTask()
-            requestWithTask(task: getProductVip, success: { (data) in
-                if let arrayVip = data as? [Vip] {
-                    self.listProduct = arrayVip
-                    self.getProductBookWith(task: getAllproduct)
-                }
-            }, failure: { (_) in
-                
-            })
-        } else if typeRequest == TypeProductRequest.point {
-            getProductBookWith(task: getProductByPoint)
-        } else {
-            getProductBookWith(task: getproductByPointAndMoney)
-        }
-    }
+//    func getProduct() {
+//        let getAllproduct: GetAllproductTask = GetAllproductTask(limit: 20, page: page)
+//        let getProductByPoint: GetListProductByPointTask = GetListProductByPointTask(limit: 20, page: page)
+//        let getproductByPointAndMoney: GetListProductByPointAndMoneyTask = GetListProductByPointAndMoneyTask(limit: 20, page: page)
+//        
+//        if typeRequest == TypeProductRequest.all {
+//            let getProductVip: GetProductVipTask = GetProductVipTask()
+//            requestWithTask(task: getProductVip, success: { (data) in
+//                if let arrayVip = data as? [Vip] {
+//                    self.listProduct = arrayVip
+//                    self.getProductBookWith(task: getAllproduct)
+//                }
+//            }, failure: { (_) in
+//                
+//            })
+//        } else if typeRequest == TypeProductRequest.point {
+//            getProductBookWith(task: getProductByPoint)
+//        } else {
+//            getProductBookWith(task: getproductByPointAndMoney)
+//        }
+//    }
     
     func getProductBookWith(task: BaseTaskNetwork) {
         requestWithTask(task: task, success: { (data) in
@@ -75,6 +75,8 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
         navigationController?.isNavigationBarHidden = false
     }
     
+    // MARK: Collection Data Source
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return listProduct.count
     }
@@ -90,13 +92,6 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let widthCell = (widthScreen - 10) / 2
         return CGSize(width: widthCell, height: widthCell + 30.0)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "BuyProductViewController") as? BuyProductViewController {
-            vc.product = listProduct[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -119,6 +114,15 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
         }
     }
     
+    // MARK: Collection Delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "BuyProductViewController") as? BuyProductViewController {
+            vc.product = listProduct[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
         if elementKind == UICollectionElementKindSectionFooter {
             footerView?.prepareInitialAnimation()
@@ -130,6 +134,8 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
             footerView?.stopAnimate()
         }
     }
+    
+    // MARK: Load More
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let threshold = 100.0

@@ -17,7 +17,14 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
     var isMoreData = true
     var isLoading = false
     var pager = 1
-    
+    lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.backgroundColor = UIColor.white
+        refresh.tintColor = UIColor.gray
+        refresh.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        return refresh
+    }()
+
     @IBOutlet weak var table: UITableView!
     
     override func viewDidLoad() {
@@ -26,21 +33,20 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
         showActivity(inView: self.view)
         table.register(UINib.init(nibName: "ListBookFreee", bundle: nil), forCellReuseIdentifier: "cell")
         table.estimatedRowHeight = 140
+        table.addSubview(refreshControl)
         if let ac = footerView.viewWithTag(8) as? UIActivityIndicatorView {
             indicator = ac
         }
         loadMoreData()
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let endOftable = table.contentOffset.y >= (table.contentSize.height - table.frame.size.height)
-        if isMoreData && endOftable && !isLoading && !scrollView.isDragging && !scrollView.isDecelerating {
-            isLoading = true
-            table.tableFooterView = footerView
-            indicator?.startAnimating()
-            loadMoreData()
-        }
+    func reloadData() {
+        pager = 1
+        isMoreData = true
+        loadMoreData()
     }
+    
+    // MARK: Table Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listBook.count
@@ -56,11 +62,23 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
         return UITableViewAutomaticDimension
     }
     
+    // MARK: Table Delegate
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if let vc = storyboard?.instantiateViewController(withIdentifier: "BookDetail") as? BookDetailViewController {
             vc.bookSelected = listBook[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let endOftable = table.contentOffset.y >= (table.contentSize.height - table.frame.size.height)
+        if isMoreData && endOftable && !isLoading && !scrollView.isDragging && !scrollView.isDecelerating {
+            isLoading = true
+            table.tableFooterView = footerView
+            indicator?.startAnimating()
+            loadMoreData()
         }
     }
     
@@ -71,6 +89,7 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
                 self.listBook += arrayBook
                 self.stopActivityIndicator()
                 self.indicator?.stopAnimating()
+                self.refreshControl.endRefreshing()
                 self.isLoading = false
                 self.table.reloadData()
                 self.pager += 1

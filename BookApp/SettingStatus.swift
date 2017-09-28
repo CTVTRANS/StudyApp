@@ -10,11 +10,15 @@ import UIKit
 
 class SettingStatus: BaseDailog {
 
+    var callBack:((_ status: String) -> Void) = {_ in}
+    
     @IBAction func pressSingle(_ sender: Any) {
-        
+        self.hide()
+        self.callBack("single")
     }
    
     @IBAction func pressedMarried(_ sender: Any) {
-        
+        self.hide()
+        self.callBack("married")
     }
 }

@@ -42,6 +42,8 @@ class CustomChanelCollection: UIView, UICollectionViewDelegate, UICollectionView
         return UIView()
     }
     
+    // MARK: Collection Data Source
+    
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         return arrChanel.count
@@ -84,6 +86,8 @@ class CustomChanelCollection: UIView, UICollectionViewDelegate, UICollectionView
         space.adjustsSizeToRealIPhoneSize = 11
         return space
     }
+    
+    // MARK: Collection Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         callBackClickCell?(arrChanel[indexPath.row])

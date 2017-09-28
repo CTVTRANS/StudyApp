@@ -31,6 +31,8 @@ class StoreMarkViewController: BaseViewController, UICollectionViewDelegate, UIC
         navigationController?.isNavigationBarHidden = false
     }
     
+    // MARK: Get Baner
+    
     func getBaner() {
         let getBanerTask = GetSliderBanerTask(typeSlider: ScreenShow.buyProduct.rawValue)
         requestWithTask(task: getBanerTask, success: { (data) in
@@ -42,6 +44,8 @@ class StoreMarkViewController: BaseViewController, UICollectionViewDelegate, UIC
             
         }
     }
+    
+    // MARK: Get List Product
     
     func getProduct() {
         let getAllproduct: GetAllproductTask = GetAllproductTask(limit: 10, page: 1)
@@ -115,6 +119,8 @@ class StoreMarkViewController: BaseViewController, UICollectionViewDelegate, UIC
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+    
+    // MARK: Button Control
     
     @IBAction func pressedShowAllButton(_ sender: Any) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailStoreMarkController") as? DetailStoreMarkController {

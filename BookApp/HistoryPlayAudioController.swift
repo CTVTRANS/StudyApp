@@ -7,32 +7,46 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    private var oldObjectPlay: Int?
     @IBOutlet weak var table: UITableView!
-    var listHistoryAudio: [Book] = []
+    var listHistory: [AnyObject] = []
     var downloadImageSuccess = false
     var downloadAuidosucess = false
+    var asset: AVAsset?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         table.tableFooterView = UIView()
         table.estimatedRowHeight = 140
-        listHistoryAudio = Constants.sharedInstance.historyViewAudio
+        listHistory = Constants.sharedInstance.historyViewAudio
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listHistoryAudio.count
+        return listHistory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: "HistoryPlayAudioCell", for: indexPath) as? HistoryPlayAudioCell
-        cell?.bindData(historyBook: listHistoryAudio[indexPath.row])
-        cell?.callBackDownload = { [weak self] book in
-            self?.downloadAudio(book: book)
+        cell?.bindData(historyObject: listHistory[indexPath.row])
+        cell?.callBackDownload = { oject in
+            if let book = oject as? Book {
+                let download = DownloadViewController()
+                download.downloadBook(book: book)
+            }
+            if let lesson = oject as? Lesson {
+                let download = DownloadViewController()
+                download.downloadLesson(lesson: lesson)
+            }
         }
         
+        cell?.callBackPlayAudio = { [weak self] object in
+            self?.playAudio(object: object, current: indexPath.row)
+        }
         return cell!
     }
     
@@ -61,6 +75,62 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
         }
     }
     
+    func playAudio(object: AnyObject, current: Int) {
+        if (object as? Book) != nil {
+            if (object as? Book)?.isPlay == 1 {
+                if  Constants.sharedInstance.player?.rate == 1 {
+                    (object as? Book)?.pause = 1
+                    Constants.sharedInstance.player?.pause()
+                } else {
+                    (object as? Book)?.pause = 0
+                    Constants.sharedInstance.player?.play()
+                }
+                self.table.reloadData()
+                return
+            }
+            Constants.sharedInstance.player = nil
+            if oldObjectPlay != nil {
+                (listHistory[(oldObjectPlay!)] as? Book)?.isPlay = 0
+                (listHistory[(oldObjectPlay!)] as? Book)?.pause = 0
+            }
+            
+            (object as? Book)?.isPlay = 1
+            asset = AVAsset(url: URL(string: ((object as? Book)?.audio)!)!)
+        }
+        
+        if (object as? Lesson) != nil {
+            if (object as? Lesson)?.isPlay == 1 {
+                if  Constants.sharedInstance.player?.rate == 1 {
+                    (object as? Lesson)?.pause = 1
+                    Constants.sharedInstance.player?.pause()
+                } else {
+                    (object as? Lesson)?.pause = 0
+                    Constants.sharedInstance.player?.play()
+                }
+                self.table.reloadData()
+                return
+            }
+            Constants.sharedInstance.player = nil
+            if oldObjectPlay != nil {
+                (listHistory[(oldObjectPlay!)] as? Lesson)?.isPlay = 0
+                (listHistory[(oldObjectPlay!)] as? Lesson)?.pause = 0
+            }
+           
+            (object as? Lesson)?.isPlay = 1
+            asset = AVAsset(url: URL(string: ((object as? Lesson)?.contentURL)!)!)
+        }
+        oldObjectPlay = current
+        let keys: [String] = ["audio"]
+        asset?.loadValuesAsynchronously(forKeys: keys) {
+            DispatchQueue.main.async {
+                Constants.sharedInstance.playerItem = AVPlayerItem(asset: self.asset!)
+                Constants.sharedInstance.player =
+                    AVPlayer(playerItem:  Constants.sharedInstance.playerItem)
+                Constants.sharedInstance.player?.play()
+            }
+        }
+    }
+
     func saveAudio(book: Book) {
         var listBookDownaloaed = Book.getBook()
         for singleBook in listBookDownaloaed! where singleBook.idBook == book.idBook {
@@ -79,6 +149,7 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func pressedDeleteAllMessage(_ sender: Any) {
+        
     }
     
 }

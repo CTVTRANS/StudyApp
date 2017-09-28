@@ -12,6 +12,8 @@ import AVKit
 
 class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    // MARK: Property UI
+    
     @IBOutlet weak var bottomView: BottomView!
     @IBOutlet weak var topViewShare: TopViewShare!
     @IBOutlet weak var table: UITableView!
@@ -24,8 +26,10 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     @IBOutlet weak var downloadAllButton: UIButton!
     @IBOutlet weak var subcribedTeacher: UIButton!
     @IBOutlet weak var heightImageChanel: NSLayoutConstraint!
-    var chanel: Chanel!
     
+    // MARK: Property Control
+    
+    var chanel: Chanel!
     private var lessonUploaded = [Lesson]()
     private var loadedListLessonUpload = false
     private var loadedNumberView = false
@@ -33,8 +37,6 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     private var downloadAudioSucess = false
     
     private var oldlessonPlay: Int?
-    private var player: AVPlayer?
-    private var playerItem: AVPlayerItem?
     
     lazy var footerView = UIView.initFooterView()
     private var indicator: UIActivityIndicatorView?
@@ -47,6 +49,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         table.estimatedRowHeight = 140
         showActivity(inView: self.view)
         setupUI()
+        setupTopShare()
         setupCallBackBottom()
         checkSubcribleed()
         getDataFromServer()
@@ -63,6 +66,8 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+    // MARK: UI
+    
     func setupUI() {
         downloadAllButton.layer.borderColor = UIColor.rgb(red: 254, green: 153, blue: 0).cgColor
         subcribedTeacher.layer.borderColor = UIColor.rgb(red: 254, green: 153, blue: 0).cgColor
@@ -70,21 +75,22 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         
         chanelImage.sd_setImage(with: URL(string: chanel.imageTeacherURL))
         chanelImage.layer.cornerRadius = heightImageChanel.constant / 2
-        topViewShare.titleTop.text = chanel.nameChanel
         chaneType.text = chanel.typeChanel
         nameTeacher.text = chanel.nameTeacher
         
-        bottomView.backButton.isHidden = true
-        bottomView.backImage.isHidden = true
-        bottomView.bookMarkImage.isHidden = true
-        bottomView.bookMarkButton.isHidden = true
-        bottomView.downloadImage.isHidden = true
-        bottomView.downloadButton.isHidden = true
-        bottomView.numberBookmark.isHidden = true
-        bottomView.numberLike.isHidden = true
-        bottomView.likeImage.isHidden = true
-        bottomView.likeButton.isHidden = true
+        bottomView.hiddenBottom()
     }
+    
+    func setupTopShare() {
+        topViewShare.titleTop.text = chanel.nameChanel
+        if self.revealViewController() != nil {
+            revealViewController().rightViewRevealWidth = 80
+            topViewShare.shareButton.addTarget(self.revealViewController(), action: #selector(revealViewController().rightRevealToggle(_:)), for: .touchUpInside)
+            self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        }
+    }
+    
+    // MARK: Get Data
     
     func getDataFromServer() {
         let getNumberView: GetTotaViewOfChanel = GetTotaViewOfChanel(chanelID: chanel.idChanel)
@@ -111,6 +117,8 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         }
     }
 
+    // MARK: Table Data Source
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return lessonUploaded.count
     }
@@ -118,6 +126,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ChanelUpLoaeCell", for: indexPath) as? ChanelUpLoaeCell {
             let lesson: Lesson = lessonUploaded[indexPath.row]
+            lesson.chanelOwner = chanel.nameChanel
             cell.binData(chap: lesson)
             cell.callBackButton = { [weak self] (typeButton: String) in
                 switch typeButton {
@@ -133,6 +142,12 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    // MARK: Table Delegate
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let endOftable = table.contentOffset.y >= (table.contentSize.height - table.frame.size.height)
@@ -167,6 +182,67 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             _ = UIAlertController(title: nil,
                                   message: error as? String,
                                   preferredStyle: .alert)
+        }
+    }
+    
+    
+    // MARK: Play Music
+    
+    func playAudio(lesson: Lesson, current: Int) {
+        if lesson.isPlay == 1 {
+            if  Constants.sharedInstance.player?.rate == 1 {
+                lesson.pause = 1
+                Constants.sharedInstance.player?.pause()
+            } else {
+                lesson.pause = 0
+                Constants.sharedInstance.player?.play()
+            }
+            self.table.reloadData()
+            return
+        }
+        Constants.sharedInstance.player = nil
+        lesson.chanelOwner = chanel.nameChanel
+        Constants.sharedInstance.historyViewChanelLesson.append(lesson)
+        if oldlessonPlay != nil {
+            lessonUploaded[(oldlessonPlay!)].isPlay = 0
+            lessonUploaded[(oldlessonPlay!)].pause = 0
+        }
+        oldlessonPlay = current
+        lesson.isPlay = 1
+        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
+        requestWithTask(task: viewed, success: { (data) in
+            if let status = data as? String {
+                if status == "success" {
+                    self.chanel.numberView += 1
+                    let numberView = self.chanel.numberView
+                    self.numberView.text = String(numberView)
+                    self.table.reloadData()
+                }
+            }
+        }) { (_) in
+            
+        }
+        let asset = AVAsset(url: URL(string: lesson.contentURL)!)
+        let keys: [String] = ["audio"]
+        asset.loadValuesAsynchronously(forKeys: keys) {
+            DispatchQueue.main.async {
+                Constants.sharedInstance.playerItem = AVPlayerItem(asset: asset)
+                Constants.sharedInstance.player =
+                    AVPlayer(playerItem:  Constants.sharedInstance.playerItem)
+                Constants.sharedInstance.player?.play()
+            }
+        }
+    }
+    
+    // MARK: Button Control
+    
+    func setupCallBackBottom() {
+        bottomView.pressedBottomButton = { [weak self] typeButton in
+            if typeButton == BottomButton.comment {
+                let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
+                let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController
+                self?.present(vc!, animated: false, completion: nil)
+            }
         }
     }
     
@@ -205,67 +281,6 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         listLesson?.append(chap)
         Lesson.saveLesson(lesson: listLesson!)
         print("sucess")
-    }
-    
-    func playAudio(lesson: Lesson, current: Int) {
-        if lesson.isPlay == 1 {
-            if  player?.rate == 1 {
-                lesson.pause = 1
-                player?.pause()
-            } else {
-                lesson.pause = 0
-                player?.play()
-            }
-            self.table.reloadData()
-            return
-        }
-        player = nil
-        lesson.chanelOwner = chanel.nameChanel
-        Constants.sharedInstance.historyViewChanelLesson.append(lesson)
-        if oldlessonPlay != nil {
-            lessonUploaded[(oldlessonPlay!)].isPlay = 0
-            lessonUploaded[(oldlessonPlay!)].pause = 0
-        }
-        oldlessonPlay = current
-        lesson.isPlay = 1
-        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
-        requestWithTask(task: viewed, success: { (data) in
-            if let status = data as? String {
-                if status == "success" {
-                    self.chanel.numberView += 1
-                    let numberView = self.chanel.numberView
-                    self.numberView.text = String(numberView)
-                    self.table.reloadData()
-                }
-            }
-        }) { (_) in
-            
-        }
-        let asset = AVAsset(url: URL(string: lesson.contentURL)!)
-        let keys: [String] = ["audio"]
-        asset.loadValuesAsynchronously(forKeys: keys) {
-            DispatchQueue.main.async {
-                self.playerItem = AVPlayerItem(asset: asset)
-                self.player = AVPlayer(playerItem: self.playerItem)
-                self.player?.play()
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    func setupCallBackBottom() {
-        bottomView.pressedBottomButton = { [weak self] typeButton in
-            if typeButton == BottomButton.comment {
-                let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
-                let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController
-//                vc?.idObject = self?.bookSelected?.idBook
-//                vc?.commentType = Object.book.rawValue
-                self?.present(vc!, animated: false, completion: nil)
-            }
-        }
     }
     
     @IBAction func pressedSubcribeButton(_ sender: Any) {

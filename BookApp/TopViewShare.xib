@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TopViewShare" customModule="BookApp" customModuleProvider="target">
             <connections>
+                <outlet property="shareButton" destination="XS0-jW-S99" id="bMh-xJ-JnT"/>
                 <outlet property="titleTop" destination="lWr-vd-9Lz" id="TWq-kB-OAf"/>
             </connections>
         </placeholder>
@@ -27,9 +28,6 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XS0-jW-S99">
                     <rect key="frame" x="457" y="11" width="22" height="22"/>
                     <state key="normal" image="ic_share"/>
-                    <connections>
-                        <action selector="pressedShare:" destination="-1" eventType="touchUpInside" id="AjS-rD-Wqr"/>
-                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWr-vd-9Lz">
                     <rect key="frame" x="16" y="13" width="39" height="17"/>

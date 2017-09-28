@@ -138,7 +138,10 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
         sliderShow.deselectItem(at: index, animated: true)
         sliderShow.scrollToItem(at: index, animated: true)
         self.pageControlView.currentPage = index
-        print(index)
+        let urlString = listSlider[index].linkBaner
+        if let url = URL(string: urlString!) {
+            UIApplication.shared.openURL(url)
+        }
     }
     
     func pagerViewDidScroll(_ pagerView: FSPagerView) {
@@ -186,6 +189,8 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
             }
         }
     }
+    
+    // MARK: Button Control
     
     @IBAction func showHotChanel(_ sender: Any) {
         let chanelStoryboard = UIStoryboard(name: "Chanel", bundle: nil)

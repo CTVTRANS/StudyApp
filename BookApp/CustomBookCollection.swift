@@ -49,6 +49,8 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
         detailImage.image = image
     }
     
+    // MARK: Colection Data Source
+    
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         return bookArray.count
@@ -89,6 +91,8 @@ class CustomBookCollection: UIView, UICollectionViewDataSource, UICollectionView
         space.adjustsSizeToRealIPhoneSize = 12
         return space
     }
+    
+    // MARK: Collection Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         callBackClickCell?(bookArray[indexPath.row])

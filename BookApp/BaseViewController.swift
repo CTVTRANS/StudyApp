@@ -27,7 +27,6 @@ class BaseViewController: UIViewController {
         if self.revealViewController() != nil {
             revealViewController().rightViewRevealWidth = 80
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"), style: .plain, target: self.revealViewController(), action: #selector(revealViewController().rightRevealToggle(_:)))
-//            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         }
     }
@@ -40,7 +39,8 @@ class BaseViewController: UIViewController {
                 failure(error)
             }
         } else {
-            _ = UIAlertController.showAlertWith(title: "Error", message: "No internet acess", inViewController: self)
+            
+            _ = UIAlertController.initAler(title: "Error", message: "No internet access", inViewController: self)
         }
     }
     
@@ -87,18 +87,6 @@ class BaseViewController: UIViewController {
 extension UIView {
     class func initFooterView() -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: widthScreen, height: 100))
-        let activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        activity.tag = 8
-        activity.frame = CGRect(x: view.frame.size.width / 2 - 10, y: 40, width: 20, height: 20)
-        activity.hidesWhenStopped = true
-        view.addSubview(activity)
-        return view
-    }
-}
-
-extension UICollectionReusableView {
-    class func initFooterLoadmore() -> UICollectionReusableView {
-        let view = UICollectionReusableView(frame: CGRect(x: 0, y: 0, width: widthScreen, height: 100))
         let activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activity.tag = 8
         activity.frame = CGRect(x: view.frame.size.width / 2 - 10, y: 40, width: 20, height: 20)

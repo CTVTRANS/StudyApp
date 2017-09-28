@@ -73,13 +73,32 @@ class ChangeProfileViewController: BaseViewController {
         Constants.sharedInstance.memberProfile?.hobby = hobby.text
         Constants.sharedInstance.memberProfile?.marriage = statusMarrie.text
         Constants.sharedInstance.memberProfile?.name = userNameTextField.text!
+        _ = UIAlertController.initAler(title: "Success", message: "Change infomation conplete", inViewController: self)
     }
     
     @IBAction func pressedShowDate(_ sender: Any) {
-        if let dateDialog = SettingDatepicker.instance() as? SettingDatepicker {
-            dateDialog.show()
-            dateDialog.callBackDate = { [weak self] date in
+        if let dateDailog = SettingDatepicker.instance() as? SettingDatepicker {
+            dateDailog.show()
+            dateDailog.callBackDate = { [weak self] date in
                 self?.birthDay.text = date
+            }
+        }
+    }
+    
+    @IBAction func pressShowSex(_ sender: Any) {
+        if let sexDailog = SettingChooseSex.instance() as? SettingChooseSex {
+            sexDailog.show()
+            sexDailog.calBack = { [weak self] sexMenber in
+                self?.sex.text = sexMenber
+            }
+        }
+    }
+    
+    @IBAction func pressShowMarrie(_ sender: Any) {
+        if let marrieDailog = SettingStatus.instance() as? SettingStatus {
+            marrieDailog.show()
+            marrieDailog.callBack = { [weak self] status in
+                self?.statusMarrie.text = status
             }
         }
     }

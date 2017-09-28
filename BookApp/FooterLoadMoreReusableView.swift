@@ -32,7 +32,8 @@ class FooterLoadMoreReusableView: UICollectionReusableView {
         refreshControlIndicator?.transform = CGAffineTransform.init(scaleX: scaleFactor, y: scaleFactor)
     }
     
-    //reset the animation
+    // MARK: Reset The Animation
+    
     func prepareInitialAnimation() {
         self.isAnimatingFinal = false
         refreshControlIndicator?.stopAnimating()
@@ -49,7 +50,8 @@ class FooterLoadMoreReusableView: UICollectionReusableView {
         refreshControlIndicator?.stopAnimating()
     }
     
-    //final animation to display loading
+    // MARK: Final Animation To Display Loading
+    
     func animateFinal() {
         if isAnimatingFinal {
             return

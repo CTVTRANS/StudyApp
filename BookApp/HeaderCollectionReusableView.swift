@@ -64,7 +64,10 @@ class HeaderCollectionReusableView: UICollectionReusableView, FSPagerViewDataSou
         sliderShow.deselectItem(at: index, animated: true)
         sliderShow.scrollToItem(at: index, animated: true)
         self.pageControlView.currentPage = index
-        print(index)
+        let urlString = listSlider[index].linkBaner
+        if let url = URL(string: urlString!) {
+            UIApplication.shared.openURL(url)
+        }
     }
 
     func pagerViewDidScroll(_ pagerView: FSPagerView) {
@@ -79,16 +82,4 @@ class HeaderCollectionReusableView: UICollectionReusableView, FSPagerViewDataSou
         pageControlView.numberOfPages = listSlider.count
         sliderShow.reloadData()
     }
-
-    @IBAction func pressedShowAllButton(_ sender: Any) {
-        
-    }
-    
-    @IBAction func pressedShowMarkButton(_ sender: Any) {
-        print("2")
-    }
-    
-    @IBAction func pressShowMarkAndMoney(_ sender: Any) {
-        print("3")    }
-
 }

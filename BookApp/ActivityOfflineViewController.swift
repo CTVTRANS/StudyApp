@@ -81,7 +81,10 @@ class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, 
         sliderShow.deselectItem(at: index, animated: true)
         sliderShow.scrollToItem(at: index, animated: true)
         self.pageControlView.currentPage = index
-        print(index)
+        let urlString = listSlider[index].linkBaner
+        if let url = URL(string: urlString!) {
+            UIApplication.shared.openURL(url)
+        }
     }
     
     func pagerViewDidScroll(_ pagerView: FSPagerView) {
@@ -90,6 +93,8 @@ class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, 
         }
         self.pageControlView.currentPage = pagerView.currentIndex // Or Use KVO with property "currentIndex"
     }
+    
+    // MARK: Button Control
 
     func pressRighBarButton() {
         let vc = storyboard?.instantiateViewController(withIdentifier: "GroupJoinedViewController") as? GroupJoinedViewController

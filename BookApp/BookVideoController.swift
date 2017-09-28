@@ -67,6 +67,8 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
         }
     }
     
+    // MARK: Delegate
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if  keyPath == "rate" {
             let layer = object as? AVPlayer
@@ -98,6 +100,8 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
             self.stopActivityIndicator()
         }
     }
+    
+    // Button Controll
     
     @IBAction func pressedBuy(_ sender: Any) {
         let myStoryBoard = UIStoryboard(name: "Setting", bundle: nil)

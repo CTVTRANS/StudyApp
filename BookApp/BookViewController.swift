@@ -208,7 +208,10 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         sliderShow.deselectItem(at: index, animated: true)
         sliderShow.scrollToItem(at: index, animated: true)
         self.pageControlView.currentPage = index
-        print(index)
+        let urlString = listSlider[index].linkBaner
+        if let url = URL(string: urlString!) {
+            UIApplication.shared.openURL(url)
+        }
     }
     
     func pagerViewDidScroll(_ pagerView: FSPagerView) {
@@ -218,7 +221,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         self.pageControlView.currentPage = pagerView.currentIndex // Or Use KVO with property "currentIndex"
     }
     
-    // MARK: Call Back
+    // MARK: Call Back For CEll
     
     func setupCallBackClickCell() {
         let bookStoryboard = UIStoryboard(name: "Book", bundle: nil)
@@ -249,12 +252,16 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         }
     }
     
+    // MARK: Button Controll
+    
     @IBAction func pressedShowDetailBook(_ sender: Any) {
         let bookStoryboard = UIStoryboard(name: "Book", bundle: nil)
         let vc = bookStoryboard.instantiateViewController(withIdentifier: "BookDetail") as? BookDetailViewController
         vc?.bookSelected = newestBook
         self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
+    // MARK: Call Back Navigation
     
     func setupCallBackNavigation() {
         navigationCustom.callBackTopButton = { [weak self] (typeButton: TopButton) in
