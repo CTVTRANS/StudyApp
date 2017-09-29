@@ -206,7 +206,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCb-Xn-1Ny">
-                                                    <rect key="frame" x="294" y="131" width="18" height="9"/>
+                                                    <rect key="frame" x="294" y="131.5" width="18" height="9"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="9"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -395,17 +395,8 @@
                                                     <constraint firstAttribute="height" constant="20" id="5cj-ja-rKL"/>
                                                 </constraints>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RK-ZO-azt">
-                                                <rect key="frame" x="63" y="128" width="20.5" height="16"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTq-AC-by0">
-                                                <rect key="frame" x="83.5" y="128" width="16.5" height="16"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RK-ZO-azt">
+                                                <rect key="frame" x="63" y="128" width="36.5" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -414,13 +405,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7B-gD-V43">
-                                                <rect key="frame" x="103" y="126" width="6" height="21"/>
+                                                <rect key="frame" x="101.5" y="123.5" width="6" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPT-oS-GAL">
-                                                <rect key="frame" x="112" y="128" width="13" height="16"/>
+                                                <rect key="frame" x="110.5" y="128" width="13" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -562,7 +553,7 @@
                                             <constraint firstItem="Krr-7E-DFZ" firstAttribute="centerY" secondItem="sTb-OJ-cqW" secondAttribute="centerY" id="1qK-gA-XG8"/>
                                             <constraint firstItem="bPT-oS-GAL" firstAttribute="leading" secondItem="C7B-gD-V43" secondAttribute="trailing" constant="3" id="4S5-hk-3My"/>
                                             <constraint firstItem="lbG-QW-Gnm" firstAttribute="leading" secondItem="31T-w6-8QS" secondAttribute="trailing" constant="12" id="4TE-c2-dur"/>
-                                            <constraint firstItem="C7B-gD-V43" firstAttribute="centerY" secondItem="2RK-ZO-azt" secondAttribute="centerY" id="4q4-4C-o5M"/>
+                                            <constraint firstItem="C7B-gD-V43" firstAttribute="centerY" secondItem="2RK-ZO-azt" secondAttribute="centerY" constant="-2" id="4q4-4C-o5M"/>
                                             <constraint firstAttribute="trailing" secondItem="lbG-QW-Gnm" secondAttribute="trailing" constant="32" id="B3S-eG-Rqb"/>
                                             <constraint firstAttribute="bottom" secondItem="lbG-QW-Gnm" secondAttribute="bottom" constant="16" id="E9P-kq-dBf">
                                                 <userDefinedRuntimeAttributes>
@@ -570,7 +561,6 @@
                                                 </userDefinedRuntimeAttributes>
                                             </constraint>
                                             <constraint firstItem="2RK-ZO-azt" firstAttribute="leading" secondItem="31T-w6-8QS" secondAttribute="trailing" constant="12" id="XlM-1e-fFy"/>
-                                            <constraint firstItem="DTq-AC-by0" firstAttribute="leading" secondItem="2RK-ZO-azt" secondAttribute="trailing" id="ZAi-oZ-Cpl"/>
                                             <constraint firstAttribute="bottom" secondItem="31T-w6-8QS" secondAttribute="bottom" constant="16" id="abH-RJ-V7A">
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
@@ -590,9 +580,8 @@
                                             </constraint>
                                             <constraint firstItem="n1d-y9-jjO" firstAttribute="leading" secondItem="RX0-eo-49i" secondAttribute="trailing" constant="16" id="htY-JY-ET8"/>
                                             <constraint firstItem="31T-w6-8QS" firstAttribute="leading" secondItem="ksG-tJ-74F" secondAttribute="leading" constant="16" id="iY3-qF-15d"/>
-                                            <constraint firstItem="DTq-AC-by0" firstAttribute="centerY" secondItem="2RK-ZO-azt" secondAttribute="centerY" id="jJO-0Z-KxS"/>
                                             <constraint firstItem="RX0-eo-49i" firstAttribute="leading" secondItem="Krr-7E-DFZ" secondAttribute="trailing" constant="16" id="jkD-33-nRK"/>
-                                            <constraint firstItem="C7B-gD-V43" firstAttribute="leading" secondItem="DTq-AC-by0" secondAttribute="trailing" constant="3" id="rec-DH-r74"/>
+                                            <constraint firstItem="C7B-gD-V43" firstAttribute="leading" secondItem="2RK-ZO-azt" secondAttribute="trailing" constant="2" id="n5c-Nj-F1w"/>
                                             <constraint firstItem="n1d-y9-jjO" firstAttribute="centerY" secondItem="sTb-OJ-cqW" secondAttribute="centerY" id="wDL-8t-kP9"/>
                                         </constraints>
                                     </view>
@@ -669,7 +658,6 @@
                         <outlet property="audioDetailButton" destination="Ojh-JK-gvG" id="Bqw-az-HeB"/>
                         <outlet property="buttonImge" destination="g8W-rh-a9P" id="iis-Qc-Gzi"/>
                         <outlet property="currentMinAudio" destination="2RK-ZO-azt" id="CSW-CP-pJ5"/>
-                        <outlet property="currentSecondTime" destination="DTq-AC-by0" id="WWr-fv-tYU"/>
                         <outlet property="footerView" destination="wog-Oh-yno" id="RqU-pP-q2f"/>
                         <outlet property="headerView" destination="ksG-tJ-74F" id="tdC-UO-ONe"/>
                         <outlet property="hightOfWebView" destination="Asl-lS-iE5" id="PcZ-Zk-1le"/>

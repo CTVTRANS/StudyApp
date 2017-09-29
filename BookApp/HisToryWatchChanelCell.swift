@@ -37,15 +37,14 @@ class HistoryWatchChanelCell: UITableViewCell {
         nameLesson.text = lesson.name
         numberChap.text = String(lesson.chapter)
         nameChanel.text = lesson.chanelOwner
-        if lesson.isPlay == 1 {
-            if lesson.pause == 1 {
-                imagePlay.image = #imageLiteral(resourceName: "audio_play")
-            } else {
+        avatar.sd_setImage(with: URL(string: lesson.imageChapURL), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
+        if let chap = MP3Player.shareIntanse.currentAudio as? Lesson {
+            if chap.idChap == lesson.idChap && MP3Player.shareIntanse.isPlaying() {
                 imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+                return
             }
-        } else {
-            imagePlay.image = #imageLiteral(resourceName: "audio_play")
         }
+        imagePlay.image = #imageLiteral(resourceName: "audio_play")
         if let filePath = lesson.imageOffline?.path {
             if FileManager.default.fileExists(atPath: filePath) {
                 do {
@@ -55,7 +54,6 @@ class HistoryWatchChanelCell: UITableViewCell {
             }
             return
         }
-        avatar.sd_setImage(with: URL(string: lesson.imageChapURL), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
     }
     
     @IBAction func pressedPlayChanelButton(_ sender: Any) {

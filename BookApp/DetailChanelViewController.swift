@@ -30,6 +30,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     // MARK: Property Control
     
     var chanel: Chanel!
+    lazy var mp3 = MP3Player.shareIntanse
     private var lessonUploaded = [Lesson]()
     private var loadedListLessonUpload = false
     private var loadedNumberView = false
@@ -133,7 +134,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
                 case "download":
                     self?.pressedDownload(lesson: lesson)
                 case "play":
-                    self?.playAudio(lesson: lesson, current: indexPath.row)
+                    self?.play(lesson: lesson, index: indexPath.row)
                 default :
                     return
                 }
@@ -185,54 +186,39 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         }
     }
     
-    
     // MARK: Play Music
     
-    func playAudio(lesson: Lesson, current: Int) {
-        if lesson.isPlay == 1 {
-            if  Constants.sharedInstance.player?.rate == 1 {
-                lesson.pause = 1
-                Constants.sharedInstance.player?.pause()
-            } else {
-                lesson.pause = 0
-                Constants.sharedInstance.player?.play()
+    func play(lesson: Lesson, index: Int) {
+        if let current = mp3.currentAudio as? Lesson {
+            if lesson.idChap == current.idChap && mp3.isPlaying() {
+                mp3.pause()
+                table.reloadData()
+                return
+            } else if lesson.idChap == current.idChap && !mp3.isPlaying() {
+                mp3.play()
+                table.reloadData()
+                return
             }
-            self.table.reloadData()
-            return
         }
-        Constants.sharedInstance.player = nil
-        lesson.chanelOwner = chanel.nameChanel
+        mp3.track(object: lesson)
+        mp3.didLoadAudio = { [weak self] _, _ in
+            self?.table.reloadData()
+        }
         Constants.sharedInstance.historyViewChanelLesson.append(lesson)
-        if oldlessonPlay != nil {
-            lessonUploaded[(oldlessonPlay!)].isPlay = 0
-            lessonUploaded[(oldlessonPlay!)].pause = 0
-        }
-        oldlessonPlay = current
-        lesson.isPlay = 1
-        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
-        requestWithTask(task: viewed, success: { (data) in
-            if let status = data as? String {
-                if status == "success" {
-                    self.chanel.numberView += 1
-                    let numberView = self.chanel.numberView
-                    self.numberView.text = String(numberView)
-                    self.table.reloadData()
-                }
-            }
-        }) { (_) in
-            
-        }
-        let asset = AVAsset(url: URL(string: lesson.contentURL)!)
-        let keys: [String] = ["audio"]
-        asset.loadValuesAsynchronously(forKeys: keys) {
-            DispatchQueue.main.async {
-                Constants.sharedInstance.playerItem = AVPlayerItem(asset: asset)
-                Constants.sharedInstance.player =
-                    AVPlayer(playerItem:  Constants.sharedInstance.playerItem)
-                Constants.sharedInstance.player?.play()
-            }
-        }
     }
+//        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
+//        requestWithTask(task: viewed, success: { (data) in
+//            if let status = data as? String {
+//                if status == "success" {
+//                    self.chanel.numberView += 1
+//                    let numberView = self.chanel.numberView
+//                    self.numberView.text = String(numberView)
+//                    self.table.reloadData()
+//                }
+//            }
+//        }) { (_) in
+//            
+//        }
     
     // MARK: Button Control
     

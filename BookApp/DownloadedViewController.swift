@@ -14,12 +14,15 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var table: UITableView!
-    var listChanelDownloaded: [Lesson] = []
-    var listBookDownloaded: [Book] = []
+    private var listChanelDownloaded: [Lesson] = []
+    private var listBookDownloaded: [Book] = []
     private var oldlessonPlay: Int?
     private var oldBookPlay: Int?
     private var player: AVPlayer?
     private var playerItem: AVPlayerItem?
+    
+    lazy var mp3 = MP3Player.shareIntanse
+    private var firstShowDownload = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,10 +90,16 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
         let chaneCell = table.dequeueReusableCell(withIdentifier: "chanelCell", for: indexPath) as? HistoryWatchChanelCell
         let lesson = listChanelDownloaded[indexPath.row]
         chaneCell?.binData(lesson: lesson)
+        if mp3.oldIndexListPlay == indexPath.row {
+            chaneCell?.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+        } else {
+            chaneCell?.imagePlay.image = #imageLiteral(resourceName: "audio_play")
+        }
         chaneCell?.callBackButton = { [weak self] (action: String) in
             switch action {
             case "playChanel":
-                self?.playLeesonOfChanel(lesson: lesson, current: indexPath.row)
+//                self?.playLeesonOfChanel(lesson: lesson, current: indexPath.row)
+                self?.play(lesson: lesson, index: indexPath.row)
                 break
             case "removeChanel":
                 self?.listChanelDownloaded.remove(at: indexPath.row)
@@ -111,30 +120,54 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
         table.deselectRow(at: indexPath, animated: true)
     }
     
-    func playLeesonOfChanel(lesson: Lesson, current: Int) {
-        if lesson.isPlay == 1 {
-            if  player?.rate == 1 {
-                lesson.pause = 1
-                player?.pause()
-            } else {
-                lesson.pause = 0
-                player?.play()
+    func play(lesson: Lesson, index: Int) {
+        if firstShowDownload {
+            mp3.currentAudio = nil
+            mp3.oldImdexDownloadlesson = index
+            mp3.track(object: lesson)
+            table.reloadData()
+            firstShowDownload = false
+            mp3.listPlay.append(lesson)
+        }
+        if let current = mp3.currentAudio as? Lesson {
+            if lesson.idChap == current.idChap && mp3.isPlaying() {
+                mp3.pause()
+                mp3.oldImdexDownloadlesson = nil
+                table.reloadData()
+                return
+            } else if lesson.idChap == current.idChap && !mp3.isPlaying() {
+                mp3.play()
+                mp3.oldImdexDownloadlesson = index
+                table.reloadData()
+                return
             }
-            self.table.reloadData()
-            return
         }
-        player = nil
-        if oldlessonPlay != nil {
-            listChanelDownloaded[(oldlessonPlay!)].isPlay = 0
-            listChanelDownloaded[oldlessonPlay!].pause = 0
-        }
-        oldlessonPlay = current
-        lesson.isPlay = 1
-        playerItem = AVPlayerItem(url: lesson.audioOffline)
-        player = AVPlayer(playerItem: playerItem)
-        player?.play()
-        table.reloadData()
     }
+    
+//    func playLeesonOfChanel(lesson: Lesson, current: Int) {
+//        if lesson.isPlay == 1 {
+//            if  player?.rate == 1 {
+//                lesson.pause = 1
+//                player?.pause()
+//            } else {
+//                lesson.pause = 0
+//                player?.play()
+//            }
+//            self.table.reloadData()
+//            return
+//        }
+//        player = nil
+//        if oldlessonPlay != nil {
+//            listChanelDownloaded[(oldlessonPlay!)].isPlay = 0
+//            listChanelDownloaded[oldlessonPlay!].pause = 0
+//        }
+//        oldlessonPlay = current
+//        lesson.isPlay = 1
+//        playerItem = AVPlayerItem(url: lesson.audioOffline)
+//        player = AVPlayer(playerItem: playerItem)
+//        player?.play()
+//        table.reloadData()
+//    }
     
     func pressRemoveBook(book: Book) {
         var listBook: [Book] = Book.getBook()!

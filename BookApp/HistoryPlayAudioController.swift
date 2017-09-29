@@ -14,16 +14,20 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
 
     private var oldObjectPlay: Int?
     @IBOutlet weak var table: UITableView!
-    var listHistory: [AnyObject] = []
-    var downloadImageSuccess = false
-    var downloadAuidosucess = false
+    
+    private lazy var mp3 = MP3Player.shareIntanse
+    private var listHistory: [AnyObject] = []
+//    private var currenIndex: Int?
+    private var downloadImageSuccess = false
+    private var downloadAuidosucess = false
     var asset: AVAsset?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         table.tableFooterView = UIView()
         table.estimatedRowHeight = 140
-        listHistory = Constants.sharedInstance.historyViewAudio
+        listHistory = mp3.listPlay as [AnyObject]
+        mp3.oldIndexListPlay = mp3.getCurrentIndex()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,7 +36,14 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: "HistoryPlayAudioCell", for: indexPath) as? HistoryPlayAudioCell
-        cell?.bindData(historyObject: listHistory[indexPath.row])
+        let row = listHistory.count - 1 - indexPath.row
+        cell?.bindData(historyObject: listHistory[row])
+        if mp3.oldIndexListPlay == row && mp3.isPlaying() {
+            cell?.imagePlay.image = #imageLiteral(resourceName: "pauseList")
+        } else {
+            cell?.imagePlay.image = #imageLiteral(resourceName: "playList")
+        }
+        
         cell?.callBackDownload = { oject in
             if let book = oject as? Book {
                 let download = DownloadViewController()
@@ -45,7 +56,7 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
         }
         
         cell?.callBackPlayAudio = { [weak self] object in
-            self?.playAudio(object: object, current: indexPath.row)
+            self?.playAudio(object: object, current: row)
         }
         return cell!
     }
@@ -75,59 +86,51 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
         }
     }
     
-    func playAudio(object: AnyObject, current: Int) {
-        if (object as? Book) != nil {
-            if (object as? Book)?.isPlay == 1 {
-                if  Constants.sharedInstance.player?.rate == 1 {
-                    (object as? Book)?.pause = 1
-                    Constants.sharedInstance.player?.pause()
-                } else {
-                    (object as? Book)?.pause = 0
-                    Constants.sharedInstance.player?.play()
-                }
-                self.table.reloadData()
+    func playBook(book: Book, index: Int) {
+        if let current = mp3.currentAudio as? Book {
+            if book.idBook == current.idBook && mp3.isPlaying() {
+                mp3.pause()
+                mp3.oldIndexListPlay = nil
+                table.reloadData()
+                return
+            } else if book.idBook == current.idBook && !mp3.isPlaying() {
+                mp3.play()
+                mp3.oldIndexListPlay = index
+                table.reloadData()
                 return
             }
-            Constants.sharedInstance.player = nil
-            if oldObjectPlay != nil {
-                (listHistory[(oldObjectPlay!)] as? Book)?.isPlay = 0
-                (listHistory[(oldObjectPlay!)] as? Book)?.pause = 0
+        }
+        mp3.oldIndexListPlay = index
+        mp3.track(object: book)
+        table.reloadData()
+    }
+    
+    func playLesson(lesson: Lesson, index: Int) {
+        if let current = mp3.currentAudio as? Lesson {
+            if lesson.idChap == current.idChap && mp3.isPlaying() {
+                mp3.pause()
+                mp3.oldIndexListPlay = nil
+                table.reloadData()
+                return
+            } else if lesson.idChap == current.idChap && !mp3.isPlaying() {
+                mp3.play()
+                mp3.oldIndexListPlay = index
+                table.reloadData()
+                return
             }
-            
-            (object as? Book)?.isPlay = 1
-            asset = AVAsset(url: URL(string: ((object as? Book)?.audio)!)!)
+        }
+        mp3.oldIndexListPlay = index
+        mp3.track(object: lesson)
+        table.reloadData()
+    }
+    
+    func playAudio(object: AnyObject, current: Int) {
+        if let book = object as? Book {
+            playBook(book: book, index: current)
         }
         
-        if (object as? Lesson) != nil {
-            if (object as? Lesson)?.isPlay == 1 {
-                if  Constants.sharedInstance.player?.rate == 1 {
-                    (object as? Lesson)?.pause = 1
-                    Constants.sharedInstance.player?.pause()
-                } else {
-                    (object as? Lesson)?.pause = 0
-                    Constants.sharedInstance.player?.play()
-                }
-                self.table.reloadData()
-                return
-            }
-            Constants.sharedInstance.player = nil
-            if oldObjectPlay != nil {
-                (listHistory[(oldObjectPlay!)] as? Lesson)?.isPlay = 0
-                (listHistory[(oldObjectPlay!)] as? Lesson)?.pause = 0
-            }
-           
-            (object as? Lesson)?.isPlay = 1
-            asset = AVAsset(url: URL(string: ((object as? Lesson)?.contentURL)!)!)
-        }
-        oldObjectPlay = current
-        let keys: [String] = ["audio"]
-        asset?.loadValuesAsynchronously(forKeys: keys) {
-            DispatchQueue.main.async {
-                Constants.sharedInstance.playerItem = AVPlayerItem(asset: self.asset!)
-                Constants.sharedInstance.player =
-                    AVPlayer(playerItem:  Constants.sharedInstance.playerItem)
-                Constants.sharedInstance.player?.play()
-            }
+        if let lesson = object as? Lesson {
+            playLesson(lesson: lesson, index: current)
         }
     }
 

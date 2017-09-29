@@ -32,15 +32,14 @@ class ChanelUpLoaeCell: UITableViewCell {
         nameChapter.text = chap.name
         chapter.text = String(chap.chapter)
         avatar.sd_setImage(with: URL(string: chap.imageChapURL), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
-        if chap.isPlay == 1 {
-            if chap.pause == 1 {
-                imagePlay.image = #imageLiteral(resourceName: "audio_play")
-            } else {
+        if let lesson = MP3Player.shareIntanse.currentAudio as? Lesson {
+            if chap.idChap == lesson.idChap && MP3Player.shareIntanse.isPlaying() {
                 imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+                return
             }
-        } else {
-            imagePlay.image = #imageLiteral(resourceName: "audio_play")
         }
+        imagePlay.image = #imageLiteral(resourceName: "audio_play")
+
     }
 
     @IBAction func pressedDowloadLesson(_ sender: Any) {

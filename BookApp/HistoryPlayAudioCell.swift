@@ -37,15 +37,15 @@ class HistoryPlayAudioCell: UITableViewCell {
             object = lesson
             name.text = lesson.name
             descriptionAudio.text = lesson.descriptionChap
-            if lesson.isPlay == 1 {
-                if lesson.pause == 1 {
-                    imagePlay.image = #imageLiteral(resourceName: "playList")
-                } else {
-                    imagePlay.image = #imageLiteral(resourceName: "pauseList")
-                }
-            } else {
-                imagePlay.image = #imageLiteral(resourceName: "playList")
-            }
+//            if lesson.isPlay == 1 {
+//                if lesson.pause == 1 {
+//                    imagePlay.image = #imageLiteral(resourceName: "playList")
+//                } else {
+//                    imagePlay.image = #imageLiteral(resourceName: "pauseList")
+//                }
+//            } else {
+//                imagePlay.image = #imageLiteral(resourceName: "playList")
+//            }
         }
     }
     

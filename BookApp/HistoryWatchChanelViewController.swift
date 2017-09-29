@@ -14,9 +14,12 @@ class HistoryWatchChanelViewController: BaseViewController, UITableViewDataSourc
 
     @IBOutlet weak var table: UITableView!
     var listHistoryLesson: [Lesson] = []
-    private var oldlessonPlay: Int?
-    private var player: AVPlayer?
-    private var playerItem: AVPlayerItem?
+//    private var oldlessonPlay: Int?
+//    private var player: AVPlayer?
+//    private var playerItem: AVPlayerItem?
+    
+//    var firstShowHistory = true
+    lazy var mp3 = MP3Player.shareIntanse
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +27,6 @@ class HistoryWatchChanelViewController: BaseViewController, UITableViewDataSourc
         table.estimatedRowHeight = 140
         table.register(UINib.init(nibName: "HistoryWatchChanelCell", bundle: nil), forCellReuseIdentifier: "cell")
         listHistoryLesson = Constants.sharedInstance.historyViewChanelLesson
-        for historyLesson in listHistoryLesson {
-            historyLesson.isPlay = 0
-            historyLesson.pause = 0
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,19 +43,15 @@ class HistoryWatchChanelViewController: BaseViewController, UITableViewDataSourc
         if let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HistoryWatchChanelCell {
             let lesson = listHistoryLesson[indexPath.row]
             cell.binData(lesson: lesson)
-            if lesson.isPlay == 1 {
-                if lesson.pause == 1 {
-                    cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
-                } else {
-                    cell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
-                }
-            } else {
-                cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
-            }
+//            if mp3.oldIndexHistoryLesson == indexPath.row {
+//                cell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+//            } else {
+//                cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
+//            }
             cell.callBackButton = { [weak self] (action: String) in
                 switch action {
                 case "playChanel":
-                    self?.playLeesonOfChanel(lesson: lesson, current: indexPath.row)
+                    self?.play(lesson: lesson, index: indexPath.row)
                     break
                 case "removeChanel":
                     Constants.sharedInstance.historyViewChanelLesson.remove(at: indexPath.row)
@@ -80,34 +75,25 @@ class HistoryWatchChanelViewController: BaseViewController, UITableViewDataSourc
         table.deselectRow(at: indexPath, animated: true)
     }
     
-    func playLeesonOfChanel(lesson: Lesson, current: Int) {
-        if lesson.isPlay == 1 {
-            if  player?.rate == 1 {
-                lesson.pause = 1
-                player?.pause()
-            } else {
-                lesson.pause = 0
-                player?.play()
-            }
-            self.table.reloadData()
-            return
-        }
-        player = nil
-        if oldlessonPlay != nil {
-            listHistoryLesson[(oldlessonPlay!)].isPlay = 0
-            listHistoryLesson[oldlessonPlay!].pause = 0
-        }
-        oldlessonPlay = current
-        lesson.isPlay = 1
-        let asset = AVAsset(url: URL(string: lesson.contentURL)!)
-        let keys: [String] = ["audio"]
-        asset.loadValuesAsynchronously(forKeys: keys) {
-            DispatchQueue.main.async {
-                self.playerItem = AVPlayerItem(asset: asset)
-                self.player = AVPlayer(playerItem: self.playerItem)
-                self.player?.play()
-                self.table.reloadData()
+    func play(lesson: Lesson, index: Int) {
+        if let current = mp3.currentAudio as? Lesson {
+            if lesson.idChap == current.idChap && mp3.isPlaying() {
+                mp3.pause()
+                table.reloadData()
+                return
+            } else if lesson.idChap == current.idChap && !mp3.isPlaying() {
+                mp3.play()
+                table.reloadData()
+                return
             }
         }
+        mp3.track(object: lesson)
+        mp3.didLoadAudio = { [weak self] _, _ in
+            self?.table.reloadData()
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
