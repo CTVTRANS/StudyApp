@@ -26,7 +26,7 @@ class BaseViewController: UIViewController {
     func setupRightSlideOut() {
         if self.revealViewController() != nil {
             revealViewController().rightViewRevealWidth = 80
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share"), style: .plain, target: self.revealViewController(), action: #selector(revealViewController().rightRevealToggle(_:)))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share_rightBar"), style: .plain, target: self.revealViewController(), action: #selector(revealViewController().rightRevealToggle(_:)))
             self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         }
     }

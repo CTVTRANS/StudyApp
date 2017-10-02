@@ -74,7 +74,8 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let endOftable = table.contentOffset.y >= (table.contentSize.height - table.frame.size.height)
-        if isMoreData && endOftable && !isLoading && !scrollView.isDragging && !scrollView.isDecelerating {
+        if isMoreData && endOftable && !isLoading && !scrollView.isDragging
+            && !scrollView.isDecelerating {
             isLoading = true
             table.tableFooterView = footerView
             indicator?.startAnimating()
@@ -95,7 +96,6 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
                 self.pager += 1
                 if arrayBook.count == 0 {
                     self.isMoreData = false
-                    self.table.tableFooterView = UIView()
                 }
             }
         }) { (error) in
@@ -103,6 +103,5 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
                                   message: error as? String,
                                   preferredStyle: .alert)
         }
-
     }
 }

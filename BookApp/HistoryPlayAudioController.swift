@@ -16,9 +16,6 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
     
     private lazy var mp3 = MP3Player.shareIntanse
     private var listHistory: [AnyObject] = []
-//    private var downloadImageSuccess = false
-//    private var downloadAuidosucess = false
-//    var asset: AVAsset?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,43 +62,17 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
         }
         return cell!
     }
+  
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let index = mp3.listPlay.count - 1 - indexPath.row
+            if index != mp3.oldIndexListPlay || (index == mp3.oldIndexListPlay && !mp3.isPlaying()) {
+                mp3.listPlay.remove(at: index)
+//                table.deleteRows(at: [indexPath], with: .automatic)
+            }
+        }
+    }
     
-    // MARK: Down Load Book
-    
-//    func downloadAudio(book: Book) {
-//        let downloadImage = DownloadTask(path: book.imageURL)
-//        downloadFileSuccess(task: downloadImage, success: { (data) in
-//            if let imageOflline = data as? URL {
-//                self.downloadImageSuccess = true
-//                book.imageOffline = imageOflline
-//                if self.downloadAuidosucess && self.downloadImageSuccess {
-//                    self.saveAudio(book: book)
-//                }
-//            }
-//        }) { (_) in
-//        }
-//        let downloadAudio = DownloadTask(path: book.audio)
-//        downloadFileSuccess(task: downloadAudio, success: { (data) in
-//            if let audioOffline = data as? URL {
-//                self.downloadAuidosucess = true
-//                book.audioOffline = audioOffline
-//                if self.downloadAuidosucess && self.downloadImageSuccess {
-//                    self.saveAudio(book: book)
-//                }
-//            }
-//        }) { (_) in
-//        }
-//    }
-//    
-//    func saveAudio(book: Book) {
-//        var listBookDownaloaed = Book.getBook()
-//        for singleBook in listBookDownaloaed! where singleBook.idBook == book.idBook {
-//            return
-//        }
-//        listBookDownaloaed?.append(book)
-//        Book.saveBook(myBook: listBookDownaloaed!)
-//    }
-//    
     // MARK: Play Audio
     
     func playAudio(object: AnyObject, current: Int) {
@@ -163,7 +134,11 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func pressedDeleteAllMessage(_ sender: Any) {
-        
+        mp3.listPlay.removeAll()
+        if mp3.currentAudio != nil && mp3.isPlaying() {
+            mp3.listPlay.append(mp3.currentAudio!)
+        }
+        table.reloadData()
     }
-    
+    @IBOutlet weak var pressDeleteAll: UIBarButtonItem!
 }

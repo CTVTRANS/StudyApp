@@ -25,6 +25,8 @@ class GetTypeOfBookTask: BaseTaskNetwork {
     
     override func data(withResponse response: Any!) -> Any! {
         var listType = [BookType]()
+        let typeAll = BookType(name: "All", image: " ", typeID: 999, description: "nodata")
+        listType.append(typeAll)
         if let listObject = response as? [[String: Any]] {
             for dictionary in listObject {
                 let nameType = dictionary["cat_name"] as? String ?? "abc"

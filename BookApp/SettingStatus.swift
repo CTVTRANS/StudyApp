@@ -37,17 +37,17 @@ class SettingStatus: BaseDailog {
     }
 
     @IBAction func pressedMarried(_ sender: Any) {
-        dotMarried.backgroundColor = UIColor.white
+        dotSingle.backgroundColor = UIColor.white
         dotSecurity.backgroundColor = UIColor.white
-        dotSingle.backgroundColor = UIColor.rgb(255, 102, 0)
+        dotMarried.backgroundColor = UIColor.rgb(255, 102, 0)
         status = "已婚"
     }
     
     @IBAction func pressSingle(_ sender: Any) {
         dotSecurity.backgroundColor = UIColor.white
-        dotMarried.backgroundColor = UIColor.rgb(255, 102, 0)
-        dotSingle.backgroundColor = UIColor.white
-        status = "已婚"
+        dotSingle.backgroundColor = UIColor.rgb(255, 102, 0)
+        dotMarried.backgroundColor = UIColor.white
+        status = "未婚"
     }
     
     @IBAction func pressedChange(_ sender: Any) {

@@ -140,7 +140,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVS-aN-7ER">
                                     <rect key="frame" x="0.0" y="0.0" width="254" height="40"/>
                                     <connections>
-                                        <action selector="pressMale:" destination="iN0-l3-epB" eventType="touchUpInside" id="EUe-G9-d6T"/>
+                                        <action selector="pressedFemale:" destination="iN0-l3-epB" eventType="touchUpInside" id="m6C-1Z-ZD0"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -206,7 +206,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgh-ML-7Rp">
                                     <rect key="frame" x="0.0" y="0.0" width="254" height="40"/>
                                     <connections>
-                                        <action selector="pressedFemale:" destination="iN0-l3-epB" eventType="touchUpInside" id="QsA-4X-Gbu"/>
+                                        <action selector="pressMale:" destination="iN0-l3-epB" eventType="touchUpInside" id="unW-c2-oSJ"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -276,11 +276,11 @@
             </constraints>
             <connections>
                 <outlet property="circeSecurity" destination="oO7-qL-X0E" id="qzp-M8-yEm"/>
-                <outlet property="circelFemale" destination="1l8-XN-mQh" id="yS4-kv-Bna"/>
-                <outlet property="circelMale" destination="jww-PA-nXT" id="Yjr-Wo-weB"/>
+                <outlet property="circelFemale" destination="jww-PA-nXT" id="Qa4-LG-Z06"/>
+                <outlet property="circelMale" destination="1l8-XN-mQh" id="Iqa-pB-qMi"/>
                 <outlet property="contenView" destination="M13-NI-JSh" id="sCi-Tx-BqP"/>
-                <outlet property="dotFemale" destination="vfm-nd-26u" id="Duf-Eg-evw"/>
-                <outlet property="dotMale" destination="QtQ-f3-Vr5" id="JwH-ln-dvH"/>
+                <outlet property="dotFemale" destination="QtQ-f3-Vr5" id="5oD-UM-mmL"/>
+                <outlet property="dotMale" destination="vfm-nd-26u" id="aWd-IZ-xea"/>
                 <outlet property="dotSecurity" destination="fjJ-ea-bbW" id="PDq-JE-9W4"/>
             </connections>
         </view>

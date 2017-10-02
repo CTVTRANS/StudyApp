@@ -23,6 +23,8 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var newestBookTimeUp: UILabel!
     @IBOutlet weak var newestBookNumberView: UILabel!
     
+    // MARK: Property
+    
     private var bookTypeArray = [BookType]()
     private var suggestArray = [Book]()
     private var freeArray = [Book]()
@@ -30,6 +32,8 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     private var loadedTypeBook: Bool = false
     private var loadedBookSuggest: Bool = false
     private var loadefBookFree: Bool = false
+    
+    // MARK: Setup Slider Show
     
     private var listSlider: [SliderShow] = []
     @IBOutlet weak var sliderShow: FSPagerView! {
@@ -89,7 +93,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-    // MARK: Get Type Book
+    // MARK: Get Type Books
     
     func getTypeBook() {
         let getTypeTask: GetTypeOfBookTask = GetTypeOfBookTask()

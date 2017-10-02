@@ -45,18 +45,9 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNo-Yf-fwG">
-                    <rect key="frame" x="16" y="11" width="22" height="22"/>
+                    <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="22" id="Rxg-gr-THe">
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
-                            </userDefinedRuntimeAttributes>
-                        </constraint>
-                        <constraint firstAttribute="height" constant="22" id="xbM-gU-30y">
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
-                            </userDefinedRuntimeAttributes>
-                        </constraint>
+                        <constraint firstAttribute="width" constant="50" id="Zmj-dq-C8e"/>
                     </constraints>
                     <connections>
                         <action selector="pressedBack:" destination="-1" eventType="touchUpInside" id="cvJ-yz-3dj"/>
@@ -209,6 +200,7 @@
                 <constraint firstItem="cD1-hC-Goj" firstAttribute="centerY" secondItem="XNo-Yf-fwG" secondAttribute="centerY" id="B12-qz-aHh"/>
                 <constraint firstItem="HZk-0j-pVE" firstAttribute="leading" secondItem="4L5-bP-bwf" secondAttribute="trailing" constant="12" id="DB5-HU-Iro"/>
                 <constraint firstItem="wzz-j5-KpS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="GrN-7L-I8K"/>
+                <constraint firstAttribute="bottom" secondItem="XNo-Yf-fwG" secondAttribute="bottom" id="H4Z-CE-NxP"/>
                 <constraint firstItem="HZk-0j-pVE" firstAttribute="leading" secondItem="ZtJ-Db-pBK" secondAttribute="trailing" constant="12" id="Hdt-Jw-PaI"/>
                 <constraint firstItem="689-WD-yPe" firstAttribute="width" secondItem="cD1-hC-Goj" secondAttribute="width" constant="23" id="Hpe-VJ-VVr"/>
                 <constraint firstItem="ZtJ-Db-pBK" firstAttribute="leading" secondItem="jQ3-is-Rf0" secondAttribute="trailing" constant="12" id="Iq1-hI-XND"/>
@@ -218,6 +210,7 @@
                 <constraint firstItem="XNo-Yf-fwG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Odo-Xo-FcW"/>
                 <constraint firstItem="689-WD-yPe" firstAttribute="centerY" secondItem="XNo-Yf-fwG" secondAttribute="centerY" id="PCk-2A-Cyw"/>
                 <constraint firstItem="3VP-Nq-hap" firstAttribute="centerY" secondItem="XNo-Yf-fwG" secondAttribute="centerY" id="PaU-W0-A7E"/>
+                <constraint firstItem="XNo-Yf-fwG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RIc-fx-EzW"/>
                 <constraint firstItem="hAm-YT-Umc" firstAttribute="leading" secondItem="x3k-sf-JK0" secondAttribute="trailing" constant="3" id="Rqc-0u-lRd"/>
                 <constraint firstItem="4L5-bP-bwf" firstAttribute="centerY" secondItem="XNo-Yf-fwG" secondAttribute="centerY" id="Tsa-Pp-sc6"/>
                 <constraint firstItem="cD1-hC-Goj" firstAttribute="leading" secondItem="yKx-Ch-rFW" secondAttribute="trailing" constant="3" id="UfC-0X-0N2"/>

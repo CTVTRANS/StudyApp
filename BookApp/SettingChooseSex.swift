@@ -11,13 +11,13 @@ import UIKit
 class SettingChooseSex: BaseDailog {
     
     @IBOutlet weak var circeSecurity: UIView!
-    @IBOutlet weak var circelMale: UIView!
     @IBOutlet weak var circelFemale: UIView!
-    
+    @IBOutlet weak var circelMale: UIView!
+
     @IBOutlet weak var dotSecurity: UIView!
-    @IBOutlet weak var dotMale: UIView!
     @IBOutlet weak var dotFemale: UIView!
-    
+    @IBOutlet weak var dotMale: UIView!
+
     var sex: String = "保密"
     var calBack:((_ sex: String) -> Void) = {_ in}
 
@@ -35,18 +35,18 @@ class SettingChooseSex: BaseDailog {
         dotFemale.backgroundColor = UIColor.white
         sex = "保密"
     }
-   
-    @IBAction func pressMale(_ sender: Any) {
-        dotMale.backgroundColor = UIColor.white
-        dotSecurity.backgroundColor = UIColor.white
-        dotFemale.backgroundColor = UIColor.rgb(255, 102, 0)
-        sex = "男"
-    }
     
     @IBAction func pressedFemale(_ sender: Any) {
         dotSecurity.backgroundColor = UIColor.white
-        dotMale.backgroundColor = UIColor.rgb(255, 102, 0)
+        dotFemale.backgroundColor = UIColor.rgb(255, 102, 0)
+        dotMale.backgroundColor = UIColor.white
+        sex = "男"
+    }
+    
+    @IBAction func pressMale(_ sender: Any) {
         dotFemale.backgroundColor = UIColor.white
+        dotSecurity.backgroundColor = UIColor.white
+        dotMale.backgroundColor = UIColor.rgb(255, 102, 0)
         sex = "女"
     }
 

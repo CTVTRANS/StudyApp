@@ -31,6 +31,7 @@
 		6D2787871F68CC110087D04D /* ListBookFreee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2787851F68CC110087D04D /* ListBookFreee.swift */; };
 		6D2787881F68CC110087D04D /* ListBookFreee.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2787861F68CC110087D04D /* ListBookFreee.xib */; };
 		6D27878A1F68CE7F0087D04D /* HistoryBuyProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2787891F68CE7F0087D04D /* HistoryBuyProductController.swift */; };
+		6D2F789A1F8227DB005B9CC2 /* DFYaSongGB5Std-W9.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F78991F8227DB005B9CC2 /* DFYaSongGB5Std-W9.otf */; };
 		6D380FAC1F7CE94C00905F00 /* MP3Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D380FAB1F7CE94C00905F00 /* MP3Player.swift */; };
 		6D87DCAF1F5405D500269351 /* GetAllBookSuggestTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D87DCAE1F5405D500269351 /* GetAllBookSuggestTask.swift */; };
 		6D87DCB21F5411E600269351 /* Global.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D87DCB11F5411E600269351 /* Global.storyboard */; };
@@ -159,6 +160,7 @@
 		6DF59A581F624CA7007DFB85 /* ShowAllActivityGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF59A571F624CA7007DFB85 /* ShowAllActivityGroupController.swift */; };
 		6DF5C2A11F57CD4D00A89363 /* ListBookFreeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5C2A01F57CD4D00A89363 /* ListBookFreeController.swift */; };
 		6DF6462F1F81D0B5004F47C2 /* DownloadAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6462E1F81D0B5004F47C2 /* DownloadAudioController.swift */; };
+		6DF646311F81FE72004F47C2 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF646301F81FE72004F47C2 /* VideoPlayerView.swift */; };
 		6DF6698F1F5819CF00FBC8A7 /* GetCommentHot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6698E1F5819CF00FBC8A7 /* GetCommentHot.swift */; };
 		6DF669911F581DB100FBC8A7 /* SpecialComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF669901F581DB100FBC8A7 /* SpecialComment.swift */; };
 		6DF702EE1F61008400FAF762 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF702ED1F61008400FAF762 /* Profile.storyboard */; };
@@ -214,6 +216,7 @@
 		6D2787851F68CC110087D04D /* ListBookFreee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListBookFreee.swift; sourceTree = "<group>"; };
 		6D2787861F68CC110087D04D /* ListBookFreee.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListBookFreee.xib; sourceTree = "<group>"; };
 		6D2787891F68CE7F0087D04D /* HistoryBuyProductController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryBuyProductController.swift; sourceTree = "<group>"; };
+		6D2F78991F8227DB005B9CC2 /* DFYaSongGB5Std-W9.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DFYaSongGB5Std-W9.otf"; sourceTree = "<group>"; };
 		6D380FAB1F7CE94C00905F00 /* MP3Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP3Player.swift; sourceTree = "<group>"; };
 		6D87DCAE1F5405D500269351 /* GetAllBookSuggestTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAllBookSuggestTask.swift; sourceTree = "<group>"; };
 		6D87DCB11F5411E600269351 /* Global.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Global.storyboard; sourceTree = "<group>"; };
@@ -346,6 +349,7 @@
 		6DF59A571F624CA7007DFB85 /* ShowAllActivityGroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAllActivityGroupController.swift; sourceTree = "<group>"; };
 		6DF5C2A01F57CD4D00A89363 /* ListBookFreeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListBookFreeController.swift; sourceTree = "<group>"; };
 		6DF6462E1F81D0B5004F47C2 /* DownloadAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadAudioController.swift; sourceTree = "<group>"; };
+		6DF646301F81FE72004F47C2 /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		6DF6698E1F5819CF00FBC8A7 /* GetCommentHot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCommentHot.swift; sourceTree = "<group>"; };
 		6DF669901F581DB100FBC8A7 /* SpecialComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialComment.swift; sourceTree = "<group>"; };
 		6DF702ED1F61008400FAF762 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -462,6 +466,7 @@
 				6DF889291F41869B005F72D7 /* TopViewShare.xib */,
 				6D07667B1F6F6B3100097D8B /* CustomHistorySearch.swift */,
 				6D0766791F6F6AFB00097D8B /* CustomHistorySearch.xib */,
+				6DF646301F81FE72004F47C2 /* VideoPlayerView.swift */,
 			);
 			name = CustomNavigation;
 			sourceTree = "<group>";
@@ -777,6 +782,7 @@
 		6DF727951F55500700E0D242 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				6D2F78991F8227DB005B9CC2 /* DFYaSongGB5Std-W9.otf */,
 				6DF727961F55505600E0D242 /* CSong3HK-Medium.ttf */,
 				6DF727971F55505600E0D242 /* DFHeiStd-W5.otf */,
 				6DF727981F55505600E0D242 /* DFHeiStd-W7.otf */,
@@ -886,6 +892,7 @@
 				6DEEF0011F612C8F0078EEE1 /* BookDownloadCell.xib in Resources */,
 				6DF1D7941F7B38D70075F26C /* SettingChooseSex.xib in Resources */,
 				58C39DC51F3C0489001741EB /* LaunchScreen.storyboard in Resources */,
+				6D2F789A1F8227DB005B9CC2 /* DFYaSongGB5Std-W9.otf in Resources */,
 				6DF702EE1F61008400FAF762 /* Profile.storyboard in Resources */,
 				58C39DE21F3C5662001741EB /* BottomView.xib in Resources */,
 				6DF889261F418496005F72D7 /* Chanel.storyboard in Resources */,
@@ -1023,6 +1030,7 @@
 				6DF2FD7F1F5D617E0004CF04 /* CheckLikedTask.swift in Sources */,
 				6DE9229E1F676F2700EE24EC /* ProfileMember.swift in Sources */,
 				6DF808EC1F627A9200608770 /* ActivityGroupCell.swift in Sources */,
+				6DF646311F81FE72004F47C2 /* VideoPlayerView.swift in Sources */,
 				6DF4DF611F6A7D6500F46CA6 /* ChangeProfileViewController.swift in Sources */,
 				6DF59A581F624CA7007DFB85 /* ShowAllActivityGroupController.swift in Sources */,
 				6DEB9BF31F6BC4DE00D858B3 /* Vip.swift in Sources */,

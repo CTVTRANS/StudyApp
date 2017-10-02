@@ -71,7 +71,6 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
             return
         }
         mp3.currentAudio = nil
-//        mp3.resetIndex()
         mp3.player?.pause()
         mp3.player = nil
     }
@@ -79,7 +78,12 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     func loadAudio() {
         mp3.track(object: book!, types: TypePlay.onLine)
         mp3.didLoadAudio = { [weak self] timeFloat, timeString in
-            self?.sliderBar.maximumValue = timeFloat
+            if Constants.sharedInstance.memberProfile != nil &&
+                (Constants.sharedInstance.memberProfile?.level)! >= 0 {
+                self?.sliderBar.maximumValue = timeFloat
+            } else {
+                self?.sliderBar.maximumValue = Float(90)
+            }
             self?.totalTimeAudio.text = timeString
             self?.playerOvserver()
         }
@@ -119,12 +123,6 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     func customSliderBar() {
         sliderBar.minimumValue = 0.0
         sliderBar.value = 0.0
-        if Constants.sharedInstance.memberProfile != nil &&
-            (Constants.sharedInstance.memberProfile?.level)! >= 0 {
-            sliderBar.maximumValue = Float(totalTime!)
-        } else {
-             sliderBar.maximumValue = Float(90)
-        }
         sliderBar.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)
         sliderBar.minimumTrackTintColor = UIColor.rgb(255, 106, 6)
         sliderBar.addTarget(self, action: #selector(playbackSliderValueChanged(_:)), for: .valueChanged)

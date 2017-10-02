@@ -43,6 +43,11 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     func setupUI() {
         if let news = object as? NewsModel {
             titleComment.text = news.title
@@ -58,8 +63,8 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     }
     
     func getCommet() {
-        let getCommentHot: GetCommentHot = GetCommentHot(commentType: commentType!,
-                                                         idObject: idObject!)
+        let getCommentHot: GetCommentHot =
+            GetCommentHot(commentType: commentType!, idObject: idObject!)
         requestWithTask(task: getCommentHot, success: { (data) in
             if let arrayCommentHot = data as? [Comment] {
                 if arrayCommentHot.count > 0 {
@@ -67,7 +72,6 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                     self.arrayObject.append(hotComment)
                 }
             }
-            
             let getComment: GetAllComment = GetAllComment(commentType: self.commentType!,
                                                           idObject: self.idObject!,
                                                           page: 1)
@@ -77,7 +81,6 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                         let normalComment: SpecialComment = SpecialComment(name: "最新", array: arrayOfComment)
                         self.arrayObject.append(normalComment)
                         self.table.reloadData()
-
                     }
                     self.stopActivityIndicator()
                 }
@@ -96,10 +99,7 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
+    // MARK: Table Data Source
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view: UIView = UIView(frame: CGRect(x: 0, y: 0, width: table.frame.size.width, height: 30))
@@ -126,6 +126,8 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         return arrayObject[section].comment.count
     }
     
+    // MARK: Table Delegate
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell
         let sectionObject = arrayObject[indexPath.section]
@@ -145,7 +147,6 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         }) { (_) in
             
         }
-        
         cell?.pressLikeComment = { [weak self] in
             let likeComment: LikeTask = LikeTask(likeType: Object.comment.rawValue,
                                                  memberID: 1,
@@ -173,6 +174,8 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         return UITableViewAutomaticDimension
     }
 
+    // MARK: Button Control
+    
     @IBAction func pressedBackButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -194,6 +197,8 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
             
         }
     }
+    
+    // MARK: Keyboard Control
    
     @objc func keyboardNotification(notification1: NSNotification) {
         if let userInfo = notification1.userInfo {

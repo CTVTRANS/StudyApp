@@ -15,13 +15,18 @@ class BookTextController: BaseViewController, UIWebViewDelegate {
     @IBOutlet weak var webview: UIWebView!
     @IBOutlet weak var scroll: UIScrollView!
     var book: Book?
+    var content: String!
     
     @IBOutlet weak var textDetailButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: UIApplication.shared.keyWindow!)
         textDetailButton.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
-        let content: String = css + (book?.content)!
+        if Constants.sharedInstance.memberProfile == nil || Constants.sharedInstance.memberProfile?.level == 0 {
+            content = css + limitText()
+        } else {
+            content = css + (book?.content)!
+        }
         webview.loadHTMLString(content, baseURL: nil)
         webview.delegate = self
         webview.scrollView.isScrollEnabled = false
@@ -39,6 +44,18 @@ class BookTextController: BaseViewController, UIWebViewDelegate {
             vc.product = book
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    func limitText() -> String {
+        if let content = book?.content {
+            if content.characters.count < 600 {
+                return content
+            }
+            let index = content.index(content.startIndex, offsetBy: 700)
+            let newContent = content.substring(to: index)
+            return newContent
+        }
+        return " "
     }
     
     deinit {

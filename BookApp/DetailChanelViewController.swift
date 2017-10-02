@@ -209,13 +209,14 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     
     func addToHistory(lesson: Lesson) {
         var checkLessonExist = false
-        for singleLesson in Constants.sharedInstance.historyViewChanelLesson {
-            if singleLesson.idChap == lesson.idChap {
-                checkLessonExist = true
-            }
+        for singleLesson in Constants.sharedInstance.historyViewChanelLesson where singleLesson.idChap == lesson.idChap {
+            checkLessonExist = true
         }
         if !checkLessonExist {
              Constants.sharedInstance.historyViewChanelLesson.append(lesson)
+            
+        } else {
+            checkLessonExist = false
         }
     }
     

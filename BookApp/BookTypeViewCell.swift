@@ -16,6 +16,6 @@ class BookTypeViewCell: UICollectionViewCell {
     
     func binData(typeBook: BookType) {
         title.text = typeBook.name
-        image.sd_setImage(with: URL(string: typeBook.imageURL))
+        image.sd_setImage(with: URL(string: typeBook.imageURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
     }
 }

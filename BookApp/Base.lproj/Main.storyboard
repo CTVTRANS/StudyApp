@@ -314,17 +314,9 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTB-rS-kre">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="80"/>
-                                                <connections>
-                                                    <action selector="loadMore:" destination="A3S-OK-01M" eventType="touchUpInside" id="brl-FY-s5z"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="xuK-QD-XXF" secondAttribute="trailing" id="C4O-4e-v15"/>
-                                            <constraint firstAttribute="bottom" secondItem="cTB-rS-kre" secondAttribute="bottom" id="I8a-Pw-xgW"/>
-                                            <constraint firstItem="cTB-rS-kre" firstAttribute="leading" secondItem="djf-Ev-wTJ" secondAttribute="leading" id="LEr-dp-mjO"/>
                                             <constraint firstItem="IEo-Il-7e0" firstAttribute="centerY" secondItem="xuK-QD-XXF" secondAttribute="centerY" id="NbO-y6-mLe"/>
                                             <constraint firstItem="xuK-QD-XXF" firstAttribute="centerY" secondItem="djf-Ev-wTJ" secondAttribute="centerY" id="SQo-Wm-ddz"/>
                                             <constraint firstItem="xuK-QD-XXF" firstAttribute="leading" secondItem="IEo-Il-7e0" secondAttribute="trailing" constant="16" id="VEe-7X-sD9"/>
@@ -338,8 +330,6 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </constraint>
-                                            <constraint firstAttribute="trailing" secondItem="cTB-rS-kre" secondAttribute="trailing" id="c2G-CA-lYH"/>
-                                            <constraint firstItem="cTB-rS-kre" firstAttribute="top" secondItem="djf-Ev-wTJ" secondAttribute="top" id="u3o-CM-4Cd"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -356,6 +346,12 @@
                                     <constraint firstItem="qdz-0o-bZd" firstAttribute="leading" secondItem="GDQ-dH-YTZ" secondAttribute="leading" id="hEF-na-gon"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTB-rS-kre">
+                                <rect key="frame" x="0.0" y="617" width="320" height="80"/>
+                                <connections>
+                                    <action selector="loadMore:" destination="A3S-OK-01M" eventType="touchUpInside" id="brl-FY-s5z"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tiv-sF-NhB">
                                 <rect key="frame" x="161" y="64" width="159" height="36"/>
                                 <constraints>
@@ -410,6 +406,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cTB-rS-kre" firstAttribute="leading" secondItem="w47-WZ-MaH" secondAttribute="leading" id="8J2-Ex-MUR"/>
                             <constraint firstItem="Z9i-6q-x6c" firstAttribute="top" secondItem="bBU-eH-7HV" secondAttribute="bottom" constant="8" id="Bhe-au-auA"/>
                             <constraint firstAttribute="trailing" secondItem="bBU-eH-7HV" secondAttribute="trailing" id="Dfe-M0-4sb"/>
                             <constraint firstItem="Z9i-6q-x6c" firstAttribute="leading" secondItem="MuN-rI-Z9N" secondAttribute="trailing" id="LBw-hM-20O"/>
@@ -420,6 +417,7 @@
                             <constraint firstItem="bBU-eH-7HV" firstAttribute="leading" secondItem="w47-WZ-MaH" secondAttribute="leading" id="TWp-8l-p7i"/>
                             <constraint firstItem="GDQ-dH-YTZ" firstAttribute="top" secondItem="Fyu-6e-RE4" secondAttribute="bottom" id="XV3-HR-ucE"/>
                             <constraint firstAttribute="trailing" secondItem="GDQ-dH-YTZ" secondAttribute="trailing" id="ZAU-uC-v32"/>
+                            <constraint firstAttribute="trailing" secondItem="cTB-rS-kre" secondAttribute="trailing" id="cpH-7Z-Sds"/>
                             <constraint firstItem="Tiv-sF-NhB" firstAttribute="top" secondItem="bBU-eH-7HV" secondAttribute="bottom" id="dx0-7c-nuT"/>
                             <constraint firstItem="8h3-od-Bpy" firstAttribute="top" secondItem="GDQ-dH-YTZ" secondAttribute="bottom" id="h2V-1G-DEw"/>
                             <constraint firstItem="Fyu-6e-RE4" firstAttribute="leading" secondItem="NYQ-tI-PE5" secondAttribute="leading" id="hic-90-31d"/>
@@ -428,7 +426,9 @@
                             <constraint firstItem="NYQ-tI-PE5" firstAttribute="top" secondItem="MuN-rI-Z9N" secondAttribute="bottom" id="lci-B6-CRT"/>
                             <constraint firstItem="bBU-eH-7HV" firstAttribute="top" secondItem="w47-WZ-MaH" secondAttribute="top" id="rvx-LQ-dF6"/>
                             <constraint firstItem="Tiv-sF-NhB" firstAttribute="leading" secondItem="Z9i-6q-x6c" secondAttribute="trailing" id="s8a-1Y-BAL"/>
+                            <constraint firstItem="8h3-od-Bpy" firstAttribute="top" secondItem="cTB-rS-kre" secondAttribute="bottom" id="tC8-Gr-yHN"/>
                             <constraint firstAttribute="trailing" secondItem="Tiv-sF-NhB" secondAttribute="trailing" id="xXd-QU-kFc"/>
+                            <constraint firstItem="cTB-rS-kre" firstAttribute="height" secondItem="djf-Ev-wTJ" secondAttribute="height" id="xaR-cS-FAW"/>
                             <constraint firstAttribute="trailing" secondItem="NYQ-tI-PE5" secondAttribute="trailing" id="zCg-Is-pPw"/>
                         </constraints>
                     </view>
@@ -445,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cAL-Bo-Rug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1232" y="717"/>
+            <point key="canvasLocation" x="1231.875" y="716.19718309859161"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="rJF-fR-WH8">
@@ -1164,8 +1164,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="120"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学致用书院" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgd-Mz-ugv">
-                                        <rect key="frame" x="0.0" y="40" width="160" height="20"/>
-                                        <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="20"/>
+                                        <rect key="frame" x="0.0" y="38.5" width="160" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
