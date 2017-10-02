@@ -29,7 +29,7 @@ class ShowAllActivityGroupController: BaseViewController, UITableViewDelegate, U
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "分會圈子", style: .done, target: self, action: #selector(pressRightBarButton))
-        addButton.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        addButton.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
     }
     
 //    override func viewWillAppear(_ animated: Bool) {

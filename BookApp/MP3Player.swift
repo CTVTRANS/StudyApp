@@ -15,28 +15,31 @@ class MP3Player: NSObject {
     private var playerItem: AVPlayerItem?
     var listPlay: [AnyObject] = []
     var currentAudio: AnyObject?
-    
-    var oldIndexlesson: Int?
     var oldIndexListPlay: Int?
-    var oldIndexHistoryLesson: Int?
-    var oldImdexDownloadlesson: Int?
     
     static let shareIntanse = MP3Player()
     var didLoadAudio:((_ time: Float, _ timeSting: String) -> Void) = {_ in}
     
-    func track(object: AnyObject) {
+    func track(object: AnyObject, types: TypePlay) {
         if let book = object as? Book {
-            playBook(audio: book)
+            playBook(audio: book, type: types)
             addBookListPlay(newBook: book)
         }
         
         if let lesson = object as? Lesson {
-            playLesson(audio: lesson)
+            playLesson(audio: lesson, type: types)
             addLeesonListPlay(newLesson: lesson)
         }
     }
     
-    func playBook(audio: Book) {
+    func playBook(audio: Book, type: TypePlay) {
+        if type == TypePlay.offLine {
+            currentAudio = audio
+            player = AVPlayer(url: audio.audioOffline!)
+            play()
+            self.didLoadAudio(0.0, " ")
+            return
+        }
         if let book = currentAudio as? Book {
             if book.idBook == audio.idBook {
                 return
@@ -55,7 +58,14 @@ class MP3Player: NSObject {
         }
     }
     
-    func playLesson(audio: Lesson) {
+    func playLesson(audio: Lesson, type: TypePlay) {
+        if type == TypePlay.offLine {
+            currentAudio = audio
+            player = AVPlayer(url: audio.audioOffline)
+            play()
+            self.didLoadAudio(0.0, " ")
+            return
+        }
         if let lesson = currentAudio as? Lesson {
             if lesson.idChap == audio.idChap {
                 return
@@ -169,12 +179,5 @@ class MP3Player: NSObject {
         let totalTime = CMTimeGetSeconds(duration!)
         let timeFloat = Float(totalTime)
         return timeFloat
-    }
-    
-    func resetIndex() {
-        oldIndexListPlay = nil
-        oldImdexDownloadlesson = nil
-        oldIndexlesson = nil
-        oldIndexHistoryLesson = nil
     }
 }

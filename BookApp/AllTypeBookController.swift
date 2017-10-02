@@ -19,10 +19,10 @@ class AllTypeBookController: TYTabPagerController {
         
         self.tabBar.layout.barStyle = TYPagerBarStyle.progressView
         self.tabBar.layout.animateDuration = 0.2
-        self.tabBar.backgroundColor = UIColor.rgb(red: 241, green: 241, blue: 241)
-        self.tabBar.layout.progressColor = UIColor.rgb(red: 255, green: 102, blue: 0)
-        self.tabBar.layout.progressBorderColor = UIColor.rgb(red: 255, green: 102, blue: 0)
-        self.tabBar.layout.selectedTextColor = UIColor.rgb(red: 255, green: 102, blue: 0)
+        self.tabBar.backgroundColor = UIColor.rgb(241, 241, 241)
+        self.tabBar.layout.progressColor = UIColor.rgb(255, 102, 0)
+        self.tabBar.layout.progressBorderColor = UIColor.rgb(255, 102, 0)
+        self.tabBar.layout.selectedTextColor = UIColor.rgb(255, 102, 0)
         self.tabBar.layout.cellSpacing = 0
         self.scrollToController(at: startIndex, animate: false)
         self.dataSource = self

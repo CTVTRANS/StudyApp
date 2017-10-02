@@ -44,7 +44,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     }
     
     func loadWebView() {
-        audioDetailButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
+        audioDetailButton.layer.borderColor = UIColor.rgb(255, 101, 0).cgColor
         imageBook.sd_setImage(with: URL(string: (book?.imageURL)!), placeholderImage: #imageLiteral(resourceName: "place_holder"))
         web.delegate = self
         let content = css + (book?.descriptionBook)!
@@ -54,25 +54,30 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     
     func checkAudio() {
         if let currentBook = mp3.currentAudio as? Book {
-            if currentBook.idBook == book?.idBook && mp3.isPlaying() {
-                buttonImge.image = #imageLiteral(resourceName: "audio_pause")
-            } else if currentBook.idBook == book?.idBook && !mp3.isPlaying() {
-                buttonImge.image = #imageLiteral(resourceName: "audio_play")
-            }
-            playerOvserver()
             sliderBar.value = mp3.getCurrentTime().0
             currentMinAudio.text = mp3.getCurrentTime().1
             totalTimeAudio.text = mp3.getTotalTimeString()
+            if currentBook.idBook == book?.idBook && mp3.isPlaying() {
+                buttonImge.image = #imageLiteral(resourceName: "audio_pause")
+                playerOvserver()
+            } else if currentBook.idBook == book?.idBook && !mp3.isPlaying() {
+                buttonImge.image = #imageLiteral(resourceName: "audio_play")
+                playerOvserver()
+            } else {
+                sliderBar.value = 0.0
+                currentMinAudio.text = "00:00"
+                totalTimeAudio.text = mp3.getTotalTimeString()
+            }
             return
         }
         mp3.currentAudio = nil
-        mp3.resetIndex()
+//        mp3.resetIndex()
         mp3.player?.pause()
         mp3.player = nil
     }
     
     func loadAudio() {
-        mp3.track(object: book!)
+        mp3.track(object: book!, types: TypePlay.onLine)
         mp3.didLoadAudio = { [weak self] timeFloat, timeString in
             self?.sliderBar.maximumValue = timeFloat
             self?.totalTimeAudio.text = timeString
@@ -121,7 +126,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
              sliderBar.maximumValue = Float(90)
         }
         sliderBar.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)
-        sliderBar.minimumTrackTintColor = UIColor.rgb(red: 255, green: 106, blue: 6)
+        sliderBar.minimumTrackTintColor = UIColor.rgb(255, 106, 6)
         sliderBar.addTarget(self, action: #selector(playbackSliderValueChanged(_:)), for: .valueChanged)
     }
     
@@ -131,17 +136,9 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
         mp3.player?.seek(to: targetTime)
     }
     
-    func videoDidStart(note: NSNotification) {
-        if  Constants.sharedInstance.player?.rate == 0 {
-            print("pause video")
-        } else {
-            print("start video")
-        }
-    }
-    
     @IBAction func pressPlay(_ sender: Any) {
         loadAudio()
-        if !mp3.isPlaying() {
+        if buttonImge.image == #imageLiteral(resourceName: "audio_play") {
             mp3.play()
             buttonImge.image = #imageLiteral(resourceName: "audio_pause")
         } else {

@@ -65,7 +65,7 @@ class CustomHistorySearch: UIView {
             
             button.titleLabel!.font = UIFont(name: "DFHeiStd-W5", size: sizeFont)
             button.setTitleColor(.black, for: .normal)
-            button.layer.borderColor = UIColor.rgb(red: 201, green: 201, blue: 201).cgColor
+            button.layer.borderColor = UIColor.rgb(201, 201, 201).cgColor
             let widthButton = (button.titleLabel?.intrinsicContentSize.width)! + 20
             let heightButton = (button.titleLabel?.intrinsicContentSize.height)! + 8
             height = heightButton

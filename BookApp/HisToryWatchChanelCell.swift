@@ -25,8 +25,8 @@ class HistoryWatchChanelCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        playChanelButton.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
-        removeChanelButton.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        playChanelButton.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
+        removeChanelButton.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
     }
     
@@ -41,10 +41,12 @@ class HistoryWatchChanelCell: UITableViewCell {
         if let chap = MP3Player.shareIntanse.currentAudio as? Lesson {
             if chap.idChap == lesson.idChap && MP3Player.shareIntanse.isPlaying() {
                 imagePlay.image = #imageLiteral(resourceName: "audio_pause")
-                return
+            } else {
+                imagePlay.image = #imageLiteral(resourceName: "audio_play")
             }
+        } else {
+             imagePlay.image = #imageLiteral(resourceName: "audio_play")
         }
-        imagePlay.image = #imageLiteral(resourceName: "audio_play")
         if let filePath = lesson.imageOffline?.path {
             if FileManager.default.fileExists(atPath: filePath) {
                 do {
@@ -63,5 +65,4 @@ class HistoryWatchChanelCell: UITableViewCell {
     @IBAction func pressedRemoveChanelButton(_ sender: Any) {
         self.callBackButton!("removeChanel")
     }
-
 }

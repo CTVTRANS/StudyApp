@@ -70,8 +70,8 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     // MARK: UI
     
     func setupUI() {
-        downloadAllButton.layer.borderColor = UIColor.rgb(red: 254, green: 153, blue: 0).cgColor
-        subcribedTeacher.layer.borderColor = UIColor.rgb(red: 254, green: 153, blue: 0).cgColor
+        downloadAllButton.layer.borderColor = UIColor.rgb(254, 153, 0).cgColor
+        subcribedTeacher.layer.borderColor = UIColor.rgb(254, 153, 0).cgColor
         table.tableFooterView = UIView()
         
         chanelImage.sd_setImage(with: URL(string: chanel.imageTeacherURL))
@@ -200,12 +200,25 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
                 return
             }
         }
-        mp3.track(object: lesson)
+        mp3.track(object: lesson, types: TypePlay.onLine)
         mp3.didLoadAudio = { [weak self] _, _ in
             self?.table.reloadData()
         }
-        Constants.sharedInstance.historyViewChanelLesson.append(lesson)
+       addToHistory(lesson: lesson)
     }
+    
+    func addToHistory(lesson: Lesson) {
+        var checkLessonExist = false
+        for singleLesson in Constants.sharedInstance.historyViewChanelLesson {
+            if singleLesson.idChap == lesson.idChap {
+                checkLessonExist = true
+            }
+        }
+        if !checkLessonExist {
+             Constants.sharedInstance.historyViewChanelLesson.append(lesson)
+        }
+    }
+    
 //        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
 //        requestWithTask(task: viewed, success: { (data) in
 //            if let status = data as? String {

@@ -17,10 +17,6 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
     private var listBookMarkOfBook: [Book] = []
     private var listBookMarkOfNews: [NewsModel] = []
     
-    private var oldBookPlay: Int?
-    private var player: AVPlayer?
-    private var playerItem: AVPlayerItem?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         table.tableFooterView = UIView()
@@ -86,11 +82,9 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
         let bookCell = table.dequeueReusableCell(withIdentifier: "bookCell", for: indexPath) as? BookDownloadCell
         let book = listBookMarkOfBook[indexPath.row]
         bookCell?.binData(book: book)
+        bookCell?.playButton.isHidden = true
         bookCell?.callBackButton = { [weak self] (action: String) in
             switch action {
-            case "playBook":
-                self?.playAudioOfBook(book: book, current: indexPath.row)
-                break
             case "removeBook":
                 self?.removeBookmark(indexPath: indexPath)
                 self?.table.reloadData()
@@ -107,7 +101,7 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        table.deselectRow(at: indexPath, animated: true)
+        table.deselectRow(at: indexPath, animated: false)
         if segment.selectedSegmentIndex == 0 {
             let myStoryBoard = UIStoryboard(name: "Main", bundle: nil)
             let type = listBookMarkOfNews[indexPath.row].typeNews
@@ -124,37 +118,11 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
                 vc?.news = listBookMarkOfNews[indexPath.row]
                 navigationController?.pushViewController(vc!, animated: true)
             }
-        }
-    }
-    
-    func playAudioOfBook(book: Book, current: Int) {
-        if book.isPlay == 1 {
-            if  player?.rate == 1 {
-                book.pause = 1
-                player?.pause()
-            } else {
-                book.pause = 0
-                player?.play()
-            }
-            self.table.reloadData()
-            return
-        }
-        player = nil
-        if oldBookPlay != nil {
-            listBookMarkOfBook[(oldBookPlay!)].isPlay = 0
-            listBookMarkOfBook[oldBookPlay!].pause = 0
-        }
-        oldBookPlay = current
-        book.isPlay = 1
-        let asset = AVAsset(url: URL(string: book.audio)!)
-        let keys: [String] = ["audio"]
-        asset.loadValuesAsynchronously(forKeys: keys) {
-            DispatchQueue.main.async {
-                self.playerItem = AVPlayerItem(asset: asset)
-                self.player = AVPlayer(playerItem: self.playerItem)
-                self.player?.play()
-                self.table.reloadData()
-            }
+        } else {
+            let myStoryboard = UIStoryboard(name: "Book", bundle: nil)
+            let vc = myStoryboard.instantiateViewController(withIdentifier: "BookDetail") as? BookDetailViewController
+            vc?.bookSelected = listBookMarkOfBook[indexPath.row]
+            navigationController?.pushViewController(vc!, animated: true)
         }
     }
     

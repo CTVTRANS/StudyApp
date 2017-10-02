@@ -10,15 +10,48 @@ import UIKit
 
 class SettingChooseSex: BaseDailog {
     
+    @IBOutlet weak var circeSecurity: UIView!
+    @IBOutlet weak var circelMale: UIView!
+    @IBOutlet weak var circelFemale: UIView!
+    
+    @IBOutlet weak var dotSecurity: UIView!
+    @IBOutlet weak var dotMale: UIView!
+    @IBOutlet weak var dotFemale: UIView!
+    
+    var sex: String = "保密"
     var calBack:((_ sex: String) -> Void) = {_ in}
 
-    @IBAction func pressedFemale(_ sender: Any) {
-        self.hide()
-        self.calBack("female")
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        circeSecurity.layer.borderColor = UIColor.rgb(201, 201, 201).cgColor
+        circelMale.layer.borderColor = UIColor.rgb(201, 201, 201).cgColor
+        circelFemale.layer.borderColor = UIColor.rgb(201, 201, 201).cgColor
+        dotSecurity.backgroundColor = UIColor.rgb(255, 102, 0)
+    }
+    
+    @IBAction func pressedSecurity(_ sender: Any) {
+        dotSecurity.backgroundColor = UIColor.rgb(255, 102, 0)
+        dotMale.backgroundColor = UIColor.white
+        dotFemale.backgroundColor = UIColor.white
+        sex = "保密"
     }
    
     @IBAction func pressMale(_ sender: Any) {
+        dotMale.backgroundColor = UIColor.white
+        dotSecurity.backgroundColor = UIColor.white
+        dotFemale.backgroundColor = UIColor.rgb(255, 102, 0)
+        sex = "男"
+    }
+    
+    @IBAction func pressedFemale(_ sender: Any) {
+        dotSecurity.backgroundColor = UIColor.white
+        dotMale.backgroundColor = UIColor.rgb(255, 102, 0)
+        dotFemale.backgroundColor = UIColor.white
+        sex = "女"
+    }
+
+    @IBAction func pressedChange(_ sender: Any) {
         self.hide()
-        self.calBack("male")
+        self.calBack(sex)
     }
 }

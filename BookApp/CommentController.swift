@@ -10,15 +10,18 @@ import UIKit
 
 class CommentController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
+    @IBOutlet weak var detail: UILabel!
+    @IBOutlet weak var titleComment: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var commentView: UIView!
     @IBOutlet weak var botLayoutCommentView: NSLayoutConstraint!
     @IBOutlet weak var commentTextView: UITextView!
     
-    var tap: UITapGestureRecognizer?
-    var arrayObject = [SpecialComment]()
+    private var tap: UITapGestureRecognizer?
+    private var arrayObject = [SpecialComment]()
     var idObject: Int?
     var commentType: Int?
+    var object: AnyObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +29,35 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         commentView.isHidden = true
         table.estimatedRowHeight = 140
         table.tableFooterView = UIView()
+        setupUI()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardNotification(notification1:)),
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                object: nil)
         commentTextView.delegate = self
+        getCommet()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    func setupUI() {
+        if let news = object as? NewsModel {
+            titleComment.text = news.title
+            detail.text = news.detailNews
+        }
+        if let book = object as? Book {
+            titleComment.text = book.name
+            let arrayDetail = book.descriptionBook.components(separatedBy: "</p>")
+            let fristString = arrayDetail[0]
+            let index = fristString.index(fristString.startIndex, offsetBy: 4)
+            detail.text = fristString.substring(from: index)
+        }
+    }
+    
+    func getCommet() {
         let getCommentHot: GetCommentHot = GetCommentHot(commentType: commentType!,
                                                          idObject: idObject!)
         requestWithTask(task: getCommentHot, success: { (data) in
@@ -46,9 +73,12 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                                                           page: 1)
             self.requestWithTask(task: getComment, success: { (data) in
                 if let arrayOfComment = data as? [Comment] {
-                    let normalComment: SpecialComment = SpecialComment(name: "最新", array: arrayOfComment)
-                    self.arrayObject.append(normalComment)
-                    self.table.reloadData()
+                    if arrayOfComment.count > 0 {
+                        let normalComment: SpecialComment = SpecialComment(name: "最新", array: arrayOfComment)
+                        self.arrayObject.append(normalComment)
+                        self.table.reloadData()
+
+                    }
                     self.stopActivityIndicator()
                 }
             }) { (error) in
@@ -57,18 +87,13 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                                       message: error as? String,
                                       preferredStyle: .alert)
             }
-
+            
         }) { (error) in
             self.stopActivityIndicator()
             _ = UIAlertController(title: nil,
                                   message: error as? String,
                                   preferredStyle: .alert)
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,7 +103,7 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view: UIView = UIView(frame: CGRect(x: 0, y: 0, width: table.frame.size.width, height: 30))
-        view.backgroundColor = UIColor.rgb(red: 254, green: 153, blue: 0)
+        view.backgroundColor = UIColor.rgb(254, 153, 0)
         let nameTypeComment: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: table.frame.size.width, height: 30))
         nameTypeComment.font = UIFont(name: "DFHei Std W5", size: 15)
         nameTypeComment.text = arrayObject[section].name

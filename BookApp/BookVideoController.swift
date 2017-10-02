@@ -29,7 +29,7 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: UIApplication.shared.keyWindow!)
-        videoDetailButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
+        videoDetailButton.layer.borderColor = UIColor.rgb(255, 101, 0).cgColor
         web.delegate = self
         let content = css + (book?.descriptionBook)!
         web.loadHTMLString(content, baseURL: nil)

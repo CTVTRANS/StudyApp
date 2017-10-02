@@ -360,7 +360,7 @@ extension UITabBarControllerDelegate {
 }
 
 extension UIColor {
-    class func rgb(red: Float, green: Float, blue: Float) -> UIColor {
+    class func rgb(_ red: Float, _ green: Float, _ blue: Float) -> UIColor {
         return UIColor(colorLiteralRed: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
     }
 }

@@ -48,20 +48,21 @@ enum ScreenShow: Int {
     case group = 3
 }
 
+enum TypePlay: Int {
+    case onLine = 0
+    case offLine = 1
+}
+
 class Constants: NSObject {
     var listNewsType: [NewsType] = []
     var listBookType: [BookType] = []
     var listChanelSubcribled: [Chanel] = []
     var listGroupJoined: [SecrectGroup] = []
-    var language: Int = 1
+    var language: Int = 0
     
     var historyViewChanelLesson: [Lesson] = []
-    var historyViewAudio: [Book] = []
+//    var historyViewAudio: [Book] = []
     var memberProfile: ProfileMember?
-    
-    var asset: AVAsset?
-    var player: AVPlayer?
-    var playerItem: AVPlayerItem?
     
     static let sharedInstance = Constants()
 }

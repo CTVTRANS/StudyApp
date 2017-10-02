@@ -28,7 +28,7 @@ class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGroupButton.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        addGroupButton.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
         navigationItem.title = "線下活動"
         let backItem = UIBarButtonItem()
         backItem.title = "Back"

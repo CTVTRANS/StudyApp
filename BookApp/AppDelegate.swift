@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        UINavigationBar.appearance().tintColor = UIColor.rgb(red: 82.0, green: 82.0, blue: 82.0)
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.rgb(red: 82.0, green: 82.0, blue: 82.0)]
+        UINavigationBar.appearance().tintColor = UIColor.rgb(82, 82, 82)
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.rgb(82, 82, 82)]
         WXApi.registerApp("vn.conglv.BookApp")
         return true
     }

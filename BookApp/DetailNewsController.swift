@@ -98,6 +98,7 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
                 if let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController {
                     vc.idObject = self?.news.idNews
                     vc.commentType = 0
+                    vc.object = self?.news
                     self?.present(vc, animated: false, completion: nil)
                 }
             case BottomButton.like:

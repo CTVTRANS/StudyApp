@@ -34,9 +34,9 @@ class HeaderCollectionReusableView: UICollectionReusableView, FSPagerViewDataSou
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        showAll.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
-        showMark.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
-        showMarkAndMoney.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        showAll.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
+        showMark.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
+        showMarkAndMoney.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
         if Constants.sharedInstance.memberProfile != nil {
              markNumber.text = String(Constants.sharedInstance.memberProfile!.point)
         }

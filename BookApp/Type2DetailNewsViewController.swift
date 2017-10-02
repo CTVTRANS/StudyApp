@@ -53,7 +53,7 @@ class Type2DetailNewsViewController: BaseViewController {
             
         }
         setupUI()
-        viewBounds.layer.borderColor = UIColor.rgb(red: 52, green: 52, blue: 52).cgColor
+        viewBounds.layer.borderColor = UIColor.rgb(52, 52, 52).cgColor
         setupCallBackButton()
     }
     
@@ -98,6 +98,7 @@ class Type2DetailNewsViewController: BaseViewController {
                 if let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController {
                     vc.idObject = self?.news.idNews
                     vc.commentType = 0
+                    vc.object = self?.news
                     self?.present(vc, animated: false, completion: nil)
                 }
             }

@@ -25,8 +25,8 @@ class BookDownloadCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        playButton.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
-        removeButton.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        playButton.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
+        removeButton.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
 
     }
 
@@ -37,15 +37,16 @@ class BookDownloadCell: UITableViewCell {
         numberView.text = String(book.numberHumanReaed)
         let date = book.timeUpBook.components(separatedBy: " ")
         timeUp.text = date[0]
-        if book.isPlay == 1 {
-            if book.pause == 1 {
-                imagePlay.image = #imageLiteral(resourceName: "audio_play")
-            } else {
+        if let currentBok = MP3Player.shareIntanse.currentAudio as? Book {
+            if currentBok.idBook == book.idBook && MP3Player.shareIntanse.isPlaying() {
                 imagePlay.image = #imageLiteral(resourceName: "audio_pause")
+            } else {
+                imagePlay.image = #imageLiteral(resourceName: "audio_play")
             }
         } else {
             imagePlay.image = #imageLiteral(resourceName: "audio_play")
         }
+        
         if let filePath = book.imageOffline?.path {
             if FileManager.default.fileExists(atPath: filePath) {
                 do {

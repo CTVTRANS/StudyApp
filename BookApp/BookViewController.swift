@@ -149,14 +149,16 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     func getBookNewest() {
         let getNewestBookTask: GetBookNewestTask = GetBookNewestTask(limit: 1)
         requestWithTask(task: getNewestBookTask, success: { (data) in
-            self.newestBook = (data as? Book)!
-            self.newestBookImage.sd_setImage(with: URL(string: self.newestBook.imageURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
-            self.newestBooktype.text = " " + self.newestBook.typeName + " "
-            self.newestBookName.text = self.newestBook.name
-            self.newestBookDescription.text = self.newestBook.author
-            self.newestBookNumberView.text = String(self.newestBook.numberHumanReaed)
-            let dateupBook = self.newestBook.timeUpBook.components(separatedBy: " ")
-            self.newestBookTimeUp.text = dateupBook[0]
+            if let new = data as? Book {
+                self.newestBook = new
+                self.newestBookImage.sd_setImage(with: URL(string: self.newestBook.imageURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
+                self.newestBooktype.text = " " + self.newestBook.typeName + " "
+                self.newestBookName.text = self.newestBook.name
+                self.newestBookDescription.text = self.newestBook.author
+                self.newestBookNumberView.text = String(self.newestBook.numberHumanReaed)
+                let dateupBook = self.newestBook.timeUpBook.components(separatedBy: " ")
+                self.newestBookTimeUp.text = dateupBook[0]
+            }
         }) { (error) in
             self.stopActivityIndicator()
             _ = UIAlertController(title: nil,

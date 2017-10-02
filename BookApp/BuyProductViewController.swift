@@ -27,8 +27,8 @@ class BuyProductViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        buyButtonCase1.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
-        buyButtonCase2.layer.borderColor = UIColor.rgb(red: 255, green: 102, blue: 0).cgColor
+        buyButtonCase1.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
+        buyButtonCase2.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
         navigationItem.title = ""
         if let book = product as? Book {
             titleProduct.text = book.name

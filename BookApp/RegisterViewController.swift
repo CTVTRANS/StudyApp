@@ -21,7 +21,7 @@ class RegisterViewController: BaseViewController {
         super.viewDidLoad()
         navigationItem.title = "註冊"
         navigationController?.navigationBar.backItem?.title = ""
-        showAreButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
+        showAreButton.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
     }
 
     override func didReceiveMemoryWarning() {

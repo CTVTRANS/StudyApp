@@ -19,6 +19,6 @@ class ForgetPassViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "忘記密碼"
-        showAreButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
+        showAreButton.layer.borderColor = UIColor.rgb(255, 101, 0).cgColor
     }
 }

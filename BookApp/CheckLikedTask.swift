@@ -35,8 +35,8 @@ class CheckLikedTask: BaseTaskNetwork {
     
     override func data(withResponse response: Any!) -> Any! {
         if let dictionary = response as? [String: Any] {
-            let status: Bool = dictionary["status"] as? Bool ?? false
-            if status {
+            let message = dictionary["message"] as? String
+            if message == "Liked!" {
                 return true
             } else {
                 return false

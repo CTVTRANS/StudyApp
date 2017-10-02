@@ -40,6 +40,9 @@ class ChangeProfileViewController: BaseViewController {
         passWordView.isHidden = true
         emailView.isHidden = true
         userNameView.isHidden = true
+        
+        userNameTextField.text = Constants.sharedInstance.memberProfile?.name
+        emailTextField.text = Constants.sharedInstance.memberProfile?.email
         showView(tyepViewNeedShow: typeViewShow)
     }
     

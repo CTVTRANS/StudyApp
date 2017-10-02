@@ -12,15 +12,13 @@ import AVFoundation
 
 class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
-    private var oldObjectPlay: Int?
     @IBOutlet weak var table: UITableView!
     
     private lazy var mp3 = MP3Player.shareIntanse
     private var listHistory: [AnyObject] = []
-//    private var currenIndex: Int?
-    private var downloadImageSuccess = false
-    private var downloadAuidosucess = false
-    var asset: AVAsset?
+//    private var downloadImageSuccess = false
+//    private var downloadAuidosucess = false
+//    var asset: AVAsset?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +28,17 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
         mp3.oldIndexListPlay = mp3.getCurrentIndex()
     }
 
+    // MARK: Table Data source
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listHistory.count
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    // MARK: Table Delegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: "HistoryPlayAudioCell", for: indexPath) as? HistoryPlayAudioCell
@@ -46,45 +52,69 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
         
         cell?.callBackDownload = { oject in
             if let book = oject as? Book {
-                let download = DownloadViewController()
+                let download = DownloadAudioController()
                 download.downloadBook(book: book)
             }
             if let lesson = oject as? Lesson {
-                let download = DownloadViewController()
+                let download = DownloadAudioController()
                 download.downloadLesson(lesson: lesson)
             }
         }
-        
         cell?.callBackPlayAudio = { [weak self] object in
             self?.playAudio(object: object, current: row)
         }
         return cell!
     }
     
-    func downloadAudio(book: Book) {
-        let downloadImage = DownloadTask(path: book.imageURL)
-        downloadFileSuccess(task: downloadImage, success: { (data) in
-            if let imageOflline = data as? URL {
-                self.downloadImageSuccess = true
-                book.imageOffline = imageOflline
-                if self.downloadAuidosucess && self.downloadImageSuccess {
-                    self.saveAudio(book: book)
-                }
-            }
-        }) { (_) in
+    // MARK: Down Load Book
+    
+//    func downloadAudio(book: Book) {
+//        let downloadImage = DownloadTask(path: book.imageURL)
+//        downloadFileSuccess(task: downloadImage, success: { (data) in
+//            if let imageOflline = data as? URL {
+//                self.downloadImageSuccess = true
+//                book.imageOffline = imageOflline
+//                if self.downloadAuidosucess && self.downloadImageSuccess {
+//                    self.saveAudio(book: book)
+//                }
+//            }
+//        }) { (_) in
+//        }
+//        let downloadAudio = DownloadTask(path: book.audio)
+//        downloadFileSuccess(task: downloadAudio, success: { (data) in
+//            if let audioOffline = data as? URL {
+//                self.downloadAuidosucess = true
+//                book.audioOffline = audioOffline
+//                if self.downloadAuidosucess && self.downloadImageSuccess {
+//                    self.saveAudio(book: book)
+//                }
+//            }
+//        }) { (_) in
+//        }
+//    }
+//    
+//    func saveAudio(book: Book) {
+//        var listBookDownaloaed = Book.getBook()
+//        for singleBook in listBookDownaloaed! where singleBook.idBook == book.idBook {
+//            return
+//        }
+//        listBookDownaloaed?.append(book)
+//        Book.saveBook(myBook: listBookDownaloaed!)
+//    }
+//    
+    // MARK: Play Audio
+    
+    func playAudio(object: AnyObject, current: Int) {
+        if let book = object as? Book {
+            playBook(book: book, index: current)
         }
-        let downloadAudio = DownloadTask(path: book.audio)
-        downloadFileSuccess(task: downloadAudio, success: { (data) in
-            if let audioOffline = data as? URL {
-                self.downloadAuidosucess = true
-                book.audioOffline = audioOffline
-                if self.downloadAuidosucess && self.downloadImageSuccess {
-                    self.saveAudio(book: book)
-                }
-            }
-        }) { (_) in
+        
+        if let lesson = object as? Lesson {
+            playLesson(lesson: lesson, index: current)
         }
     }
+    
+    // MARK: Play Audio Book
     
     func playBook(book: Book, index: Int) {
         if let current = mp3.currentAudio as? Book {
@@ -101,9 +131,11 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
             }
         }
         mp3.oldIndexListPlay = index
-        mp3.track(object: book)
+        mp3.track(object: book, types: TypePlay.onLine)
         table.reloadData()
     }
+    
+    // MARK: Play Audio of Lesson
     
     func playLesson(lesson: Lesson, index: Int) {
         if let current = mp3.currentAudio as? Lesson {
@@ -120,32 +152,11 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
             }
         }
         mp3.oldIndexListPlay = index
-        mp3.track(object: lesson)
+        mp3.track(object: lesson, types: TypePlay.onLine)
         table.reloadData()
     }
     
-    func playAudio(object: AnyObject, current: Int) {
-        if let book = object as? Book {
-            playBook(book: book, index: current)
-        }
-        
-        if let lesson = object as? Lesson {
-            playLesson(lesson: lesson, index: current)
-        }
-    }
-
-    func saveAudio(book: Book) {
-        var listBookDownaloaed = Book.getBook()
-        for singleBook in listBookDownaloaed! where singleBook.idBook == book.idBook {
-            return
-        }
-        listBookDownaloaed?.append(book)
-        Book.saveBook(myBook: listBookDownaloaed!)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
+    // MARK: Button Control
     
     @IBAction func pressedBackButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

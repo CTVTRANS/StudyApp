@@ -34,7 +34,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
         label.numberOfLines = 2
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textAlignment = .center
-        label.textColor = UIColor.rgb(red: 82, green: 82, blue: 82)
+        label.textColor = UIColor.rgb(82, 82, 82)
         label.text = "個人信息\n會員編號: 123456789"
         navigationItem.titleView = label
         
@@ -100,7 +100,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
-            print("logout")
+            self.dismiss(animated: false, completion: nil)
             return
         }
         if let vc = storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as? ChangeProfileViewController {
@@ -137,7 +137,6 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
         picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
         picker.modalPresentationStyle = .popover
         present(picker, animated: true, completion: nil)
-//        picker.popoverPresentationController?.barButtonItem = sender
     }
     
     func shootAvatar() {

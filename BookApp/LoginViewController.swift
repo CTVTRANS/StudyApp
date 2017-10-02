@@ -18,7 +18,7 @@ class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.backItem?.title = ""
-        showAreCodeButton.layer.borderColor = UIColor.rgb(red: 255, green: 101, blue: 0).cgColor
+        showAreCodeButton.layer.borderColor = UIColor.rgb(255, 101, 0).cgColor
     }
     
     override func viewWillAppear(_ animated: Bool) {

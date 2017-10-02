@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,22 +21,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmp-bU-hGw">
-                    <rect key="frame" x="20" y="159" width="280" height="250"/>
+                    <rect key="frame" x="20" y="127" width="280" height="280"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9o-IJ-lRP">
-                            <rect key="frame" x="8" y="8" width="40" height="40"/>
+                            <rect key="frame" x="191" y="232" width="73" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="HLS-lC-FIa"/>
                                 <constraint firstAttribute="height" constant="40" id="vA1-QO-uwM"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="20"/>
-                            <state key="normal" title="OK"/>
+                            <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="18"/>
+                            <state key="normal" title="確認送出">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                             <connections>
                                 <action selector="pressedOk:" destination="iN0-l3-epB" eventType="touchUpInside" id="GuI-qk-86i"/>
                             </connections>
                         </button>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rcd-s9-6vk">
+                            <rect key="frame" x="0.0" y="48" width="280" height="176"/>
+                            <date key="date" timeIntervalSinceReferenceDate="528172304.164307">
+                                <!--2017-09-27 02:31:44 +0000-->
+                            </date>
+                        </datePicker>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jei-1q-Mg8">
-                            <rect key="frame" x="240" y="8" width="32" height="32"/>
+                            <rect key="frame" x="8" y="8" width="32" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="32" id="cd2-es-K5s"/>
                                 <constraint firstAttribute="height" constant="32" id="sPb-wo-u4C"/>
@@ -47,24 +53,18 @@
                                 <action selector="pressHidden:" destination="iN0-l3-epB" eventType="touchUpInside" id="t8L-xy-Bnh"/>
                             </connections>
                         </button>
-                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rcd-s9-6vk">
-                            <rect key="frame" x="0.0" y="70" width="280" height="180"/>
-                            <date key="date" timeIntervalSinceReferenceDate="528172304.164307">
-                                <!--2017-09-27 02:31:44 +0000-->
-                            </date>
-                        </datePicker>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="Jei-1q-Mg8" firstAttribute="top" secondItem="gmp-bU-hGw" secondAttribute="top" constant="8" id="5GL-pI-DgA"/>
-                        <constraint firstAttribute="width" secondItem="gmp-bU-hGw" secondAttribute="height" multiplier="160:143" id="Cqh-k9-0UO"/>
-                        <constraint firstItem="F9o-IJ-lRP" firstAttribute="leading" secondItem="gmp-bU-hGw" secondAttribute="leading" constant="8" id="Cw4-Br-T1O"/>
+                        <constraint firstAttribute="bottom" secondItem="F9o-IJ-lRP" secondAttribute="bottom" constant="8" id="1Et-7r-w2t"/>
+                        <constraint firstItem="F9o-IJ-lRP" firstAttribute="top" secondItem="Rcd-s9-6vk" secondAttribute="bottom" constant="8" id="6C2-SI-gZB"/>
+                        <constraint firstItem="Rcd-s9-6vk" firstAttribute="top" secondItem="Jei-1q-Mg8" secondAttribute="bottom" constant="8" id="7os-9e-9t6"/>
+                        <constraint firstItem="Jei-1q-Mg8" firstAttribute="leading" secondItem="gmp-bU-hGw" secondAttribute="leading" constant="8" id="9Kg-oA-4I4"/>
+                        <constraint firstAttribute="height" constant="280" id="EKS-hg-6za"/>
+                        <constraint firstAttribute="trailing" secondItem="F9o-IJ-lRP" secondAttribute="trailing" constant="16" id="MzY-S4-El9"/>
                         <constraint firstAttribute="trailing" secondItem="Rcd-s9-6vk" secondAttribute="trailing" id="PIz-JO-Wpb"/>
-                        <constraint firstItem="Rcd-s9-6vk" firstAttribute="top" secondItem="Jei-1q-Mg8" secondAttribute="bottom" constant="30" id="Q0J-hp-k8K"/>
-                        <constraint firstItem="F9o-IJ-lRP" firstAttribute="top" secondItem="gmp-bU-hGw" secondAttribute="top" constant="8" id="R0J-TB-VLY"/>
+                        <constraint firstItem="Jei-1q-Mg8" firstAttribute="top" secondItem="gmp-bU-hGw" secondAttribute="top" constant="8" id="TkG-8V-5O0"/>
                         <constraint firstItem="Rcd-s9-6vk" firstAttribute="leading" secondItem="gmp-bU-hGw" secondAttribute="leading" id="dBA-Lg-hh8"/>
-                        <constraint firstAttribute="trailing" secondItem="Jei-1q-Mg8" secondAttribute="trailing" constant="8" id="pbu-BC-Qr4"/>
-                        <constraint firstAttribute="bottom" secondItem="Rcd-s9-6vk" secondAttribute="bottom" id="rt5-j9-XNb"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -75,16 +75,15 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="gmp-bU-hGw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="EmF-hg-oKt"/>
                 <constraint firstAttribute="trailing" secondItem="gmp-bU-hGw" secondAttribute="trailing" constant="20" id="Niw-EU-DzM"/>
                 <constraint firstItem="gmp-bU-hGw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="TSO-cl-2Dd"/>
-                <constraint firstItem="gmp-bU-hGw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Y5q-2R-0Ys"/>
+                <constraint firstItem="gmp-bU-hGw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="127" id="VfM-rK-a1y"/>
             </constraints>
             <connections>
                 <outlet property="contenView" destination="gmp-bU-hGw" id="ipn-Bn-YLU"/>
                 <outlet property="datepicker" destination="Rcd-s9-6vk" id="HLq-pm-FEW"/>
             </connections>
-            <point key="canvasLocation" x="35.5" y="54.5"/>
+            <point key="canvasLocation" x="35" y="54"/>
         </view>
     </objects>
     <resources>

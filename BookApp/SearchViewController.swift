@@ -181,10 +181,10 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         searchBar.text = ""
         if seachBook {
             iconSearchBook.textColor = UIColor.black
-            iconSearchNews.textColor = UIColor.rgb(red: 255, green: 102, blue: 0)
+            iconSearchNews.textColor = UIColor.rgb(255, 102, 0)
             seachBook = false
         } else {
-            iconSearchBook.textColor = UIColor.rgb(red: 255, green: 102, blue: 0)
+            iconSearchBook.textColor = UIColor.rgb(255, 102, 0)
             iconSearchNews.textColor = UIColor.black
             seachBook = true
         }

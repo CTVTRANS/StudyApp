@@ -65,7 +65,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    // MAKR: Setup ScrollView
+    // MARK: Setup ScrollView
     
     func setupScroll() {
         scroll.contentSize = CGSize(width: 3 * widthScreen, height: scroll.frame.height)
@@ -232,15 +232,15 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         }
         switch position {
         case 0...0.3 :
-            topTabbar.audioButton.setTitleColor(UIColor.rgb(red: 255, green: 101, blue: 0), for: .normal)
+            topTabbar.audioButton.setTitleColor(UIColor.rgb(255, 102, 0), for: .normal)
             topTabbar.textButton.setTitleColor(UIColor.black, for: .normal)
             topTabbar.videoButton.setTitleColor(UIColor.black, for: .normal)
         case 0.8...1.2 :
-            topTabbar.videoButton.setTitleColor(UIColor.rgb(red: 255, green: 101, blue: 0), for: .normal)
+            topTabbar.videoButton.setTitleColor(UIColor.rgb(255, 102, 0), for: .normal)
             topTabbar.textButton.setTitleColor(UIColor.black, for: .normal)
             topTabbar.audioButton.setTitleColor(UIColor.black, for: .normal)
         case 1.8...2.7 :
-            topTabbar.textButton.setTitleColor(UIColor.rgb(red: 255, green: 101, blue: 0), for: .normal)
+            topTabbar.textButton.setTitleColor(UIColor.rgb(255, 102, 0), for: .normal)
             topTabbar.videoButton.setTitleColor(UIColor.black, for: .normal)
             topTabbar.audioButton.setTitleColor(UIColor.black, for: .normal)
         default: break

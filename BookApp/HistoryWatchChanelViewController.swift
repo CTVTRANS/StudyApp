@@ -14,11 +14,6 @@ class HistoryWatchChanelViewController: BaseViewController, UITableViewDataSourc
 
     @IBOutlet weak var table: UITableView!
     var listHistoryLesson: [Lesson] = []
-//    private var oldlessonPlay: Int?
-//    private var player: AVPlayer?
-//    private var playerItem: AVPlayerItem?
-    
-//    var firstShowHistory = true
     lazy var mp3 = MP3Player.shareIntanse
     
     override func viewDidLoad() {
@@ -43,11 +38,6 @@ class HistoryWatchChanelViewController: BaseViewController, UITableViewDataSourc
         if let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HistoryWatchChanelCell {
             let lesson = listHistoryLesson[indexPath.row]
             cell.binData(lesson: lesson)
-//            if mp3.oldIndexHistoryLesson == indexPath.row {
-//                cell.imagePlay.image = #imageLiteral(resourceName: "audio_pause")
-//            } else {
-//                cell.imagePlay.image = #imageLiteral(resourceName: "audio_play")
-//            }
             cell.callBackButton = { [weak self] (action: String) in
                 switch action {
                 case "playChanel":
@@ -87,7 +77,7 @@ class HistoryWatchChanelViewController: BaseViewController, UITableViewDataSourc
                 return
             }
         }
-        mp3.track(object: lesson)
+        mp3.track(object: lesson, types: TypePlay.onLine)
         mp3.didLoadAudio = { [weak self] _, _ in
             self?.table.reloadData()
         }
