@@ -34,16 +34,13 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     private var lessonUploaded = [Lesson]()
     private var loadedListLessonUpload = false
     private var loadedNumberView = false
-    private var downloadImageSucess = true
-    private var downloadAudioSucess = false
     
-    private var oldlessonPlay: Int?
-    
+    private var timeWatch = 0.0
     lazy var footerView = UIView.initFooterView()
     private var indicator: UIActivityIndicatorView?
-    var isMoreData = true
-    var isLoading = false
-    var pager = 1
+    private var isMoreData = true
+    private var isLoading = false
+    private var pager = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,8 +75,21 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         chanelImage.layer.cornerRadius = heightImageChanel.constant / 2
         chaneType.text = chanel.typeChanel
         nameTeacher.text = chanel.nameTeacher
-        
+        bottomView.numberLike.text = String(chanel.numberLike)
+        bottomView.numberComment.text = String(chanel.numberCommet)
         bottomView.hiddenBottom()
+        
+        let chekLike = CheckLikedTask(likeType: Object.chanel.rawValue, memberID: memberID, objectID: chanel.idChanel)
+        requestWithTask(task: chekLike, success: { [weak self] (data) in
+            let status = data as? Bool
+            if status! {
+                self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
+            } else {
+                self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
+            }
+        }) { (_) in
+            
+        }
     }
     
     func setupTopShare() {
@@ -132,7 +142,8 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             cell.callBackButton = { [weak self] (typeButton: String) in
                 switch typeButton {
                 case "download":
-                    self?.pressedDownload(lesson: lesson)
+                    let download = DownloadAudioController()
+                    download.downloadLesson(lesson: lesson)
                 case "play":
                     self?.play(lesson: lesson, index: indexPath.row)
                 default :
@@ -202,6 +213,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         }
         mp3.track(object: lesson, types: TypePlay.onLine)
         mp3.didLoadAudio = { [weak self] _, _ in
+            self?.inCreeView(lesson: lesson)
             self?.table.reloadData()
         }
        addToHistory(lesson: lesson)
@@ -214,25 +226,26 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         }
         if !checkLessonExist {
              Constants.sharedInstance.historyViewChanelLesson.append(lesson)
-            
         } else {
             checkLessonExist = false
         }
     }
     
-//        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
-//        requestWithTask(task: viewed, success: { (data) in
-//            if let status = data as? String {
-//                if status == "success" {
-//                    self.chanel.numberView += 1
-//                    let numberView = self.chanel.numberView
-//                    self.numberView.text = String(numberView)
-//                    self.table.reloadData()
-//                }
-//            }
-//        }) { (_) in
-//            
-//        }
+    func inCreeView(lesson: Lesson) {
+        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
+        requestWithTask(task: viewed, success: { (data) in
+            if let status = data as? String {
+                if status == "success" {
+                    self.chanel.numberView += 1
+                    let numberView = self.chanel.numberView
+                    self.numberView.text = String(numberView)
+                    self.table.reloadData()
+                }
+            }
+        }) { (_) in
+            
+        }
+    }
     
     // MARK: Button Control
     
@@ -241,46 +254,33 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             if typeButton == BottomButton.comment {
                 let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
                 let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController
+                vc?.idObject = self?.chanel.idChanel
+                vc?.commentType = 2
+                vc?.object = self?.chanel
                 self?.present(vc!, animated: false, completion: nil)
+            } else if typeButton == BottomButton.like {
+                self?.likeChanel()
             }
         }
     }
     
-    func pressedDownload(lesson: Lesson) {
-        lesson.chanelOwner = chanel.nameChanel
-        let downloadImageLesson = DownloadTask(path: lesson.imageChapURL)
-        downloadFileSuccess(task: downloadImageLesson, success: { (data) in
-            if let imageOffline = data as? URL {
-                lesson.imageOffline = imageOffline
-                self.downloadImageSucess = true
-                if self.downloadImageSucess && self.downloadAudioSucess {
-                    self.setListLesson(chap: lesson)
-                }
+    func likeChanel() {
+        let like = LikeTask(likeType: Object.chanel.rawValue, memberID: memberID, objectId: chanel.idChanel)
+        requestWithTask(task: like, success: { (data) in
+            let status: Like = (data as? Like)!
+            var currentLike: Int =  self.chanel.numberLike
+            if status == Like.like {
+                self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
+                currentLike += 1
+            } else {
+                currentLike -= 1
+                self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
             }
+            self.chanel.numberLike = currentLike
+            self.bottomView.numberLike.text = String(currentLike)
         }) { (_) in
+            
         }
-        
-        let downloadLesson = DownloadTask(path: lesson.contentURL)
-        downloadFileSuccess(task: downloadLesson, success: { (data) in
-            if let audioOffline = data as? URL {
-                lesson.audioOffline = audioOffline
-                self.downloadAudioSucess = true
-                if self.downloadImageSucess && self.downloadAudioSucess {
-                    self.setListLesson(chap: lesson)
-                }
-            }
-        }) { (_) in
-        }
-    }
-    
-    func setListLesson(chap: Lesson) {
-        var listLesson = Lesson.getLesson()
-        for singleLesson in listLesson! where chap.idChap == singleLesson.idChap {
-            return
-        }
-        listLesson?.append(chap)
-        Lesson.saveLesson(lesson: listLesson!)
-        print("sucess")
     }
     
     @IBAction func pressedSubcribeButton(_ sender: Any) {
@@ -299,8 +299,9 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func pressedDownloadAll(_ sender: Any) {
+        let download = DownloadAudioController()
         for singleLesson in lessonUploaded {
-            pressedDownload(lesson: singleLesson)
+            download.downloadLesson(lesson: singleLesson)
         }
     }
     

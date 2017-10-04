@@ -59,9 +59,6 @@ class BottomView: UIView {
         downloadImage.isHidden = true
         downloadButton.isHidden = true
         numberBookmark.isHidden = true
-        numberLike.isHidden = true
-        likeImage.isHidden = true
-        likeButton.isHidden = true
     }
 
     @IBAction func pressedBack(_ sender: Any) {

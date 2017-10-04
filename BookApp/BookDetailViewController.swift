@@ -203,17 +203,16 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
                                           objectId: bookSelected.idBook)
         requestWithTask(task: likeTask, success: { (data) in
             let status: Like = (data as? Like)!
-            var currentLike: Int = Int(self.bottomView.numberLike.text!)!
+            var currentLike: Int =  self.bookSelected.numberLike
             if status == Like.like {
                 self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
                 currentLike += 1
-                self.bookSelected.numberLike = currentLike
-                self.bottomView.numberLike.text = String(currentLike)
             } else {
                 currentLike -= 1
-                self.bookSelected.numberLike = currentLike
-                self.bottomView.numberLike.text = String(currentLike)
+                self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
             }
+            self.bookSelected.numberLike = currentLike
+            self.bottomView.numberLike.text = String(currentLike)
         }, failure: { (_) in
             
         })

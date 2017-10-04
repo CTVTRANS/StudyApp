@@ -8,16 +8,20 @@
 
 import UIKit
 
-let getBookTypeURL: String = "/api/book/list_category"
-let getBookForEachTypeURL: String = "/api/book/list_post_by_category"
-let getBookSuggestForTypeURL: String = "/api/book/list_suggest_posts_by_category"
-let getBookNewestURL: String = "/api/book/list_latest_posts"
-let getAllBookSuggestURL: String = "/api/book/list_all_suggest_posts"
-let getAllBookFreeURL: String = "/api/book/list_free"
-let getAllBookBookmarkedURL: String = "/api/collection/collection_book"
+let memberID = 1
 
-let getAllChanelSuggestURL: String = "/api/teacher/list_all_suggest_teacher"
-let getChanelFreeURL: String = "/api/teacher/list_free"
+// MARK: Book
+let getBookTypeURL = "/api/book/list_category"
+let getBookForEachTypeURL = "/api/book/list_post_by_category"
+let getBookSuggestForTypeURL = "/api/book/list_suggest_posts_by_category"
+let getBookNewestURL = "/api/book/list_latest_posts"
+let getAllBookSuggestURL = "/api/book/list_all_suggest_posts"
+let getAllBookFreeURL = "/api/book/list_free"
+let getAllBookBookmarkedURL = "/api/collection/collection_book"
+
+// MARK: Chanel
+let getAllChanelSuggestURL = "/api/teacher/list_all_suggest_teacher"
+let getChanelFreeURL = "/api/teacher/list_free"
 let getListLessonOfChanelURL = "/api/teacher/list_lesson"
 let getTotalViewOfChanelURL = "/api/teacher/number_of_play"
 let getAllSubcribled = "/api/teacher/list_subscribe"
@@ -25,32 +29,42 @@ let getHotChanel = "/api/teacher/list_hot"
 let subcribleURL = "/api/teacher/subscribe"
 let increaseViewChanelURL = "/api/teacher/play_lesson"
 
-let getAllNewsURL: String = "/api/post/list_latest_post"
+// MARK: News
+let getAllNewsURL = "/api/post/list_latest_post"
 let getAllTypeNewsURL = "/api/post/list_category"
-let getAllNewsBookmarkedURL: String = "/api/collection/collection_news"
+let getAllNewsBookmarkedURL = "/api/collection/collection_news"
 
-let sendCommentURL: String = "/api/comment/add"
-let checkLikeedURL: String = "/api/like/check_like"
-let likeUnlikeURL: String = "/api/like/like"
-let bookMarkURL: String = "/api/collection/collect"
-let checkBookMarkedURL: String = "/api/collection/check_collect"
-let getAllCommentURL: String = "/api/comment/latest"
-let getAllCommentHotURL: String = "/api/comment/hot"
-let searchBookURL: String = "/api/search/book"
-let searchNewsURL: String = "/api/search/news"
+let sendCommentURL = "/api/comment/add"
+let checkLikeedURL = "/api/like/check_like"
+let likeUnlikeURL = "/api/like/like"
+let bookMarkURL = "/api/collection/collect"
+let checkBookMarkedURL = "/api/collection/check_collect"
+let getAllCommentURL = "/api/comment/latest"
+let getAllCommentHotURL = "/api/comment/hot"
+let searchBookURL = "/api/search/book"
+let searchNewsURL = "/api/search/news"
+let getNotification = "/api/notification/get"
 
-let getProfileMemberURL: String = "/api/member/detail"
+// MARK: Member
+let getProfileMemberURL = "/api/member/detail"
+let getCodeURL = "/api/member/generate_confirm_code"
+let registerURL = "/api/member/register"
+let sigInURL = "/api/member/login"
+let upDataInfomationMember = "/api/member/update_profile"
+let upDataPassword = "/api/member/change_password"
 
-let getSlidershowURL: String = "/api/slide/get?screen_show"
-let getAllGroupURL: String = "/api/group/list_group"
-let getAllGroupJoinedURL: String = "/api/group/list_subscribe"
-let getListNewsInGroupURL: String = "/api/group/list_post_by_group"
-let subcribleGroupURL: String = "/api/group/multi_subscribe"
+// MARK: Group
+let getSlidershowURL = "/api/slide/get?screen_show"
+let getAllGroupURL = "/api/group/list_group"
+let getAllGroupJoinedURL = "/api/group/list_subscribe"
+let getListNewsInGroupURL = "/api/group/list_post_by_group"
+let subcribleGroupURL = "/api/group/multi_subscribe"
 
-let getAllProductByPointURL: String = "/api/product/list_product_point"
-let getAllProductByPointAndMoneyURL: String = "/api/product/list_product_price_mix"
-let getAllProductURL: String = "/api/product/list_all_product"
-let getAllVipProductURL: String = "/api/product/list_package"
+// MARK: Product
+let getAllProductByPointURL = "/api/product/list_product_point"
+let getAllProductByPointAndMoneyURL = "/api/product/list_product_price_mix"
+let getAllProductURL = "/api/product/list_all_product"
+let getAllVipProductURL = "/api/product/list_package"
 
 let css: String = "<style> img{max-width:100%} </style>"
 

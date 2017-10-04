@@ -117,18 +117,17 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
                                                       objectId: self.news.idNews)
         self.requestWithTask(task: bookMarkTask, success: { (data) in
             let status: BookMark = (data as? BookMark)!
-            var currentBookMark: Int = Int(self.bottomView.numberBookmark.text!)!
+            var currentBookMark: Int =  self.news.numberBookMark
             if status == BookMark.bookMark {
                 self.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMarked")
                 currentBookMark += 1
-                self.news.numberBookMark = currentBookMark
-                self.bottomView.numberBookmark.text = String(currentBookMark)
             } else {
                 self.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMark")
                 currentBookMark -= 1
-                self.news.numberBookMark = currentBookMark
-                self.bottomView.numberBookmark.text = String(currentBookMark)
             }
+            self.news.numberBookMark = currentBookMark
+            self.bottomView.numberBookmark.text = String(currentBookMark)
+
         }, failure: { (_) in
             
         })
@@ -136,23 +135,26 @@ class DetailNewsController: BaseViewController, UIWebViewDelegate {
     }
     
     func pressedLike() {
+        let myStoryBoard = UIStoryboard(name: "Global", bundle: nil)
+        if let vc = myStoryBoard.instantiateViewController(withIdentifier: "Login") as? UINavigationController {
+            self.present(vc, animated: true, completion: nil)
+        }
+        
         let likeTask: LikeTask = LikeTask(likeType: Object.news.rawValue,
                                           memberID: 1,
                                           objectId: news.idNews)
         self.requestWithTask(task: likeTask, success: { (data) in
             let status: Like = (data as? Like)!
-            var currentLike: Int = Int(self.bottomView.numberLike.text!)!
+            var currentLike: Int = self.news.numberLike
             if status == Like.like {
                 self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
                 currentLike += 1
-                self.news.numberLike = currentLike
-                self.bottomView.numberLike.text = String(currentLike)
             } else {
                 self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
                 currentLike -= 1
-                self.news.numberLike = currentLike
-                self.bottomView.numberLike.text = String(currentLike)
             }
+            self.news.numberLike = currentLike
+            self.bottomView.numberLike.text = String(currentLike)
         }, failure: { (_) in
             
         })

@@ -45,7 +45,7 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
         freeChanel.name.text = "猜你喜歡"
         getBaner()
         getData()
-        let getChaelSubcrible: GetAllChanelSubcribledTask = GetAllChanelSubcribledTask(memberID: 1)
+        let getChaelSubcrible: GetAllChanelSubcribledTask = GetAllChanelSubcribledTask(memberID: memberID)
         requestWithTask(task: getChaelSubcrible, success: { (_) in
             
         }) { (error) in

@@ -11,27 +11,51 @@ import UIKit
 class NotificationMessageViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var table: UITableView!
+    private var listNotification: [NotificationApp] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         table.tableFooterView = UIView()
         table.estimatedRowHeight = 140
+        getData()
     }
+    
+    func getData() {
+        let getData = GetNotificationTask(limit: 30, page: 1)
+        requestWithTask(task: getData, success: { (data) in
+            if let array = data as? [NotificationApp] {
+                self.listNotification = array
+                self.table.reloadData()
+            }
+        }) { (_) in
+            
+        }
+    }
+    
+    // MARK: Table Data Source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return listNotification.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = table.dequeueReusableCell(withIdentifier: "MessageNotificationCell", for: indexPath) as? MessageNotificationCell {
+            cell.binData(objectNotification: listNotification[indexPath.row])
             return cell
         }
         return UITableViewCell()
     }
     
+    // MARK: Table Delegate
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailNotificationMessageController") as? DetailNotificationMessageController {
+            vc.objectiNotification = listNotification[indexPath.row]
+            vc.callBack = { [weak self] in
+                self?.listNotification.remove(at: indexPath.row)
+                self?.table.reloadData()
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -41,7 +65,8 @@ class NotificationMessageViewController: BaseViewController, UITableViewDelegate
     }
 
     @IBAction func pressedReadAllMessage(_ sender: Any) {
-        
+        listNotification.removeAll()
+        table.reloadData()
     }
     
     @IBAction func pressedBackButton(_ sender: Any) {

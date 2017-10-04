@@ -14,7 +14,7 @@ let widthScreen: CGFloat = UIScreen.main.bounds.width
 let hightScreen: CGFloat = UIScreen.main.bounds.height
 
 enum Object: Int {
-    case news = 0, book, comment
+    case news = 0, book, comment, chanel
 }
 
 enum Like: Int {
@@ -61,7 +61,7 @@ class Constants: NSObject {
     var language: Int = 0
     
     var historyViewChanelLesson: [Lesson] = []
-//    var historyViewAudio: [Book] = []
+    var listCommentHot: [Comment] = []
     var memberProfile: ProfileMember?
     
     static let sharedInstance = Constants()

@@ -58,6 +58,14 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
 //            vc?.add(URL(string: "https://color.adobe.com/explore/most-popular/?time=all"))
             vc?.setInitialText("Hello\n")
             vc?.popoverPresentationController?.sourceView = self.view
+            vc?.completionHandler = { status in
+                switch status {
+                case SLComposeViewControllerResult.done:
+                    print("ok")
+                case SLComposeViewControllerResult.cancelled:
+                    break
+                }
+            }
             self.present(vc!, animated: true, completion: nil)
         } else {
             _ = UIAlertController(title: "waring", message: "please install weibo and sigin weibo for share", preferredStyle: .alert)
@@ -88,7 +96,10 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
                                                 UIActivityType.postToFlickr,
                                                 UIActivityType.mail,
                                                 UIActivityType.postToWeibo
-            ]
+                                                ]
+            activityVC.completionWithItemsHandler = { (activity, success, items, error) in                print(success ? "SUCCESS!" : "FAILURE")
+            }
+            
             activityVC.popoverPresentationController?.sourceView = self.view
             self.present(activityVC, animated: true, completion: nil)
         }
@@ -101,6 +112,14 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
             vc?.add(URL(string: "https://color.adobe.com/explore/most-popular/?time=all"))
             vc?.setInitialText("Hello\n")
             vc?.popoverPresentationController?.sourceView = self.view
+            vc?.completionHandler = { status in
+                switch status {
+                case SLComposeViewControllerResult.done:
+                    print("ok")
+                case SLComposeViewControllerResult.cancelled:
+                    break
+                }
+            }
             self.present(vc!, animated: true, completion: nil)
         }
     }

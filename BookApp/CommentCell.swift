@@ -31,6 +31,7 @@ class CommentCell: UITableViewCell {
         time.text = date[1] + "." + date[2]
         content.text = commentObject.contentComment
         numberLike.text = String(commentObject.numberLikeComment)
+        imageLike.image = commentObject.status == 1 ? #imageLiteral(resourceName: "ic_bottom_liked") : #imageLiteral(resourceName: "ic_bottom_like")
     }
 
     @IBAction func pressedLike(_ sender: Any) {

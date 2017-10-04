@@ -64,6 +64,9 @@ extension BaseTaskNetwork {
         let chanelImage = dictionary["channel_image"] as? String ?? " "
         let teacherName = dictionary["teacher_name"] as? String ?? " "
         let teacherImage = dictionary["teacher_image"] as? String ?? " "
+        let numberLike = dictionary["number_of_likes"] as? Int ?? 0
+        let numberComment = dictionary["number_of_comments"] as? Int ?? 0
+        let numberSubcrible = dictionary["number_of_subscribe"] as? Int ?? 0
         let chanelTimeUp = dictionary[""] as? String ?? " "
         let chanel: Chanel = Chanel(idChanel: chanelID,
                                     nameChanel: chanelName,
@@ -72,7 +75,10 @@ extension BaseTaskNetwork {
                                     nameTeacher: teacherName,
                                     imageTeacherURL: teacherImage,
                                     numberView: 123,
-                                    time: chanelTimeUp)
+                                    time: chanelTimeUp,
+                                    numberLike: numberLike,
+                                    numberComment: numberComment,
+                                    numberSubcrible: numberSubcrible)
         return chanel
     }
     

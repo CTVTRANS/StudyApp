@@ -14,15 +14,14 @@ class Chanel: NSObject {
     private var _typeChanel: String!
     private var _imageTeacherURL, _nameTeahcer: String!
     private var _idChanel, _numberView: Int!
+    private var _numberLike: Int!
+    private var _numberComment: Int!
+    private var _numberSubcrible: Int!
     
-    init(idChanel: Int,
-         nameChanel: String,
-         imageChanelURL: String,
-         typeChanel: String,
-         nameTeacher: String,
-         imageTeacherURL: String,
-         numberView: Int,
-         time: String) {
+    init(idChanel: Int, nameChanel: String, imageChanelURL: String,
+         typeChanel: String, nameTeacher: String, imageTeacherURL: String,
+         numberView: Int, time: String, numberLike: Int, numberComment: Int,
+         numberSubcrible: Int) {
             _idChanel = idChanel
             _nameChanel = nameChanel
             _imageChanelURL = imageChanelURL
@@ -31,6 +30,9 @@ class Chanel: NSObject {
             _imageTeacherURL = imageTeacherURL
             _numberView = numberView
             _timeUp = time
+        _numberLike = numberLike
+        _numberComment = numberComment
+        _numberSubcrible = numberSubcrible
     }
     var nameChanel: String {
         return _nameChanel
@@ -61,5 +63,16 @@ class Chanel: NSObject {
             _numberView = newValue
         }
     }
-
+    var numberCommet: Int {
+        get { return _numberComment}
+        set { _numberComment = newValue}
+    }
+    var numberLike: Int {
+        get { return _numberLike}
+        set { _numberLike = newValue}
+    }
+    var numberSubcrible: Int {
+        get { return _numberSubcrible}
+        set { _numberSubcrible = newValue}
+    }
 }

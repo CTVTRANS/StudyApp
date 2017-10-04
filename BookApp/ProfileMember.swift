@@ -10,14 +10,15 @@ import UIKit
 
 class ProfileMember: NSObject {
 
-    private var _idMember, _level, _sex, _poit: Int?
+    private var _idMember, _level, _sex, _point: Int?
     private var _memberCode, _name, _country: String?
     private var _phoneNumber, _email, _avatar: String?
     private var _dateOfBirth, _job, _marriage, _hobby: String?
+    private var _token: String?
     
     init(idMember: Int, memberCode: String, level: Int, name: String, country: String,
          phoneNumber: String, email: String, avatar: String, sex: Int, birDay: String,
-         job: String, marriage: String, hobby: String, point: Int) {
+         job: String, marriage: String, hobby: String, point: Int, token: String) {
         _idMember = idMember
         _memberCode = memberCode
         _level = level
@@ -31,7 +32,8 @@ class ProfileMember: NSObject {
         _job = job
         _marriage = marriage
         _hobby = hobby
-        _poit = point
+        _point = point
+        _token = token
     }
     
     var idMember: Int {
@@ -45,7 +47,7 @@ class ProfileMember: NSObject {
         set { _sex = newValue}
     }
     var point: Int {
-        return _poit!
+        return _point!
     }
     var memberCode: String? {
         return _memberCode
@@ -84,5 +86,8 @@ class ProfileMember: NSObject {
     var hobby: String? {
         get { return _hobby}
         set { _hobby = newValue}
+    }
+    var toekn: String? {
+        return _token
     }
 }

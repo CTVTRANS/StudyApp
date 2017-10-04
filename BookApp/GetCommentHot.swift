@@ -13,10 +13,12 @@ class GetCommentHot: BaseTaskNetwork {
 
     private let _commentType: Int!
     private let _idObject: Int!
+    private let _memberId: Int!
     
-    init(commentType: Int, idObject: Int) {
+    init(commentType: Int, idObject: Int, memberID: Int) {
         _commentType = commentType
         _idObject = idObject
+        _memberId = memberID
     }
     
     override func path() -> String! {
@@ -25,7 +27,8 @@ class GetCommentHot: BaseTaskNetwork {
     
     override func parameters() -> [AnyHashable : Any]! {
         return ["comment_type": _commentType,
-                "object_id": _idObject]
+                "object_id": _idObject,
+                "member_id": _memberId]
     }
     
     override func method() -> String! {
@@ -36,18 +39,7 @@ class GetCommentHot: BaseTaskNetwork {
         var listComment: [Comment] = []
         if let object = response as? [[String: Any]] {
             for dictionary in object {
-                let iDComment = dictionary["comment_id"] as? Int ?? 999
-                let contentcomment = dictionary["comment_content"] as? String ?? "999"
-                let timeComment = dictionary["comment_time"] as? String ?? "999"
-                let numberLikeComment = dictionary["number_of_likes"] as? Int ?? 0
-                let userName = dictionary["author_name"] as? String ?? "kien"
-                let userAvata = dictionary["author_avatar"] as? String ?? " "
-                let user: User = User(name: userName, age: 18, sex: 1, avata: userAvata)
-                let commentObject: Comment = Comment(idComment: iDComment,
-                                                     user: user,
-                                                     time: timeComment,
-                                                     numberlikeComment: numberLikeComment,
-                                                     content: contentcomment)
+                let commentObject = parseComment(dictionary: dictionary)
                 listComment.append(commentObject)
             }
         }

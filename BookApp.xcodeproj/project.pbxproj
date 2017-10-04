@@ -65,6 +65,8 @@
 		6DEDBD551F4593DD00526AD0 /* CustomBookCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEDBD541F4593DD00526AD0 /* CustomBookCollection.swift */; };
 		6DEDBD5C1F459B8500526AD0 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEDBD5A1F459B8500526AD0 /* BookCollectionViewCell.swift */; };
 		6DEDBD5D1F459B8500526AD0 /* BookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DEDBD5B1F459B8500526AD0 /* BookCollectionViewCell.xib */; };
+		6DEE1C0E1F83267500C62560 /* GetNotificationTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE1C0D1F83267500C62560 /* GetNotificationTask.swift */; };
+		6DEE1C101F8327EA00C62560 /* NotificationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE1C0F1F8327EA00C62560 /* NotificationApp.swift */; };
 		6DEE63E91F73CB2D00C10E5E /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE63E81F73CB2D00C10E5E /* ShareController.swift */; };
 		6DEE63EB1F73CB5400C10E5E /* ShareViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE63EA1F73CB5400C10E5E /* ShareViewCell.swift */; };
 		6DEE6E1F1F68D565005F80F4 /* HistoryMarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE6E1E1F68D565005F80F4 /* HistoryMarkCell.swift */; };
@@ -140,6 +142,15 @@
 		6DF417581F46A56F00F5032E /* ChanelCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF417561F46A56F00F5032E /* ChanelCollectionCell.swift */; };
 		6DF417591F46A56F00F5032E /* ChanelCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF417571F46A56F00F5032E /* ChanelCollectionCell.xib */; };
 		6DF4175B1F46ABF700F5032E /* Chanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4175A1F46ABF700F5032E /* Chanel.swift */; };
+		6DF4189C1F84757100BA9AE5 /* ListCountryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF4189B1F84757100BA9AE5 /* ListCountryView.xib */; };
+		6DF4189E1F8475D500BA9AE5 /* ListCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4189D1F8475D500BA9AE5 /* ListCountryView.swift */; };
+		6DF418A11F8476B300BA9AE5 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4189F1F8476B300BA9AE5 /* CountryCell.swift */; };
+		6DF418A21F8476B300BA9AE5 /* CountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF418A01F8476B300BA9AE5 /* CountryCell.xib */; };
+		6DF418A41F8482F200BA9AE5 /* GetCodeConfirmTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF418A31F8482F200BA9AE5 /* GetCodeConfirmTask.swift */; };
+		6DF418A61F84830900BA9AE5 /* RegisterTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF418A51F84830900BA9AE5 /* RegisterTask.swift */; };
+		6DF418A81F84833A00BA9AE5 /* SignInTaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF418A71F84833A00BA9AE5 /* SignInTaks.swift */; };
+		6DF418AA1F84838100BA9AE5 /* UpdateMemberTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF418A91F84838100BA9AE5 /* UpdateMemberTask.swift */; };
+		6DF418AC1F8483EF00BA9AE5 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF418AB1F8483EF00BA9AE5 /* ChangePassword.swift */; };
 		6DF4DF611F6A7D6500F46CA6 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4DF601F6A7D6500F46CA6 /* ChangeProfileViewController.swift */; };
 		6DF4DF631F6A865A00F46CA6 /* AppInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4DF621F6A865A00F46CA6 /* AppInfomationViewController.swift */; };
 		6DF4FFF31F5E973100DF73A0 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4FFF21F5E973100DF73A0 /* Lesson.swift */; };
@@ -250,6 +261,8 @@
 		6DEDBD541F4593DD00526AD0 /* CustomBookCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCollection.swift; sourceTree = "<group>"; };
 		6DEDBD5A1F459B8500526AD0 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 		6DEDBD5B1F459B8500526AD0 /* BookCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookCollectionViewCell.xib; sourceTree = "<group>"; };
+		6DEE1C0D1F83267500C62560 /* GetNotificationTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetNotificationTask.swift; sourceTree = "<group>"; };
+		6DEE1C0F1F8327EA00C62560 /* NotificationApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationApp.swift; sourceTree = "<group>"; };
 		6DEE63E81F73CB2D00C10E5E /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
 		6DEE63EA1F73CB5400C10E5E /* ShareViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewCell.swift; sourceTree = "<group>"; };
 		6DEE6E1E1F68D565005F80F4 /* HistoryMarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryMarkCell.swift; sourceTree = "<group>"; };
@@ -325,6 +338,15 @@
 		6DF417561F46A56F00F5032E /* ChanelCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChanelCollectionCell.swift; sourceTree = "<group>"; };
 		6DF417571F46A56F00F5032E /* ChanelCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChanelCollectionCell.xib; sourceTree = "<group>"; };
 		6DF4175A1F46ABF700F5032E /* Chanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chanel.swift; sourceTree = "<group>"; };
+		6DF4189B1F84757100BA9AE5 /* ListCountryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCountryView.xib; sourceTree = "<group>"; };
+		6DF4189D1F8475D500BA9AE5 /* ListCountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCountryView.swift; sourceTree = "<group>"; };
+		6DF4189F1F8476B300BA9AE5 /* CountryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
+		6DF418A01F8476B300BA9AE5 /* CountryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryCell.xib; sourceTree = "<group>"; };
+		6DF418A31F8482F200BA9AE5 /* GetCodeConfirmTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCodeConfirmTask.swift; sourceTree = "<group>"; };
+		6DF418A51F84830900BA9AE5 /* RegisterTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTask.swift; sourceTree = "<group>"; };
+		6DF418A71F84833A00BA9AE5 /* SignInTaks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTaks.swift; sourceTree = "<group>"; };
+		6DF418A91F84838100BA9AE5 /* UpdateMemberTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateMemberTask.swift; sourceTree = "<group>"; };
+		6DF418AB1F8483EF00BA9AE5 /* ChangePassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
 		6DF4DF601F6A7D6500F46CA6 /* ChangeProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeProfileViewController.swift; sourceTree = "<group>"; };
 		6DF4DF621F6A865A00F46CA6 /* AppInfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfomationViewController.swift; sourceTree = "<group>"; };
 		6DF4FFF21F5E973100DF73A0 /* Lesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
@@ -581,6 +603,10 @@
 			children = (
 				6DF7279C1F55554500E0D242 /* SplashViewController.swift */,
 				6DF7279E1F5561A700E0D242 /* LoginViewController.swift */,
+				6DF4189B1F84757100BA9AE5 /* ListCountryView.xib */,
+				6DF4189D1F8475D500BA9AE5 /* ListCountryView.swift */,
+				6DF4189F1F8476B300BA9AE5 /* CountryCell.swift */,
+				6DF418A01F8476B300BA9AE5 /* CountryCell.xib */,
 				6DF727A01F556B6200E0D242 /* RegisterViewController.swift */,
 				6DF727A21F55719200E0D242 /* ForgetPassViewController.swift */,
 				6DF2FD721F5D2E190004CF04 /* NotificationMessageViewController.swift */,
@@ -610,6 +636,11 @@
 				6DEB9BEC1F6BC03400D858B3 /* GetListProductByPointAndMoneyTask.swift */,
 				6DEB9BEE1F6BC04F00D858B3 /* GetProductVipTask.swift */,
 				6DEB9BF01F6BC1BE00D858B3 /* GetAllproductTask.swift */,
+				6DF418A31F8482F200BA9AE5 /* GetCodeConfirmTask.swift */,
+				6DF418A51F84830900BA9AE5 /* RegisterTask.swift */,
+				6DF418A71F84833A00BA9AE5 /* SignInTaks.swift */,
+				6DF418A91F84838100BA9AE5 /* UpdateMemberTask.swift */,
+				6DF418AB1F8483EF00BA9AE5 /* ChangePassword.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -634,6 +665,7 @@
 				6DEF67C91F550EA000D6BBCC /* GetAllNewsTask.swift */,
 				6DEEA5491F6FCB8700116848 /* GetAllTypeNewsTask.swift */,
 				6DEFEFDC1F71FB0C00916C98 /* GetAllNewsBookmarkedTask.swift */,
+				6DEE1C0D1F83267500C62560 /* GetNotificationTask.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -679,6 +711,7 @@
 			children = (
 				58C39DDF1F3C4F5D001741EB /* NewsModel.swift */,
 				6DEEA5471F6FCAD900116848 /* NewsType.swift */,
+				6DEE1C0F1F8327EA00C62560 /* NotificationApp.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -895,12 +928,14 @@
 				6D2F789A1F8227DB005B9CC2 /* DFYaSongGB5Std-W9.otf in Resources */,
 				6DF702EE1F61008400FAF762 /* Profile.storyboard in Resources */,
 				58C39DE21F3C5662001741EB /* BottomView.xib in Resources */,
+				6DF418A21F8476B300BA9AE5 /* CountryCell.xib in Resources */,
 				6DF889261F418496005F72D7 /* Chanel.storyboard in Resources */,
 				6DF1D7981F7B392D0075F26C /* SettingStatus.xib in Resources */,
 				6D07667A1F6F6AFB00097D8B /* CustomHistorySearch.xib in Resources */,
 				6DF0E2161F5FB30B007DEA72 /* ChanelViewCell.xib in Resources */,
 				58C39DC21F3C0489001741EB /* Assets.xcassets in Resources */,
 				6DF1D79A1F7B448F0075F26C /* SettingDatepicker.xib in Resources */,
+				6DF4189C1F84757100BA9AE5 /* ListCountryView.xib in Resources */,
 				6DF727991F55505600E0D242 /* CSong3HK-Medium.ttf in Resources */,
 				58C39DC01F3C0489001741EB /* Main.storyboard in Resources */,
 				6DF417531F46A29000F5032E /* CustomChanelCollection.xib in Resources */,
@@ -1010,11 +1045,13 @@
 				6DF4FFFB1F5EA8B500DF73A0 /* IncreaseVIewChanelTask.swift in Sources */,
 				6DEEA54E1F6FD7D100116848 /* SearchNewsTask.swift in Sources */,
 				6DEF67C61F5506FE00D6BBCC /* SendCommentTask.swift in Sources */,
+				6DF418A61F84830900BA9AE5 /* RegisterTask.swift in Sources */,
 				6DF417581F46A56F00F5032E /* ChanelCollectionCell.swift in Sources */,
 				6DE922A11F67757D00EE24EC /* GetProfileMemberTask.swift in Sources */,
 				6DEF72411F5FD15A008392A0 /* ChanelHotController.swift in Sources */,
 				6DF7279F1F5561A700E0D242 /* LoginViewController.swift in Sources */,
 				6DEB9BE91F6BBBD900D858B3 /* PriceMix.swift in Sources */,
+				6DF418AA1F84838100BA9AE5 /* UpdateMemberTask.swift in Sources */,
 				6DF417551F46A2AF00F5032E /* CustomChanelCollection.swift in Sources */,
 				6DEFD7501F4A7D2F00FB0CA5 /* BookVideoController.swift in Sources */,
 				6DE922A51F677C6800EE24EC /* GetGroupJoinedTask.swift in Sources */,
@@ -1081,18 +1118,24 @@
 				6DE922A31F6779C500EE24EC /* GetAllGroupTask.swift in Sources */,
 				58C39DD21F3C1F41001741EB /* BaseViewController.swift in Sources */,
 				6DF6462F1F81D0B5004F47C2 /* DownloadAudioController.swift in Sources */,
+				6DF418AC1F8483EF00BA9AE5 /* ChangePassword.swift in Sources */,
 				6DEACA4A1F78F2BA0001A57C /* AllTypeBookController.swift in Sources */,
 				58C39DBB1F3C0489001741EB /* AppDelegate.swift in Sources */,
+				6DF418A11F8476B300BA9AE5 /* CountryCell.swift in Sources */,
 				6D2187EB1F5E5C2800C205CE /* GetChanelSuggestTask.swift in Sources */,
 				6DF1D7921F7B38CA0075F26C /* SettingChooseSex.swift in Sources */,
 				6DE04FD41F414F33002C5E25 /* BaseViewcontrollerExtend.swift in Sources */,
+				6DEE1C101F8327EA00C62560 /* NotificationApp.swift in Sources */,
 				6DEEF0001F612C8F0078EEE1 /* BookDownloadCell.swift in Sources */,
+				6DEE1C0E1F83267500C62560 /* GetNotificationTask.swift in Sources */,
 				6DEE63EB1F73CB5400C10E5E /* ShareViewCell.swift in Sources */,
 				6DF3E0FE1F5CE89400C10D31 /* BookMarkTask.swift in Sources */,
 				6DEFD7541F4A974800FB0CA5 /* BookDetailViewController.swift in Sources */,
+				6DF4189E1F8475D500BA9AE5 /* ListCountryView.swift in Sources */,
 				6DF6698F1F5819CF00FBC8A7 /* GetCommentHot.swift in Sources */,
 				6DF07B7E1F692FBB0017C1CB /* BuyProductViewController.swift in Sources */,
 				58C39DDD1F3C49C5001741EB /* MainViewController.swift in Sources */,
+				6DF418A41F8482F200BA9AE5 /* GetCodeConfirmTask.swift in Sources */,
 				6DEFD7521F4A7D3E00FB0CA5 /* BookTextController.swift in Sources */,
 				6D87DCBF1F54197700269351 /* User.swift in Sources */,
 				6DF669911F581DB100FBC8A7 /* SpecialComment.swift in Sources */,
@@ -1141,6 +1184,7 @@
 				58C39DE41F3C576C001741EB /* DetailNewsController.swift in Sources */,
 				6DF0284E1F56AB3700CEE331 /* GetBookFreeTask.swift in Sources */,
 				58AF8D6B1F3D92490080A017 /* Constants.swift in Sources */,
+				6DF418A81F84833A00BA9AE5 /* SignInTaks.swift in Sources */,
 				6DF7279D1F55554500E0D242 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

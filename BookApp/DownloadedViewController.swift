@@ -102,6 +102,7 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
                 self?.play(lesson: lesson, index: indexPath.row)
                 break
             case "removeChanel":
+                self?.pressRemoveLesson(lesson: lesson)
                 self?.listChanelDownloaded.remove(at: indexPath.row)
                 self?.table.reloadData()
                 break
@@ -154,6 +155,14 @@ class DownloadedViewController: BaseViewController, UITableViewDelegate, UITable
         mp3.didLoadAudio = { [weak self] _, _ in
             self?.table.reloadData()
         }
+    }
+    
+    func pressRemoveLesson(lesson: Lesson) {
+        var listLesson: [Lesson] = Lesson.getLesson()!
+        for index in 0..<listLesson.count where listLesson[index].idChap == lesson.idChap {
+            listLesson.remove(at: index)
+        }
+        Lesson.saveLesson(lesson: listLesson)
     }
     
     func pressRemoveBook(book: Book) {

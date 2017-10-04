@@ -60,21 +60,26 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
             let index = fristString.index(fristString.startIndex, offsetBy: 4)
             detail.text = fristString.substring(from: index)
         }
+        if let chanel = object as? Chanel {
+            titleComment.text = chanel.nameChanel
+            detail.text = " "
+        }
     }
     
     func getCommet() {
         let getCommentHot: GetCommentHot =
-            GetCommentHot(commentType: commentType!, idObject: idObject!)
+            GetCommentHot(commentType: commentType!, idObject: idObject!, memberID: memberID)
         requestWithTask(task: getCommentHot, success: { (data) in
             if let arrayCommentHot = data as? [Comment] {
                 if arrayCommentHot.count > 0 {
                     let hotComment: SpecialComment = SpecialComment(name: "熱評", array: arrayCommentHot)
                     self.arrayObject.append(hotComment)
+                    Constants.sharedInstance.listCommentHot = arrayCommentHot
                 }
             }
             let getComment: GetAllComment = GetAllComment(commentType: self.commentType!,
                                                           idObject: self.idObject!,
-                                                          page: 1)
+                                                          page: 1, idMember: memberID)
             self.requestWithTask(task: getComment, success: { (data) in
                 if let arrayOfComment = data as? [Comment] {
                     if arrayOfComment.count > 0 {
@@ -133,23 +138,9 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         let sectionObject = arrayObject[indexPath.section]
         let commenObject = sectionObject.comment[indexPath.row]
         cell?.binData(commentObject: commenObject)
-        let checkLike: CheckLikedTask = CheckLikedTask(likeType: Object.comment.rawValue,
-                                                        memberID: 1,
-                                                        objectID: commenObject.idComment)
-        requestWithTask(task: checkLike, success: { (data) in
-            if let status = data as? Bool {
-                if status {
-                    cell?.imageLike.image = #imageLiteral(resourceName: "ic_bottom_liked")
-                } else {
-                     cell?.imageLike.image = #imageLiteral(resourceName: "ic_bottom_like")
-                }
-            }
-        }) { (_) in
-            
-        }
         cell?.pressLikeComment = { [weak self] in
             let likeComment: LikeTask = LikeTask(likeType: Object.comment.rawValue,
-                                                 memberID: 1,
+                                                 memberID: memberID,
                                                  objectId: commenObject.idComment)
             self?.requestWithTask(task: likeComment, success: { (data) in
                 let status: Like = (data as? Like)!
@@ -186,7 +177,7 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func pressedSendComment(_ sender: Any) {
         let sendComment: SendCommentTask = SendCommentTask(commentType: commentType!,
-                                                           memberID: 1,
+                                                           memberID: memberID,
                                                            objectId: idObject!,
                                                            content: commentTextView.text)
         requestWithTask(task: sendComment, success: { (data) in
