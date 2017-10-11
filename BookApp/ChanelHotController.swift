@@ -17,6 +17,7 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
     private var isMoreData = true
     private var pager = 1
     lazy var footerView = UIView.initFooterView()
+//    private var member = ProfileMember.getProfile()
     private var indicator: UIActivityIndicatorView?
     
     override func viewDidLoad() {
@@ -61,11 +62,16 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
         }
         cell?.callBackButton = { [weak self] in
             let subcrible: SubcribleChanelTask =
-                SubcribleChanelTask(memberID: 1,
-                                    chanelID: chanel.idChanel)
-            self?.requestWithTask(task: subcrible, success: { (data) in
+                SubcribleChanelTask(memberID: (self!.memberInstance?.idMember)!,
+                                    chanelID: chanel.idChanel,
+                                    token: (self?.tokenInstance)!)
+            self?.requestWithTask(task: subcrible, success: { [weak self] (data) in
                 let status: Subcrible = (data as? Subcrible)!
                 if status == Subcrible.subcrible {
+                    if !(self?.checkLogin())! {
+                        self?.goToSigIn()
+                        return
+                    }
                     Constants.sharedInstance.listChanelSubcribled.append(chanel)
                     cell?.subcribleButton.setTitle("  已訂閱頻道  ", for: .normal)
                     cell?.subcribleButton.isEnabled = false
@@ -110,7 +116,6 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
                 self.table.reloadData()
                 if list.count == 0 {
                     self.isMoreData = false
-                    self.table.tableFooterView = UIView()
                 }
             }
         }) { (error) in

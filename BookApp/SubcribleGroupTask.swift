@@ -12,9 +12,13 @@ import LCNetwork
 class SubcribleGroupTask: BaseTaskNetwork {
     
     private var _arrayIDGroup: String!
+    private var _memberID: Int
+    private var _token: String!
     
-    init(arryID: String) {
+    init(memberID: Int, arryID: String, token: String) {
+        _memberID = memberID
         _arrayIDGroup = arryID
+        _token = token
     }
     
     override func path() -> String! {
@@ -26,7 +30,7 @@ class SubcribleGroupTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["member_id": 1, "object_id": _arrayIDGroup]
+        return ["member_id": _memberID, "object_id": _arrayIDGroup, "access_token": _token]
     }
 
     override func data(withResponse response: Any!) -> Any! {

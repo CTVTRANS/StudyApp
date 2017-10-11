@@ -30,6 +30,7 @@ class SettingViewController: BaseViewController, UITableViewDataSource, UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     func pressedRightBarButton() {
@@ -88,11 +89,8 @@ class SettingViewController: BaseViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            if Constants.sharedInstance.memberProfile == nil {
-                let mystoryboard = UIStoryboard(name: "Global", bundle: nil)
-                if let vc = mystoryboard.instantiateViewController(withIdentifier: "Login") as? UINavigationController {
-                    navigationController?.present(vc, animated: true, completion: nil)
-                }
+            if ProfileMember.getToken() == "" {
+                goToSigIn()
                 return
             }
             if let vc = storyboard?.instantiateViewController(withIdentifier: "MyprofileViewController") as? MyprofileViewController {

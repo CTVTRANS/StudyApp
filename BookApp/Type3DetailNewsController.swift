@@ -19,40 +19,14 @@ class Type3DetailNewsController: BaseViewController, UIWebViewDelegate {
     
     @IBOutlet weak var highOfNoteView: NSLayoutConstraint!
     var news: NewsModel!
+//    private lazy var member = ProfileMember.getProfile()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivity(inView: self.view)
         note.delegate = self
-        let checkLiked: CheckLikedTask = CheckLikedTask(likeType: Object.news.rawValue,
-                                                        memberID: 1,
-                                                        objectID: news.idNews)
-        requestWithTask(task: checkLiked, success: { [weak self] (data) in
-            if let status = data as? Bool {
-                if status {
-                    self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
-                } else {
-                    self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
-                }
-            }
-        }) { (_) in
-            
-        }
-        let checkBookMarked: CheckBookMarkedTask = CheckBookMarkedTask(bookMarkType: Object.news.rawValue,
-                                                                       memberID: 1,
-                                                                       objectID: news.idNews)
-        requestWithTask(task: checkBookMarked, success: { [weak self] (data) in
-            if let status = data as? (Bool, Int) {
-                if status.0 {
-                    self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMarked")
-                } else {
-                    self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMark")
-                }
-                self?.news.numberBookMark = status.1
-                self?.bottomView.numberBookmark.text = String(status.1)
-            }
-        }) { (_) in
-            
+        if checkLogin() {
+            checkStatusLikeBookmark()
         }
         setupCallBackButton()
         author.text = news.author
@@ -72,14 +46,59 @@ class Type3DetailNewsController: BaseViewController, UIWebViewDelegate {
                             action: nil)
         setupRightSlideOut()
     }
+    
+    func checkStatusLikeBookmark() {
+        let checkLiked: CheckLikedTask = CheckLikedTask(likeType: Object.news.rawValue,
+                                                        memberID: (memberInstance?.idMember)!,
+                                                        objectID: news.idNews)
+        requestWithTask(task: checkLiked, success: { [weak self] (data) in
+            if let status = data as? (Bool, Int) {
+                if status.0 {
+                    self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
+                } else {
+                    self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
+                }
+                self?.news.numberLike = status.1
+                self?.bottomView.numberLike.text = String(status.1)
+            }
+        }) { (_) in
+            
+        }
+        let checkBookMarked: CheckBookMarkedTask =
+            CheckBookMarkedTask(bookMarkType: Object.news.rawValue,
+                                memberID: (memberInstance?.idMember)!,
+                                objectID: news.idNews)
+        requestWithTask(task: checkBookMarked, success: { [weak self] (data) in
+            if let status = data as? (Bool, Int) {
+                if status.0 {
+                    self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMarked")
+                } else {
+                    self?.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMark")
+                }
+                self?.news.numberBookMark = status.1
+                self?.bottomView.numberBookmark.text = String(status.1)
+            }
+        }) { (_) in
+            
+        }
+    }
 
     func setupCallBackButton() {
         bottomView.downloadButton.isHidden = true
         bottomView.downloadImage.isHidden = true
-        bottomView.numberLike.text = String(news.numberLike)
         bottomView.numberComment.text = String(news.numberComment)
+        bottomView.numberLike.text = String(news.numberLike)
+        bottomView.numberBookmark.text = String(news.numberBookMark)
         
         bottomView.pressedBottomButton = { [weak self] (typeButotn: BottomButton) in
+            if typeButotn == BottomButton.back {
+                self?.navigationController?.popViewController(animated: true)
+                return
+            }
+            if !(self?.checkLogin())! {
+                self?.goToSigIn()
+                return
+            }
             switch typeButotn {
             case BottomButton.back:
                 self?.navigationController?.popViewController(animated: true)
@@ -103,8 +122,9 @@ class Type3DetailNewsController: BaseViewController, UIWebViewDelegate {
     
     func pressedLike() {
         let likeTask: LikeTask = LikeTask(likeType: Object.news.rawValue,
-                                          memberID: 1,
-                                          objectId: self.news.idNews)
+                                          memberID: (memberInstance?.idMember)!,
+                                          objectId: self.news.idNews,
+                                          token: tokenInstance!)
         self.requestWithTask(task: likeTask, success: { (data) in
             let status: Like = (data as? Like)!
             var currentLike: Int = self.news.numberLike
@@ -124,8 +144,9 @@ class Type3DetailNewsController: BaseViewController, UIWebViewDelegate {
     
     func pressedBookmark() {
         let bookMarkTask: BookMarkTask = BookMarkTask(bookMarkType: Object.news.rawValue,
-                                                      memberID: 1,
-                                                      objectId: news.idNews)
+                                                      memberID: (memberInstance?.idMember)!,
+                                                      objectId: news.idNews,
+                                                      token: tokenInstance!)
         self.requestWithTask(task: bookMarkTask, success: { (data) in
             let status: BookMark = (data as? BookMark)!
             var currentBookMark: Int = self.news.numberBookMark

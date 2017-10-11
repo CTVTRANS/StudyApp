@@ -48,7 +48,7 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
                 self.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main) { [weak self] time in
                     let timeString = String(format: "%02.0f", CMTimeGetSeconds(time))
                     let timeSecond = Float(timeString)
-                    if Constants.sharedInstance.memberProfile == nil || Constants.sharedInstance.memberProfile?.level == 0 {
+                    if self?.memberInstance == nil || self?.memberInstance?.level == 0 {
                         if timeSecond! >= 90.0 {
                             self?.player?.pause()
                             self?.player?.seek(to: kCMTimeZero)

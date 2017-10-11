@@ -11,10 +11,13 @@ import LCNetwork
 
 class GetAllBookBookmarkedTask: BaseTaskNetwork {
 
-    private var _page: Int
+    private var _page: Int!
+    private var _memberID: Int!
     
-    init(page: Int) {
+    init(memberID: Int, page: Int) {
+        _memberID = memberID
         _page = page
+        
     }
     
     override func method() -> String! {
@@ -26,7 +29,7 @@ class GetAllBookBookmarkedTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["member_id": 1, "limit": 20, "page": _page]
+        return ["member_id": _memberID, "limit": 20, "page": _page]
     }
     
     override func data(withResponse response: Any!) -> Any! {

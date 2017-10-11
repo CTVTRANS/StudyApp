@@ -93,6 +93,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
             return
         }
         _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer(timer:)), userInfo: nil, repeats: true)
+        sendCodebutton.isEnabled = false
 //        let sendCode = GetCodeConfirmTask(countryCode: countryPhone!, phoneNumber: phone!)
 //        requestWithTask(task: sendCode, success: { (data) in
 //            if let message = data as? [String: Any] {
@@ -110,6 +111,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
             titleForbutton.text = "  SendCode  "
             timer.invalidate()
             counter = 60
+            sendCodebutton.isEnabled = true
         }
     }
 }

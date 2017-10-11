@@ -12,6 +12,7 @@ import Social
 class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var table: UITableView!
+//    private lazy var member = ProfileMember.getProfile()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +62,14 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
             vc?.completionHandler = { status in
                 switch status {
                 case SLComposeViewControllerResult.done:
-                    print("ok")
+                    let updatepoint = UpdatePointTask(memberID: (self.memberInstance?.idMember)!,
+                                                      token: self.tokenInstance!,
+                                                      type: UpdatePointType.share.rawValue)
+                    self.requestWithTask(task: updatepoint, success: { (_) in
+                        
+                    }, failure: { (_) in
+                        
+                    })
                 case SLComposeViewControllerResult.cancelled:
                     break
                 }
@@ -115,7 +123,14 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
             vc?.completionHandler = { status in
                 switch status {
                 case SLComposeViewControllerResult.done:
-                    print("ok")
+                    let updatepoint = UpdatePointTask(memberID: (self.memberInstance?.idMember)!,
+                                                      token: self.tokenInstance!,
+                                                      type: UpdatePointType.share.rawValue)
+                    self.requestWithTask(task: updatepoint, success: { (_) in
+                        
+                    }, failure: { (_) in
+                        
+                    })
                 case SLComposeViewControllerResult.cancelled:
                     break
                 }

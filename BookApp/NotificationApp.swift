@@ -14,12 +14,16 @@ struct NotificationApp {
     var image: String
     var detailText: String
     var appName: String
+    var time: String
+    var isReaded: Bool
     
-    init(_ idNotiFication: Int, title: String, image: String, detailText: String, appName: String) {
+    init(_ idNotiFication: Int, title: String, image: String, detailText: String, appName: String, readed: Bool, time: String) {
         self.idNotification = idNotiFication
         self.title = title
         self.image = image
         self.detailText = detailText
         self.appName = appName
+        self.isReaded = readed
+        self.time = time
     }
 }

@@ -11,7 +11,7 @@ import TYPagerController
 
 class AllTypeBookController: TYTabPagerController {
     
-    var listTitles = Constants.sharedInstance.listBookType
+    var listTitles: [BookType] = []
     var startIndex: Int!
     
     override func viewDidLoad() {

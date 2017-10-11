@@ -12,7 +12,8 @@ class ChanelSubscribeController: BaseViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var table: UITableView!
     
-    var listChanelSubcribled = [Chanel]()
+    private var listChanelSubcribled = [Chanel]()
+//    private lazy var member = ProfileMember.getProfile()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,8 @@ class ChanelSubscribeController: BaseViewController, UITableViewDelegate, UITabl
         table.register(UINib.init(nibName: "ChanelViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.tableFooterView = UIView()
         showActivity(inView: self.view)
-        let getChaelSubcrible: GetAllChanelSubcribledTask = GetAllChanelSubcribledTask(memberID: 1)
+        let getChaelSubcrible: GetAllChanelSubcribledTask =
+            GetAllChanelSubcribledTask(memberID: (memberInstance?.idMember)!)
         requestWithTask(task: getChaelSubcrible, success: { (_) in
             self.listChanelSubcribled = Constants.sharedInstance.listChanelSubcribled
             self.table.reloadData()
@@ -49,8 +51,9 @@ class ChanelSubscribeController: BaseViewController, UITableViewDelegate, UITabl
         cell?.subcribleButton.setTitle("  退訂  ", for: .normal)
         cell?.callBackButton = {
             let unSubcrible: SubcribleChanelTask =
-                SubcribleChanelTask(memberID: 1,
-                                    chanelID: self.listChanelSubcribled[indexPath.row].idChanel)
+                SubcribleChanelTask(memberID: (self.memberInstance?.idMember)!,
+                                    chanelID: self.listChanelSubcribled[indexPath.row].idChanel,
+                                    token: self.tokenInstance!)
             self.requestWithTask(task: unSubcrible, success: { (data) in
                 let status: Subcrible = (data as? Subcrible)!
                 if status == Subcrible.unSubcrible {

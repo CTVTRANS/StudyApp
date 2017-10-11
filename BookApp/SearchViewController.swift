@@ -12,26 +12,29 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var table: UITableView!
-    
+    @IBOutlet weak var hotView: CustomHistorySearch!
     @IBOutlet weak var typeView: CustomHistorySearch!
+    
     @IBOutlet weak var titleForViewTypes: UILabel!
     @IBOutlet weak var titleForViewHot: UILabel!
+    
     @IBOutlet weak var heightOfTypeView: NSLayoutConstraint!
-    @IBOutlet weak var hotView: CustomHistorySearch!
     @IBOutlet weak var heightOfHotView: NSLayoutConstraint!
     
     @IBOutlet weak var iconSearchBook: UILabel!
     private var listBook: [Book] = []
     private var listTypeBook: [String] = []
     private var loadedTypeBook = false
+    private var listHotBook: [String] = []
     
     @IBOutlet weak var iconSearchNews: UILabel!
     private var listNews: [NewsModel] = []
     private var listTypeNews: [String] = []
     private var loadedTypeNews = false
-    private var seachBook: Bool = true
+    private var listHotNews: [String] = []
     
-    private var listHot: [String] = []
+    private var seachBook: Bool = true
+    let queue = DispatchQueue.global(qos: .utility)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +43,7 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         table.estimatedRowHeight = 140
         searchBar.backgroundImage = UIImage()
         setUp()
+        getHotKeyWord()
         setUPCallBack()
         showTypeAndHotKeyWord()
     }
@@ -49,9 +53,30 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         navigationController?.isNavigationBarHidden = true
     }
     
+    func getHotKeyWord() {
+        let getKeyWordBook = GetHotKeyWordTask(type: Object.book.rawValue)
+        requestWithTask(task: getKeyWordBook, success: { (data) in
+            if let list = data as? [String] {
+                self.listHotBook = list
+                self.showTypeAndHotKeyWord()
+            }
+        }) { (_) in
+            
+        }
+        let getKeyWordNews = GetHotKeyWordTask(type: Object.news.rawValue)
+        requestWithTask(task: getKeyWordNews, success: { (data) in
+            if let list = data as? [String] {
+                self.listHotNews = list
+                self.showTypeAndHotKeyWord()
+            }
+        }) { (_) in
+            
+        }
+    }
+    
     private func setUp() {
         titleForViewTypes.text = "分類搜索"
-        titleForViewHot.text = " "
+        titleForViewHot.text = "熱門搜索"
         let getAllTypeNews: GetAllTypeNewsTask = GetAllTypeNewsTask()
         requestWithTask(task: getAllTypeNews, success: { (_) in
             self.loadedTypeNews = true
@@ -81,10 +106,12 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     
     func setUPCallBack() {
         typeView.callBackButton = { (_ name: String) in
-            print(name)
+            self.searchBar.text = name
+            self.searchWithKeyWord(keyword: name)
         }
         hotView.callBackButton = { (_ name: String) in
-            print(name)
+            self.searchBar.text = name
+            self.searchWithKeyWord(keyword: name)
         }
     }
     
@@ -141,27 +168,44 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         listNews.removeAll()
         listBook.removeAll()
-        if seachBook && searchBar.text != nil {
-            let searchBookTask: SearchBookTask = SearchBookTask(keyWord: searchBar.text!, page: 1)
+        if searchBar.text != nil {
+            searchWithKeyWord(keyword: searchBar.text!)
+        }
+    }
+    
+    func searchWithKeyWord(keyword: String) {
+        showActivity(inView: self.view)
+        if seachBook {
+            let searchBookTask: SearchBookTask = SearchBookTask(keyWord: keyword, page: 1)
             requestWithTask(task: searchBookTask, success: { (data) in
                 if let arrayBook =  data as? [Book] {
+                    self.stopActivityIndicator()
+                    if arrayBook.count == 0 {
+                        _ = UIAlertController.initAler(title: "", message: "nodata", inViewController: self)
+                        return
+                    }
                     self.listBook = arrayBook
                     self.table.isHidden = false
                     self.table.reloadData()
                 }
             }, failure: { (_) in
-                
+                self.stopActivityIndicator()
             })
-        } else if !seachBook && searchBar.text != nil {
-            let searchNewsTask: SearchNewsTask = SearchNewsTask(keyWord: searchBar.text!, page: 1)
+        } else if !seachBook {
+            let searchNewsTask: SearchNewsTask = SearchNewsTask(keyWord: keyword, page: 1)
             requestWithTask(task: searchNewsTask, success: { (data) in
                 if let arrayNews = data as? [NewsModel] {
+                    self.stopActivityIndicator()
+                    if arrayNews.count == 0 {
+                        _ = UIAlertController.initAler(title: "", message: "nodata", inViewController: self)
+                        return
+                    }
                     self.listNews = arrayNews
                     self.table.isHidden = false
                     self.table.reloadData()
                 }
             }, failure: { (_) in
-                
+                self.stopActivityIndicator()
             })
         }
         searchBar.endEditing(true)
@@ -194,13 +238,15 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     private func showTypeAndHotKeyWord() {
         if seachBook {
             typeView.listText = listTypeBook
+            hotView.listText = listHotBook
         } else {
             typeView.listText = listTypeNews
+            hotView.listText = listHotNews
         }
         typeView.realoadData()
-        hotView.listText = listHot
         hotView.realoadData()
         heightOfTypeView.constant = typeView.heightForView!
+        heightOfHotView.constant = hotView.heightForView!
         listBook.removeAll()
         listNews.removeAll()
         table.isHidden = true

@@ -33,7 +33,7 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
     }
     
     func getNewsBookmarked() {
-        let getNewsTask = GetAllNewsBookmarkedTask(page: 1)
+        let getNewsTask = GetAllNewsBookmarkedTask(memberId: (memberInstance?.idMember)!, page: 1)
         requestWithTask(task: getNewsTask, success: { (data) in
             if let listNews = data as? [NewsModel] {
                 self.listBookMarkOfNews = listNews
@@ -45,7 +45,7 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
     }
     
     func getBookBookmarked() {
-        let getBookTask = GetAllBookBookmarkedTask(page: 1)
+        let getBookTask = GetAllBookBookmarkedTask(memberID: (memberInstance?.idMember)!, page: 1)
         requestWithTask(task: getBookTask, success: { (data) in
             if let listBook = data as? [Book] {
                 self.listBookMarkOfBook = listBook
@@ -129,7 +129,8 @@ class BookmarkedViewController: BaseViewController, UITableViewDataSource, UITab
     func removeBookmark(indexPath: IndexPath) {
         let removeBookmarkTask = BookMarkTask(bookMarkType: Object.book.rawValue,
                                               memberID: 1,
-                                              objectId: listBookMarkOfBook[indexPath.row].idBook)
+                                              objectId: listBookMarkOfBook[indexPath.row].idBook,
+                                              token: ProfileMember.getToken()!)
         requestWithTask(task: removeBookmarkTask, success: { (_) in
             self.listBookMarkOfBook.remove(at: indexPath.row)
             self.table.reloadData()

@@ -30,28 +30,6 @@ class DetailStoreMarkController: BaseViewController, UICollectionViewDataSource,
         loadMore()
     }
     
-//    func getProduct() {
-//        let getAllproduct: GetAllproductTask = GetAllproductTask(limit: 20, page: page)
-//        let getProductByPoint: GetListProductByPointTask = GetListProductByPointTask(limit: 20, page: page)
-//        let getproductByPointAndMoney: GetListProductByPointAndMoneyTask = GetListProductByPointAndMoneyTask(limit: 20, page: page)
-//        
-//        if typeRequest == TypeProductRequest.all {
-//            let getProductVip: GetProductVipTask = GetProductVipTask()
-//            requestWithTask(task: getProductVip, success: { (data) in
-//                if let arrayVip = data as? [Vip] {
-//                    self.listProduct = arrayVip
-//                    self.getProductBookWith(task: getAllproduct)
-//                }
-//            }, failure: { (_) in
-//                
-//            })
-//        } else if typeRequest == TypeProductRequest.point {
-//            getProductBookWith(task: getProductByPoint)
-//        } else {
-//            getProductBookWith(task: getproductByPointAndMoney)
-//        }
-//    }
-    
     func getProductBookWith(task: BaseTaskNetwork) {
         requestWithTask(task: task, success: { (data) in
             if let list = data as? [Book] {

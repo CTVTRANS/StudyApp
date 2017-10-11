@@ -18,8 +18,8 @@ class SettingStatus: BaseDailog {
     @IBOutlet weak var dotMarried: UIView!
     @IBOutlet weak var dotSingle: UIView!
 
-    var status: String = "保密"
-    var callBack:((_ status: String) -> Void) = {_ in}
+    var status: (String, StatusMarrige) = ("保密", StatusMarrige.sucurity)
+    var callBack:((_ status: (String, StatusMarrige)) -> Void) = {_ in}
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,21 +33,21 @@ class SettingStatus: BaseDailog {
         dotSecurity.backgroundColor = UIColor.rgb(255, 102, 0)
         dotMarried.backgroundColor = UIColor.white
         dotSingle.backgroundColor = UIColor.white
-        status = "保密"
+        status = ("保密", StatusMarrige.sucurity)
     }
 
     @IBAction func pressedMarried(_ sender: Any) {
         dotSingle.backgroundColor = UIColor.white
         dotSecurity.backgroundColor = UIColor.white
         dotMarried.backgroundColor = UIColor.rgb(255, 102, 0)
-        status = "已婚"
+        status = ("已婚", StatusMarrige.married)
     }
     
     @IBAction func pressSingle(_ sender: Any) {
         dotSecurity.backgroundColor = UIColor.white
         dotSingle.backgroundColor = UIColor.rgb(255, 102, 0)
         dotMarried.backgroundColor = UIColor.white
-        status = "未婚"
+        status = ("未婚", StatusMarrige.single)
     }
     
     @IBAction func pressedChange(_ sender: Any) {

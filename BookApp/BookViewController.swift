@@ -189,6 +189,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         let myStoryboard = UIStoryboard(name: "Book", bundle: nil)
         if let vc = myStoryboard.instantiateViewController(withIdentifier: "AllTypeBookController") as? AllTypeBookController {
             vc.startIndex = indexPath.row
+            vc.listTitles = bookTypeArray
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -271,17 +272,21 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     func setupCallBackNavigation() {
         navigationCustom.callBackTopButton = { [weak self] (typeButton: TopButton) in
-            let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
+            if typeButton == TopButton.search {
+                self?.goToSearch()
+                return
+            }
+            if !(self?.checkLogin())! {
+                self?.goToSigIn()
+                return
+            }
             switch typeButton {
             case TopButton.messageNotification:
-                let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as? UINavigationController
-                self?.present(vc!, animated: true, completion: nil)
+                self?.goToNotification()
             case TopButton.videoNotification:
-                let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as? UINavigationController
-                self?.present(vc!, animated: true, completion: nil)
-            case TopButton.search:
-                let vc = myStoryboard.instantiateViewController(withIdentifier: "Search") as? UINavigationController
-                self?.present(vc!, animated: true, completion: nil)
+                self?.goToListPlayaudio()
+            default :
+                break
             }
         }
     }

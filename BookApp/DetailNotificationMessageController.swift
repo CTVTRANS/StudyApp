@@ -7,32 +7,54 @@
 //
 
 import UIKit
+import SWRevealViewController
 
 class DetailNotificationMessageController: BaseViewController {
 
     @IBOutlet weak var detal: UILabel!
     var objectiNotification: NotificationApp?
     var indexobjec: Int?
-    var callBack = {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        markedNotification()
         navigationItem.title = "通知列表"
         detal.text = objectiNotification?.detailText
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "全標已讀",
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(deleteMessage))
+        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "全標已讀",
+//                                                            style: .plain,
+//                                                            target: self,
+//                                                            action: #selector(deleteMessage))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+        if self.revealViewController() != nil {
+            revealViewController().rightViewRevealWidth = 80
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_share_rightBar"), style: .plain, target: self.revealViewController(), action: #selector(revealViewController().rightRevealToggle(_:)))
+            self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        }
+        setupRightSlideOut()
     }
     
-    func deleteMessage() {
-        self.callBack()
-        navigationController?.popViewController(animated: true)
+    func notPrettyString(from object: Any) -> String? {
+        if let objectData = try? JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted) {
+            let objectString = String(data: objectData, encoding: .utf8)
+            return objectString
+        }
+        return nil
     }
-
+    
+    func markedNotification() {
+        var arrayListIdGroup: [Int] = []
+        arrayListIdGroup.append((objectiNotification?.idNotification)!)
+        let jsonObject: String = notPrettyString(from: arrayListIdGroup)!
+        let sendMarked = MarkRaededNotification(memberID: (memberInstance?.idMember)!, arrayID: jsonObject, token: tokenInstance!)
+        requestWithTask(task: sendMarked, success: { (_) in
+            
+        }) { (_) in
+            
+        }
+    }
 }

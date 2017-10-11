@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var navigationCustom: NavigationCustom!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var avatar: UIImageView!
@@ -17,26 +18,12 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var point: UILabel!
     @IBOutlet weak var status: UILabel!
     
+    @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var nameMember: UILabel!
     var arraySetting = [ListSetting]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let getProfileTask: GetProfileMemberTask = GetProfileMemberTask(idMember: 1)
-        requestWithTask(task: getProfileTask, success: { (_) in
-            let member: ProfileMember = Constants.sharedInstance.memberProfile!
-            self.avatar.sd_setImage(with: URL(string: member.avatar!), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
-            self.point.text = String(member.point)
-            if member.level != 1 {
-                self.status.text = "NO VIP"
-            } else {
-                self.status.text = "VIP"
-            }
-        }) { (error) in
-            _ = UIAlertController(title: nil,
-                                  message: error as? String,
-                                  preferredStyle: .alert)
-        }
-        
         customData()
         setupCallBack()
         table.register(UINib.init(nibName: "SettingViewCell", bundle: nil), forCellReuseIdentifier: "cell")
@@ -46,6 +33,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkMember()
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -61,6 +49,27 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         arraySetting.append(arraySetting1)
         arraySetting.append(arraySetting2)
     }
+    
+    func checkMember() {
+        if !checkLogin() {
+            profileView.isHidden = true
+            loginButton.setTitle("SigIn", for: .normal)
+            return
+        }
+        loginButton.setTitle("Attendance", for: .normal)
+        profileView.isHidden = false
+        let member = ProfileMember.getProfile()!
+        let avatarURL = member.avatar! + "?"
+        self.avatar.sd_setImage(with: URL(string: avatarURL), placeholderImage: #imageLiteral(resourceName: "userPlaceHolder"))
+        self.point.text = String(member.point)
+        nameMember.text = member.name
+        if member.level != 1 {
+            self.status.text = "NO VIP"
+        } else {
+            self.status.text = "VIP"
+        }
+    }
+    
     // MARK: Table Data Source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -139,22 +148,23 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     func setupCallBack() {
         navigationCustom.rightButton.setImage(#imageLiteral(resourceName: "ic_setting"), for: .normal)
         navigationCustom.callBackTopButton = { [weak self] (typeButton: TopButton) in
-            switch typeButton {
-            case TopButton.messageNotification:
-                let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
-                if let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as? UINavigationController {
-                    self?.present(vc, animated: true, completion: nil)
-                }
-            case TopButton.videoNotification:
-                let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
-                if let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as? UINavigationController {
-                    self?.present(vc, animated: true, completion: nil)
-                }
-            case TopButton.search:
+            if typeButton == TopButton.search {
                 let myStoryboard = UIStoryboard(name: "Setting", bundle: nil)
                 if let vc = myStoryboard.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
+            }
+            if !(self?.checkLogin())! {
+                self?.goToSigIn()
+                return
+            }
+            switch typeButton {
+            case TopButton.messageNotification:
+               self?.goToNotification()
+            case TopButton.videoNotification:
+                self?.goToListPlayaudio()
+            default :
+                break
             }
         }
     }
@@ -179,4 +189,29 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    @IBAction func pressedLoginButton(_ sender: Any) {
+        if checkLogin() {
+            let member = ProfileMember.getProfile()
+            let token = ProfileMember.getToken()
+            let updatepoint = UpdatePointTask(memberID: (member?.idMember)!,
+                                              token: token!,
+                                              type: UpdatePointType.attendance.rawValue)
+            requestWithTask(task: updatepoint, success: { (data) in
+                if let status = data as? (Bool, Int) {
+                    if status.0 {
+                        self.loginButton.setTitle("Attendanced", for: .normal)
+                    }
+                    self.point.text = String(status.1)
+                }
+            }, failure: { (_) in
+                
+            })
+        } else {
+            goToSigIn()
+        }
+    }
+}
+
+enum UpdatePointType: Int {
+    case share = 0, attendance
 }

@@ -19,6 +19,7 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     
     private var tap: UITapGestureRecognizer?
     private var arrayObject = [SpecialComment]()
+//    private lazy var member = ProfileMember.getProfile()
     var idObject: Int?
     var commentType: Int?
     var object: AnyObject!
@@ -55,20 +56,23 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         }
         if let book = object as? Book {
             titleComment.text = book.name
-            let arrayDetail = book.descriptionBook.components(separatedBy: "</p>")
-            let fristString = arrayDetail[0]
-            let index = fristString.index(fristString.startIndex, offsetBy: 4)
-            detail.text = fristString.substring(from: index)
+//            let arrayDetail = book.descriptionBook.components(separatedBy: "</p>")
+//            let fristString = arrayDetail[0]
+//            let index = fristString.index(fristString.startIndex, offsetBy: 4)
+//            detail.text = fristString.substring(from: index)
+             detail.text = "Book App"
         }
         if let chanel = object as? Chanel {
             titleComment.text = chanel.nameChanel
-            detail.text = " "
+            detail.text = "Book App"
         }
     }
     
     func getCommet() {
         let getCommentHot: GetCommentHot =
-            GetCommentHot(commentType: commentType!, idObject: idObject!, memberID: memberID)
+            GetCommentHot(commentType: commentType!,
+                          idObject: idObject!,
+                          memberID: (memberInstance?.idMember)!)
         requestWithTask(task: getCommentHot, success: { (data) in
             if let arrayCommentHot = data as? [Comment] {
                 if arrayCommentHot.count > 0 {
@@ -77,16 +81,18 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
                     Constants.sharedInstance.listCommentHot = arrayCommentHot
                 }
             }
-            let getComment: GetAllComment = GetAllComment(commentType: self.commentType!,
-                                                          idObject: self.idObject!,
-                                                          page: 1, idMember: memberID)
+            let getComment: GetAllComment =
+                GetAllComment(commentType: self.commentType!,
+                              idObject: self.idObject!,
+                              page: 1,
+                              idMember: (self.memberInstance?.idMember)!)
             self.requestWithTask(task: getComment, success: { (data) in
                 if let arrayOfComment = data as? [Comment] {
                     if arrayOfComment.count > 0 {
                         let normalComment: SpecialComment = SpecialComment(name: "最新", array: arrayOfComment)
                         self.arrayObject.append(normalComment)
-                        self.table.reloadData()
                     }
+                    self.table.reloadData()
                     self.stopActivityIndicator()
                 }
             }) { (error) in
@@ -140,8 +146,9 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         cell?.binData(commentObject: commenObject)
         cell?.pressLikeComment = { [weak self] in
             let likeComment: LikeTask = LikeTask(likeType: Object.comment.rawValue,
-                                                 memberID: memberID,
-                                                 objectId: commenObject.idComment)
+                                                 memberID: (self?.memberInstance?.idMember)!,
+                                                 objectId: commenObject.idComment,
+                                                 token: (self?.tokenInstance)!)
             self?.requestWithTask(task: likeComment, success: { (data) in
                 let status: Like = (data as? Like)!
                 var currentLike: Int = Int(cell!.numberLike.text!)!
@@ -177,9 +184,10 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func pressedSendComment(_ sender: Any) {
         let sendComment: SendCommentTask = SendCommentTask(commentType: commentType!,
-                                                           memberID: memberID,
+                                                           memberID: (memberInstance?.idMember)!,
                                                            objectId: idObject!,
-                                                           content: commentTextView.text)
+                                                           content: commentTextView.text,
+                                                           token: tokenInstance!)
         requestWithTask(task: sendComment, success: { (data) in
             self.commentTextView.text = ""
             self.commentTextView.endEditing(true)

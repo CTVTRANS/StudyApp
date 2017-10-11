@@ -14,12 +14,14 @@ class SendCommentTask: BaseTaskNetwork {
     private let _memberID: Int
     private let _objectID: Int
     private let _content: String
+    private let _token: String
     
-    init(commentType: Int, memberID: Int, objectId: Int, content: String) {
+    init(commentType: Int, memberID: Int, objectId: Int, content: String, token: String) {
         _commentType = commentType
         _memberID = memberID
         _objectID = objectId
         _content = content
+        _token = token
     }
 
     override func path() -> String! {
@@ -30,7 +32,8 @@ class SendCommentTask: BaseTaskNetwork {
         return ["comment_type": _commentType,
                 "member_id": _memberID,
                 "object_id": _objectID,
-                "content": _content]
+                "content": _content,
+                "access_token": _token]
     }
     
     override func method() -> String! {

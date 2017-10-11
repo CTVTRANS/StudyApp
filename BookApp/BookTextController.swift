@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kanna
 
 class BookTextController: BaseViewController, UIWebViewDelegate {
     
@@ -22,7 +21,7 @@ class BookTextController: BaseViewController, UIWebViewDelegate {
         super.viewDidLoad()
         showActivity(inView: UIApplication.shared.keyWindow!)
         textDetailButton.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
-        if Constants.sharedInstance.memberProfile == nil || Constants.sharedInstance.memberProfile?.level == 0 {
+        if memberInstance == nil || memberInstance?.level == 0 {
             content = css + limitText()
         } else {
             content = css + (book?.content)!

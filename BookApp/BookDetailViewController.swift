@@ -21,21 +21,42 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if checkLogin() {
+            checkLikeBookmark()
+        }
+        setupScroll()
+        setupCallBackBottom()
+        setupCallBackTopTabbar()
+        setupSahreView()
+        scroll.delegate = self
+        
+        bottomView.numberComment.text = String(bookSelected.numberComment)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    func checkLikeBookmark() {
         let checkLiked: CheckLikedTask = CheckLikedTask(likeType: Object.book.rawValue,
-                                                        memberID: 1,
+                                                        memberID: (memberInstance?.idMember)!,
                                                         objectID: bookSelected.idBook)
         requestWithTask(task: checkLiked, success: { [weak self] (data) in
-            let status = data as? Bool
-            if status! {
-                self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
-            } else {
-                self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
+            if let status = data as? (Bool, Int) {
+                if status.0 {
+                    self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
+                } else {
+                    self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
+                }
+                self?.bookSelected.numberLike = status.1
+                self?.bottomView.numberLike.text = String(status.1)
             }
         }) { (_) in
         }
         let checkBookMarked: CheckBookMarkedTask =
             CheckBookMarkedTask(bookMarkType: Object.book.rawValue,
-                                memberID: 1,
+                                memberID: (memberInstance?.idMember)!,
                                 objectID: bookSelected.idBook)
         requestWithTask(task: checkBookMarked, success: { [weak self] (data) in
             if let status = data as? (Bool, Int) {
@@ -49,20 +70,6 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             }
         }) { (_) in
         }
-
-        setupScroll()
-        setupCallBackBottom()
-        setupCallBackTopTabbar()
-        setupSahreView()
-        scroll.delegate = self
-        
-        bottomView.numberComment.text = String(bookSelected.numberComment)
-        bottomView.numberLike.text = String(bookSelected.numberLike)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     // MARK: Setup ScrollView
@@ -118,8 +125,20 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     // MARK: Call Back
 
     func setupCallBackBottom() {
+        bottomView.numberBookmark.text = String(bookSelected.numberBookMark)
+        bottomView.numberLike.text = String(bookSelected.numberLike)
+        bottomView.numberComment.text = String(bookSelected.numberComment)
+        
         bottomView.pressedBottomButton = { [weak self] (typeButton: BottomButton) in
             let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
+            if typeButton == BottomButton.back {
+                self?.navigationController?.popViewController(animated: true)
+                return
+            }
+            if !(self?.checkLogin())! {
+                self?.goToSigIn()
+                return
+            }
             switch typeButton {
             case BottomButton.back:
                 self?.navigationController?.popViewController(animated: true)
@@ -133,6 +152,10 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             case BottomButton.like:
                 self?.pressedLike()
             case BottomButton.download:
+                if self?.memberInstance?.level != 1 {
+                    _ = UIAlertController.initAler(title: "", message: "Only member Vip cant dwonload", inViewController: self!)
+                    return
+                }
                 self?.pressedDowload()
             }
         }
@@ -176,43 +199,36 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     
     func pressedBookmark() {
         let bookMarkTask: BookMarkTask = BookMarkTask(bookMarkType: Object.book.rawValue,
-                                                      memberID: 1,
-                                                      objectId: bookSelected.idBook)
+                                                      memberID: (memberInstance?.idMember)!,
+                                                      objectId: bookSelected.idBook,
+                                                      token: tokenInstance!)
         self.requestWithTask(task: bookMarkTask, success: { (data) in
             let status: BookMark = (data as? BookMark)!
-            var currentBookMark: Int = Int(self.bottomView.numberBookmark.text!)!
             if status == BookMark.bookMark {
                 self.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMarked")
-                currentBookMark += 1
-                self.bookSelected.numberBookMark = currentBookMark
-                self.bottomView.numberBookmark.text = String(currentBookMark)
+                self.bookSelected.numberBookMark += 1
             } else {
                 self.bottomView.bookMarkImage.image = #imageLiteral(resourceName: "ic_bottom_bookMark")
-                currentBookMark -= 1
-                self.bookSelected.numberBookMark = currentBookMark
-                self.bottomView.numberBookmark.text = String(currentBookMark)
+                self.bookSelected.numberBookMark -= 1
             }
+            self.bottomView.numberBookmark.text = String(self.bookSelected.numberBookMark)
         }, failure: { (_) in
             
         })
     }
     
     func pressedLike() {
-        let likeTask: LikeTask = LikeTask(likeType: Object.book.rawValue,
-                                          memberID: 1,
-                                          objectId: bookSelected.idBook)
+        let likeTask: LikeTask = LikeTask(likeType: Object.book.rawValue, memberID: (memberInstance?.idMember)!, objectId: bookSelected.idBook, token: tokenInstance!)
         requestWithTask(task: likeTask, success: { (data) in
             let status: Like = (data as? Like)!
-            var currentLike: Int =  self.bookSelected.numberLike
             if status == Like.like {
                 self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
-                currentLike += 1
+                self.bookSelected.numberLike += 1
             } else {
-                currentLike -= 1
+                self.bookSelected.numberLike -= 1
                 self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
             }
-            self.bookSelected.numberLike = currentLike
-            self.bottomView.numberLike.text = String(currentLike)
+            self.bottomView.numberLike.text = String(self.bookSelected.numberLike)
         }, failure: { (_) in
             
         })
@@ -246,10 +262,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             
         }
         
-        let newFrame = CGRect(x: position * (widthScreen / 3),
-                              y: topTabbar.animationView.frame.origin.y,
-                              width: widthScreen / 3,
-                              height: topTabbar.animationView.frame.size.height)
+        let newFrame = CGRect(x: position * (widthScreen / 3), y: topTabbar.animationView.frame.origin.y, width: widthScreen / 3, height: topTabbar.animationView.frame.size.height)
         UIView.animate(withDuration: 0.15, delay: 0.0, options: [], animations: {
             self.topTabbar.animationView.frame = newFrame
             }, completion: nil

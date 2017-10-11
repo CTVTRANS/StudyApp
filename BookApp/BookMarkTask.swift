@@ -14,11 +14,13 @@ class BookMarkTask: BaseTaskNetwork {
     private let _bookMarkType: Int
     private let _memberID: Int
     private let _objectID: Int
+    private let _token: String
     
-    init(bookMarkType: Int, memberID: Int, objectId: Int) {
+    init(bookMarkType: Int, memberID: Int, objectId: Int, token: String) {
         _bookMarkType = bookMarkType
         _memberID = memberID
         _objectID = objectId
+        _token = token
     }
     
     override func path() -> String! {
@@ -26,7 +28,10 @@ class BookMarkTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["collection_type": _bookMarkType, "member_id": _memberID, "object_id": _objectID]
+        return ["collection_type": _bookMarkType,
+                "member_id": _memberID,
+                "object_id": _objectID,
+                "access_token": _token]
     }
     
     override func method() -> String! {

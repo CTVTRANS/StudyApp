@@ -54,7 +54,7 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_comment" translatesAutoresizingMaskIntoConstraints="NO" id="yKx-Ch-rFW">
-                    <rect key="frame" x="323" y="14.5" width="15" height="15"/>
+                    <rect key="frame" x="332.5" y="14.5" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="ah1-OA-oLv">
                             <userDefinedRuntimeAttributes>
@@ -69,7 +69,7 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_like" translatesAutoresizingMaskIntoConstraints="NO" id="x3k-sf-JK0">
-                    <rect key="frame" x="271.5" y="14.5" width="15" height="15"/>
+                    <rect key="frame" x="289" y="14.5" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="BkB-vq-A9T">
                             <userDefinedRuntimeAttributes>
@@ -84,7 +84,7 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_bookMark" translatesAutoresizingMaskIntoConstraints="NO" id="mJB-FO-YhU">
-                    <rect key="frame" x="222" y="14.5" width="15" height="15"/>
+                    <rect key="frame" x="245.5" y="14.5" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="QY2-g8-0nC">
                             <userDefinedRuntimeAttributes>
@@ -98,8 +98,8 @@
                         </constraint>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cD1-hC-Goj">
-                    <rect key="frame" x="341" y="14.5" width="18" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cD1-hC-Goj">
+                    <rect key="frame" x="350.5" y="14.5" width="8.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -108,7 +108,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="689-WD-yPe">
-                    <rect key="frame" x="318" y="7" width="41" height="30"/>
+                    <rect key="frame" x="327.5" y="7" width="31.5" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="bI7-uW-Q57">
@@ -121,8 +121,8 @@
                         <action selector="pressedComment:" destination="-1" eventType="touchUpInside" id="tNl-CT-bLN"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAm-YT-Umc">
-                    <rect key="frame" x="289.5" y="14" width="16.5" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAm-YT-Umc">
+                    <rect key="frame" x="307" y="14" width="8.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -131,7 +131,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZk-0j-pVE">
-                    <rect key="frame" x="266.5" y="7" width="39.5" height="30"/>
+                    <rect key="frame" x="284" y="7" width="31.5" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="IfM-am-fBz">
                             <userDefinedRuntimeAttributes>
@@ -143,8 +143,8 @@
                         <action selector="pressedLikeButton:" destination="-1" eventType="touchUpInside" id="ste-Dz-AKp"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4L5-bP-bwf">
-                    <rect key="frame" x="240" y="14.5" width="14.5" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4L5-bP-bwf">
+                    <rect key="frame" x="263.5" y="14.5" width="8.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -153,13 +153,13 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtJ-Db-pBK">
-                    <rect key="frame" x="217" y="7" width="37.5" height="30"/>
+                    <rect key="frame" x="240.5" y="7" width="31.5" height="30"/>
                     <connections>
                         <action selector="pressedBookMarkButton:" destination="-1" eventType="touchUpInside" id="0K0-2C-Aix"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bottom_download" translatesAutoresizingMaskIntoConstraints="NO" id="jQ3-is-Rf0">
-                    <rect key="frame" x="190" y="14.5" width="15" height="15"/>
+                    <rect key="frame" x="213.5" y="14.5" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="obh-yc-SOU">
                             <userDefinedRuntimeAttributes>
@@ -174,7 +174,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VP-Nq-hap">
-                    <rect key="frame" x="178" y="7" width="36" height="30"/>
+                    <rect key="frame" x="201.5" y="7" width="36" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="36" id="5lA-xD-YuV">
                             <userDefinedRuntimeAttributes>

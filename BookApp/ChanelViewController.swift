@@ -45,7 +45,8 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
         freeChanel.name.text = "猜你喜歡"
         getBaner()
         getData()
-        let getChaelSubcrible: GetAllChanelSubcribledTask = GetAllChanelSubcribledTask(memberID: memberID)
+        let getChaelSubcrible: GetAllChanelSubcribledTask =
+            GetAllChanelSubcribledTask(memberID: (memberInstance?.idMember)!)
         requestWithTask(task: getChaelSubcrible, success: { (_) in
             
         }) { (error) in
@@ -172,20 +173,22 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
     
     func setupCallBackNavigation() {
         navigationView.callBackTopButton = { [weak self] (typeButton: TopButton) in
-            let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
+            
+            if typeButton == TopButton.search {
+                self?.goToSearch()
+                return
+            }
+            if !(self?.checkLogin())! {
+                self?.goToSigIn()
+                return
+            }
             switch typeButton {
             case TopButton.messageNotification:
-                if let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as? UINavigationController {
-                    self?.present(vc, animated: true, completion: nil)
-                }
+                self?.goToNotification()
             case TopButton.videoNotification:
-                if let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as? UINavigationController {
-                    self?.present(vc, animated: true, completion: nil)
-                }
-            case TopButton.search:
-                if let vc = myStoryboard.instantiateViewController(withIdentifier: "Search") as? UINavigationController {
-                    self?.present(vc, animated: true, completion: nil)
-                }
+               self?.goToListPlayaudio()
+            default :
+                break
             }
         }
     }

@@ -8,8 +8,6 @@
 
 import UIKit
 
-let memberID = 1
-
 // MARK: Book
 let getBookTypeURL = "/api/book/list_category"
 let getBookForEachTypeURL = "/api/book/list_post_by_category"
@@ -33,7 +31,9 @@ let increaseViewChanelURL = "/api/teacher/play_lesson"
 let getAllNewsURL = "/api/post/list_latest_post"
 let getAllTypeNewsURL = "/api/post/list_category"
 let getAllNewsBookmarkedURL = "/api/collection/collection_news"
+let getNewRelatedURL = "/api/post/get_related_post"
 
+// MARK: Coment, Like, Book,ark
 let sendCommentURL = "/api/comment/add"
 let checkLikeedURL = "/api/like/check_like"
 let likeUnlikeURL = "/api/like/like"
@@ -41,17 +41,24 @@ let bookMarkURL = "/api/collection/collect"
 let checkBookMarkedURL = "/api/collection/check_collect"
 let getAllCommentURL = "/api/comment/latest"
 let getAllCommentHotURL = "/api/comment/hot"
+
+// MARK: Golobal
 let searchBookURL = "/api/search/book"
 let searchNewsURL = "/api/search/news"
 let getNotification = "/api/notification/get"
+let markReadNoticeURL = "/api/notification/mark_read"
+let getHotKeyWordURL = "/api/search/hot_keyword"
 
 // MARK: Member
 let getProfileMemberURL = "/api/member/detail"
 let getCodeURL = "/api/member/generate_confirm_code"
 let registerURL = "/api/member/register"
 let sigInURL = "/api/member/login"
-let upDataInfomationMember = "/api/member/update_profile"
-let upDataPassword = "/api/member/change_password"
+let forgetPasswordURL = "/api/member/forgot_password"
+let upDateInfomationMemberURL = "/api/member/update_profile"
+let upDatePasswordURL = "/api/member/change_password"
+let upAvaterURL = "/api/member/update_avatar"
+let upDatePointURL = "/api/member/add_point"
 
 // MARK: Group
 let getSlidershowURL = "/api/slide/get?screen_show"

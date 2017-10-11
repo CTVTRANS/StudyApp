@@ -15,6 +15,7 @@ class HeaderCollectionReusableView: UICollectionReusableView, FSPagerViewDataSou
     @IBOutlet weak var markNumber: UILabel!
     @IBOutlet weak var showMark: UIButton!
     @IBOutlet weak var showMarkAndMoney: UIButton!
+    private lazy var member = ProfileMember.getProfile()
     
     private var listSlider: [SliderShow] = []
     @IBOutlet weak var sliderShow: FSPagerView! {
@@ -37,8 +38,8 @@ class HeaderCollectionReusableView: UICollectionReusableView, FSPagerViewDataSou
         showAll.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
         showMark.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
         showMarkAndMoney.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
-        if Constants.sharedInstance.memberProfile != nil {
-             markNumber.text = String(Constants.sharedInstance.memberProfile!.point)
+        if member != nil {
+             markNumber.text = String(member!.point)
         }
         sliderShow.delegate = self
         sliderShow.dataSource = self

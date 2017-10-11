@@ -121,7 +121,7 @@ class ShowAllActivityGroupController: BaseViewController, UITableViewDelegate, U
         let arrayListIdGroup = Array(listIDGroupJoined)
         let jsonObject: String = notPrettyString(from: arrayListIdGroup)!
         print(jsonObject)
-        let subcrible: SubcribleGroupTask = SubcribleGroupTask(arryID: jsonObject)
+        let subcrible: SubcribleGroupTask = SubcribleGroupTask(memberID: (memberInstance?.idMember)!, arryID: jsonObject, token: tokenInstance!)
         requestWithTask(task: subcrible, success: { (data) in
             print(data!)
         }) { (error) in

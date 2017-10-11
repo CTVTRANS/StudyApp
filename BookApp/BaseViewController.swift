@@ -11,12 +11,16 @@ import LCNetwork
 import AFNetworking
 import Social
 import SWRevealViewController
+import SDWebImage
 
 class BaseViewController: UIViewController {
     
     var activity: UIActivityIndicatorView?
     var backGroundview: UIView?
     let managerNetWork = AFNetworkReachabilityManager.shared()
+    lazy var globalStoryboard = UIStoryboard(name: "Global", bundle: nil)
+    lazy var memberInstance = ProfileMember.getProfile()
+    lazy var tokenInstance = ProfileMember.getToken()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +56,14 @@ class BaseViewController: UIViewController {
         }
     }
     
+    func uploadFileWithTask(task: BaseTaskNetwork, success: @escaping BlockSuccess, failure: @escaping BlockFailure) {
+        task.upLoadFile({ (data) in
+            success(data)
+        }) { (error) in
+            failure(error)
+        }
+    }
+    
     func showActivity(inView myView: UIView) {
 //        backGroundview = UIView(frame: UIScreen.main.bounds)
         backGroundview = UIView(frame: myView.frame)
@@ -81,6 +93,39 @@ class BaseViewController: UIViewController {
     func stopActivityIndicator() {
         activity?.stopAnimating()
         backGroundview?.removeFromSuperview()
+    }
+    
+    func goToSigIn() {
+        let mystoryboard = UIStoryboard(name: "Global", bundle: nil)
+        if let vc = mystoryboard.instantiateViewController(withIdentifier: "Login") as? UINavigationController {
+            navigationController?.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func checkLogin() -> Bool {
+        let token = ProfileMember.getToken()
+        if token == "" {
+            return false
+        }
+        return true
+    }
+    
+    func goToNotification() {
+        if let vc = globalStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as? UINavigationController {
+            present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func goToListPlayaudio() {
+        if let vc = globalStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as? UINavigationController {
+            present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func goToSearch() {
+        if let vc = globalStoryboard.instantiateViewController(withIdentifier: "Search") as? UINavigationController {
+            present(vc, animated: true, completion: nil)
+        }
     }
 }
 

@@ -11,9 +11,11 @@ import LCNetwork
 
 class GetAllNewsBookmarkedTask: BaseTaskNetwork {
 
-    private var _page: Int
+    private var _page: Int!
+    private var _memberID: Int!
     
-    init(page: Int) {
+    init(memberId: Int, page: Int) {
+        _memberID = memberId
         _page = page
     }
     
@@ -26,7 +28,7 @@ class GetAllNewsBookmarkedTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["member_id": 1,
+        return ["member_id": _memberID,
                 "limit": 20,
                 "page": _page]
     }

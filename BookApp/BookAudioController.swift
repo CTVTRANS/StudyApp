@@ -53,6 +53,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     }
     
     func checkAudio() {
+        
         if let currentBook = mp3.currentAudio as? Book {
             sliderBar.value = mp3.getCurrentTime().0
             currentMinAudio.text = mp3.getCurrentTime().1
@@ -78,8 +79,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
     func loadAudio() {
         mp3.track(object: book!, types: TypePlay.onLine)
         mp3.didLoadAudio = { [weak self] timeFloat, timeString in
-            if Constants.sharedInstance.memberProfile != nil &&
-                (Constants.sharedInstance.memberProfile?.level)! >= 0 {
+            if self?.memberInstance?.level == 1 {
                 self?.sliderBar.maximumValue = timeFloat
             } else {
                 self?.sliderBar.maximumValue = Float(90)

@@ -85,26 +85,26 @@ extension BaseTaskNetwork {
     func parseLesson(dictionary: [String: Any]) -> Lesson {
         let lessonID = dictionary["id"] as? Int ?? 0
         let lessonChapter = dictionary["chapter"] as? Int ?? 0
-        let lessonName = dictionary["title"] as? String ?? " "
-        let lessonDescription = dictionary["description"] as? String ?? " "
-        let lessonContent = dictionary["audio"] as? String ?? " "
-        let  lessonTimeup = dictionary["created_at"] as? String ?? " "
+        let lessonName = dictionary["title"] as? String ?? ""
+        let lessonDescription = dictionary["description"] as? String ?? ""
+        let lessonContent = dictionary["audio"] as? String ?? ""
+        let  lessonTimeup = dictionary["created_at"] as? String ?? ""
         let lesson: Lesson = Lesson(idLesson: lessonID,
                                     chaper: lessonChapter,
                                     time: lessonTimeup,
                                     name: lessonName,
                                     description: lessonDescription,
-                                    imageURL: " ",
+                                    imageURL: "",
                                     contentURL: lessonContent)
         return lesson
     }
     
     func parseGroup(dictionary: [String: Any]) -> SecrectGroup {
-        let idGroup = dictionary["id"] as? Int ?? 9999999
-        let titleGroup = dictionary["title"] as? String ?? " "
-        let imageGroup = dictionary["image"] as? String ?? " "
-        let idWechatGroup = dictionary["wechat"] as? String ?? " "
-        let adressGroup = dictionary["address"] as? String ?? " "
+        let idGroup = dictionary["id"] as? Int ?? 0
+        let titleGroup = dictionary["title"] as? String ?? ""
+        let imageGroup = dictionary["image"] as? String ?? ""
+        let idWechatGroup = dictionary["wechat"] as? String ?? ""
+        let adressGroup = dictionary["address"] as? String ?? ""
         let group = SecrectGroup(idGroup: idGroup,
                                  name: titleGroup,
                                  imageURL: imageGroup,
@@ -115,18 +115,19 @@ extension BaseTaskNetwork {
     
     func parseNews(dictionary: [String: Any]) -> NewsModel {
         let newsID = dictionary["post_id"] as? Int ?? 0
-        let newsAuthor = dictionary["author"] as? String ?? " "
-        let newsName = dictionary["post_name"] as? String ?? " "
-        let newsImage = dictionary["post_image"] as? String ?? " "
-        let newsDescription = dictionary["post_description"] as? String ?? " "
+        let newsAuthor = dictionary["author"] as? String ?? ""
+        let newsName = dictionary["post_name"] as? String ?? ""
+        let newsImage = dictionary["post_image"] as? String ?? ""
+        let newsDescription = dictionary["post_description"] as? String ?? ""
         let newsContent = dictionary["post_content"] as? String ?? " "
-        let newsNote = dictionary["post_note"] as? String ?? " "
-        let newsTimeup = dictionary["updated_at"] as? String ?? " "
+        let newsNote = dictionary["post_note"] as? String ?? ""
+        let newsTimeup = dictionary["updated_at"] as? String ?? ""
         let newsType = dictionary["post_display_type"] as? Int ?? 1
-        let newsNameType = dictionary["cat_name"] as? String ?? " "
+        let newsNameType = dictionary["cat_name"] as? String ?? ""
         let newsNumberLike = dictionary["number_of_likes"] as? Int ?? 0
         let newsNumberComment = dictionary["number_of_comments"] as? Int ?? 0
         let newsNumberBookMark = dictionary["number_of_collection"] as? Int ?? 0
+        let category = dictionary["cat_id"] as? Int ?? 0
         
         let news: NewsModel = NewsModel(idNews: newsID,
                                         author: newsAuthor,
@@ -141,16 +142,17 @@ extension BaseTaskNetwork {
                                         numberView: 123,
                                         numberLike: newsNumberLike,
                                         numberComment: newsNumberComment,
-                                        numberBookMark: newsNumberBookMark)
+                                        numberBookMark: newsNumberBookMark,
+                                        category: category)
         return news
     }
     
     func parseVip(dictionary: [String: Any]) -> Vip {
         let idVip = dictionary["id"] as? Int ?? 0
-        let titleVip = dictionary["title"] as? String ?? " "
-        let imageVip = dictionary["image"] as? String ?? " "
-        let descriptionVip = dictionary["description"] as? String ?? " "
-        let contentVip = dictionary["content"] as? String ?? " "
+        let titleVip = dictionary["title"] as? String ?? ""
+        let imageVip = dictionary["image"] as? String ?? ""
+        let descriptionVip = dictionary["description"] as? String ?? ""
+        let contentVip = dictionary["content"] as? String ?? ""
         let priceVip = dictionary["price"] as? Int ?? 0
         let vip = Vip(idVip: idVip,
                   title: titleVip,

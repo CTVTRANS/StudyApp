@@ -13,10 +13,12 @@ class SubcribleChanelTask: BaseTaskNetwork {
     
     private let _memberID: Int!
     private let _chanelID: Int!
+    private let _token: String!
     
-    init(memberID: Int, chanelID: Int) {
+    init(memberID: Int, chanelID: Int, token: String) {
         _memberID = memberID
         _chanelID = chanelID
+        _token = token
     }
     
     override func path() -> String! {
@@ -28,7 +30,9 @@ class SubcribleChanelTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["member_id": _memberID, "object_id": _chanelID]
+        return ["member_id": _memberID,
+                "object_id": _chanelID,
+                "access_token": _token]
     }
     
     override func data(withResponse response: Any!) -> Any! {

@@ -36,14 +36,19 @@ class SignInTaks: BaseTaskNetwork {
     override func data(withResponse response: Any!) -> Any! {
         if let dictionary = response as? [String: Any] {
             print(dictionary)
-            let status = dictionary["status"] as? String ?? " "
-            let message = dictionary["message"] as? String ?? " "
-            if status == "status" {
+            let status = dictionary["status"] as? String ?? ""
+            let statusCode = dictionary["status_code"] as? Int ?? 0
+            if status == "success" {
                 let data = dictionary["data"] as? [String: Any]
-                Constants.sharedInstance.memberProfile = paresMember(dictionary: data!)
-                return (true, "sucess")
+                let tokenMember = data?["access_token"] as? String ?? ""
+                var profile = ProfileMember.getProfile()
+                profile = paresMember(dictionary: data!)
+                profile?.token = tokenMember
+                ProfileMember.saveToken(token: tokenMember)
+                ProfileMember.saveProfile(myProfile: profile!)
+                return (true, "success")
             } else {
-                return (false, message)
+                return (false, String(statusCode))
             }
         }
         return response

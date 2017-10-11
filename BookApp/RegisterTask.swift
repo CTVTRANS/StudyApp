@@ -41,15 +41,11 @@ class RegisterTask: BaseTaskNetwork {
     override func data(withResponse response: Any!) -> Any! {
         if let dictionary = response as? [String: Any] {
             let status = dictionary["status"] as? String ?? ""
+            let statusCode = dictionary["status_code"] as? Int ?? 0
             if status == "success" {
                 return "Register Sucess"
             }
-            if let message = dictionary["message"] as? [String: Any] {
-                let failureCode = message["confirm_code"] as? String
-                let failurePhone = message["phone_number"] as? String
-                let messageFail = (failurePhone != nil) ? failurePhone : failureCode
-                return messageFail
-            }
+            return String(statusCode)
         }
         return response
     }

@@ -15,11 +15,12 @@ class NewsModel: NSObject {
     private var _imageURL, _content, _note: String!
     private var _titleNews, _detailTitle, _timeUp: String!
     private var _numberViewNews, _numberLikeNews, _numberCommentNews, _numberBookMarkNews: Int!
+    private var _category: Int!
     
     init(idNews: Int, author: String, imageUrl: String, title: String,
          detail: String, type: Int, nameType: String, content: String, note: String,
          timeUp: String, numberView: Int, numberLike: Int,
-         numberComment: Int, numberBookMark: Int) {
+         numberComment: Int, numberBookMark: Int, category: Int) {
             _idNews = idNews
             _author = author
             _imageURL = imageUrl
@@ -34,6 +35,7 @@ class NewsModel: NSObject {
             _numberLikeNews = numberLike
             _numberCommentNews = numberComment
             _numberBookMarkNews = numberBookMark
+        _category = category
     }
     var idNews: Int {
         return _idNews
@@ -96,5 +98,8 @@ class NewsModel: NSObject {
         set {
             _numberBookMarkNews = newValue
         }
+    }
+    var category: Int {
+        return _category
     }
 }

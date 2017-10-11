@@ -20,8 +20,12 @@ class NotificationMessageViewController: BaseViewController, UITableViewDelegate
         getData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     func getData() {
-        let getData = GetNotificationTask(limit: 30, page: 1)
+        let getData = GetNotificationTask(limit: 100, page: 1, memberID: (memberInstance?.idMember)!)
         requestWithTask(task: getData, success: { (data) in
             if let array = data as? [NotificationApp] {
                 self.listNotification = array
@@ -52,10 +56,6 @@ class NotificationMessageViewController: BaseViewController, UITableViewDelegate
         table.deselectRow(at: indexPath, animated: true)
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailNotificationMessageController") as? DetailNotificationMessageController {
             vc.objectiNotification = listNotification[indexPath.row]
-            vc.callBack = { [weak self] in
-                self?.listNotification.remove(at: indexPath.row)
-                self?.table.reloadData()
-            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

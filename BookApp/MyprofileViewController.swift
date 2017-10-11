@@ -10,22 +10,33 @@ import UIKit
 
 class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var changeAvatarButton: UIButton!
+    @IBOutlet weak var avatarView: UIView!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var heightOfAvatar: NSLayoutConstraint!
     var arraySetting: [ListSetting] = []
-    let memberProfile = Constants.sharedInstance.memberProfile
-    let picker = UIImagePickerController()
+    private lazy var memberProfile = ProfileMember.getProfile()
+    private let picker = UIImagePickerController()
+    private var avatarImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
-        setupNavigationBar()
         table.register(UINib.init(nibName: "SettingViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         table.tableFooterView = UIView()
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
-        avatar.sd_setImage(with: URL(string: (memberProfile?.avatar)!), placeholderImage: #imageLiteral(resourceName: "place_holder"))
+        
+        let avaterURL = (memberProfile?.avatar!)! + "?"
+        avatar.sd_setImage(with: URL(string: avaterURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar()
+        arraySetting.removeAll()
         customData()
+        table.reloadData()
     }
     
     func setupNavigationBar() {
@@ -35,7 +46,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textAlignment = .center
         label.textColor = UIColor.rgb(82, 82, 82)
-        label.text = "個人信息\n會員編號: 123456789"
+        label.text = (memberProfile?.name)! + "\n會員編號: " + (memberProfile?.memberCode!)!
         navigationItem.titleView = label
         
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToRootView))
@@ -46,8 +57,8 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     }
 
     func customData() {
-        let setting1 = SettingCellModel(name: "姓名", specialName: "", arrrowDetail: true, nameDetail: (memberProfile?.name)!)
-        let setting2 = SettingCellModel(name: "郵箱", specialName: "", arrrowDetail: true, nameDetail: (memberProfile?.email)!)
+        let setting1 = SettingCellModel(name: "姓名", specialName: "", arrrowDetail: true, nameDetail: (ProfileMember.getProfile()!.name))
+        let setting2 = SettingCellModel(name: "郵箱", specialName: "", arrrowDetail: true, nameDetail: (ProfileMember.getProfile()!.email)!)
         let setting3 = SettingCellModel(name: "密碼", specialName: "", arrrowDetail: true, nameDetail: "")
         let setting4 = SettingCellModel(name: "完善資料", specialName: "", arrrowDetail: true, nameDetail: "")
         let setting5 = SettingCellModel(name: "", specialName: "退出登錄", arrrowDetail: false, nameDetail: "")
@@ -100,6 +111,9 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
+            if let bundle = Bundle.main.bundleIdentifier {
+                UserDefaults.standard.removePersistentDomain(forName: bundle)
+            }
             self.dismiss(animated: false, completion: nil)
             return
         }
@@ -111,6 +125,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
                 vc.typeViewShow = TypeView.email
             case TypeView.pass.rawValue:
                 vc.typeViewShow = TypeView.pass
+                vc.changePass = true
             case TypeView.information.rawValue:
                 vc.typeViewShow = TypeView.information
             default:
@@ -121,9 +136,32 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            avatar.image = chosenImage //4
-            dismiss(animated:true, completion: nil) //5
+        if let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            avatarImage = chosenImage
+            dismiss(animated: true, completion: {
+                self.changeAvatarButton.isHidden = true
+                if let data = UIImageJPEGRepresentation(self.avatarImage!, 0.8) {
+                    self.avatar.sd_addActivityIndicator()
+                    self.avatar.sd_showActivityIndicatorView()
+                    let changeAvatar = UploadAvatarTask(memberID: (self.memberProfile?.idMember)!, token: self.tokenInstance!, data: data)
+                    self.uploadFileWithTask(task: changeAvatar, success: { (data) in
+                        self.changeAvatarButton.isHidden = false
+                        self.avatar.sd_removeActivityIndicator()
+                        self.avatar.image = chosenImage
+                        if let avatarURL = data as? (Bool, String) {
+                            if avatarURL.0 {
+                                self.memberProfile?.avatar = avatarURL.1
+                                ProfileMember.saveProfile(myProfile: self.memberProfile!)
+                                return
+                            }
+                            _ = UIAlertController.initAler(title: "", message: avatarURL.1, inViewController: self)
+                        }
+                    }) { (_) in
+                        self.changeAvatarButton.isHidden = false
+                        self.avatar.sd_removeActivityIndicator()
+                    }
+                }
+            })
         }
     }
     
@@ -135,7 +173,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
         picker.allowsEditing = true
         picker.sourceType = .photoLibrary
         picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-        picker.modalPresentationStyle = .popover
+        picker.modalPresentationStyle = .custom
         present(picker, animated: true, completion: nil)
     }
     
@@ -159,6 +197,10 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
                                                         break
                                                     }
             }, in: self)
+    }
+    
+    @IBAction func upLoadAvatar(_ sender: Any) {
+
     }
     
     deinit {

@@ -16,7 +16,7 @@ class GroupJoinedViewController: BaseViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "線下活動"
-        let getGroupJoined: GetGroupJoinedTask = GetGroupJoinedTask(idMember: 1)
+        let getGroupJoined: GetGroupJoinedTask = GetGroupJoinedTask(idMember: (memberInstance?.idMember)!)
         requestWithTask(task: getGroupJoined, success: { (data) in
             if let list = data as? [SecrectGroup] {
                 self.listGroupJoind = list

@@ -13,15 +13,15 @@ class UpdateMemberTask: BaseTaskNetwork {
 
     private var _memberID: Int!
     private var _token: String!
-    private var _nameMemner: String!
-    private var _email: String!
-    private var _sex: Int!
-    private var _birthDay: String!
-    private var _job: String!
-    private var _status: String!
-    private var _hobby: String!
+    private var _nameMemner: String
+    private var _email: String
+    private var _sex: Int
+    private var _birthDay: String
+    private var _job: String
+    private var _status: Int
+    private var _hobby: String
     
-    init(memberID: Int, token: String, nameMember: String, email: String, sex: Int, birthDay: String, job: String, status: String, hobby: String) {
+    init(memberID: Int!, token: String!, nameMember: String, email: String, sex: Int, birthDay: String, job: String, status: Int, hobby: String) {
         _memberID = memberID
         _token = token
         _nameMemner = nameMember
@@ -38,7 +38,7 @@ class UpdateMemberTask: BaseTaskNetwork {
     }
     
     override func path() -> String! {
-         return upDataInfomationMember
+         return upDateInfomationMemberURL
     }
     
     override func parameters() -> [AnyHashable : Any]! {

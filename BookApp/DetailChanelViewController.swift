@@ -22,6 +22,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     @IBOutlet weak var nameTeacher: UILabel!
     @IBOutlet weak var chaneType: UILabel!
     @IBOutlet weak var numberView: UILabel!
+    @IBOutlet weak var numberSubcrible: UILabel!
     
     @IBOutlet weak var downloadAllButton: UIButton!
     @IBOutlet weak var subcribedTeacher: UIButton!
@@ -35,12 +36,12 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     private var loadedListLessonUpload = false
     private var loadedNumberView = false
     
-    private var timeWatch = 0.0
-    lazy var footerView = UIView.initFooterView()
+    private lazy var footerView = UIView.initFooterView()
     private var indicator: UIActivityIndicatorView?
     private var isMoreData = true
     private var isLoading = false
     private var pager = 1
+//    private var member = ProfileMember.getProfile()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,10 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         setupUI()
         setupTopShare()
         setupCallBackBottom()
-        checkSubcribleed()
+        if checkLogin() {
+            checkLike()
+            checkSubcribleed()
+        }
         getDataFromServer()
         var heightHeader: CGFloat = 188
         heightHeader.adjustsSizeToRealIPhoneSize = 188
@@ -75,20 +79,24 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         chanelImage.layer.cornerRadius = heightImageChanel.constant / 2
         chaneType.text = chanel.typeChanel
         nameTeacher.text = chanel.nameTeacher
+        numberSubcrible.text = String(chanel.numberSubcrible)
         bottomView.numberLike.text = String(chanel.numberLike)
         bottomView.numberComment.text = String(chanel.numberCommet)
         bottomView.hiddenBottom()
         
-        let chekLike = CheckLikedTask(likeType: Object.chanel.rawValue, memberID: memberID, objectID: chanel.idChanel)
+    }
+    
+    func checkLike() {
+        let chekLike = CheckLikedTask(likeType: Object.chanel.rawValue, memberID: (memberInstance?.idMember)!, objectID: chanel.idChanel)
         requestWithTask(task: chekLike, success: { [weak self] (data) in
-            let status = data as? Bool
-            if status! {
-                self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
-            } else {
-                self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
+            if let status = data as? (Bool, Int) {
+                if status.0 {
+                    self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
+                } else {
+                    self?.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
+                }
             }
         }) { (_) in
-            
         }
     }
     
@@ -142,6 +150,13 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             cell.callBackButton = { [weak self] (typeButton: String) in
                 switch typeButton {
                 case "download":
+                    if !(self?.checkLogin())! {
+                        self?.goToSigIn()
+                        return
+                    } else if self?.memberInstance?.level == 0 {
+                        _ = UIAlertController.initAler(title: "", message: "only member vip cant download", inViewController: self!)
+                        return
+                    }
                     let download = DownloadAudioController()
                     download.downloadLesson(lesson: lesson)
                 case "play":
@@ -250,7 +265,13 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     // MARK: Button Control
     
     func setupCallBackBottom() {
+        bottomView.numberLike.text = String(chanel.numberLike)
+        bottomView.numberComment.text = String(chanel.numberCommet)
         bottomView.pressedBottomButton = { [weak self] typeButton in
+            if !(self?.checkLogin())! {
+                self?.goToSigIn()
+                return
+            }
             if typeButton == BottomButton.comment {
                 let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
                 let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController
@@ -265,29 +286,33 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     func likeChanel() {
-        let like = LikeTask(likeType: Object.chanel.rawValue, memberID: memberID, objectId: chanel.idChanel)
+        let like = LikeTask(likeType: Object.chanel.rawValue, memberID: (memberInstance?.idMember)!, objectId: chanel.idChanel, token: tokenInstance!)
         requestWithTask(task: like, success: { (data) in
             let status: Like = (data as? Like)!
-            var currentLike: Int =  self.chanel.numberLike
             if status == Like.like {
                 self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
-                currentLike += 1
+                self.chanel.numberLike += 1
             } else {
-                currentLike -= 1
+                self.chanel.numberLike -= 1
                 self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
             }
-            self.chanel.numberLike = currentLike
-            self.bottomView.numberLike.text = String(currentLike)
+            self.bottomView.numberLike.text = String(self.chanel.numberLike)
         }) { (_) in
             
         }
     }
     
     @IBAction func pressedSubcribeButton(_ sender: Any) {
-        let subcrible: SubcribleChanelTask = SubcribleChanelTask(memberID: 1, chanelID: chanel.idChanel)
+        if !checkLogin() {
+            goToSigIn()
+            return
+        }
+        let subcrible: SubcribleChanelTask = SubcribleChanelTask(memberID: (memberInstance?.idMember)!, chanelID: chanel.idChanel, token: tokenInstance!)
         requestWithTask(task: subcrible, success: { (data) in
             if let status: Subcrible = data as? Subcrible {
                 if status == Subcrible.subcrible {
+                    self.chanel.numberSubcrible += 1
+                    self.numberSubcrible.text = String(self.chanel.numberSubcrible)
                     Constants.sharedInstance.listChanelSubcribled.append(self.chanel)
                     self.subcribedTeacher.setTitle("  已訂閱頻道  ", for: .normal)
                     self.subcribedTeacher.isEnabled = false
@@ -299,6 +324,13 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func pressedDownloadAll(_ sender: Any) {
+        if !checkLogin() {
+            goToSigIn()
+            return
+        } else if memberInstance?.level == 0 {
+            _ = UIAlertController.initAler(title: "", message: "only member vip cant download", inViewController: self)
+            return
+        }
         let download = DownloadAudioController()
         for singleLesson in lessonUploaded {
             download.downloadLesson(lesson: singleLesson)

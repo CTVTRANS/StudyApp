@@ -18,6 +18,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     private var arrayNews: [NewsModel] = []
     lazy var footerView = UIView.initFooterView()
     private var indicator: UIActivityIndicatorView?
+    
     lazy var refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
         refresh.backgroundColor = UIColor.white
@@ -124,20 +125,21 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     func setupCallBack() {
         navigationCustoms.callBackTopButton = { [weak self] (typeButton: TopButton) in
-            let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
+            if typeButton == TopButton.search {
+                self?.goToSearch()
+                return
+            }
+            if !(self?.checkLogin())! {
+                self?.goToSigIn()
+                return
+            }
             switch typeButton {
             case TopButton.messageNotification:
-                if let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as? UINavigationController {
-                    self?.present(vc, animated: true, completion: nil)
-                }
+                self?.goToNotification()
             case TopButton.videoNotification:
-                if let vc = myStoryboard.instantiateViewController(withIdentifier: "NotificationVideoViewController") as? UINavigationController {
-                    self?.present(vc, animated: true, completion: nil)
-                }
-            case TopButton.search:
-                if let vc = myStoryboard.instantiateViewController(withIdentifier: "Search") as? UINavigationController {
-                    self?.present(vc, animated: true, completion: nil)
-                }
+                self?.goToListPlayaudio()
+            default :
+                break
             }
         }
     }
