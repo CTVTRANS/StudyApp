@@ -469,11 +469,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVr-0Y-bD4">
                                 <rect key="frame" x="0.0" y="64" width="320" height="155"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone-x_559_091117034232" translatesAutoresizingMaskIntoConstraints="NO" id="23W-an-muQ">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="23W-an-muQ">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="5nc-Zo-xH7">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5nc-Zo-xH7">
                                         <rect key="frame" x="35" y="30" width="95" height="95"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5nc-Zo-xH7" secondAttribute="height" multiplier="1:1" id="9kZ-ly-qHM"/>
                                             <constraint firstAttribute="height" constant="95" id="TnO-7f-ekB">
@@ -775,6 +777,7 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="avatar" destination="5nc-Zo-xH7" id="cNT-Hm-CLl"/>
+                        <outlet property="backgroundImage" destination="23W-an-muQ" id="nzg-7h-J8u"/>
                         <outlet property="heightOfAvatar" destination="TnO-7f-ekB" id="z3y-oe-mEK"/>
                         <outlet property="loginButton" destination="zKY-0B-cmw" id="YAE-0u-BZK"/>
                         <outlet property="nameMember" destination="U9h-Mt-DQW" id="PHZ-eC-H3K"/>
@@ -1930,8 +1933,6 @@
         <image name="ic_news_like" width="64" height="64"/>
         <image name="ic_news_user" width="128" height="128"/>
         <image name="ic_reload" width="32" height="32"/>
-        <image name="iphone-x_559_091117034232" width="559" height="349"/>
         <image name="place_holder" width="32" height="32"/>
-        <image name="userPlaceHolder" width="320" height="213"/>
     </resources>
 </document>

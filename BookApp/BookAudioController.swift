@@ -82,7 +82,7 @@ class BookAudioController: BaseViewController, UIWebViewDelegate {
             if self?.memberInstance?.level == 1 {
                 self?.sliderBar.maximumValue = timeFloat
             } else {
-                self?.sliderBar.maximumValue = Float(90)
+                self?.sliderBar.maximumValue = Float(Constants.sharedInstance.limitAudio)
             }
             self?.totalTimeAudio.text = timeString
             self?.playerOvserver()

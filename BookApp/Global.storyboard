@@ -590,7 +590,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g9Y-QC-Lnc" id="Lvg-nm-VA3">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7JY-ul-fCs">
@@ -614,7 +614,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reL-HW-T4j">
-                                                    <rect key="frame" x="69" y="16" width="34" height="18"/>
+                                                    <rect key="frame" x="69" y="16" width="37" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="VdW-wm-46w"/>
                                                     </constraints>
@@ -626,7 +626,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:09" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvJ-2Q-3OP">
-                                                    <rect key="frame" x="69" y="34" width="22" height="17"/>
+                                                    <rect key="frame" x="69" y="34" width="23.5" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="dbD-mM-HaA"/>
                                                     </constraints>
@@ -641,7 +641,7 @@
                                                     <rect key="frame" x="69" y="59" width="243" height="33"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I need to change the color of my button's text. I also need to change the state to Disabled after the user presses it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6Q-8S-kVW">
-                                                            <rect key="frame" x="0.0" y="0.0" width="242.5" height="33"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="225" height="33"/>
                                                             <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -843,7 +843,7 @@
         <!--通知列表-->
         <scene sceneID="hAE-ac-da6">
             <objects>
-                <viewController id="M1z-Oa-yQr" customClass="NotificationMessageViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotificationMessageViewController" id="M1z-Oa-yQr" customClass="NotificationMessageViewController" customModule="BookApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o5e-Ur-Cto"/>
                         <viewControllerLayoutGuide type="bottom" id="0Qb-br-PLb"/>
@@ -860,7 +860,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qUD-Eb-ctQ" id="6ZS-hk-kUb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="56.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hh2-Ec-MEH">
@@ -879,7 +879,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvL-uN-Fu4">
-                                                    <rect key="frame" x="70" y="14" width="184" height="14"/>
+                                                    <rect key="frame" x="70" y="14" width="184" height="16.5"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
@@ -887,7 +887,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo8-MK-9gH">
-                                                    <rect key="frame" x="48" y="32.5" width="29.5" height="13"/>
+                                                    <rect key="frame" x="48" y="32.5" width="32" height="15.5"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
@@ -902,7 +902,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzf-1b-fhW">
-                                                    <rect key="frame" x="270" y="14" width="42" height="16"/>
+                                                    <rect key="frame" x="270" y="15" width="42" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="qrA-tT-TFn"/>
                                                     </constraints>
@@ -927,9 +927,9 @@
                                             <constraints>
                                                 <constraint firstItem="mo8-MK-9gH" firstAttribute="top" secondItem="ZdQ-Ua-WSP" secondAttribute="bottom" constant="3" id="3XL-Ok-Gdd"/>
                                                 <constraint firstItem="uzf-1b-fhW" firstAttribute="leading" secondItem="bvL-uN-Fu4" secondAttribute="trailing" constant="16" id="4Mw-Dc-PqS"/>
-                                                <constraint firstItem="bvL-uN-Fu4" firstAttribute="leading" secondItem="48c-Jw-rhm" secondAttribute="trailing" constant="8" id="8bu-pm-x8p"/>
                                                 <constraint firstItem="48c-Jw-rhm" firstAttribute="top" secondItem="Hh2-Ec-MEH" secondAttribute="top" id="97I-GM-eHu"/>
                                                 <constraint firstItem="uzf-1b-fhW" firstAttribute="centerY" secondItem="bvL-uN-Fu4" secondAttribute="centerY" id="Bfa-Qi-s6X"/>
+                                                <constraint firstItem="bvL-uN-Fu4" firstAttribute="leading" secondItem="Hh2-Ec-MEH" secondAttribute="trailing" constant="30" id="Cld-gS-hha"/>
                                                 <constraint firstItem="mo8-MK-9gH" firstAttribute="leading" secondItem="Hh2-Ec-MEH" secondAttribute="trailing" constant="8" id="DQa-Pe-eTl"/>
                                                 <constraint firstItem="Hh2-Ec-MEH" firstAttribute="leading" secondItem="6ZS-hk-kUb" secondAttribute="leading" constant="12" id="GI8-Mn-Fns"/>
                                                 <constraint firstItem="ZdQ-Ua-WSP" firstAttribute="leading" secondItem="Hh2-Ec-MEH" secondAttribute="trailing" id="LXN-rx-nI7"/>
@@ -941,7 +941,6 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="adjustConstantToRealIPhoneSize" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </constraint>
-                                                <constraint firstItem="bvL-uN-Fu4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hh2-Ec-MEH" secondAttribute="trailing" constant="8" id="sVw-b1-uaR"/>
                                                 <constraint firstItem="ZdQ-Ua-WSP" firstAttribute="trailing" secondItem="6ZS-hk-kUb" secondAttribute="trailingMargin" id="tcC-WP-U54"/>
                                                 <constraint firstAttribute="bottom" secondItem="Hh2-Ec-MEH" secondAttribute="bottom" constant="14" id="whI-lj-Le2">
                                                     <userDefinedRuntimeAttributes>
@@ -954,6 +953,7 @@
                                         <connections>
                                             <outlet property="detailApp" destination="mo8-MK-9gH" id="ElK-XF-3HF"/>
                                             <outlet property="imageNotification" destination="Hh2-Ec-MEH" id="5Wr-VS-WIx"/>
+                                            <outlet property="leadingTitle" destination="Cld-gS-hha" id="gFl-Oe-Ci9"/>
                                             <outlet property="marked" destination="48c-Jw-rhm" id="R5q-n3-kdM"/>
                                             <outlet property="timeUp" destination="uzf-1b-fhW" id="KfH-6D-bz5"/>
                                             <outlet property="titleNotification" destination="bvL-uN-Fu4" id="nTy-o5-Sae"/>
@@ -993,7 +993,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqn-kS-wl6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2090.625" y="842.95774647887322"/>
+            <point key="canvasLocation" x="2854" y="843"/>
         </scene>
         <!--播放列表-->
         <scene sceneID="fOp-gk-Cqf">
@@ -1015,7 +1015,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RXH-u4-jtZ" id="yut-Mj-HOI">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRU-OH-gcf">
@@ -1060,7 +1060,7 @@
                                                         <constraint firstItem="aCp-si-CtN" firstAttribute="centerY" secondItem="GRU-OH-gcf" secondAttribute="centerY" id="x7F-23-n32"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7P4-Eh-4zA">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7P4-Eh-4zA">
                                                     <rect key="frame" x="39.5" y="10" width="232.5" height="13"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -1069,7 +1069,7 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6h-uv-Vr4">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6h-uv-Vr4">
                                                     <rect key="frame" x="39.5" y="27" width="232.5" height="13"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -1191,7 +1191,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Dh-Xw-3MX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Dh-Xw-3MX">
                                 <rect key="frame" x="16" y="36" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1211,7 +1211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPw-fn-uhA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2854" y="843"/>
+            <point key="canvasLocation" x="3668" y="836"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="rcL-KU-pBv">
@@ -1355,10 +1355,10 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Gy-d7-pYJ" id="ZCs-j3-mCG">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="48.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-Lj-qC5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-Lj-qC5">
                                                     <rect key="frame" x="16" y="8" width="288" height="14"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                     <nil key="textColor"/>
@@ -1367,7 +1367,7 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5t-Ar-K9T">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5t-Ar-K9T">
                                                     <rect key="frame" x="16" y="27.5" width="288" height="13"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -1436,7 +1436,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r6v-ph-g0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4665" y="842.95774647887322"/>
+            <point key="canvasLocation" x="5662.5" y="842.95774647887322"/>
         </scene>
         <!--Forget Pass View Controller-->
         <scene sceneID="D6C-eS-Dzp">
@@ -1730,7 +1730,6 @@
         <!--Navigation Controller-->
         <scene sceneID="eaw-tN-OUy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dtQ-uL-COr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="Login" automaticallyAdjustsScrollViewInsets="NO" id="2oR-oD-pRZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3Eb-bO-bRx">
@@ -1742,26 +1741,9 @@
                         <segue destination="Siz-JO-2xH" kind="relationship" relationship="rootViewController" id="UYX-jZ-apM"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dtQ-uL-COr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-496.875" y="181.69014084507043"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="pGF-US-c2A">
-            <objects>
-                <navigationController storyboardIdentifier="NotificationMessageViewController" automaticallyAdjustsScrollViewInsets="NO" id="y4F-sD-jZB" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="APM-xl-ex1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="M1z-Oa-yQr" kind="relationship" relationship="rootViewController" id="7Qr-RI-0sk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HmS-NO-ADc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1359.375" y="842.95774647887322"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ygs-NO-0Q3">
@@ -1797,7 +1779,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecK-eo-h22" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3667.5" y="842.95774647887322"/>
+            <point key="canvasLocation" x="4665" y="842.95774647887322"/>
         </scene>
     </scenes>
     <resources>

@@ -10,6 +10,7 @@ import UIKit
 
 class MessageNotificationCell: UITableViewCell {
 
+    @IBOutlet weak var leadingTitle: NSLayoutConstraint!
     @IBOutlet weak var timeUp: UILabel!
     @IBOutlet weak var marked: UIView!
     @IBOutlet weak var detailApp: UILabel!
@@ -23,7 +24,11 @@ class MessageNotificationCell: UITableViewCell {
     
     func binData(objectNotification: NotificationApp) {
         if objectNotification.isReaded {
-            marked.removeFromSuperview()
+            marked.isHidden = true
+            leadingTitle.constant = 8
+        } else {
+            marked.isHidden = false
+            leadingTitle.constant = 30
         }
         let time = objectNotification.time.components(separatedBy: " ")[1]
         let index = time.index(time.startIndex, offsetBy: 5)

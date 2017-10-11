@@ -22,6 +22,8 @@ class NotificationMessageViewController: BaseViewController, UITableViewDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.title = "通知列表"
+        navigationController?.isNavigationBarHidden = false
     }
     
     func getData() {
@@ -63,13 +65,54 @@ class NotificationMessageViewController: BaseViewController, UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let removeNotice = RemoveNoticeTask(memberID: (memberInstance?.idMember)!, noticeID: listNotification[indexPath.row].idNotification, token: tokenInstance!)
+            requestWithTask(task: removeNotice, success: { (_) in
+                
+            }, failure: { (_) in
+                
+            })
+            listNotification.remove(at: indexPath.row)
+            table.reloadData()
+        }
+    }
 
+    func notPrettyString(from object: Any) -> String? {
+        if let objectData = try? JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted) {
+            let objectString = String(data: objectData, encoding: .utf8)
+            return objectString
+        }
+        return nil
+    }
+    
     @IBAction func pressedReadAllMessage(_ sender: Any) {
-        listNotification.removeAll()
+        var arrayListIdGroup: [Int] = []
+        for notice in listNotification {
+            arrayListIdGroup.append(notice.idNotification)
+        }
+        let jsonObject: String = notPrettyString(from: arrayListIdGroup)!
+        let sendMarked = MarkRaededNotification(memberID: (memberInstance?.idMember)!, arrayID: jsonObject, token: tokenInstance!)
+        requestWithTask(task: sendMarked, success: { (_) in
+            
+        }) { (_) in
+            
+        }
+
         table.reloadData()
     }
     
     @IBAction func pressedBackButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        _ = self.navigationController?.popToRootViewController(animated: false)
     }
 }

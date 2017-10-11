@@ -105,11 +105,13 @@ extension BaseTaskNetwork {
         let imageGroup = dictionary["image"] as? String ?? ""
         let idWechatGroup = dictionary["wechat"] as? String ?? ""
         let adressGroup = dictionary["address"] as? String ?? ""
+        let isSubcrible = dictionary["is_subscribe"] as? Bool ?? false
         let group = SecrectGroup(idGroup: idGroup,
                                  name: titleGroup,
                                  imageURL: imageGroup,
                                  idWechat: idWechatGroup,
-                                 adress: adressGroup)
+                                 adress: adressGroup,
+                                 isSubcrible: isSubcrible)
         return group
     }
     

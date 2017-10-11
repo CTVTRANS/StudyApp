@@ -20,11 +20,6 @@ class DetailNotificationMessageController: BaseViewController {
         markedNotification()
         navigationItem.title = "通知列表"
         detal.text = objectiNotification?.detailText
-        
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "全標已讀",
-//                                                            style: .plain,
-//                                                            target: self,
-//                                                            action: #selector(deleteMessage))
     }
     
     override func viewWillAppear(_ animated: Bool) {

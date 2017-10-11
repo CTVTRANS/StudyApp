@@ -49,7 +49,7 @@ class BookVideoController: BaseViewController, UIWebViewDelegate, AVPlayerViewCo
                     let timeString = String(format: "%02.0f", CMTimeGetSeconds(time))
                     let timeSecond = Float(timeString)
                     if self?.memberInstance == nil || self?.memberInstance?.level == 0 {
-                        if timeSecond! >= 90.0 {
+                        if timeSecond! >= Float(Constants.sharedInstance.limitVideo) {
                             self?.player?.pause()
                             self?.player?.seek(to: kCMTimeZero)
                         }

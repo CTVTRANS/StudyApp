@@ -15,13 +15,16 @@ class SecrectGroup: NSObject {
     private var _imageURL: String!
     private var _idWechat: String!
     private var _adress: String!
+    private var _isSubcrible: Bool
     
-    init(idGroup: Int, name: String, imageURL: String, idWechat: String, adress: String) {
+    init(idGroup: Int, name: String, imageURL: String, idWechat: String,
+         adress: String, isSubcrible: Bool) {
         _idGroup = idGroup
         _name = name
         _imageURL = imageURL
         _idWechat = idWechat
         _adress = adress
+        _isSubcrible = isSubcrible
     }
     
     var idGroup: Int {
@@ -38,5 +41,13 @@ class SecrectGroup: NSObject {
     }
     var adress: String {
         return _adress
+    }
+    var isSubcrible: Bool {
+        get {
+            return _isSubcrible
+        }
+        set {
+            _isSubcrible = newValue
+        }
     }
 }

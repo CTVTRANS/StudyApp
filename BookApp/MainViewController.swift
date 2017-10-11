@@ -135,7 +135,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             }
             switch typeButton {
             case TopButton.messageNotification:
-                self?.goToNotification()
+                self?.goToNotification(myViewController: self!)
             case TopButton.videoNotification:
                 self?.goToListPlayaudio()
             default :

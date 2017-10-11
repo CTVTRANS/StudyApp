@@ -282,7 +282,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
             }
             switch typeButton {
             case TopButton.messageNotification:
-                self?.goToNotification()
+                self?.goToNotification(myViewController: self!)
             case TopButton.videoNotification:
                 self?.goToListPlayaudio()
             default :

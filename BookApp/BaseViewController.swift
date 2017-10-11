@@ -110,9 +110,17 @@ class BaseViewController: UIViewController {
         return true
     }
     
-    func goToNotification() {
-        if let vc = globalStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as? UINavigationController {
-            present(vc, animated: true, completion: nil)
+    func goToNotification(myViewController: BaseViewController) {
+        if let vc = globalStoryboard.instantiateViewController(withIdentifier: "NotificationMessageViewController") as? NotificationMessageViewController {
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionReveal
+            //kCATransitionMoveIn, kCATransitionPush, kCATransitionReveal, kCATransitionFade
+            //transition.subtype = kCATransitionFromTop; 
+            //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom
+            myViewController.navigationController?.view.layer.add(transition, forKey: nil)
+            myViewController.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

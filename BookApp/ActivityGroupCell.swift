@@ -27,8 +27,8 @@ class ActivityGroupCell: UITableViewCell {
     func binData(group: SecrectGroup) {
         name.text = group.name
         statusImage.backgroundColor = UIColor.rgb(201, 201, 201)
-        for groupJoined in Constants.sharedInstance.listGroupJoined where group.idGroup == groupJoined.idGroup {
-                statusImage.backgroundColor = UIColor.rgb(255, 102, 0)
+        if group.isSubcrible {
+            statusImage.backgroundColor = UIColor.rgb(255, 102, 0)
         }
     }
 }

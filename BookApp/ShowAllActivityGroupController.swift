@@ -13,8 +13,6 @@ class ShowAllActivityGroupController: BaseViewController, UITableViewDelegate, U
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var table: UITableView!
     var arrayGroup = [SecrectGroup]()
-    var loadedAllGroup = false
-    var loadedGroupJoined = false
     var listIDGroupJoined = Set<Int>()
     
     override func viewDidLoad() {
@@ -32,34 +30,21 @@ class ShowAllActivityGroupController: BaseViewController, UITableViewDelegate, U
         addButton.layer.borderColor = UIColor.rgb(255, 102, 0).cgColor
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-//    }
-    
     func getData() {
-        let getAllGroup: GetAllGroupTask = GetAllGroupTask()
+        let getAllGroup: GetAllGroupTask = GetAllGroupTask(memberID: (memberInstance?.idMember)!)
         requestWithTask(task: getAllGroup, success: { (data) in
             self.arrayGroup = (data as? [SecrectGroup])!
-            self.loadedAllGroup = true
-            if self.loadedAllGroup && self.loadedGroupJoined {
-                self.table.reloadData()
-                self.stopActivityIndicator()
-            }
+            self.table.reloadData()
+            self.stopActivityIndicator()
         }) { (error) in
             self.stopActivityIndicator()
             _ = UIAlertController(title: nil,
                                   message: error as? String,
                                   preferredStyle: .alert)
         }
-        let getGroupJoined: GetGroupJoinedTask = GetGroupJoinedTask(idMember: 1)
+        let getGroupJoined: GetGroupJoinedTask = GetGroupJoinedTask(idMember: (memberInstance?.idMember)!)
         requestWithTask(task: getGroupJoined, success: { (data) in
             Constants.sharedInstance.listGroupJoined = (data as? [SecrectGroup])!
-            self.loadedGroupJoined = true
-            if self.loadedAllGroup && self.loadedGroupJoined {
-                self.table.reloadData()
-                self.stopActivityIndicator()
-            }
             for group in  Constants.sharedInstance.listGroupJoined {
                 self.listIDGroupJoined.insert(group.idGroup)
             }
@@ -87,12 +72,14 @@ class ShowAllActivityGroupController: BaseViewController, UITableViewDelegate, U
         table.deselectRow(at: indexPath, animated: true)
         let group = arrayGroup[indexPath.row]
         if listIDGroupJoined.contains(group.idGroup) {
+            group.isSubcrible = false
             for index in 0..<Constants.sharedInstance.listGroupJoined.count where group.idGroup == Constants.sharedInstance.listGroupJoined[index].idGroup {
                     listIDGroupJoined.remove(group.idGroup)
                     Constants.sharedInstance.listGroupJoined.remove(at: index)
                 break
             }
         } else {
+            group.isSubcrible = true
             listIDGroupJoined.insert(group.idGroup)
             Constants.sharedInstance.listGroupJoined.append(group)
         }

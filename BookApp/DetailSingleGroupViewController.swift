@@ -22,7 +22,7 @@ class DetailSingleGroupViewController: BaseViewController, UITableViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        joinButton.setTitle("subcribled", for: .normal)
         adress.text = groupSelected?.adress
         idWeChat.text = groupSelected?.idWechat
         nameGroup.text = groupSelected?.name
@@ -65,7 +65,30 @@ class DetailSingleGroupViewController: BaseViewController, UITableViewDelegate, 
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        table.deselectRow(at: indexPath, animated: true)
+        let new = arrayNews[indexPath.row]
+        new.groupOwner = groupSelected!
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailSingleNewsForGroupController") as? DetailSingleNewsForGroupController {
+            vc.news = new
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     @IBAction func pressedJoinButton(_ sender: Any) {
-        
+        let subcrible = SubcribleOneGroupTask(memberID: (memberInstance?.idMember)!, groupID: (groupSelected?.idGroup)!, token: tokenInstance!)
+        requestWithTask(task: subcrible, success: { (data) in
+            if let status = data as? Bool {
+                if status {
+                    self.joinButton.setTitle("subcribled", for: .normal)
+                    self.groupSelected?.isSubcrible = true
+                } else {
+                    self.joinButton.setTitle("   關注   ", for: .normal)
+                    self.groupSelected?.isSubcrible = false
+                }
+            }
+        }) { (_) in
+            
+        }
     }
 }

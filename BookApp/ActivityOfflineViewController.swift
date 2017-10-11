@@ -9,16 +9,20 @@
 import UIKit
 import FSPagerView
 
-class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, FSPagerViewDelegate {
+class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, FSPagerViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var table: UITableView!
     @IBOutlet weak var addGroupButton: UIButton!
     private var listSlider: [SliderShow] = []
+    private var arrayNewsGroup: [NewsInGroups] = []
+    
     @IBOutlet weak var sliderShow: FSPagerView! {
         didSet {
             self.sliderShow.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
             self.sliderShow.itemSize = .zero
         }
     }
+    
     @IBOutlet weak var pageControlView: FSPageControl! {
         didSet {
             self.pageControlView.contentHorizontalAlignment = .center
@@ -38,6 +42,7 @@ class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, 
                                                             target: self,
                                                             action: #selector(pressRighBarButton))
         getBaner()
+        getNews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +59,18 @@ class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, 
                 self.listSlider = listBaner
                 self.pageControlView.numberOfPages = self.listSlider.count
                 self.sliderShow.reloadData()
+            }
+        }) { (_) in
+            
+        }
+    }
+    
+    func getNews() {
+        let getNewsTask = GetListNewsForAllGroupTask(memberID: (memberInstance?.idMember)!)
+        requestWithTask(task: getNewsTask, success: { (data) in
+            if let array = data as? [NewsInGroups] {
+                self.arrayNewsGroup = array
+                self.table.reloadData()
             }
         }) { (_) in
             
@@ -94,6 +111,28 @@ class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, 
         self.pageControlView.currentPage = pagerView.currentIndex // Or Use KVO with property "currentIndex"
     }
     
+    // MARK: Table View Data Source
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrayNewsGroup.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewsForAllGroup
+        cell?.binData(news: arrayNewsGroup[indexPath.row])
+        return cell!
+    }
+    
+    // MARK: Table View Delegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        table.deselectRow(at: indexPath, animated: true)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailSingleNewsForGroupController") as? DetailSingleNewsForGroupController {
+            vc.news = arrayNewsGroup[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     // MARK: Button Control
 
     func pressRighBarButton() {
@@ -104,5 +143,18 @@ class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, 
     @IBAction func pressedAddGroupButton(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ShowAllActivityGroupController") as? ShowAllActivityGroupController
         navigationController?.pushViewController(vc!, animated: true)
+    }
+}
+
+class NewsForAllGroup: UITableViewCell {
+    
+    @IBOutlet weak var titleNews: UILabel!
+    @IBOutlet weak var dateTime: UILabel!
+    @IBOutlet weak var nameGroup: UILabel!
+    
+    func binData(news: NewsInGroups) {
+        titleNews.text = news.title
+        dateTime.text = news.title.components(separatedBy: " ")[0]
+        nameGroup.text = news.groupOwner.name
     }
 }

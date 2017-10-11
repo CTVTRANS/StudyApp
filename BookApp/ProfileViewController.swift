@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var navigationCustom: NavigationCustom!
     @IBOutlet weak var table: UITableView!
@@ -29,6 +30,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         table.register(UINib.init(nibName: "SettingViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
         avatar.layer.borderColor = UIColor.white.cgColor
+        backgroundImage.sd_setImage(with: URL(string: Constants.sharedInstance.defaultBackground))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +56,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         if !checkLogin() {
             profileView.isHidden = true
             loginButton.setTitle("SigIn", for: .normal)
+            self.avatar.sd_setImage(with: URL(string: Constants.sharedInstance.defaultAvatar))
             return
         }
         loginButton.setTitle("Attendance", for: .normal)
@@ -160,7 +163,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
             }
             switch typeButton {
             case TopButton.messageNotification:
-               self?.goToNotification()
+               self?.goToNotification(myViewController: self!)
             case TopButton.videoNotification:
                 self?.goToListPlayaudio()
             default :

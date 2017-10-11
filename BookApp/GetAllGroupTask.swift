@@ -11,6 +11,12 @@ import LCNetwork
 
 class GetAllGroupTask: BaseTaskNetwork {
     
+    private var _memberID: Int!
+    
+    init(memberID: Int) {
+        _memberID = memberID
+    }
+    
     override func path() -> String! {
         return getAllGroupURL
     }
@@ -20,7 +26,7 @@ class GetAllGroupTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["lang": Constants.sharedInstance.language]
+        return ["lang": Constants.sharedInstance.language, "member_id": _memberID]
     }
     
     override func data(withResponse response: Any!) -> Any! {

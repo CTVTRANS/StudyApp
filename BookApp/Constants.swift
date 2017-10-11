@@ -62,7 +62,12 @@ class Constants: NSObject {
     
     var historyViewChanelLesson: [Lesson] = []
     var listCommentHot: [Comment] = []
-//    var memberProfile: ProfileMember?
+
+    var limitAudio: Int = 0
+    var limitVideo: Int = 0
+    var limitWord: Int = 0
+    var defaultAvatar: String = ""
+    var defaultBackground: String = ""
     
     static let sharedInstance = Constants()
 }

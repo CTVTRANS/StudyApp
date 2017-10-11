@@ -18,9 +18,22 @@ class SplashViewController: BaseViewController {
         super.viewDidLoad()
         traditionalButton.layer.borderColor = UIColor.rgb(113, 112, 110).cgColor
         simpleButton.layer.borderColor = UIColor.rgb(113, 112, 110).cgColor
+        
+        let getDefault = GetDefaultSettingTask()
+        requestWithTask(task: getDefault, success: { (_) in
+            
+        }) { (_) in
+            
+        }
     }
     
     @IBAction func pressedTraditionnal(_ sender: Any) {
+        let getDefault = GetDefaultSettingTask()
+        requestWithTask(task: getDefault, success: { (_) in
+            
+        }) { (_) in
+            
+        }
         if let vc = storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as? SWRevealViewController {
             Constants.sharedInstance.language = 1
             self.present(vc, animated: false, completion: nil)

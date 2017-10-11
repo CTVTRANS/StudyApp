@@ -8,6 +8,8 @@
 
 import UIKit
 
+let defaultNonSigin = "/api/setting/get_setting"
+
 // MARK: Book
 let getBookTypeURL = "/api/book/list_category"
 let getBookForEachTypeURL = "/api/book/list_post_by_category"
@@ -48,6 +50,7 @@ let searchNewsURL = "/api/search/news"
 let getNotification = "/api/notification/get"
 let markReadNoticeURL = "/api/notification/mark_read"
 let getHotKeyWordURL = "/api/search/hot_keyword"
+let removeNoticeURL = "/api/notification/delete"
 
 // MARK: Member
 let getProfileMemberURL = "/api/member/detail"
@@ -66,6 +69,8 @@ let getAllGroupURL = "/api/group/list_group"
 let getAllGroupJoinedURL = "/api/group/list_subscribe"
 let getListNewsInGroupURL = "/api/group/list_post_by_group"
 let subcribleGroupURL = "/api/group/multi_subscribe"
+let subcribleOneGroupURL = "/api/group/subscribe"
+let getListNewsForAllGroupURL = "/api/group/list_post"
 
 // MARK: Product
 let getAllProductByPointURL = "/api/product/list_product_point"
