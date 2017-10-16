@@ -135,6 +135,34 @@ class BaseViewController: UIViewController {
             present(vc, animated: true, completion: nil)
         }
     }
+    
+    func upDatePointBase(type: Int) {
+        let updatepoint = UpdatePointTask(memberID: (self.memberInstance?.idMember)!,
+                                          token: self.tokenInstance!,
+                                          type: type)
+        self.requestWithTask(task: updatepoint, success: { (_) in
+            
+        }, failure: { (_) in
+            
+        })
+    }
+    
+    func goToPayment() {
+        if let choosePay = ChooseMethodPayment.instance() as? ChooseMethodPayment {
+            choosePay.show()
+            choosePay.callBackWeChat = {
+                print("wechat")
+            }
+            
+            choosePay.callBackAlipay = {
+                print("alipay")
+            }
+            
+            choosePay.callBackIOS = {
+                print("ios")
+            }
+        }
+    }
 }
 
 extension UIView {

@@ -25,6 +25,7 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
         return refresh
     }()
 
+    @IBOutlet weak var sortType: UILabel!
     @IBOutlet weak var table: UITableView!
     
     override func viewDidLoad() {
@@ -103,5 +104,7 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
                                   message: error as? String,
                                   preferredStyle: .alert)
         }
+    }
+    @IBAction func pressedChooseSortType(_ sender: Any) {
     }
 }

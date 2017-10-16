@@ -35,7 +35,8 @@ class SubcribleOneGroupTask: BaseTaskNetwork {
     
     override func data(withResponse response: Any!) -> Any! {
         if let dictionary = response as? [String: Any] {
-            if dictionary["data"] != nil {
+            let isSubcrible = dictionary["is_subscribe"] as? Bool ?? false
+            if isSubcrible {
                 return true
             }
         }

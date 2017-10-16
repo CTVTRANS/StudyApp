@@ -73,6 +73,20 @@ class ProfileMember: NSObject, NSCoding {
         coder.encode(_token, forKey: "_token")
     }
     
+    static func saveDeviceToken(token: String) {
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: token)
+        UserDefaults.standard.set(encodedData, forKey: "DeviceToken")
+    }
+    
+    static func getDeviceToken() -> String? {
+        if let data = UserDefaults.standard.data(forKey: "DeviceToken"),
+            let myToken = NSKeyedUnarchiver.unarchiveObject(with: data) as? String {
+            return myToken
+        }
+        let myToken = ""
+        return myToken
+    }
+    
     static func saveToken(token: String) {
         let encodedData = NSKeyedArchiver.archivedData(withRootObject: token)
         UserDefaults.standard.set(encodedData, forKey: "myToken")

@@ -17,7 +17,9 @@ class DetailNotificationMessageController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        markedNotification()
+        if !(objectiNotification?.isReaded)! {
+             markedNotification()
+        }
         navigationItem.title = "通知列表"
         detal.text = objectiNotification?.detailText
     }
@@ -47,7 +49,8 @@ class DetailNotificationMessageController: BaseViewController {
         let jsonObject: String = notPrettyString(from: arrayListIdGroup)!
         let sendMarked = MarkRaededNotification(memberID: (memberInstance?.idMember)!, arrayID: jsonObject, token: tokenInstance!)
         requestWithTask(task: sendMarked, success: { (_) in
-            
+            //
+            // decride number bage -= 1
         }) { (_) in
             
         }

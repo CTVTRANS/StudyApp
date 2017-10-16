@@ -127,6 +127,10 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         table.deselectRow(at: indexPath, animated: true)
          let myStoryboard = UIStoryboard(name: "Profile", bundle: nil)
         if indexPath.section == 1 {
+            if !checkLogin() {
+                goToSigIn()
+                return
+            }
             if let vc = myStoryboard.instantiateViewController(withIdentifier: "VipDetailViewController") as? VipDetailViewController {
                 navigationController?.pushViewController(vc, animated: true)
             }
@@ -194,10 +198,8 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     
     @IBAction func pressedLoginButton(_ sender: Any) {
         if checkLogin() {
-            let member = ProfileMember.getProfile()
-            let token = ProfileMember.getToken()
-            let updatepoint = UpdatePointTask(memberID: (member?.idMember)!,
-                                              token: token!,
+            let updatepoint = UpdatePointTask(memberID: (memberInstance?.idMember)!,
+                                              token: tokenInstance!,
                                               type: UpdatePointType.attendance.rawValue)
             requestWithTask(task: updatepoint, success: { (data) in
                 if let status = data as? (Bool, Int) {

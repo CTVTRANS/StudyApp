@@ -22,7 +22,9 @@ class DetailSingleGroupViewController: BaseViewController, UITableViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        joinButton.setTitle("subcribled", for: .normal)
+        if (groupSelected?.isSubcrible)! {
+            joinButton.setTitle("subcribled", for: .normal)
+        }
         adress.text = groupSelected?.adress
         idWeChat.text = groupSelected?.idWechat
         nameGroup.text = groupSelected?.name
@@ -76,6 +78,10 @@ class DetailSingleGroupViewController: BaseViewController, UITableViewDelegate, 
     }
     
     @IBAction func pressedJoinButton(_ sender: Any) {
+        if !checkLogin() {
+            goToSigIn()
+            return
+        }
         let subcrible = SubcribleOneGroupTask(memberID: (memberInstance?.idMember)!, groupID: (groupSelected?.idGroup)!, token: tokenInstance!)
         requestWithTask(task: subcrible, success: { (data) in
             if let status = data as? Bool {

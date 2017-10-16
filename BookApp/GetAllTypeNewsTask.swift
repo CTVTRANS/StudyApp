@@ -24,19 +24,29 @@ class GetAllTypeNewsTask: BaseTaskNetwork {
     }
     
     override func data(withResponse response: Any!) -> Any! {
-        var listTypeNew: [NewsType] = []
         if let object = response as? [[String: Any]] {
-            for dictionary in object {
-                let idType = dictionary["cat_id"] as? Int ?? 1234
-                let nameType = dictionary["cat_name"] as? String ?? "adfa"
-                let descriptionType = dictionary["cat_description"] as? String ?? "asdf"
-                let type: NewsType = NewsType(idType: idType,
-                                              nameType: nameType,
-                                              desciptionType: descriptionType)
-                listTypeNew.append(type)
+           Constants.sharedInstance.listNewsType = parseTypeNews(object: object)
+        }
+        return response
+    }
+}
+
+extension BaseTaskNetwork {
+    func parseTypeNews(object: [[String: Any]]) -> [NewsType] {
+        var listTypeNew: [NewsType] = []
+        for dictionary in object {
+            let idType = dictionary["cat_id"] as? Int ?? 0
+            let nameType = dictionary["cat_name"] as? String ?? ""
+            let descriptionType = dictionary["cat_description"] as? String ?? ""
+            let type: NewsType = NewsType(idType: idType,
+                                          nameType: nameType,
+                                          desciptionType: descriptionType)
+            let miniArray = [type]
+            listTypeNew += miniArray
+            if let typeSun = dictionary["cat_children"] as? [[String: Any]] {
+                listTypeNew += parseTypeNews(object: typeSun)
             }
         }
-        Constants.sharedInstance.listNewsType = listTypeNew
-        return response
+        return listTypeNew
     }
 }

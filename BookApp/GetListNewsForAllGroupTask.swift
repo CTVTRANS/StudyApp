@@ -26,7 +26,7 @@ class GetListNewsForAllGroupTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["lang": Constants.sharedInstance.language, "limit": 30, "page": 1, "member_id": _memberID]
+        return ["limit": 30, "page": 1, "member_id": _memberID]
     }
     
     override func data(withResponse response: Any!) -> Any! {

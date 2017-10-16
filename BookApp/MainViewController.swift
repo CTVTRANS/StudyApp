@@ -12,6 +12,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var navigationCustoms: NavigationCustom!
     @IBOutlet weak var table: UITableView!
+    
     private var pager = 1
     private var isMoreData = true
     private var isLoadMore = false

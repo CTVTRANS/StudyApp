@@ -11,7 +11,7 @@ import UIKit
 class Book: NSObject, NSCoding {
     
     private var _idBook, _type: Int!
-    private var _typeName, _nameBook: String!
+    private var _typeName, _nameBook, _typePay: String!
     private var _author: String!
     private var _imageBookUrl: String!
     private var _numberHumanReaded: Int!
@@ -22,25 +22,15 @@ class Book: NSObject, NSCoding {
     private var _isPlay: Int = 0
     private var _pause: Int = 0
     private var _price: Int?
-    private var _priceMix: PriceMix!
+    private var _priceMix: [PriceMix]!
     private var _audioOffline: URL?
     private var _imageOffline: URL?
     
-    init(idBook: Int,
-         type: Int,
-         typeName: String,
-         name: String,
-         author: String,
-         imageUrl: String,
-         numberReaded: Int,
-         timeUp: String,
-         audio: String,
-         video: String,
-         content: String,
-         numberLike: Int,
-         numberComment: Int,
-         numberBookMark: Int,
-         desCription: String, price: Int?, priceMix: PriceMix) {
+    init(idBook: Int, type: Int, typeName: String, name: String, author: String,
+         imageUrl: String, numberReaded: Int, timeUp: String, audio: String,
+         video: String, content: String, numberLike: Int, numberComment: Int,
+         numberBookMark: Int, desCription: String, price: Int?, priceMix: [PriceMix],
+         typePay: String) {
             _idBook = idBook
             _type = type
             _typeName = typeName
@@ -58,6 +48,7 @@ class Book: NSObject, NSCoding {
             _desCription = desCription
             _price = price
             _priceMix = priceMix
+        _typePay = typePay
     }
     
     required init(coder decoder: NSCoder) {
@@ -159,7 +150,7 @@ class Book: NSObject, NSCoding {
     var price: Int? {
         return _price
     }
-    var priceMix: PriceMix {
+    var priceMix: [PriceMix] {
         return _priceMix
     }
     var audioOffline: URL? {
@@ -169,5 +160,8 @@ class Book: NSObject, NSCoding {
     var imageOffline: URL? {
         get { return _imageOffline}
         set { _imageOffline = newValue}
+    }
+    var typePay: String {
+        return _typePay
     }
 }

@@ -34,6 +34,13 @@ class SplashViewController: BaseViewController {
         }) { (_) in
             
         }
+        
+        let sendToken = SendTokenTask()
+        requestWithTask(task: sendToken, success: { (_) in
+            
+        }) { (_) in
+            
+        }
         if let vc = storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as? SWRevealViewController {
             Constants.sharedInstance.language = 1
             self.present(vc, animated: false, completion: nil)

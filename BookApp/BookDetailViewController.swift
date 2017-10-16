@@ -19,6 +19,15 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     var downloadAuidosucess = false
     var bookSelected: Book!
     
+    // MARK: Property Use For Hidden StatusBar
+    var isHiddenBaterry: Bool = false {
+        didSet {
+            UIView.animate(withDuration: 0.5) { () -> Void in
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if checkLogin() {
@@ -38,10 +47,16 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return isHiddenBaterry
+    }
+    
     func checkLikeBookmark() {
-        let checkLiked: CheckLikedTask = CheckLikedTask(likeType: Object.book.rawValue,
-                                                        memberID: (memberInstance?.idMember)!,
-                                                        objectID: bookSelected.idBook)
+        let checkLiked: CheckLikedTask = CheckLikedTask(likeType: Object.book.rawValue, memberID: (memberInstance?.idMember)!, objectID: bookSelected.idBook)
         requestWithTask(task: checkLiked, success: { [weak self] (data) in
             if let status = data as? (Bool, Int) {
                 if status.0 {
@@ -55,9 +70,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         }) { (_) in
         }
         let checkBookMarked: CheckBookMarkedTask =
-            CheckBookMarkedTask(bookMarkType: Object.book.rawValue,
-                                memberID: (memberInstance?.idMember)!,
-                                objectID: bookSelected.idBook)
+            CheckBookMarkedTask(bookMarkType: Object.book.rawValue, memberID: (memberInstance?.idMember)!, objectID: bookSelected.idBook)
         requestWithTask(task: checkBookMarked, success: { [weak self] (data) in
             if let status = data as? (Bool, Int) {
                 if status.0 {
@@ -79,24 +92,17 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         let audioVC =
             self.storyboard?.instantiateViewController(withIdentifier: "BookAudio") as? BookAudioController
         audioVC?.book = bookSelected
-        audioVC?.view.frame = CGRect(x: 0,
-                                    y: 0,
-                                    width: scroll.frame.size.width,
-                                    height: scroll.frame.height)
-        let videoVC =
-            self.storyboard?.instantiateViewController(withIdentifier: "BookVideo") as? BookVideoController
+        audioVC?.view.frame = CGRect(x: 0, y: 0, width: scroll.frame.size.width, height: scroll.frame.height)
+        let videoVC = self.storyboard?.instantiateViewController(withIdentifier: "BookVideo") as? BookVideoController
         videoVC?.book = bookSelected
-        videoVC?.view.frame = CGRect(x: widthScreen,
-                                    y: 0,
-                                    width: scroll.frame.size.width,
-                                    height: scroll.frame.height)
+        videoVC?.view.frame = CGRect(x: widthScreen, y: 0, width: scroll.frame.size.width, height: scroll.frame.height)
+        videoVC?.callBackFullScreen = { [weak self] in
+            self?.isHiddenBaterry = !(self?.isHiddenBaterry)!
+        }
         let textVC =
             self.storyboard?.instantiateViewController(withIdentifier: "BookText") as? BookTextController
         textVC?.book = bookSelected
-        textVC?.view.frame = CGRect(x: 2 * widthScreen,
-                                   y: 0,
-                                   width: scroll.frame.size.width,
-                                   height: scroll.frame.height)
+        textVC?.view.frame = CGRect(x: 2 * widthScreen, y: 0, width: scroll.frame.size.width, height: scroll.frame.height)
         audioVC?.willMove(toParentViewController: self)
         self.addChildViewController(audioVC!)
         audioVC?.didMove(toParentViewController: self)
@@ -238,7 +244,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position: CGFloat = scroll.contentOffset.x / scroll.frame.size.width
-        if position > 1.7 {
+        if position > 0.7 {
             self.bottomView.downloadButton.isHidden = true
             self.bottomView.downloadImage.isHidden = true
         } else {

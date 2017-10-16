@@ -62,6 +62,11 @@ class DetailSingleNewsForGroupController: BaseViewController, UIWebViewDelegate 
     }
     
     @IBAction func pressedJoinButton(_ sender: Any) {
+        if !checkLogin() {
+            goToSigIn()
+            return
+        }
+        
         let subcrible = SubcribleOneGroupTask(memberID: (memberInstance?.idMember)!, groupID: (news?.groupOwner.idGroup)!, token: tokenInstance!)
         requestWithTask(task: subcrible, success: { (data) in
             if let status = data as? Bool {

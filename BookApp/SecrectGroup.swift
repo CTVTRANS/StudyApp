@@ -10,6 +10,7 @@ import UIKit
 
 class SecrectGroup: NSObject {
     
+    private var _characterGroup: String!
     private var _idGroup: Int!
     private var _name: String!
     private var _imageURL: String!
@@ -18,13 +19,14 @@ class SecrectGroup: NSObject {
     private var _isSubcrible: Bool
     
     init(idGroup: Int, name: String, imageURL: String, idWechat: String,
-         adress: String, isSubcrible: Bool) {
+         adress: String, isSubcrible: Bool, charaterGroup: String) {
         _idGroup = idGroup
         _name = name
         _imageURL = imageURL
         _idWechat = idWechat
         _adress = adress
         _isSubcrible = isSubcrible
+        _characterGroup = charaterGroup
     }
     
     var idGroup: Int {
@@ -49,5 +51,8 @@ class SecrectGroup: NSObject {
         set {
             _isSubcrible = newValue
         }
+    }
+    var charaterGroup: String {
+        return _characterGroup
     }
 }

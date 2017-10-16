@@ -40,6 +40,10 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
+        if !checkLogin() {
+            goToSigIn()
+            return
+        }
         switch indexPath.row {
         case 0:
             pressedShareWeibo()
@@ -62,14 +66,7 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
             vc?.completionHandler = { status in
                 switch status {
                 case SLComposeViewControllerResult.done:
-                    let updatepoint = UpdatePointTask(memberID: (self.memberInstance?.idMember)!,
-                                                      token: self.tokenInstance!,
-                                                      type: UpdatePointType.share.rawValue)
-                    self.requestWithTask(task: updatepoint, success: { (_) in
-                        
-                    }, failure: { (_) in
-                        
-                    })
+                    self.upDatePointBase(type: UpdatePointType.share.rawValue)
                 case SLComposeViewControllerResult.cancelled:
                     break
                 }
@@ -106,6 +103,9 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
                                                 UIActivityType.postToWeibo
                                                 ]
             activityVC.completionWithItemsHandler = { (activity, success, items, error) in                print(success ? "SUCCESS!" : "FAILURE")
+                if success {
+                    self.upDatePointBase(type: UpdatePointType.share.rawValue)
+                }
             }
             
             activityVC.popoverPresentationController?.sourceView = self.view
@@ -123,14 +123,7 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
             vc?.completionHandler = { status in
                 switch status {
                 case SLComposeViewControllerResult.done:
-                    let updatepoint = UpdatePointTask(memberID: (self.memberInstance?.idMember)!,
-                                                      token: self.tokenInstance!,
-                                                      type: UpdatePointType.share.rawValue)
-                    self.requestWithTask(task: updatepoint, success: { (_) in
-                        
-                    }, failure: { (_) in
-                        
-                    })
+                    self.upDatePointBase(type: UpdatePointType.share.rawValue)
                 case SLComposeViewControllerResult.cancelled:
                     break
                 }

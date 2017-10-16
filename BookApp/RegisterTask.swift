@@ -43,9 +43,9 @@ class RegisterTask: BaseTaskNetwork {
             let status = dictionary["status"] as? String ?? ""
             let statusCode = dictionary["status_code"] as? Int ?? 0
             if status == "success" {
-                return "Register Sucess"
+                return (true, statusCode)
             }
-            return String(statusCode)
+            return (false, statusCode)
         }
         return response
     }

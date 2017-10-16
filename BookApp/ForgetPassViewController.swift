@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ForgetPassViewController: BaseViewController {
+class ForgetPassViewController: BaseViewController, UITextFieldDelegate {
 
     @IBOutlet weak var country: UILabel!
     @IBOutlet weak var showAreButton: UIButton!
@@ -31,6 +31,10 @@ class ForgetPassViewController: BaseViewController {
         navigationItem.title = "忘記密碼"
         buttonSendCode.layer.borderColor = UIColor.rgb(255, 101, 0).cgColor
         showAreButton.layer.borderColor = UIColor.rgb(255, 101, 0).cgColor
+        phoneNumber.keyboardType = .numberPad
+        code.keyboardType = .numberPad
+        newPass.delegate = self
+        confirmPass.delegate = self
     }
     
     func checkValidate() -> (Bool, String) {
@@ -47,6 +51,11 @@ class ForgetPassViewController: BaseViewController {
             return (false, "password cant not has sparce")
         }
         return (true, "success")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     @IBAction func pressedShowAreCdoe(_ sender: Any) {
@@ -86,12 +95,15 @@ class ForgetPassViewController: BaseViewController {
                                                 newPass: newPassWord!,
                                                 confirmPass: confirmNewpass!)
             requestWithTask(task: forgotPass, success: { (data) in
-                if let status = data as? (Bool, String) {
-                    if status.0 {
-                        _ = UIAlertController.initAler(title: "", message: "change Pass Success", inViewController: self)
-                    } else {
-                        _ = UIAlertController.initAler(title: "", message: status.1, inViewController: self)
-                    }
+                if let status = data as? (Bool, Int) {
+                    let action = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                        if status.0 {
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
+                    })
+                    let alert = UIAlertController.init(title: "", message: String(status.1), preferredStyle: .alert)
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }, failure: { (_) in
                 

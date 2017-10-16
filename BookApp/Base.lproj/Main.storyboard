@@ -46,7 +46,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="250" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jKt-xG-ui7">
-                                <rect key="frame" x="0.0" y="72" width="320" height="447"/>
+                                <rect key="frame" x="0.0" y="176" width="320" height="343"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainViewCell" rowHeight="254" id="xPe-ez-IbV" customClass="MainViewCell" customModule="BookApp" customModuleProvider="target">
@@ -198,16 +198,46 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="vFa-pg-R5R"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yhm-b2-Cb3" customClass="CustomMenu" customModule="BookApp" customModuleProvider="target">
+                                <rect key="frame" x="16" y="72" width="304" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="pld-Zm-5rs"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLX-gU-JYB" customClass="CustomMenu" customModule="BookApp" customModuleProvider="target">
+                                <rect key="frame" x="16" y="104" width="304" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="5E7-9i-hug"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ktz-Gz-MFt" customClass="CustomMenu" customModule="BookApp" customModuleProvider="target">
+                                <rect key="frame" x="16" y="136" width="304" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="IUu-7s-aUG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Yhm-b2-Cb3" secondAttribute="trailing" id="3yY-un-5Zo"/>
                             <constraint firstAttribute="trailing" secondItem="jKt-xG-ui7" secondAttribute="trailing" id="5CF-la-JmO"/>
+                            <constraint firstItem="Ktz-Gz-MFt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="6xe-dg-uQh"/>
+                            <constraint firstItem="Ktz-Gz-MFt" firstAttribute="top" secondItem="QLX-gU-JYB" secondAttribute="bottom" id="9Ry-Le-1CP"/>
+                            <constraint firstAttribute="trailing" secondItem="Ktz-Gz-MFt" secondAttribute="trailing" id="BbH-Wh-vB8"/>
                             <constraint firstItem="Fhx-kl-zT0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CEF-BO-iqe"/>
                             <constraint firstItem="Fhx-kl-zT0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="CJX-lI-EOP"/>
                             <constraint firstAttribute="trailing" secondItem="Fhx-kl-zT0" secondAttribute="trailing" id="EjE-9C-00Z"/>
+                            <constraint firstAttribute="trailing" secondItem="QLX-gU-JYB" secondAttribute="trailing" id="Huf-Zp-JNr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jKt-xG-ui7" secondAttribute="bottom" id="SaB-nz-6Hq"/>
+                            <constraint firstItem="Yhm-b2-Cb3" firstAttribute="top" secondItem="Fhx-kl-zT0" secondAttribute="bottom" constant="8" id="X2A-8q-SHi"/>
+                            <constraint firstItem="jKt-xG-ui7" firstAttribute="top" secondItem="Ktz-Gz-MFt" secondAttribute="bottom" constant="8" id="XPx-uW-DPP"/>
                             <constraint firstItem="jKt-xG-ui7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aoK-EJ-W0R"/>
-                            <constraint firstItem="jKt-xG-ui7" firstAttribute="top" secondItem="Fhx-kl-zT0" secondAttribute="bottom" constant="8" id="nBo-ev-eJs"/>
+                            <constraint firstItem="QLX-gU-JYB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="eIg-ps-XE3"/>
+                            <constraint firstItem="Yhm-b2-Cb3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="hE9-eQ-roa"/>
+                            <constraint firstItem="QLX-gU-JYB" firstAttribute="top" secondItem="Yhm-b2-Cb3" secondAttribute="bottom" id="nzh-oV-YAw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DcZ-ID-fhU"/>
@@ -306,7 +336,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="換一換" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEo-Il-7e0">
-                                                <rect key="frame" x="16" y="33.5" width="45" height="15"/>
+                                                <rect key="frame" x="16" y="33" width="45" height="15"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -859,7 +889,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="近期新書" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcU-xn-Luh">
-                                                <rect key="frame" x="13" y="12" width="60" height="15"/>
+                                                <rect key="frame" x="13" y="12.5" width="60" height="15"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -957,7 +987,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e81-ig-FdQ">
-                                                <rect key="frame" x="22" y="41" width="290" height="132"/>
+                                                <rect key="frame" x="22" y="41.5" width="290" height="131.5"/>
                                                 <connections>
                                                     <action selector="pressedShowDetailBook:" destination="eVr-ui-5dh" eventType="touchUpInside" id="4VO-Sz-H1W"/>
                                                 </connections>
@@ -972,7 +1002,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上架" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0s-1h-fAa">
-                                                <rect key="frame" x="294" y="145" width="18" height="9"/>
+                                                <rect key="frame" x="294" y="144.5" width="18" height="9"/>
                                                 <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="9"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

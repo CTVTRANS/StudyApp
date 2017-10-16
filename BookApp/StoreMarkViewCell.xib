@@ -25,9 +25,9 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9L-F2-Fma">
-                        <rect key="frame" x="8" y="122" width="141" height="14"/>
+                        <rect key="frame" x="16" y="122" width="133" height="14"/>
                         <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.73725490196078436" green="0.73725490196078436" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
@@ -40,7 +40,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nec-AM-fbu">
-                        <rect key="frame" x="8" y="144" width="34" height="13"/>
+                        <rect key="frame" x="16" y="144" width="34" height="13"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aG-Ai-bbl">
                                 <rect key="frame" x="0.0" y="0.0" width="9" height="13"/>
@@ -73,7 +73,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Crs-y1-hOu">
-                        <rect key="frame" x="47" y="144" width="36" height="13"/>
+                        <rect key="frame" x="55" y="144" width="36" height="13"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imw-wK-VMl">
                                 <rect key="frame" x="12" y="0.0" width="9" height="13"/>
@@ -117,7 +117,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FA1-AV-f1P">
-                        <rect key="frame" x="8" y="144" width="24" height="13"/>
+                        <rect key="frame" x="16" y="144" width="24" height="13"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rt0-7e-iQQ">
                                 <rect key="frame" x="0.0" y="0.0" width="9" height="13"/>
@@ -157,18 +157,23 @@
                 <constraint firstItem="Crs-y1-hOu" firstAttribute="top" secondItem="B9L-F2-Fma" secondAttribute="bottom" constant="8" id="7HD-Ag-2FW"/>
                 <constraint firstItem="hoM-MW-5dx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8fm-Rk-aK8"/>
                 <constraint firstItem="B9L-F2-Fma" firstAttribute="top" secondItem="hoM-MW-5dx" secondAttribute="bottom" constant="12" id="CCf-uX-XqI"/>
-                <constraint firstItem="Crs-y1-hOu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="CbW-M1-Qv9"/>
+                <constraint firstItem="Crs-y1-hOu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="CbW-M1-Qv9"/>
                 <constraint firstItem="FA1-AV-f1P" firstAttribute="top" secondItem="B9L-F2-Fma" secondAttribute="bottom" constant="8" id="MCt-OD-Rws"/>
                 <constraint firstAttribute="trailing" secondItem="hoM-MW-5dx" secondAttribute="trailing" id="NC5-lP-E5j"/>
-                <constraint firstItem="Nec-AM-fbu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Uxm-6l-RGw"/>
-                <constraint firstItem="FA1-AV-f1P" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="fqb-GK-Z2D"/>
+                <constraint firstItem="Nec-AM-fbu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="Uxm-6l-RGw"/>
+                <constraint firstItem="FA1-AV-f1P" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="fqb-GK-Z2D"/>
                 <constraint firstItem="hoM-MW-5dx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gPG-JX-geo"/>
                 <constraint firstItem="Crs-y1-hOu" firstAttribute="leading" secondItem="Nec-AM-fbu" secondAttribute="trailing" constant="5" id="mLf-MT-BmT"/>
                 <constraint firstAttribute="trailing" secondItem="B9L-F2-Fma" secondAttribute="trailing" constant="8" id="p0g-Bh-PQ8"/>
-                <constraint firstItem="B9L-F2-Fma" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="uHy-Dk-bPA"/>
+                <constraint firstItem="B9L-F2-Fma" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="uHy-Dk-bPA"/>
                 <constraint firstItem="Nec-AM-fbu" firstAttribute="top" secondItem="B9L-F2-Fma" secondAttribute="bottom" constant="8" id="w7S-s4-4f5"/>
             </constraints>
             <size key="customSize" width="156" height="165"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="5"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="avatar" destination="hoM-MW-5dx" id="HTO-qO-8Pl"/>
                 <outlet property="moneyBook" destination="imw-wK-VMl" id="j49-VN-dfO"/>

@@ -10,20 +10,24 @@ import UIKit
 
 class GroupJoinedViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    var listGroupJoind = [SecrectGroup]()
+    var listGroup = [SecrectGroup]()
     @IBOutlet weak var collection: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "線下活動"
-        let getGroupJoined: GetGroupJoinedTask = GetGroupJoinedTask(idMember: (memberInstance?.idMember)!)
-        requestWithTask(task: getGroupJoined, success: { (data) in
-            if let list = data as? [SecrectGroup] {
-                self.listGroupJoind = list
-                Constants.sharedInstance.listGroupJoined = list
-                self.collection.reloadData()
-            }
+        showActivity(inView: self.view)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let getAllGroup: GetAllGroupTask = GetAllGroupTask(memberID: (memberInstance?.idMember)!)
+        requestWithTask(task: getAllGroup, success: { (data) in
+            self.listGroup = (data as? [SecrectGroup])!
+            self.collection.reloadData()
+            self.stopActivityIndicator()
         }) { (error) in
+            self.stopActivityIndicator()
             _ = UIAlertController(title: nil,
                                   message: error as? String,
                                   preferredStyle: .alert)
@@ -31,12 +35,12 @@ class GroupJoinedViewController: BaseViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listGroupJoind.count
+        return listGroup.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? GroupJoinedCell {
-            cell.binData(group: listGroupJoind[indexPath.row])
+            cell.binData(group: listGroup[indexPath.row])
             return cell
         }
         return UICollectionViewCell()
@@ -60,7 +64,7 @@ class GroupJoinedViewController: BaseViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailSingleGroupViewController") as? DetailSingleGroupViewController {
-            vc.groupSelected = listGroupJoind[indexPath.row]
+            vc.groupSelected = listGroup[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
     }

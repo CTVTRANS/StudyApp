@@ -19,7 +19,6 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
     
     private var tap: UITapGestureRecognizer?
     private var arrayObject = [SpecialComment]()
-//    private lazy var member = ProfileMember.getProfile()
     var idObject: Int?
     var commentType: Int?
     var object: AnyObject!
@@ -56,10 +55,6 @@ class CommentController: BaseViewController, UITableViewDelegate, UITableViewDat
         }
         if let book = object as? Book {
             titleComment.text = book.name
-//            let arrayDetail = book.descriptionBook.components(separatedBy: "</p>")
-//            let fristString = arrayDetail[0]
-//            let index = fristString.index(fristString.startIndex, offsetBy: 4)
-//            detail.text = fristString.substring(from: index)
              detail.text = "Book App"
         }
         if let chanel = object as? Chanel {

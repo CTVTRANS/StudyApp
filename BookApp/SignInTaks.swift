@@ -14,6 +14,8 @@ class SignInTaks: BaseTaskNetwork {
     private var country: Int!
     private var phone: Int!
     private var pass: String!
+    private var _deviceToken: String!
+    private var _device: Int!
     
     init(countryCode: Int, phoneNumerber: Int, password: String) {
         country = countryCode
@@ -30,7 +32,15 @@ class SignInTaks: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["country_code": country, "phone_number": phone, "password": pass]
+        _deviceToken = ProfileMember.getDeviceToken()
+        if _deviceToken == "" || _deviceToken == nil {
+            _deviceToken = "kjahsdjfhskjdhfkasjdhfkajsdfkljasdkjfasdfadsf"
+        }
+        return ["country_code": country,
+                "phone_number": phone,
+                "password": pass,
+                "phone_id": _deviceToken,
+                "platform": 1]
     }
     
     override func data(withResponse response: Any!) -> Any! {

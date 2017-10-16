@@ -68,6 +68,7 @@ class Constants: NSObject {
     var limitWord: Int = 0
     var defaultAvatar: String = ""
     var defaultBackground: String = ""
+    var deviceToken = ""
     
     static let sharedInstance = Constants()
 }

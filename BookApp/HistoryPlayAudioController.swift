@@ -62,12 +62,18 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
         }
         return cell!
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
   
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             let index = mp3.listPlay.count - 1 - indexPath.row
             if index != mp3.oldIndexListPlay || (index == mp3.oldIndexListPlay && !mp3.isPlaying()) {
                 mp3.listPlay.remove(at: index)
+                listHistory.remove(at: index)
+                tableView.reloadData()
 //                table.deleteRows(at: [indexPath], with: .automatic)
             }
         }

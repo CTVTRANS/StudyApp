@@ -42,12 +42,12 @@ class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, 
                                                             target: self,
                                                             action: #selector(pressRighBarButton))
         getBaner()
-        getNews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        getNews()
     }
     
     // MARK: Get Baner From Server
@@ -136,6 +136,10 @@ class ActivityOfflineViewController: BaseViewController, FSPagerViewDataSource, 
     // MARK: Button Control
 
     func pressRighBarButton() {
+        if !checkLogin() {
+            goToSigIn()
+            return
+        }
         let vc = storyboard?.instantiateViewController(withIdentifier: "GroupJoinedViewController") as? GroupJoinedViewController
         navigationController?.pushViewController(vc!, animated: true)
     }
@@ -154,7 +158,7 @@ class NewsForAllGroup: UITableViewCell {
     
     func binData(news: NewsInGroups) {
         titleNews.text = news.title
-        dateTime.text = news.title.components(separatedBy: " ")[0]
+        dateTime.text = news.time.components(separatedBy: " ")[0]
         nameGroup.text = news.groupOwner.name
     }
 }

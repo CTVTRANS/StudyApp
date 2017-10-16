@@ -34,17 +34,18 @@ class SettingViewController: BaseViewController, UITableViewDataSource, UITableV
     }
     
     func pressedRightBarButton() {
-        print("ok")
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "SupportCustomController") as? SupportCustomController {
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func customData() {
         let setting1 = SettingCellModel(name: "個人信息", specialName: "", arrrowDetail: true, nameDetail: "")
         let setting2 = SettingCellModel(name: "清空下載", specialName: "", arrrowDetail: false, nameDetail: "")
-        let setting3 = SettingCellModel(name: "修復訂單", specialName: "", arrrowDetail: false, nameDetail: "")
-        let setting4 = SettingCellModel(name: "關於讀書會", specialName: "", arrrowDetail: true, nameDetail: "")
+        let setting3 = SettingCellModel(name: "關於讀書會", specialName: "", arrrowDetail: true, nameDetail: "")
 
         let arraySetting1 = ListSetting(array: [setting1])
-        let arraySetting2 = ListSetting(array: [setting2, setting3, setting4])
+        let arraySetting2 = ListSetting(array: [setting2, setting3])
         arraySetting.append(arraySetting1)
         arraySetting.append(arraySetting2)
     }
@@ -103,8 +104,6 @@ class SettingViewController: BaseViewController, UITableViewDataSource, UITableV
         case 0:
            print("0")
         case 1:
-            print("1")
-        case 2:
             if let vc = storyboard?.instantiateViewController(withIdentifier: "AppInfomationViewController") as? AppInfomationViewController {
                 navigationController?.pushViewController(vc, animated: true)
             }

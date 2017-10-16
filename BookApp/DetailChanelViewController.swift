@@ -206,9 +206,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
                 }
             }
         }) { (error) in
-            _ = UIAlertController(title: nil,
-                                  message: error as? String,
-                                  preferredStyle: .alert)
+            _ = UIAlertController(title: nil, message: error as? String, preferredStyle: .alert)
         }
     }
     
@@ -234,34 +232,6 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
        addToHistory(lesson: lesson)
     }
     
-    func addToHistory(lesson: Lesson) {
-        var checkLessonExist = false
-        for singleLesson in Constants.sharedInstance.historyViewChanelLesson where singleLesson.idChap == lesson.idChap {
-            checkLessonExist = true
-        }
-        if !checkLessonExist {
-             Constants.sharedInstance.historyViewChanelLesson.append(lesson)
-        } else {
-            checkLessonExist = false
-        }
-    }
-    
-    func inCreeView(lesson: Lesson) {
-        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
-        requestWithTask(task: viewed, success: { (data) in
-            if let status = data as? String {
-                if status == "success" {
-                    self.chanel.numberView += 1
-                    let numberView = self.chanel.numberView
-                    self.numberView.text = String(numberView)
-                    self.table.reloadData()
-                }
-            }
-        }) { (_) in
-            
-        }
-    }
-    
     // MARK: Button Control
     
     func setupCallBackBottom() {
@@ -282,23 +252,6 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             } else if typeButton == BottomButton.like {
                 self?.likeChanel()
             }
-        }
-    }
-    
-    func likeChanel() {
-        let like = LikeTask(likeType: Object.chanel.rawValue, memberID: (memberInstance?.idMember)!, objectId: chanel.idChanel, token: tokenInstance!)
-        requestWithTask(task: like, success: { (data) in
-            let status: Like = (data as? Like)!
-            if status == Like.like {
-                self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
-                self.chanel.numberLike += 1
-            } else {
-                self.chanel.numberLike -= 1
-                self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
-            }
-            self.bottomView.numberLike.text = String(self.chanel.numberLike)
-        }) { (_) in
-            
         }
     }
     
@@ -339,5 +292,52 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+extension DetailChanelViewController {
+    func likeChanel() {
+        let like = LikeTask(likeType: Object.chanel.rawValue, memberID: (memberInstance?.idMember)!, objectId: chanel.idChanel, token: tokenInstance!)
+        requestWithTask(task: like, success: { (data) in
+            let status: Like = (data as? Like)!
+            if status == Like.like {
+                self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_liked")
+                self.chanel.numberLike += 1
+            } else {
+                self.chanel.numberLike -= 1
+                self.bottomView.likeImage.image = #imageLiteral(resourceName: "ic_bottom_like")
+            }
+            self.bottomView.numberLike.text = String(self.chanel.numberLike)
+        }) { (_) in
+            
+        }
+    }
+    
+    func addToHistory(lesson: Lesson) {
+        var checkLessonExist = false
+        for singleLesson in Constants.sharedInstance.historyViewChanelLesson where singleLesson.idChap == lesson.idChap {
+            checkLessonExist = true
+        }
+        if !checkLessonExist {
+            Constants.sharedInstance.historyViewChanelLesson.append(lesson)
+        } else {
+            checkLessonExist = false
+        }
+    }
+    
+    func inCreeView(lesson: Lesson) {
+        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
+        requestWithTask(task: viewed, success: { (data) in
+            if let status = data as? String {
+                if status == "success" {
+                    self.chanel.numberView += 1
+                    let numberView = self.chanel.numberView
+                    self.numberView.text = String(numberView)
+                    self.table.reloadData()
+                }
+            }
+        }) { (_) in
+            
+        }
     }
 }

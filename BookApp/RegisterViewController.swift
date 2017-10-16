@@ -51,7 +51,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         codeConfirm = Int(code.text!)
         name = nameUser.text
         pass = passWord.text
-        if phone == nil || codeConfirm == nil || name == nil || pass == nil {
+        if phone == nil || codeConfirm == nil || name == "" || pass == "" {
             return (false, "please fill full information")
         }
         let array = pass?.components(separatedBy: " ")
@@ -66,8 +66,15 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         if check.0 {
             let register = RegisterTask(countryCode: countryPhone!, phoneNumber: phone!, codeConfirm: codeConfirm!, name: name!, password: pass!)
             requestWithTask(task: register, success: { (data) in
-                if let message = data as? String {
-                    _ = UIAlertController.initAler(title: "", message: message, inViewController: self)
+                if let status = data as? (Bool, Int) {
+                    let action = UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                        if status.0 {
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
+                    })
+                    let alert = UIAlertController.init(title: "", message: String(status.1), preferredStyle: .alert)
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }, failure: { (_) in
                 
@@ -94,14 +101,14 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
         }
         _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer(timer:)), userInfo: nil, repeats: true)
         sendCodebutton.isEnabled = false
-//        let sendCode = GetCodeConfirmTask(countryCode: countryPhone!, phoneNumber: phone!)
-//        requestWithTask(task: sendCode, success: { (data) in
-//            if let message = data as? [String: Any] {
-//                print(message)
-//            }
-//        }) { (_) in
-//        
-//        }
+        let sendCode = GetCodeConfirmTask(countryCode: countryPhone!, phoneNumber: phone!)
+        requestWithTask(task: sendCode, success: { (data) in
+            if let message = data as? [String: Any] {
+                print(message)
+            }
+        }) { (_) in
+        
+        }
     }
     
     func updateTimer(timer: Timer) {

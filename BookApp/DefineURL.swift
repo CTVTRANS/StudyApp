@@ -53,6 +53,7 @@ let getHotKeyWordURL = "/api/search/hot_keyword"
 let removeNoticeURL = "/api/notification/delete"
 
 // MARK: Member
+let sendDeviceTokenURL = "/api/member/update_phone_id"
 let getProfileMemberURL = "/api/member/detail"
 let getCodeURL = "/api/member/generate_confirm_code"
 let registerURL = "/api/member/register"
@@ -70,7 +71,7 @@ let getAllGroupJoinedURL = "/api/group/list_subscribe"
 let getListNewsInGroupURL = "/api/group/list_post_by_group"
 let subcribleGroupURL = "/api/group/multi_subscribe"
 let subcribleOneGroupURL = "/api/group/subscribe"
-let getListNewsForAllGroupURL = "/api/group/list_post"
+let getListNewsForAllGroupURL = "/api/group/list_post_by_group_subscribed"
 
 // MARK: Product
 let getAllProductByPointURL = "/api/product/list_product_point"

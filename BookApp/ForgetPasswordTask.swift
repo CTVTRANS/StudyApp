@@ -46,9 +46,9 @@ class ForgetPasswordTask: BaseTaskNetwork {
             let status = dictionary["status"] as? String ?? ""
             let statusCode = dictionary["status_code"] as? Int ?? 0
             if status == "success" {
-                return (true, "success")
+                return (true, statusCode)
             }
-            return (false, String(statusCode))
+            return (false, statusCode)
 
         }
         return response
