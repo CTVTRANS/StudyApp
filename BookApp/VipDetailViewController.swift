@@ -10,6 +10,7 @@ import UIKit
 
 class VipDetailViewController: BaseViewController {
 
+    @IBOutlet weak var buyVipButton: UIButton!
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var timeLimit: UILabel!
     @IBOutlet weak var statusVip: UILabel!
@@ -38,6 +39,8 @@ class VipDetailViewController: BaseViewController {
         requestWithTask(task: getProductVip, success: { (data) in
             if let arrayVip = data as? [Vip] {
                 self.webView.loadHTMLString( css + (arrayVip.first?.conten)!, baseURL: nil)
+                let titleForButton = "立刻儲值升等 年費: " + String((arrayVip.first?.point)!) +  "元"
+                self.buyVipButton.setTitle(titleForButton, for: .normal)
             }
         }, failure: { (_) in
             

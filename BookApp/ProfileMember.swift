@@ -15,11 +15,11 @@ class ProfileMember: NSObject, NSCoding {
     private var _phoneNumber, _country, _marriage: Int?
     private var _email, _avatar: String?
     private var _dateOfBirth, _job, _hobby: String?
-    private var _token: String?
+    private var _token, _dateExpired: String?
     
     init(idMember: Int, memberCode: String, level: Int, name: String, country: Int,
          phoneNumber: Int, email: String, avatar: String, sex: Int, birDay: String,
-         job: String, marriage: Int, hobby: String, point: Int, token: String) {
+         job: String, marriage: Int, hobby: String, point: Int, token: String, dateExpired: String) {
         _idMember = idMember
         _memberCode = memberCode
         _level = level
@@ -35,6 +35,7 @@ class ProfileMember: NSObject, NSCoding {
         _hobby = hobby
         _point = point
         _token = token
+        _dateExpired = dateExpired
     }
     
     required init(coder decoder: NSCoder) {
@@ -53,6 +54,7 @@ class ProfileMember: NSObject, NSCoding {
         _hobby = decoder.decodeObject(forKey: "_hobby") as? String
         _point = decoder.decodeObject(forKey: "_point") as? Int
         _token = decoder.decodeObject(forKey: "_token") as? String
+        _dateExpired = decoder.decodeObject(forKey: "_dateExpired") as? String
     }
     
     func encode(with coder: NSCoder) {
@@ -71,6 +73,7 @@ class ProfileMember: NSObject, NSCoding {
         coder.encode(_hobby, forKey: "_hobby")
         coder.encode(_point, forKey: "_point")
         coder.encode(_token, forKey: "_token")
+        coder.encode(_dateExpired, forKey: "_dateExpired")
     }
     
     static func saveDeviceToken(token: String) {
@@ -111,7 +114,7 @@ class ProfileMember: NSObject, NSCoding {
             let myProfile = NSKeyedUnarchiver.unarchiveObject(with: data) as? ProfileMember {
             return myProfile
         }
-        let profile = ProfileMember(idMember: 0, memberCode: "", level: 0, name: "", country: 0, phoneNumber: 0, email: "", avatar: "", sex: 0, birDay: "", job: "", marriage: 0, hobby: "", point: 0, token: "")
+        let profile = ProfileMember(idMember: 0, memberCode: "", level: 0, name: "", country: 0, phoneNumber: 0, email: "", avatar: "", sex: 0, birDay: "", job: "", marriage: 0, hobby: "", point: 0, token: "", dateExpired: "")
         return profile
     }
     
@@ -126,7 +129,8 @@ class ProfileMember: NSObject, NSCoding {
         set { _sex = newValue}
     }
     var point: Int {
-        return _point!
+        get { return _point!}
+        set { _point = newValue}
     }
     var memberCode: String? {
         return _memberCode

@@ -16,7 +16,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var heightOfAvatar: NSLayoutConstraint!
     var arraySetting: [ListSetting] = []
-    private lazy var memberProfile = ProfileMember.getProfile()
+//    private lazy var memberProfile = ProfileMember.getProfile()
     private let picker = UIImagePickerController()
     private var avatarImage: UIImage?
     
@@ -27,7 +27,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
         table.tableFooterView = UIView()
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
         
-        let avaterURL = (memberProfile?.avatar!)! + "?"
+        let avaterURL = (memberInstance?.avatar!)! + "?"
         avatar.sd_setImage(with: URL(string: avaterURL), placeholderImage: #imageLiteral(resourceName: "place_holder"))
     }
     
@@ -46,7 +46,7 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textAlignment = .center
         label.textColor = UIColor.rgb(82, 82, 82)
-        label.text = (memberProfile?.name)! + "\n會員編號: " + (memberProfile?.memberCode!)!
+        label.text = (memberInstance?.name)! + "\n會員編號: " + (memberInstance?.memberCode!)!
         navigationItem.titleView = label
         
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backToRootView))
@@ -143,15 +143,15 @@ class MyprofileViewController: BaseViewController, UITableViewDelegate, UITableV
                 if let data = UIImageJPEGRepresentation(self.avatarImage!, 0.8) {
                     self.avatar.sd_addActivityIndicator()
                     self.avatar.sd_showActivityIndicatorView()
-                    let changeAvatar = UploadAvatarTask(memberID: (self.memberProfile?.idMember)!, token: self.tokenInstance!, data: data)
+                    let changeAvatar = UploadAvatarTask(memberID: (self.memberInstance?.idMember)!, token: self.tokenInstance!, data: data)
                     self.uploadFileWithTask(task: changeAvatar, success: { (data) in
                         self.changeAvatarButton.isHidden = false
                         self.avatar.sd_removeActivityIndicator()
-                        self.avatar.image = chosenImage
                         if let avatarURL = data as? (Bool, String) {
                             if avatarURL.0 {
-                                self.memberProfile?.avatar = avatarURL.1
-                                ProfileMember.saveProfile(myProfile: self.memberProfile!)
+                                self.avatar.image = chosenImage
+                                self.memberInstance?.avatar = avatarURL.1
+                                ProfileMember.saveProfile(myProfile: self.memberInstance!)
                                 return
                             }
                             _ = UIAlertController.initAler(title: "", message: avatarURL.1, inViewController: self)

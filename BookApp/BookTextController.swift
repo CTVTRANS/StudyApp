@@ -47,11 +47,11 @@ class BookTextController: BaseViewController, UIWebViewDelegate {
     
     func limitText() -> String {
         if let content = book?.content {
-            let limit = Constants.sharedInstance.limitWord
-            if content.characters.count < limit + 100 {
+            let limit = DefaultApp.sharedInstance.limitWord
+            if content.characters.count < limit! + 100 {
                 return content
             }
-            let index = content.index(content.startIndex, offsetBy: limit + 100)
+            let index = content.index(content.startIndex, offsetBy: limit! + 100)
             let newContent = content.substring(to: index)
             return newContent
         }

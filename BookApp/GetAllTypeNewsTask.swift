@@ -36,9 +36,11 @@ extension BaseTaskNetwork {
         var listTypeNew: [NewsType] = []
         for dictionary in object {
             let idType = dictionary["cat_id"] as? Int ?? 0
+            let parentID = dictionary["parent_id"] as? Int ?? 0
             let nameType = dictionary["cat_name"] as? String ?? ""
             let descriptionType = dictionary["cat_description"] as? String ?? ""
             let type: NewsType = NewsType(idType: idType,
+                                          parentID: parentID,
                                           nameType: nameType,
                                           desciptionType: descriptionType)
             let miniArray = [type]

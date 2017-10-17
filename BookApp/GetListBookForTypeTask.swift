@@ -13,10 +13,12 @@ class GetListBookForTypeTask: BaseTaskNetwork {
     
     private let _category: Int!
     private let _page: Int!
+    private let _orderBy: String!
     
-    init(category: Int, page: Int) {
+    init(category: Int, page: Int, orderBy: String) {
         _category = category
         _page = page
+        _orderBy = orderBy
     }
 
     override func path() -> String! {
@@ -24,7 +26,7 @@ class GetListBookForTypeTask: BaseTaskNetwork {
     }
     
     override func parameters() -> [AnyHashable : Any]! {
-        return ["category": _category, "limit": 20, "page": _page]
+        return ["category": _category, "limit": 20, "page": _page, "orderby": _orderBy]
     }
     
     override func method() -> String! {

@@ -13,9 +13,11 @@ class NewsType: NSObject {
     private var _idType: Int!
     private var _nameType: String!
     private var _description: String!
+    private var _parentID: Int!
     
-    init(idType: Int, nameType: String, desciptionType: String) {
+    init(idType: Int, parentID: Int, nameType: String, desciptionType: String) {
         _idType = idType
+        _parentID = parentID
         _nameType = nameType
         _description = desciptionType
     }
@@ -28,5 +30,8 @@ class NewsType: NSObject {
     }
     var descriptionType: String {
         return _description
+    }
+    var parentID: Int {
+        return _parentID
     }
 }

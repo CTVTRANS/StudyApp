@@ -95,13 +95,13 @@ class ForgetPassViewController: BaseViewController, UITextFieldDelegate {
                                                 newPass: newPassWord!,
                                                 confirmPass: confirmNewpass!)
             requestWithTask(task: forgotPass, success: { (data) in
-                if let status = data as? (Bool, Int) {
+                if let status = data as? (Bool, ErrorCode) {
                     let action = UIAlertAction(title: "OK", style: .default, handler: { (_) in
                         if status.0 {
                             self.navigationController?.popToRootViewController(animated: true)
                         }
                     })
-                    let alert = UIAlertController.init(title: "", message: String(status.1), preferredStyle: .alert)
+                    let alert = UIAlertController.init(title: "", message: status.1.decodeError(), preferredStyle: .alert)
                     alert.addAction(action)
                     self.present(alert, animated: true, completion: nil)
                 }

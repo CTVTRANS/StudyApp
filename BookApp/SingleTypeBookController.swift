@@ -14,37 +14,40 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
     private var listBook: [Book] = []
     lazy var footerView = UIView.initFooterView()
     private var indicator: UIActivityIndicatorView?
-    var isMoreData = true
-    var isLoading = false
-    var pager = 1
+    private var isMoreData = true
+    private var isLoading = false
+    private var pager = 1
     lazy var refreshControl: UIRefreshControl = {
         let refresh = UIRefreshControl()
         refresh.backgroundColor = UIColor.white
         refresh.tintColor = UIColor.gray
-        refresh.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        refresh.addTarget(self, action: #selector(reloadMyData), for: .valueChanged)
         return refresh
     }()
+    private var sortBy: String = "date"
 
     @IBOutlet weak var sortType: UILabel!
     @IBOutlet weak var table: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         showActivity(inView: self.view)
+        table.tableFooterView = UIView()
         table.register(UINib.init(nibName: "ListBookFreee", bundle: nil), forCellReuseIdentifier: "cell")
         table.estimatedRowHeight = 140
         table.addSubview(refreshControl)
         if let ac = footerView.viewWithTag(8) as? UIActivityIndicatorView {
             indicator = ac
         }
-        loadMoreData()
+        loadMoreData(with: sortBy)
     }
     
-    func reloadData() {
+    func reloadMyData() {
+        listBook.removeAll()
+        table.reloadData()
         pager = 1
         isMoreData = true
-        loadMoreData()
+        loadMoreData(with: sortBy)
     }
     
     // MARK: Table Data Source
@@ -80,12 +83,13 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
             isLoading = true
             table.tableFooterView = footerView
             indicator?.startAnimating()
-            loadMoreData()
+            loadMoreData(with: sortBy)
         }
     }
     
-    func loadMoreData() {
-        let getBook: GetListBookForTypeTask = GetListBookForTypeTask(category: (typeBook?.typeID)!, page: pager)
+    func loadMoreData(with: String) {
+        
+        let getBook: GetListBookForTypeTask = GetListBookForTypeTask(category: (typeBook?.typeID)!, page: pager, orderBy: with)
         requestWithTask(task: getBook, success: { (data) in
             if let arrayBook = data as? [Book] {
                 self.listBook += arrayBook
@@ -106,5 +110,15 @@ class SingleTypeBookController: BaseViewController, UITableViewDelegate, UITable
         }
     }
     @IBAction func pressedChooseSortType(_ sender: Any) {
+        _ = UIAlertController.showActionSheetWith(arrayTitle: ["date", "numberView"], handlerAction: { (index) in
+            if index == 0 {
+                self.sortBy = "date"
+                self.sortType.text = "date"
+            } else {
+                self.sortBy = "views"
+                self.sortType.text = "views"
+            }
+            self.reloadMyData()
+        }, in: self)
     }
 }

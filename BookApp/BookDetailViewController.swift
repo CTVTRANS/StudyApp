@@ -14,6 +14,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var topShare: TopViewShare!
     @IBOutlet weak var topTabbar: CustomTopTabbar!
     @IBOutlet weak var bottomView: BottomView!
+    private var timer: Timer?
     
     var downloadImageSuccess = false
     var downloadAuidosucess = false
@@ -36,10 +37,11 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         setupScroll()
         setupCallBackBottom()
         setupCallBackTopTabbar()
-        setupSahreView()
+        setupShareView()
         scroll.delegate = self
         
         bottomView.numberComment.text = String(bookSelected.numberComment)
+        timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(increaseViewBook), userInfo: nil, repeats: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,8 +91,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     
     func setupScroll() {
         scroll.contentSize = CGSize(width: 3 * widthScreen, height: scroll.frame.height)
-        let audioVC =
-            self.storyboard?.instantiateViewController(withIdentifier: "BookAudio") as? BookAudioController
+        let audioVC = self.storyboard?.instantiateViewController(withIdentifier: "BookAudio") as? BookAudioController
         audioVC?.book = bookSelected
         audioVC?.view.frame = CGRect(x: 0, y: 0, width: scroll.frame.size.width, height: scroll.frame.height)
         let videoVC = self.storyboard?.instantiateViewController(withIdentifier: "BookVideo") as? BookVideoController
@@ -119,12 +120,20 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         scroll.addSubview(textVC!.view)
     }
     
-    func setupSahreView() {
+    func setupShareView() {
         topShare.titleTop.text = bookSelected?.name
         if self.revealViewController() != nil {
             revealViewController().rightViewRevealWidth = 80
             topShare.shareButton.addTarget(self.revealViewController(), action: #selector(revealViewController().rightRevealToggle(_:)), for: .touchUpInside)
             self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        }
+    }
+    
+    func increaseViewBook() {
+        let increaseView = IncreaseViewBookTask(idBook: bookSelected.idBook)
+        requestWithTask(task: increaseView, success: { (_) in
+            
+        }) { (_) in
         }
     }
     
@@ -138,6 +147,8 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         bottomView.pressedBottomButton = { [weak self] (typeButton: BottomButton) in
             let myStoryboard = UIStoryboard(name: "Global", bundle: nil)
             if typeButton == BottomButton.back {
+                self?.timer?.invalidate()
+                self?.timer = nil
                 self?.navigationController?.popViewController(animated: true)
                 return
             }

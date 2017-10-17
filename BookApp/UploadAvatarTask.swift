@@ -46,11 +46,12 @@ class UploadAvatarTask: BaseTaskNetwork {
             let avaterURL = dictionary["avatar_path"] as? String ?? ""
             let status = dictionary["status"] as? String ?? ""
             let statusCode = dictionary["status_code"] as? Int ?? 0
+            if statusCode != 200 && statusCode != 0 {
+                let error = ErrorCode(rawValue: statusCode)
+                return (false, error)
+            }
             if status == "success" {
                 return (true, avaterURL)
-            }
-            if statusCode != 200 {
-                return (false, String(statusCode))
             }
         }
         return response

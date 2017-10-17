@@ -56,6 +56,7 @@ extension BaseTaskNetwork {
         let memberHobby = dictionary["hobby"] as? String ?? ""
         let memberPoint = dictionary["point"] as? Int ?? 0
         let memberAcessToken = dictionary["access_token"] as? String ?? ""
+        let vipExpired = dictionary["vip_expired"] as? String ?? ""
         
         let member: ProfileMember = ProfileMember(idMember: memberID,
                                                   memberCode: memberCode,
@@ -71,7 +72,8 @@ extension BaseTaskNetwork {
                                                   marriage: memberMarrige,
                                                   hobby: memberHobby,
                                                   point: memberPoint,
-                                                  token: memberAcessToken)
+                                                  token: memberAcessToken,
+                                                  dateExpired: vipExpired)
         return member
     }
 }

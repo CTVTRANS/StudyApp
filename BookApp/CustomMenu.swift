@@ -11,14 +11,14 @@ import UIKit
 class CustomMenu: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collection: UICollectionView!
-    var callBack:((_ typeNew: NewsType) -> Void) = {_ in }
+    var callBack:((_ idType: Int) -> Void) = {_ in }
     var arrayTypeNews: [NewsType] = []
-    var arrayType: [String] = ["使用積分及現金", "le van", "le van kien", "iphne 8", "logitech", "katakana"]
    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
         self.collection.register(UINib(nibName: "MenuCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        collection.collectionViewLayout.invalidateLayout()
     }
     
     private func setupUI() {
@@ -39,16 +39,21 @@ class CustomMenu: UIView, UICollectionViewDelegate, UICollectionViewDataSource, 
         }
         return UIView()
     }
-
+    
     // MARK: COollection Data Source
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayType.count
+        return arrayTypeNews.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? MenuCollectionViewCell
-        cell?.nameType.text = arrayType[indexPath.row]
+        cell?.nameType.text = arrayTypeNews[indexPath.row].nameType
         return cell!
     }
     
@@ -59,8 +64,8 @@ class CustomMenu: UIView, UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var sizeFont: CGFloat = 14
         sizeFont.adjustsSizeToRealIPhoneSize = 14
-        let width = arrayType[indexPath.row].widthOfString(usingFont: UIFont(name: "DFHeiStd-W5", size: sizeFont)!)
-        let height = arrayType[indexPath.row].heightOfString(usingFont: UIFont(name: "DFHeiStd-W5", size: sizeFont)!)
+        let width = arrayTypeNews[indexPath.row].nameType.widthOfString(usingFont: UIFont(name: "DFHeiStd-W5", size: sizeFont)!)
+        let height = arrayTypeNews[indexPath.row].nameType.heightOfString(usingFont: UIFont(name: "DFHeiStd-W5", size: sizeFont)!)
         return CGSize(width: width + 16, height: height + 10)
     }
     
@@ -68,12 +73,11 @@ class CustomMenu: UIView, UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        
-//        self.callBack(arrayTypeNews[indexPath.row])
+        self.callBack(arrayTypeNews[indexPath.row].idType)
     }
     
-    func reloadType(array: [String]) {
-        arrayType = array
+    func reloadType(array: [NewsType]) {
+        arrayTypeNews = array
         collection.reloadData()
     }
 }

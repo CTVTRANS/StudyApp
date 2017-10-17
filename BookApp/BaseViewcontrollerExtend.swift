@@ -44,6 +44,7 @@ extension BaseTaskNetwork {
         let numberBookMark = dictionary["number_of_collection"] as? Int ?? 0
         let price = dictionary["price_by_point"] as? Int ?? 0
         let typePay = dictionary["type_pay"] as? String ?? ""
+        let numberView = dictionary["number_of_views"] as? Int ?? 0
         
         let priceMixDictionay = dictionary["price_mix"] as? [[String: Any]]
         let priceMixOfBook = parseMixPrice(arrayPrice: priceMixDictionay!)
@@ -54,7 +55,7 @@ extension BaseTaskNetwork {
                               name: nameBook,
                               author: authorBook,
                               imageUrl: imageURLBook,
-                              numberReaded: 0,
+                              numberReaded: numberView,
                               timeUp: timeUpBook,
                               audio: audioBook,
                               video: videoBook,
@@ -169,13 +170,15 @@ extension BaseTaskNetwork {
         let imageVip = dictionary["image"] as? String ?? ""
         let descriptionVip = dictionary["description"] as? String ?? ""
         let contentVip = dictionary["content"] as? String ?? ""
-        let priceVip = dictionary["price"] as? Int ?? 0
+        let priceVip = dictionary["price_money"] as? Int ?? 0
+        let point = dictionary["price_point"] as? Int ?? 0
         let vip = Vip(idVip: idVip,
                   title: titleVip,
                   imageURL: imageVip,
                   description: descriptionVip,
                   content: contentVip,
-                  price: priceVip)
+                  price: priceVip,
+                  point: point)
         return vip
     }
 }

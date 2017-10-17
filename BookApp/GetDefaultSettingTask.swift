@@ -26,11 +26,13 @@ class GetDefaultSettingTask: BaseTaskNetwork {
             let limitAudio = dictionary["limit_second_audio"] as? Int ?? 0
             let limitVideo = dictionary["limit_second_video"] as? Int ?? 0
             let linitWord = dictionary["limit_word"] as? Int ?? 0
-            Constants.sharedInstance.limitWord = linitWord
-            Constants.sharedInstance.limitAudio = limitAudio
-            Constants.sharedInstance.limitVideo = limitVideo
-            Constants.sharedInstance.defaultAvatar = avatardefault
-            Constants.sharedInstance.defaultBackground = backgroundImage
+            let suport  = dictionary["support"] as? String ?? ""
+            DefaultApp.sharedInstance.limitAudio = limitAudio
+            DefaultApp.sharedInstance.limitVideo = limitVideo
+            DefaultApp.sharedInstance.limitWord = linitWord
+            DefaultApp.sharedInstance.defaultAvatar = avatardefault
+            DefaultApp.sharedInstance.defaultBackground = backgroundImage
+            DefaultApp.sharedInstance.suporter = suport
         }
         return response
     }

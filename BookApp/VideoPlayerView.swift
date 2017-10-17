@@ -176,7 +176,7 @@ class VideoPlayerView: UIView {
                 let seconds = CMTimeGetSeconds(progressTime)
                 self.currentTime = Float(seconds)
                 if ProfileMember.getToken() == "" || ProfileMember.getProfile()?.level == 0 {
-                    if seconds > Double(Constants.sharedInstance.limitVideo) {
+                    if seconds > Double(DefaultApp.sharedInstance.limitVideo) {
                         self.player?.pause()
                         self.player?.seek(to: kCMTimeZero)
                         self.videoSlider.value = 0.0

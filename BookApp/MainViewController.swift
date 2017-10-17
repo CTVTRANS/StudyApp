@@ -10,23 +10,28 @@ import UIKit
 
 class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var constraintTable: NSLayoutConstraint!
     @IBOutlet weak var navigationCustoms: NavigationCustom!
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var typeNews1: CustomMenu!
+    @IBOutlet weak var typeNews2: CustomMenu!
+    @IBOutlet weak var typeNews3: CustomMenu!
+    private var arrayTypeNews: [NewsType] = []
+    lazy var footerView = UIView.initFooterView()
+    private var indicator: UIActivityIndicatorView?
+    lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.backgroundColor = UIColor.white
+        refresh.tintColor = UIColor.gray
+        refresh.addTarget(self, action: #selector(reloadMyData), for: .valueChanged)
+        return refresh
+    }()
     
     private var pager = 1
     private var isMoreData = true
     private var isLoadMore = false
     private var arrayNews: [NewsModel] = []
-    lazy var footerView = UIView.initFooterView()
-    private var indicator: UIActivityIndicatorView?
-    
-    lazy var refreshControl: UIRefreshControl = {
-        let refresh = UIRefreshControl()
-        refresh.backgroundColor = UIColor.white
-        refresh.tintColor = UIColor.gray
-        refresh.addTarget(self, action: #selector(reloadData), for: .valueChanged)
-        return refresh
-    }()
+    private var typeNewsID: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +43,22 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             indicator = ac
         }
         loadMoreData()
+        var contrainTop: CGFloat = 36
+        contrainTop.adjustsSizeToRealIPhoneSize = 36
+        constraintTable.constant = contrainTop
+        let getAllTypeNews: GetAllTypeNewsTask = GetAllTypeNewsTask()
+        requestWithTask(task: getAllTypeNews, success: { (_) in
+            self.arrayTypeNews = Constants.sharedInstance.listNewsType
+            let arrayType1 = self.arrayTypeNews.filter({ (type: NewsType) -> Bool in
+                return type.parentID == 0
+            })
+            self.typeNewsID = (arrayType1.first?.idType)!
+            self.typeNews1.reloadType(array: arrayType1)
+            self.reloadMyData()
+        }) { (_) in
+            
+        }
+        cellBackClickType()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,12 +67,15 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         table.reloadData()
     }
     
-    func reloadData() {
+    func reloadMyData() {
+        arrayNews.removeAll()
+        table.reloadData()
         pager = 1
         isMoreData = true
-        arrayNews.removeAll()
         loadMoreData()
     }
+    
+    // MARK: Table View Dta Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayNews.count
@@ -90,6 +114,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         return UITableViewAutomaticDimension
     }
     
+    // MARK: Table View Delegate
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let endOftable = table.contentOffset.y >= (table.contentSize.height - table.frame.size.height)
         if isMoreData && endOftable && !isLoadMore && !scrollView.isDragging && !scrollView.isDecelerating {
@@ -100,9 +126,31 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+//    func startLoad() {
+//        let getAllNews: GetAllNewsTask = GetAllNewsTask(page: pager)
+//        requestWithTask(task: getAllNews, success: { (data) in
+//            if let list = data as? [NewsModel] {
+//                self.arrayNews += list
+//                self.table.reloadData()
+//                self.isLoadMore = false
+//                self.stopActivityIndicator()
+//                self.refreshControl.endRefreshing()
+//                self.indicator?.stopAnimating()
+//                self.pager += 1
+//                if list.count == 0 {
+//                    self.isMoreData = false
+//                    self.table.tableFooterView = UIView()
+//                }
+//            }
+//        }) { (error) in
+//            self.stopActivityIndicator()
+//            _ = UIAlertController(title: nil, message: error as? String, preferredStyle: .alert)
+//        }
+//    }
+    
     func loadMoreData() {
-        let getAllNews: GetAllNewsTask = GetAllNewsTask(page: pager)
-        requestWithTask(task: getAllNews, success: { (data) in
+        let getNews = GetNewsForTypeTask(typeID: typeNewsID, page: pager)
+        requestWithTask(task: getNews, success: { (data) in
             if let list = data as? [NewsModel] {
                 self.arrayNews += list
                 self.table.reloadData()
@@ -116,11 +164,56 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                     self.table.tableFooterView = UIView()
                 }
             }
-        }) { (error) in
-            self.stopActivityIndicator()
-            _ = UIAlertController(title: nil,
-                                  message: error as? String,
-                                  preferredStyle: .alert)
+        }) { (_) in
+             self.stopActivityIndicator()
+        }
+    }
+    
+    func cellBackClickType() {
+        typeNews1.callBack = { [weak self] (typeID) in
+            self?.arrayNews.removeAll()
+            self?.typeNewsID = typeID
+            self?.reloadMyData()
+            let array2 = self?.arrayTypeNews.filter({ (type) -> Bool in
+                return type.parentID == typeID
+            })
+            if (array2?.count)! > 0 {
+                var newConstraint: CGFloat = 68
+                newConstraint.adjustsSizeToRealIPhoneSize = 68
+                self?.constraintTable.constant = newConstraint
+            } else {
+                var newConstraint: CGFloat = 36
+                newConstraint.adjustsSizeToRealIPhoneSize = 36
+                self?.constraintTable.constant = newConstraint
+            }
+            self?.typeNews2.reloadType(array: array2!)
+        }
+        
+        typeNews2.callBack = { [weak self] (typeID2) in
+            self?.arrayNews.removeAll()
+            self?.typeNewsID = typeID2
+            self?.reloadMyData()
+            var array3 = self?.arrayTypeNews.filter({ (type) -> Bool in
+                return type.parentID == typeID2
+            })
+            if (array3?.count)! > 0 {
+                let allType3 = NewsType(idType: typeID2, parentID: typeID2, nameType: "全部", desciptionType: "")
+                array3?.insert(allType3, at: 0)
+                var newConstraint: CGFloat = 100
+                newConstraint.adjustsSizeToRealIPhoneSize = 100
+                self?.constraintTable.constant = newConstraint
+            } else {
+                var newConstraint: CGFloat = 68
+                newConstraint.adjustsSizeToRealIPhoneSize = 68
+                self?.constraintTable.constant = newConstraint
+            }
+            self?.typeNews3.reloadType(array: array3!)
+        }
+        
+        typeNews3.callBack = { [weak self] (typeID3) in
+            self?.arrayNews.removeAll()
+            self?.typeNewsID = typeID3
+            self?.reloadMyData()
         }
     }
     

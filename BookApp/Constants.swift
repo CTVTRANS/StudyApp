@@ -63,11 +63,6 @@ class Constants: NSObject {
     var historyViewChanelLesson: [Lesson] = []
     var listCommentHot: [Comment] = []
 
-    var limitAudio: Int = 0
-    var limitVideo: Int = 0
-    var limitWord: Int = 0
-    var defaultAvatar: String = ""
-    var defaultBackground: String = ""
     var deviceToken = ""
     
     static let sharedInstance = Constants()

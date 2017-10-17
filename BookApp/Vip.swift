@@ -16,14 +16,17 @@ class Vip: NSObject {
     private var _description: String!
     private var _content: String!
     private var _price: Int!
+    private var _point: Int!
     
-    init(idVip: Int, title: String, imageURL: String, description: String, content: String, price: Int) {
+    init(idVip: Int, title: String, imageURL: String, description: String,
+         content: String, price: Int, point: Int) {
         _idVip = idVip
         _title = title
         _imageURL = imageURL
         _description = description
         _content = content
         _price = price
+        _point = point
     }
     var idVip: Int {
         return _idVip
@@ -42,5 +45,8 @@ class Vip: NSObject {
     }
     var price: Int {
         return _price
+    }
+    var point: Int {
+        return _point
     }
 }

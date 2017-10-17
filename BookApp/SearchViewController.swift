@@ -24,13 +24,13 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var iconSearchBook: UILabel!
     private var listBook: [Book] = []
     private var listTypeBook: [String] = []
-    private var loadedTypeBook = false
+//    private var loadedTypeBook = false
     private var listHotBook: [String] = []
     
     @IBOutlet weak var iconSearchNews: UILabel!
     private var listNews: [NewsModel] = []
     private var listTypeNews: [String] = []
-    private var loadedTypeNews = false
+//    private var loadedTypeNews = false
     private var listHotNews: [String] = []
     
     private var seachBook: Bool = true
@@ -77,28 +77,16 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     private func setUp() {
         titleForViewTypes.text = "分類搜索"
         titleForViewHot.text = "熱門搜索"
-        let getAllTypeNews: GetAllTypeNewsTask = GetAllTypeNewsTask()
-        requestWithTask(task: getAllTypeNews, success: { (_) in
-            self.loadedTypeNews = true
-            for typeNews in Constants.sharedInstance.listNewsType {
-                self.listTypeNews.append(typeNews.nameType)
-            }
-            if self.loadedTypeBook && self.loadedTypeNews {
-                self.showTypeAndHotKeyWord()
-            }
-        }) { (_) in
-            
+        for typeNews in Constants.sharedInstance.listNewsType {
+            self.listTypeNews.append(typeNews.nameType)
         }
         
         let getAllTypeBook: GetTypeOfBookTask = GetTypeOfBookTask()
         requestWithTask(task: getAllTypeBook, success: { (_) in
-            self.loadedTypeBook = true
             for typeBook in Constants.sharedInstance.listBookType {
                 self.listTypeBook.append(typeBook.name)
             }
-            if self.loadedTypeBook && self.loadedTypeNews {
-                self.showTypeAndHotKeyWord()
-            }
+            self.showTypeAndHotKeyWord()
         }) { (_) in
             
         }

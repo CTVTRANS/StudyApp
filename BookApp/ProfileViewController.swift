@@ -30,7 +30,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         table.register(UINib.init(nibName: "SettingViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
         avatar.layer.borderColor = UIColor.white.cgColor
-        backgroundImage.sd_setImage(with: URL(string: Constants.sharedInstance.defaultBackground))
+        backgroundImage.sd_setImage(with: URL(string: DefaultApp.sharedInstance.defaultBackground))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +56,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         if !checkLogin() {
             profileView.isHidden = true
             loginButton.setTitle("SigIn", for: .normal)
-            self.avatar.sd_setImage(with: URL(string: Constants.sharedInstance.defaultAvatar))
+            self.avatar.sd_setImage(with: URL(string: DefaultApp.sharedInstance.defaultAvatar))
             return
         }
         loginButton.setTitle("Attendance", for: .normal)
@@ -207,6 +207,8 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
                         self.loginButton.setTitle("Attendanced", for: .normal)
                     }
                     self.point.text = String(status.1)
+                    self.memberInstance?.point = status.1
+                    ProfileMember.saveProfile(myProfile: self.memberInstance!)
                 }
             }, failure: { (_) in
                 

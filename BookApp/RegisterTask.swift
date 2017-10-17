@@ -42,10 +42,11 @@ class RegisterTask: BaseTaskNetwork {
         if let dictionary = response as? [String: Any] {
             let status = dictionary["status"] as? String ?? ""
             let statusCode = dictionary["status_code"] as? Int ?? 0
+            let error = ErrorCode(rawValue: statusCode)
             if status == "success" {
-                return (true, statusCode)
+                return (true, error)
             }
-            return (false, statusCode)
+            return (false, error)
         }
         return response
     }
