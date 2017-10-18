@@ -30,12 +30,15 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         table.register(UINib.init(nibName: "SettingViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         avatar.layer.cornerRadius = heightOfAvatar.constant / 2
         avatar.layer.borderColor = UIColor.white.cgColor
-        backgroundImage.sd_setImage(with: URL(string: DefaultApp.sharedInstance.defaultBackground))
+        if DefaultApp.sharedInstance.defaultBackground != nil && DefaultApp.sharedInstance.defaultBackground != "" {
+             backgroundImage.sd_setImage(with: URL(string: DefaultApp.sharedInstance.defaultBackground))
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         checkMember()
+        navigationCustom.checkNotifocation()
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -56,7 +59,9 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         if !checkLogin() {
             profileView.isHidden = true
             loginButton.setTitle("SigIn", for: .normal)
-            self.avatar.sd_setImage(with: URL(string: DefaultApp.sharedInstance.defaultAvatar))
+            if DefaultApp.sharedInstance.defaultAvatar != nil && DefaultApp.sharedInstance.defaultAvatar != "" {
+                self.avatar.sd_setImage(with: URL(string: DefaultApp.sharedInstance.defaultAvatar))
+            }
             return
         }
         loginButton.setTitle("Attendance", for: .normal)
@@ -150,10 +155,15 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    func checkNotifocationApp() {
+        navigationCustom.checkNotifocation()
+    }
+    
     // MARK: Button Control
     
     func setupCallBack() {
-        navigationCustom.rightButton.setImage(#imageLiteral(resourceName: "ic_setting"), for: .normal)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkNotifocationApp), name: NSNotification.Name(rawValue: "reciveNotificaton"), object: nil)
+        navigationCustom.rightImage.image = #imageLiteral(resourceName: "ic_setting")
         navigationCustom.callBackTopButton = { [weak self] (typeButton: TopButton) in
             if typeButton == TopButton.search {
                 let myStoryboard = UIStoryboard(name: "Setting", bundle: nil)

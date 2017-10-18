@@ -10,9 +10,9 @@ import UIKit
 
 class MessageNotificationCell: UITableViewCell {
 
+    @IBOutlet weak var marked: UIImageView!
     @IBOutlet weak var leadingTitle: NSLayoutConstraint!
     @IBOutlet weak var timeUp: UILabel!
-    @IBOutlet weak var marked: UIView!
     @IBOutlet weak var detailApp: UILabel!
     @IBOutlet weak var titleNotification: UILabel!
     @IBOutlet weak var imageNotification: UIImageView!
@@ -28,7 +28,7 @@ class MessageNotificationCell: UITableViewCell {
             leadingTitle.constant = 8
         } else {
             marked.isHidden = false
-            leadingTitle.constant = 30
+            leadingTitle.constant = 26
         }
         let time = objectNotification.time.components(separatedBy: " ")[1]
         let index = time.index(time.startIndex, offsetBy: 5)

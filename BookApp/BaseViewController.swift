@@ -98,7 +98,7 @@ class BaseViewController: UIViewController {
     func goToSigIn() {
         let mystoryboard = UIStoryboard(name: "Global", bundle: nil)
         if let vc = mystoryboard.instantiateViewController(withIdentifier: "Login") as? UINavigationController {
-            navigationController?.present(vc, animated: true, completion: nil)
+            present(vc, animated: true, completion: nil)
         }
     }
     

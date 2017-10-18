@@ -18,19 +18,41 @@ class SplashViewController: BaseViewController {
         super.viewDidLoad()
         traditionalButton.layer.borderColor = UIColor.rgb(113, 112, 110).cgColor
         simpleButton.layer.borderColor = UIColor.rgb(113, 112, 110).cgColor
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         let getDefault = GetDefaultSettingTask()
-        requestWithTask(task: getDefault, success: { (_) in
+        getDefault.request(blockSucess: { (_) in
             
         }) { (_) in
             
         }
+        if checkLogin() {
+            let updateInfo = GetProfileMemberTask(idMember: (self.memberInstance?.idMember)!)
+            updateInfo.request(blockSucess: { (_) in
+                
+            }, andBlockFailure: { (_) in
+                
+            })
+        }
+
     }
     
     @IBAction func pressedTraditionnal(_ sender: Any) {
-        let getDefault = GetDefaultSettingTask()
-        requestWithTask(task: getDefault, success: { (_) in
-            
+        Constants.sharedInstance.language = 1
+        let getData = GetNotificationTask(limit: 1000, page: 1, memberID: (memberInstance?.idMember)!)
+        requestWithTask(task: getData, success: { (data) in
+            if let arrayNotice = data as? (Int, [NotificationApp]) {
+                let numberNotice = UserDefaults.standard.integer(forKey: "numberNotice")
+                if arrayNotice.0 > numberNotice {
+                    Constants.sharedInstance.hasNotification = true
+                    let notificationName = Notification.Name("reciveNotificaton")
+                    NotificationCenter.default.post(name: notificationName, object: nil)
+                }
+            }
         }) { (_) in
             
         }
@@ -41,8 +63,8 @@ class SplashViewController: BaseViewController {
         }) { (_) in
             
         }
+        
         if let vc = storyboard?.instantiateViewController(withIdentifier: "SWRevealViewController") as? SWRevealViewController {
-            Constants.sharedInstance.language = 1
             self.present(vc, animated: false, completion: nil)
         }
     }
@@ -52,6 +74,5 @@ class SplashViewController: BaseViewController {
             Constants.sharedInstance.language = 0
             self.present(vc, animated: false, completion: nil)
         }
-
     }
 }

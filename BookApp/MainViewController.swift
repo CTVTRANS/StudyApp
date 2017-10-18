@@ -42,7 +42,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         if let ac = footerView.viewWithTag(8) as? UIActivityIndicatorView {
             indicator = ac
         }
-        loadMoreData()
+
         var contrainTop: CGFloat = 36
         contrainTop.adjustsSizeToRealIPhoneSize = 36
         constraintTable.constant = contrainTop
@@ -63,6 +63,7 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationCustoms.checkNotifocation()
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         table.reloadData()
     }
@@ -92,6 +93,8 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
         let type = arrayNews[indexPath.row].typeNews
+        ShareModel.shareIntance.nameShare = arrayNews[indexPath.row].title
+        ShareModel.shareIntance.detailShare = arrayNews[indexPath.row].detailNews
         if type == 1 {
             if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailNewsController {
                 vc.news = arrayNews[indexPath.row]
@@ -125,28 +128,6 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             loadMoreData()
         }
     }
-    
-//    func startLoad() {
-//        let getAllNews: GetAllNewsTask = GetAllNewsTask(page: pager)
-//        requestWithTask(task: getAllNews, success: { (data) in
-//            if let list = data as? [NewsModel] {
-//                self.arrayNews += list
-//                self.table.reloadData()
-//                self.isLoadMore = false
-//                self.stopActivityIndicator()
-//                self.refreshControl.endRefreshing()
-//                self.indicator?.stopAnimating()
-//                self.pager += 1
-//                if list.count == 0 {
-//                    self.isMoreData = false
-//                    self.table.tableFooterView = UIView()
-//                }
-//            }
-//        }) { (error) in
-//            self.stopActivityIndicator()
-//            _ = UIAlertController(title: nil, message: error as? String, preferredStyle: .alert)
-//        }
-//    }
     
     func loadMoreData() {
         let getNews = GetNewsForTypeTask(typeID: typeNewsID, page: pager)
@@ -217,7 +198,12 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    func checkNotifocationApp() {
+        navigationCustoms.checkNotifocation()
+    }
+    
     func setupCallBack() {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkNotifocationApp), name: NSNotification.Name(rawValue: "reciveNotificaton"), object: nil)
         navigationCustoms.callBackTopButton = { [weak self] (typeButton: TopButton) in
             if typeButton == TopButton.search {
                 self?.goToSearch()
@@ -228,12 +214,9 @@ class MainViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 return
             }
             switch typeButton {
-            case TopButton.messageNotification:
-                self?.goToNotification(myViewController: self!)
-            case TopButton.videoNotification:
-                self?.goToListPlayaudio()
-            default :
-                break
+            case TopButton.messageNotification: self?.goToNotification(myViewController: self!)
+            case TopButton.videoNotification: self?.goToListPlayaudio()
+            default : break
             }
         }
     }

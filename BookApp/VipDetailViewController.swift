@@ -16,6 +16,8 @@ class VipDetailViewController: BaseViewController {
     @IBOutlet weak var statusVip: UILabel!
     @IBOutlet weak var nameMember: UILabel!
     
+    private var vip: Vip?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "會員狀態"
@@ -38,8 +40,9 @@ class VipDetailViewController: BaseViewController {
         let getProductVip: GetProductVipTask = GetProductVipTask()
         requestWithTask(task: getProductVip, success: { (data) in
             if let arrayVip = data as? [Vip] {
-                self.webView.loadHTMLString( css + (arrayVip.first?.conten)!, baseURL: nil)
-                let titleForButton = "立刻儲值升等 年費: " + String((arrayVip.first?.point)!) +  "元"
+                self.vip = arrayVip.first
+                self.webView.loadHTMLString( css + (self.vip?.conten)!, baseURL: nil)
+                let titleForButton = "立刻儲值升等 年費: " + String((self.vip?.point)!) +  "元"
                 self.buyVipButton.setTitle(titleForButton, for: .normal)
             }
         }, failure: { (_) in
@@ -47,5 +50,17 @@ class VipDetailViewController: BaseViewController {
         })
     }
     @IBAction func pressBuyVip(_ sender: Any) {
+        if (memberInstance?.point)! > (vip?.point)! {
+            let buyVip = BuyVipPointTask(memberiD: (memberInstance?.idMember)!, token: tokenInstance!, type: 0, idVip: (vip?.idVip)!, numberYear: 1)
+            requestWithTask(task: buyVip, success: { (data) in
+                if let status = data as? Bool {
+                    if status {
+                        self.memberInstance?.point -= (self.vip?.point)!
+                    }
+                }
+            }, failure: { (_) in
+                
+            })
+        }
     }
 }

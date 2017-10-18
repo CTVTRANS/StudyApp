@@ -51,7 +51,8 @@ class GetNotificationTask: BaseTaskNetwork {
                 let notification = NotificationApp.init(idNotification, title: title, image: image, detailText: detail, appName: appName, readed: isRead, time: time)
                 listNotification.append(notification)
             }
+            return (listNotification.count, listNotification)
         }
-        return listNotification
+        return false
     }
 }

@@ -29,9 +29,6 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     private var suggestArray = [Book]()
     private var freeArray = [Book]()
     private var  newestBook: Book!
-    private var loadedTypeBook: Bool = false
-    private var loadedBookSuggest: Bool = false
-    private var loadefBookFree: Bool = false
     
     // MARK: Setup Slider Show
     
@@ -66,6 +63,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationCustom.checkNotifocation()
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -100,10 +98,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         requestWithTask(task: getTypeTask, success: { (_) in
             self.bookTypeArray = Constants.sharedInstance.listBookType
             self.tableBookType.reloadData()
-            self.loadedTypeBook = true
-            if self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest {
-                self.stopActivityIndicator()
-            }
+            self.stopActivityIndicator()
         }) { (error) in
             self.stopActivityIndicator()
             _ = UIAlertController(title: " ",
@@ -118,10 +113,6 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         let getBookSuggest: GetAllBookSuggestTask = GetAllBookSuggestTask(limit: 3, page: 1)
         requestWithTask(task: getBookSuggest, success: { (data) in
             self.suggestBookView.reloadData(arrayOfBook: (data as? [Book])!)
-            self.loadedBookSuggest = true
-            if self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest {
-                self.stopActivityIndicator()
-            }
         }) { (error) in
             self.stopActivityIndicator()
             _ = UIAlertController(title: nil,
@@ -136,10 +127,6 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
         let getBookFree: GetBookFreeTask = GetBookFreeTask(limit: 3, page: 1)
         requestWithTask(task: getBookFree, success: { (data) in
             self.freeBookView.reloadData(arrayOfBook: (data as? [Book])!)
-            self.loadefBookFree = true
-            if self.loadedTypeBook && self.loadefBookFree && self.loadedBookSuggest {
-                self.stopActivityIndicator()
-            }
         }) { (error) in
             self.stopActivityIndicator()
             _ = UIAlertController(title: nil,
@@ -202,8 +189,7 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = sliderShow.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.sd_setImage(with: URL(string:listSlider[index].imageURL), completed: { (_, _, _, _) in
-        })
+        cell.imageView?.sd_setImage(with: URL(string:listSlider[index].imageURL))
         cell.imageView?.contentMode = .scaleAspectFill
         cell.imageView?.clipsToBounds = true
         return cell
@@ -270,7 +256,12 @@ class BookViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     // MARK: Call Back Navigation
     
+    func checkNotifocationApp() {
+        navigationCustom.checkNotifocation()
+    }
+    
     func setupCallBackNavigation() {
+         NotificationCenter.default.addObserver(self, selector: #selector(checkNotifocationApp), name: NSNotification.Name(rawValue: "reciveNotificaton"), object: nil)
         navigationCustom.callBackTopButton = { [weak self] (typeButton: TopButton) in
             if typeButton == TopButton.search {
                 self?.goToSearch()

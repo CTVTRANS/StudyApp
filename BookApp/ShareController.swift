@@ -12,7 +12,6 @@ import Social
 class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var table: UITableView!
-//    private lazy var member = ProfileMember.getProfile()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +40,7 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         table.deselectRow(at: indexPath, animated: true)
         if !checkLogin() {
+            self.revealViewController().revealToggle(animated: true)
             goToSigIn()
             return
         }
@@ -59,9 +59,8 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
     func pressedShareWeibo() {
         if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeSinaWeibo) {
             let vc = SLComposeViewController(forServiceType: SLServiceTypeSinaWeibo)
-//            vc?.add(#imageLiteral(resourceName: "userPlaceHolder"))
-//            vc?.add(URL(string: "https://color.adobe.com/explore/most-popular/?time=all"))
-            vc?.setInitialText("Hello\n")
+            vc?.setInitialText(ShareModel.shareIntance.nameShare + "\n" + ShareModel.shareIntance.detailShare)
+            vc?.add(URL(string: ShareModel.shareIntance.linkDownApp))
             vc?.popoverPresentationController?.sourceView = self.view
             vc?.completionHandler = { status in
                 switch status {
@@ -83,10 +82,9 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
 //        message.bText = true
 //        message.scene = 1
 //        WXApi.send(message)
-        let textToShare = "Hello\n"
-        let iamge = #imageLiteral(resourceName: "userPlaceHolder")
-        if let myWebsite = NSURL(string: "https://www.youtube.com/") {
-            let objectsToShare = [textToShare, iamge, myWebsite] as [Any]
+        let textToShare = ShareModel.shareIntance.nameShare + "\n" + ShareModel.shareIntance.detailShare
+        if let myWebsite = NSURL(string: ShareModel.shareIntance.linkDownApp) {
+            let objectsToShare = [textToShare, myWebsite] as [Any]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             activityVC.excludedActivityTypes = [UIActivityType.postToFacebook,
                                                 UIActivityType.postToTwitter,
@@ -102,7 +100,7 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
                                                 UIActivityType.mail,
                                                 UIActivityType.postToWeibo
                                                 ]
-            activityVC.completionWithItemsHandler = { (activity, success, items, error) in                print(success ? "SUCCESS!" : "FAILURE")
+            activityVC.completionWithItemsHandler = { (activity, success, items, error) in
                 if success {
                     self.upDatePointBase(type: UpdatePointType.share.rawValue)
                 }
@@ -116,9 +114,8 @@ class ShareController: BaseViewController, UITableViewDelegate, UITableViewDataS
     func pressedShareFacebook() {
         if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
             let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-            vc?.add(#imageLiteral(resourceName: "userPlaceHolder"))
-            vc?.add(URL(string: "https://color.adobe.com/explore/most-popular/?time=all"))
-            vc?.setInitialText("Hello\n")
+            vc?.add(URL(string: ShareModel.shareIntance.linkDownApp))
+            vc?.setInitialText(ShareModel.shareIntance.nameShare + "\n" + ShareModel.shareIntance.detailShare)
             vc?.popoverPresentationController?.sourceView = self.view
             vc?.completionHandler = { status in
                 switch status {

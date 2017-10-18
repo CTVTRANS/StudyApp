@@ -80,8 +80,10 @@ let getAllProductByPointURL = "/api/product/list_product_point"
 let getAllProductByPointAndMoneyURL = "/api/product/list_product_price_mix"
 let getAllProductURL = "/api/product/list_all_product"
 let getAllVipProductURL = "/api/product/list_package"
+let buyVipPointURL = "/api/orders/orders_vip"
 
 let css: String = "<style> img{max-width:100%} </style>"
+let appDownload = "https://itunes.apple.com/us/app/instant-heart-rate-hr-monitor/id409625068?mt=8"
 
 enum ErrorCode: Int {
     case success = 200

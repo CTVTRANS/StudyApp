@@ -63,6 +63,7 @@ class Constants: NSObject {
     var historyViewChanelLesson: [Lesson] = []
     var listCommentHot: [Comment] = []
 
+    var hasNotification = false
     var deviceToken = ""
     
     static let sharedInstance = Constants()

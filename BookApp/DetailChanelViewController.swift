@@ -33,15 +33,14 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
     var chanel: Chanel!
     lazy var mp3 = MP3Player.shareIntanse
     private var lessonUploaded = [Lesson]()
-    private var loadedListLessonUpload = false
-    private var loadedNumberView = false
+    var timer: Timer?
+    var idChap: Int?
     
     private lazy var footerView = UIView.initFooterView()
     private var indicator: UIActivityIndicatorView?
     private var isMoreData = true
     private var isLoading = false
     private var pager = 1
-//    private var member = ProfileMember.getProfile()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,11 +60,22 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
         if let ac = footerView.viewWithTag(8) as? UIActivityIndicatorView {
             indicator = ac
         }
+        ShareModel.shareIntance.nameShare = chanel.nameChanel
+        ShareModel.shareIntance.detailShare = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.title = chanel.nameChanel
         navigationController?.setNavigationBarHidden(false, animated: false)
+        let leftBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_navigation"), style: .done, target: self, action: #selector(pressedBack))
+        navigationItem.leftBarButtonItem = leftBarButton
+    }
+    
+    func pressedBack() {
+        timer?.invalidate()
+        timer = nil
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: UI
@@ -117,10 +127,6 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             if let numberViewChanel = data as? Int {
                 self.chanel.numberView = numberViewChanel
                 self.numberView.text = String(numberViewChanel)
-                self.loadedNumberView = true
-                if self.loadedNumberView && self.loadedListLessonUpload {
-                    self.stopActivityIndicator()
-                }
             }
         }) { (_) in
             
@@ -194,10 +200,7 @@ class DetailChanelViewController: BaseViewController, UITableViewDelegate, UITab
             if let arrayLesson = data as? [Lesson] {
                 self.lessonUploaded  += arrayLesson
                 self.table.reloadData()
-                self.loadedListLessonUpload = true
-                if self.loadedNumberView && self.loadedListLessonUpload {
-                    self.stopActivityIndicator()
-                }
+                self.stopActivityIndicator()
                 self.pager += 1
                 self.isLoading = false
                 self.indicator?.stopAnimating()
@@ -325,8 +328,8 @@ extension DetailChanelViewController {
         }
     }
     
-    func inCreeView(lesson: Lesson) {
-        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: lesson.idChap)
+    func sendRequestIncreaseViews() {
+        let viewed: IncreaseVIewChanelTask = IncreaseVIewChanelTask(lessonID: idChap!)
         requestWithTask(task: viewed, success: { (data) in
             if let status = data as? String {
                 if status == "success" {
@@ -339,5 +342,13 @@ extension DetailChanelViewController {
         }) { (_) in
             
         }
+    }
+    
+    func inCreeView(lesson: Lesson) {
+        timer?.invalidate()
+        timer = nil
+        idChap = lesson.idChap
+        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(sendRequestIncreaseViews), userInfo: nil, repeats: false)
+        
     }
 }

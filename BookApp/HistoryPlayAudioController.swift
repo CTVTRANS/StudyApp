@@ -73,8 +73,8 @@ class HistoryPlayAudioController: BaseViewController, UITableViewDelegate, UITab
             if index != mp3.oldIndexListPlay || (index == mp3.oldIndexListPlay && !mp3.isPlaying()) {
                 mp3.listPlay.remove(at: index)
                 listHistory.remove(at: index)
-                tableView.reloadData()
-//                table.deleteRows(at: [indexPath], with: .automatic)
+//                tableView.reloadData()
+                table.deleteRows(at: [indexPath], with: .automatic)
             }
         }
     }

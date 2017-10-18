@@ -13,7 +13,7 @@ class DetailNotificationMessageController: BaseViewController {
 
     @IBOutlet weak var detal: UILabel!
     var objectiNotification: NotificationApp?
-    var indexobjec: Int?
+//    var indexobjec: Int
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,8 @@ class DetailNotificationMessageController: BaseViewController {
         }
         navigationItem.title = "通知列表"
         detal.text = objectiNotification?.detailText
+        ShareModel.shareIntance.nameShare = (objectiNotification?.title)!
+        ShareModel.shareIntance.detailShare = (objectiNotification?.detailText)!
     }
     
     override func viewWillAppear(_ animated: Bool) {

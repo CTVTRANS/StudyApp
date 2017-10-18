@@ -10,7 +10,8 @@ import UIKit
 
 class NavigationCustom: UIView {
     
-    @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var imageNotifocation: UIImageView!
+    @IBOutlet weak var rightImage: UIImageView!
     
     var callBackTopButton:((_ typeButton: TopButton) -> Void)?
 
@@ -43,7 +44,17 @@ class NavigationCustom: UIView {
         return UIView()
     }
     
+    func checkNotifocation() {
+        if Constants.sharedInstance.hasNotification {
+            imageNotifocation.isHidden = false
+        } else {
+            imageNotifocation.isHidden = true
+        }
+    }
+    
     @IBAction func pressedMessageNotification(_ sender: Any) {
+        Constants.sharedInstance.hasNotification = false
+        imageNotifocation.isHidden = true
         self.callBackTopButton!(TopButton.messageNotification)
     }
     

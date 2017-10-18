@@ -24,14 +24,13 @@ class AllTypeBookController: TYTabPagerController {
         self.tabBar.layout.progressBorderColor = UIColor.rgb(255, 102, 0)
         self.tabBar.layout.selectedTextColor = UIColor.rgb(255, 102, 0)
         self.tabBar.layout.cellSpacing = 0
-        self.scrollToController(at: startIndex, animate: false)
         self.dataSource = self
         self.delegate = self
         self.loadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.tabBar.scrollToItem(from:  0, to: startIndex, animate: false)
+        self.pagerController.scrollToController(at: startIndex, animate: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {

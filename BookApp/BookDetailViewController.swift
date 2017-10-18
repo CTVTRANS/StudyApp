@@ -42,6 +42,11 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
         
         bottomView.numberComment.text = String(bookSelected.numberComment)
         timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(increaseViewBook), userInfo: nil, repeats: false)
+        ShareModel.shareIntance.nameShare = bookSelected.name
+        var detailBook = bookSelected.descriptionBook.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        let index = detailBook.index(detailBook.startIndex, offsetBy: 200)
+        let str = (detailBook.characters.count < 200) ? detailBook:detailBook.substring(to: index)
+        ShareModel.shareIntance.detailShare = str + "..."
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,8 +76,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
             }
         }) { (_) in
         }
-        let checkBookMarked: CheckBookMarkedTask =
-            CheckBookMarkedTask(bookMarkType: Object.book.rawValue, memberID: (memberInstance?.idMember)!, objectID: bookSelected.idBook)
+        let checkBookMarked: CheckBookMarkedTask = CheckBookMarkedTask(bookMarkType: Object.book.rawValue, memberID: (memberInstance?.idMember)!, objectID: bookSelected.idBook)
         requestWithTask(task: checkBookMarked, success: { [weak self] (data) in
             if let status = data as? (Bool, Int) {
                 if status.0 {
@@ -157,17 +161,14 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
                 return
             }
             switch typeButton {
-            case BottomButton.back:
-                self?.navigationController?.popViewController(animated: true)
-            case BottomButton.bookMark:
-                self?.pressedBookmark()
+            case BottomButton.back: break
+            case BottomButton.bookMark: self?.pressedBookmark()
             case BottomButton.comment:
                 let vc = myStoryboard.instantiateViewController(withIdentifier: "CommentController") as? CommentController
                 vc?.idObject = self?.bookSelected?.idBook
                 vc?.commentType = Object.book.rawValue
                 self?.present(vc!, animated: false, completion: nil)
-            case BottomButton.like:
-                self?.pressedLike()
+            case BottomButton.like: self?.pressedLike()
             case BottomButton.download:
                 if self?.memberInstance?.level != 1 {
                     _ = UIAlertController.initAler(title: "", message: "Only member Vip cant dwonload", inViewController: self!)
@@ -215,10 +216,7 @@ class BookDetailViewController: BaseViewController, UIScrollViewDelegate {
     }
     
     func pressedBookmark() {
-        let bookMarkTask: BookMarkTask = BookMarkTask(bookMarkType: Object.book.rawValue,
-                                                      memberID: (memberInstance?.idMember)!,
-                                                      objectId: bookSelected.idBook,
-                                                      token: tokenInstance!)
+        let bookMarkTask: BookMarkTask = BookMarkTask(bookMarkType: Object.book.rawValue, memberID: (memberInstance?.idMember)!, objectId: bookSelected.idBook, token: tokenInstance!)
         self.requestWithTask(task: bookMarkTask, success: { (data) in
             let status: BookMark = (data as? BookMark)!
             if status == BookMark.bookMark {

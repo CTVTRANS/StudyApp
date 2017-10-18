@@ -14,8 +14,6 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
     @IBOutlet weak var navigationView: NavigationCustom!
     @IBOutlet weak var suggestChanel: CustomChanelCollection!
     @IBOutlet weak var freeChanel: CustomChanelCollection!
-    private var loadedChanelSuggest = false
-    private var loadedChanelFree = false
     var currentPageSuggest = 1
     var currentFree = 1
     
@@ -59,6 +57,7 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationView.checkNotifocation()
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -86,10 +85,6 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
             if let suggestArray = data as? [Chanel] {
                 self?.currentPageSuggest += 1
                 self?.suggestChanel.reloadChanel(arrayChanel: suggestArray)
-                self?.loadedChanelSuggest = true
-                if (self?.loadedChanelSuggest)! && (self?.loadedChanelFree)! {
-                    self?.stopActivityIndicator()
-                }
             }
         }) { (error) in
             self.stopActivityIndicator()
@@ -105,16 +100,11 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
             if let freeArray = data as? [Chanel] {
                 self?.currentFree += 1
                 self?.freeChanel.reloadChanel(arrayChanel: freeArray)
-                self?.loadedChanelFree = true
-                if (self?.loadedChanelSuggest)! && (self?.loadedChanelFree)! {
-                    self?.stopActivityIndicator()
-                }
+                self?.stopActivityIndicator()
             }
         }) { (error) in
             self.stopActivityIndicator()
-            _ = UIAlertController(title: nil,
-                                  message: error as? String,
-                                  preferredStyle: .alert)
+            _ = UIAlertController(title: nil, message: error as? String, preferredStyle: .alert)
         }
     }
     
@@ -126,8 +116,7 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = sliderShow.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.sd_setImage(with: URL(string:listSlider[index].imageURL), completed: { (_, _, _, _) in
-        })
+        cell.imageView?.sd_setImage(with: URL(string:listSlider[index].imageURL))
         cell.imageView?.contentMode = .scaleAspectFill
         cell.imageView?.clipsToBounds = true
         return cell
@@ -171,7 +160,14 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
         }
     }
     
+    func checkNotifocationApp() {
+        navigationView.checkNotifocation()
+    }
+    
+    // MARK: Button Control
+   
     func setupCallBackNavigation() {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkNotifocationApp), name: NSNotification.Name(rawValue: "reciveNotificaton"), object: nil)
         navigationView.callBackTopButton = { [weak self] (typeButton: TopButton) in
             
             if typeButton == TopButton.search {
@@ -192,8 +188,6 @@ class ChanelViewController: BaseViewController, FSPagerViewDelegate, FSPagerView
             }
         }
     }
-    
-    // MARK: Button Control
     
     @IBAction func showHotChanel(_ sender: Any) {
         let chanelStoryboard = UIStoryboard(name: "Chanel", bundle: nil)

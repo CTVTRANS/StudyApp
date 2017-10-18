@@ -16,6 +16,7 @@ struct NotificationApp {
     var appName: String
     var time: String
     var isReaded: Bool
+    var numberNotice: Int?
     
     init(_ idNotiFication: Int, title: String, image: String, detailText: String, appName: String, readed: Bool, time: String) {
         self.idNotification = idNotiFication

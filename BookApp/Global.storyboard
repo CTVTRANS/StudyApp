@@ -590,7 +590,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g9Y-QC-Lnc" id="Lvg-nm-VA3">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7JY-ul-fCs">
@@ -614,7 +614,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reL-HW-T4j">
-                                                    <rect key="frame" x="69" y="16" width="34" height="18"/>
+                                                    <rect key="frame" x="69" y="16" width="37" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="VdW-wm-46w"/>
                                                     </constraints>
@@ -626,7 +626,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:09" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvJ-2Q-3OP">
-                                                    <rect key="frame" x="69" y="34" width="22" height="17"/>
+                                                    <rect key="frame" x="69" y="34" width="23.5" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="dbD-mM-HaA"/>
                                                     </constraints>
@@ -641,7 +641,7 @@
                                                     <rect key="frame" x="69" y="59" width="243" height="33"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I need to change the color of my button's text. I also need to change the state to Disabled after the user presses it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6Q-8S-kVW">
-                                                            <rect key="frame" x="0.0" y="0.0" width="242.5" height="33"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="225" height="33"/>
                                                             <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -860,7 +860,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qUD-Eb-ctQ" id="6ZS-hk-kUb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="56.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hh2-Ec-MEH">
@@ -879,7 +879,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvL-uN-Fu4">
-                                                    <rect key="frame" x="70" y="14" width="184" height="14"/>
+                                                    <rect key="frame" x="66" y="14" width="188" height="16.5"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
@@ -887,7 +887,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo8-MK-9gH">
-                                                    <rect key="frame" x="48" y="32.5" width="29.5" height="13"/>
+                                                    <rect key="frame" x="48" y="32.5" width="32" height="15.5"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
@@ -902,7 +902,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzf-1b-fhW">
-                                                    <rect key="frame" x="270" y="13.5" width="42" height="16"/>
+                                                    <rect key="frame" x="270" y="15" width="42" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="qrA-tT-TFn"/>
                                                     </constraints>
@@ -910,31 +910,25 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48c-Jw-rhm">
-                                                    <rect key="frame" x="48" y="14" width="14" height="14"/>
-                                                    <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumb" translatesAutoresizingMaskIntoConstraints="NO" id="ko0-rf-xoO">
+                                                    <rect key="frame" x="48" y="14" width="13" height="13"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="1IL-xv-beQ"/>
-                                                        <constraint firstAttribute="width" constant="14" id="kFB-4I-iGr"/>
+                                                        <constraint firstAttribute="height" constant="13" id="9ig-v9-L41"/>
+                                                        <constraint firstAttribute="width" constant="13" id="qLN-Lb-3go"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="7"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mo8-MK-9gH" firstAttribute="top" secondItem="ZdQ-Ua-WSP" secondAttribute="bottom" constant="3" id="3XL-Ok-Gdd"/>
                                                 <constraint firstItem="uzf-1b-fhW" firstAttribute="leading" secondItem="bvL-uN-Fu4" secondAttribute="trailing" constant="16" id="4Mw-Dc-PqS"/>
-                                                <constraint firstItem="48c-Jw-rhm" firstAttribute="top" secondItem="Hh2-Ec-MEH" secondAttribute="top" id="97I-GM-eHu"/>
                                                 <constraint firstItem="uzf-1b-fhW" firstAttribute="centerY" secondItem="bvL-uN-Fu4" secondAttribute="centerY" id="Bfa-Qi-s6X"/>
-                                                <constraint firstItem="bvL-uN-Fu4" firstAttribute="leading" secondItem="Hh2-Ec-MEH" secondAttribute="trailing" constant="30" id="Cld-gS-hha"/>
+                                                <constraint firstItem="bvL-uN-Fu4" firstAttribute="leading" secondItem="Hh2-Ec-MEH" secondAttribute="trailing" constant="26" id="Cld-gS-hha"/>
                                                 <constraint firstItem="mo8-MK-9gH" firstAttribute="leading" secondItem="Hh2-Ec-MEH" secondAttribute="trailing" constant="8" id="DQa-Pe-eTl"/>
+                                                <constraint firstItem="ko0-rf-xoO" firstAttribute="top" secondItem="Hh2-Ec-MEH" secondAttribute="top" id="FOb-Re-Qnv"/>
                                                 <constraint firstItem="Hh2-Ec-MEH" firstAttribute="leading" secondItem="6ZS-hk-kUb" secondAttribute="leading" constant="12" id="GI8-Mn-Fns"/>
+                                                <constraint firstItem="ko0-rf-xoO" firstAttribute="leading" secondItem="Hh2-Ec-MEH" secondAttribute="trailing" constant="8" id="Kap-vZ-oZm"/>
                                                 <constraint firstItem="ZdQ-Ua-WSP" firstAttribute="leading" secondItem="Hh2-Ec-MEH" secondAttribute="trailing" id="LXN-rx-nI7"/>
                                                 <constraint firstItem="bvL-uN-Fu4" firstAttribute="top" secondItem="Hh2-Ec-MEH" secondAttribute="top" id="MM5-8q-3Po"/>
-                                                <constraint firstItem="48c-Jw-rhm" firstAttribute="leading" secondItem="Hh2-Ec-MEH" secondAttribute="trailing" constant="8" id="T0Y-ro-gYk"/>
                                                 <constraint firstItem="ZdQ-Ua-WSP" firstAttribute="centerY" secondItem="6ZS-hk-kUb" secondAttribute="centerY" id="VdL-ts-du6"/>
                                                 <constraint firstItem="Hh2-Ec-MEH" firstAttribute="top" secondItem="6ZS-hk-kUb" secondAttribute="top" constant="14" id="ePe-WF-fQ1">
                                                     <userDefinedRuntimeAttributes>
@@ -954,7 +948,7 @@
                                             <outlet property="detailApp" destination="mo8-MK-9gH" id="ElK-XF-3HF"/>
                                             <outlet property="imageNotification" destination="Hh2-Ec-MEH" id="5Wr-VS-WIx"/>
                                             <outlet property="leadingTitle" destination="Cld-gS-hha" id="gFl-Oe-Ci9"/>
-                                            <outlet property="marked" destination="48c-Jw-rhm" id="R5q-n3-kdM"/>
+                                            <outlet property="marked" destination="ko0-rf-xoO" id="XvN-BK-X0g"/>
                                             <outlet property="timeUp" destination="uzf-1b-fhW" id="KfH-6D-bz5"/>
                                             <outlet property="titleNotification" destination="bvL-uN-Fu4" id="nTy-o5-Sae"/>
                                         </connections>
@@ -993,7 +987,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqn-kS-wl6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2854" y="843"/>
+            <point key="canvasLocation" x="2853.75" y="842.95774647887322"/>
         </scene>
         <!--播放列表-->
         <scene sceneID="fOp-gk-Cqf">
@@ -1015,7 +1009,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RXH-u4-jtZ" id="yut-Mj-HOI">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRU-OH-gcf">
@@ -1060,7 +1054,7 @@
                                                         <constraint firstItem="aCp-si-CtN" firstAttribute="centerY" secondItem="GRU-OH-gcf" secondAttribute="centerY" id="x7F-23-n32"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7P4-Eh-4zA">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7P4-Eh-4zA">
                                                     <rect key="frame" x="39.5" y="10" width="232.5" height="13"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -1069,7 +1063,7 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6h-uv-Vr4">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6h-uv-Vr4">
                                                     <rect key="frame" x="39.5" y="27" width="232.5" height="13"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -1355,10 +1349,10 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Gy-d7-pYJ" id="ZCs-j3-mCG">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="48.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-Lj-qC5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pd-Lj-qC5">
                                                     <rect key="frame" x="16" y="8" width="288" height="14"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="14"/>
                                                     <nil key="textColor"/>
@@ -1367,7 +1361,7 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5t-Ar-K9T">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5t-Ar-K9T">
                                                     <rect key="frame" x="16" y="27.5" width="288" height="13"/>
                                                     <fontDescription key="fontDescription" name="DFHeiStd-W5" family="DFHei Std" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -1791,6 +1785,7 @@
         <image name="ic_change_Search" width="32" height="32"/>
         <image name="ic_dismiss" width="64" height="64"/>
         <image name="playList" width="64" height="64"/>
+        <image name="thumb" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lQ0-mS-KEc"/>

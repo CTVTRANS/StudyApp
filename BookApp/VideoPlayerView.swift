@@ -97,10 +97,12 @@ class VideoPlayerView: UIView {
             controlsContainerView.goFullscreen()
             playerlayer?.goFullscreen()
             _ = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(hiddenControll), userInfo: nil, repeats: false)
+            fullScreenButton.setImage(#imageLiteral(resourceName: "zoomin_screen"), for: .normal)
         } else {
             self.minimizeToFrame()
             playerlayer?.minimizeToFrame()
             controlsContainerView.minimizeToFrame()
+            fullScreenButton.setImage(#imageLiteral(resourceName: "full_screen"), for: .normal)
         }
         showFullScreen = !showFullScreen
     }
@@ -243,10 +245,10 @@ class VideoPlayerView: UIView {
         controlsContainerView.addSubview(fullScreenButton)
         fullScreenButton.addConstraintBound(withHeight: 22, withWidth: 22)
         fullScreenButton.addContrainRight(to: controlsContainerView, withRight: -8)
-        fullScreenButton.addConstraintBottom(to: controlsContainerView, withBottom: -2)
+        fullScreenButton.addConstraintBottom(to: controlsContainerView, withBottom: -4)
         
         controlsContainerView.addSubview(videoLengthLabel)
-        videoLengthLabel.addContrainRight(to: fullScreenButton, withRight: -30)
+        videoLengthLabel.addContrainRight(to: fullScreenButton, withRight: -20)
         videoLengthLabel.addConstraintBottom(to: controlsContainerView, withBottom: -2)
         videoLengthLabel.addConstraintBound(withHeight: 24, withWidth: 50)
         
@@ -256,9 +258,9 @@ class VideoPlayerView: UIView {
         currentTimeLabel.addConstraintBound(withHeight: 24, withWidth: 50)
         
         controlsContainerView.addSubview(videoSlider)
-        videoSlider.addConstraintleft(to: currentTimeLabel, withLeft: 50)
+        videoSlider.addConstraintleft(to: currentTimeLabel, withLeft: 46)
         videoSlider.addConstraintBottom(to: controlsContainerView, withBottom: 0)
-        videoSlider.addContrainRight(to: videoLengthLabel, withRight: -50)
+        videoSlider.addContrainRight(to: videoLengthLabel, withRight: -58)
         videoSlider.addConstraintHeight(withHeight: 30)
         
         backgroundColor = .black

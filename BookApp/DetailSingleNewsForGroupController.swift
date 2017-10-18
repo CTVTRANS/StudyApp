@@ -27,6 +27,7 @@ class DetailSingleNewsForGroupController: BaseViewController, UIWebViewDelegate 
     var news: NewsInGroups?
 
     override func viewDidLoad() {
+        showActivity(inView: self.view)
         let groupOwner = news?.groupOwner
         super.viewDidLoad()
         imageGroup.sd_setImage(with: URL(string: (groupOwner?.imageURL)!), placeholderImage: #imageLiteral(resourceName: "place_holder"))
@@ -59,6 +60,7 @@ class DetailSingleNewsForGroupController: BaseViewController, UIWebViewDelegate 
     func webViewDidFinishLoad(_ webView: UIWebView) {
         let heightNew: CGFloat = bodyWebView.scrollView.contentSize.height
         heightOfWebView.constant = heightNew
+        stopActivityIndicator()
     }
     
     @IBAction func pressedJoinButton(_ sender: Any) {

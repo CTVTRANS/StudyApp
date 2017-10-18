@@ -8,13 +8,16 @@
 
 import UIKit
 import UserNotifications
+import LCNetwork
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
 
     var window: UIWindow?
+    let notificationName = Notification.Name("reciveNotificaton")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        application.applicationIconBadgeNumber = 0
         UINavigationBar.appearance().tintColor = UIColor.rgb(82, 82, 82)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.rgb(82, 82, 82)]
         WXApi.registerApp("vn.conglv.BookApp", withDescription: "demo")
@@ -22,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         registerForPushNotifications()
         
         if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject] {
+            Constants.sharedInstance.hasNotification = true
             let aps = notification["aps"] as? [String: AnyObject]
             print(aps!)
         }
@@ -30,10 +34,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         application.applicationIconBadgeNumber = 0
+        let getData = GetNotificationTask(limit: 1000, page: 1, memberID: (ProfileMember.getProfile()?.idMember)!)
+        getData.request(blockSucess: { (data) in
+            if let arrayNotice = data as? (Int, [NotificationApp]) {
+                let numberNotice = UserDefaults.standard.integer(forKey: "numberNotice")
+                if arrayNotice.0 > numberNotice {
+                    Constants.sharedInstance.hasNotification = true
+                    NotificationCenter.default.post(name: self.notificationName, object: nil)
+                }
+            }
+        }) { (_) in
+            
+        }
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        let notificationName = Notification.Name("requestToServer")
+        Constants.sharedInstance.hasNotification = true
         NotificationCenter.default.post(name: notificationName, object: nil)
         let aps = userInfo["aps"] as? [String: AnyObject]
         print(aps!)

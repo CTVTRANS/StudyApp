@@ -27,10 +27,11 @@ class NotificationMessageViewController: BaseViewController, UITableViewDelegate
     }
     
     func getData() {
-        let getData = GetNotificationTask(limit: 100, page: 1, memberID: (memberInstance?.idMember)!)
+        let getData = GetNotificationTask(limit: 1000, page: 1, memberID: (memberInstance?.idMember)!)
         requestWithTask(task: getData, success: { (data) in
-            if let array = data as? [NotificationApp] {
-                self.listNotification = array
+            if let array = data as? (Int, [NotificationApp]) {
+                UserDefaults.standard.set(array.0, forKey: "numberNotice")
+                self.listNotification = array.1
                 self.table.reloadData()
             }
         }) { (_) in

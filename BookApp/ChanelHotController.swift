@@ -17,7 +17,6 @@ class ChanelHotController: BaseViewController, UITableViewDelegate, UITableViewD
     private var isMoreData = true
     private var pager = 1
     lazy var footerView = UIView.initFooterView()
-//    private var member = ProfileMember.getProfile()
     private var indicator: UIActivityIndicatorView?
     
     override func viewDidLoad() {
